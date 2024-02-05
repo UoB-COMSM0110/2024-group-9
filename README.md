@@ -1,13 +1,12 @@
 # 2024-group-9
 IDEA 1: Platformer 
-Twist: Skills (dash, double jump, wall climb)
-Challenges: 
+Twist: Weather system to affect efficacy of certain moves (wind blows you forward or back, ice makes surface slipperly (lowers friction), cloud obscures view)
+Challenges (need to choose 3): 
 1. Physics engine
 2. Collision detection (hit boxes)
 3. Leaderboard
 4. Map design
 5. Creating the skills/player abilities
-6. Weather system to affect efficacy of certain moves
 
 
 IDEA 2: Tower Defense Game
