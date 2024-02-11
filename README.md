@@ -9,7 +9,6 @@ Challenges (need to choose 3):
 3. Leaderboard
 4. Map design
 5. Creating the skills/player abilities
-![image](https://github.com/UoB-COMSM0110/2024-group-9/blob/main/Celeste_screenshot_02.png)
 
 IDEA 2: Tower Defense Game
 
