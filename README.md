@@ -1,4 +1,7 @@
 # 2024-group-9
+
+![Team photo](Image.jfif)
+
 IDEA 1: Platformer
 
 Twist: Weather system to affect efficacy of certain moves (wind blows you forward or back, ice makes surface slipperly (lowers friction), cloud obscures view)
