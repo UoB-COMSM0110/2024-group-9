@@ -1,6 +1,6 @@
 # 2024-group-9
 
-![Team photo](Image.jfif)
+<img src="Image.jfif" width="250">
 
 IDEA 1: Platformer
 
