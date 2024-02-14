@@ -56,6 +56,15 @@ Challenges:
 3. Tutorial opens showing the player a basic level that builds up from the basics in separate screens, focusing on one thing at a time.
 4. Player reaches the end of the tutorial and is taken back to the home screen so they can decide whether to do the tutorial again or play the full game.
 
+### Use case specification for user story 7:
+1. Player opens game
+2. Player selects to skip tutorial (already has pre-existing knowledge of game, keybinds, enemies, etc.)
+3. Player enters nickname to be displayed on leaderboard
+4. Player successfully navigates through complete game.
+5. Success screen is displayed
+6. Followed by leaderboard - including position, score, top 10?
+7. Options to restart, quit
+
 ### Use case diagram
 TO DO
 
