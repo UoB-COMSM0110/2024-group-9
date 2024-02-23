@@ -1,14 +1,23 @@
 # 2024-group-9
 
-## Team photo
-
+## Team 9
+Liz Elliott, Diwen Fan, Santiago Gasca Garcia, Guangfo Guo, Charles Harris
 <img src="Image.jfif" width="250">
 
 ## Game ideas
 
-IDEA 1: Platformer, like Celeste or Super Mario. "Mission Possible!"
+IDEA 1: Platformer
+Examples:
+- Celeste
+- Super Mario
 
-Twist: Weather system to affect efficacy of certain moves (wind blows you forward or back, ice makes surface slipperly (lowers friction), cloud obscures view)
+<img src="Celeste_screenshot_02.png" width="250">
+
+Twist: Weather system to affect efficacy of certain moves. For example:
+- wind blows you forward or back
+- ice makes surface slipperly (lowers friction)
+- cloud obscures view
+- heat makes you move more slowly
 
 Challenges (need to choose 3): 
 1. Physics engine
@@ -17,16 +26,24 @@ Challenges (need to choose 3):
 4. Map design
 5. Creating the skills/player abilities
 
-IDEA 2: Tower Defense Game
+IDEA 2: Tower Defense Game,
+Examples:
+- Tower Defense King 
+- Kingdom Defense
+<img src=Tower-Defense-King-screenshot.png>
 
-Twist: Be the attacking party game-mode
+Twist: Game mode which allows the player to be the attacking party. 
 
 Challenges: 
 1. Bullet/weaponry design
 2. Different attackers and tower types
 3. Weather system to affect efficacy of certain moves
 
-**Chosen game:** game idea 1 "Mission Possible!"
+**Chosen game:** game idea 1 - platformer with weather conditions.
+Working title: "Mission Possible!"
+
+### Paper prototype
+[YouTube link](https://youtu.be/xK1kFr6qZxw)
 
 ## Requirements
 
@@ -35,7 +52,8 @@ Challenges:
   - novice player
   - experienced player
   - competitive player
-- Game developers (us)
+  - player with physical accessibility requirements
+- Game developers
 - Markers (who have 5 mins max to play the game)
 
 ### User stories:
@@ -60,13 +78,15 @@ Challenges:
 1. Player opens game
 2. Player selects to skip tutorial (already has pre-existing knowledge of game, keybinds, enemies, etc.)
 3. Player enters nickname to be displayed on leaderboard
-4. Player successfully navigates through complete game.
-5. Success screen is displayed
-6. Followed by leaderboard - including position, score, top 10?
-7. Options to restart, quit
+4. Player selects a character from a menu of choices
+5. Player successfully navigates through complete game.
+6. Success screen is displayed
+7. Followed by leaderboard - including position, score, top 10?
+8. Options to restart, quit
 
 ### Use case diagram
-TO DO
+Use case diagram for user story 7
+<img src="use-case-story7.jpg" width="500">
 
 ### Reflections from user stories:
-TO DO 
+TO DO
