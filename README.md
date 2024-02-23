@@ -2,16 +2,18 @@
 
 ## Team 9
 Liz Elliott, Diwen Fan, Santiago Gasca Garcia, Guangfo Guo, Charles Harris
+
 <img src="Image.jfif" width="250">
 
 ## Game ideas
 
 IDEA 1: Platformer
+
 Examples:
 - Celeste
 - Super Mario
 
-<img src="Celeste_screenshot_02.png" width="250">
+<img src="Celeste_screenshot_02.png" width="350">
 
 Twist: Weather system to affect efficacy of certain moves. For example:
 - wind blows you forward or back
@@ -27,10 +29,11 @@ Challenges (need to choose 3):
 5. Creating the skills/player abilities
 
 IDEA 2: Tower Defense Game,
+
 Examples:
 - Tower Defense King 
 - Kingdom Defense
-<img src=Tower-Defense-King-screenshot.png>
+<img src="Tower-Defense-King-screenshot.png" width ="350">
 
 Twist: Game mode which allows the player to be the attacking party. 
 
@@ -40,6 +43,7 @@ Challenges:
 3. Weather system to affect efficacy of certain moves
 
 **Chosen game:** game idea 1 - platformer with weather conditions.
+
 Working title: "Mission Possible!"
 
 ### Paper prototype
@@ -84,8 +88,8 @@ Working title: "Mission Possible!"
 7. Followed by leaderboard - including position, score, top 10?
 8. Options to restart, quit
 
-### Use case diagram
 Use case diagram for user story 7
+
 <img src="use-case-story7.jpg" width="500">
 
 ### Reflections from user stories:
