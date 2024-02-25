@@ -94,3 +94,12 @@ Use case diagram for user story 7
 
 ### Reflections from user stories:
 TO DO
+Important to be clear about the order in which things need to happen and what dependencies there are.
+For example
+- no need to select a character for the tutorial. 
+- player should be able to change keybinds as early as possible
+- experienced player may want to skip the tutorial
+Things still undecided:
+- easy vs hard version
+- how many levels
+- what to include on leaderboard
