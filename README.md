@@ -1,11 +1,13 @@
-# 2024-group-9
+# 2024-group-9: Mission Possible
 
-## Team 9
+## Team
 Liz Elliott, Diwen Fan, Santiago Gasca Garcia, Guangfo Guo, Charles Harris
 
 <img src="Image.jfif" width="250">
 
-## Game ideas
+## Introduction
+
+This section sets out our two initial ideas and expands on the chosen game idea. 
 
 IDEA 1: Platformer
 
@@ -43,6 +45,8 @@ Challenges:
 3. Weather system to affect efficacy of certain moves
 
 **Chosen game:** game idea 1 - platformer with weather conditions.
+
+We will develop a two-dimensional space-themed platform game which allows players to choose their character, enter their name, play and optional tutorial and play through several levels of the game. The player will be able to do various running, jumping and dashing moves, and will make their way through various obstacles in order to reach their spaceship and return home. The twist will be that the game play wil change depending on the weather, which will change randomly during the game. For example, hot weather would slow a player down, ice would make the surfaces slipperly and wind might make it easier or harder to jump over or past obstacles, depending on the direction.
 
 Working title: "Mission Possible!"
 
@@ -92,14 +96,9 @@ Use case diagram for user story 7
 
 <img src="use-case-story7.jpg" width="500">
 
-### Reflections from user stories:
-TO DO
-Important to be clear about the order in which things need to happen and what dependencies there are.
-For example
-- no need to select a character for the tutorial. 
-- player should be able to change keybinds as early as possible
-- experienced player may want to skip the tutorial
-Things still undecided:
-- easy vs hard version
-- how many levels
-- what to include on leaderboard
+### Reflections 
+The main things that we realised from developing the user stories and use cases were how it's important to be clear about which order things will need to happen in, and being very clear to the players about what they need to do next. 
+
+For example, an player should be able to skip the tutorial if they want to, but a novice player should really easily be able to see what they need to do to start the tutorial. We might choose not to have character selection or entering the player's name for the tutorial, but these menu screens will need to be available for the main game. If we include the option to change the keybinds to make it easier for players to use the keys best suited to their physical requirements, we should do this as early on as possible. 
+
+We also noted that we are still undecided about exactly what our three challenges will be, how many levels to have, and what details to include on the leaderboard. For example, how will we calculate a score for a player, will we show duplicates (i.e. if a player has played twice, will their two different scores appear in the leaderboard) and how will we show the current player's high score if it is not in, say, the top 10? 
