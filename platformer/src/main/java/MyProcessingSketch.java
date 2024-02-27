@@ -13,6 +13,7 @@ public class MyProcessingSketch extends PApplet {
     }
     WarpSpeed warpSpeed;
     WarpSpeed.Star[] stars = new WarpSpeed.Star[950];
+    View view = new View(MyProcessingSketch.this);
     PFont customFont1;
     boolean gameStarted = false;
 
@@ -23,7 +24,7 @@ public class MyProcessingSketch extends PApplet {
     String userName = "";
 
     public void settings() {
-        size(1200, 900);
+        size((int) this.view.getWidth(), (int) this.view.getHeight());
     }
 
     public void setup() {
@@ -39,21 +40,22 @@ public class MyProcessingSketch extends PApplet {
 
     public void draw() {
         background(0);
-        if(!gameStarted) {
-            displayStartScreen();
-        } else if (gameStarted && !characterChosen){
-            displayChooseCharacter();
-        } else if (characterChosen && !nameSelected) {
-            enterNameScreen();
-        } else {
-            //enter the game (at a later date of course)
-        }
 
-        translate((float) width / 2, height / 2);
-        for (int i = 0; i < stars.length; i++) {
-            stars[i].update();
-            stars[i].show();
-        }
+//        if(!gameStarted) {
+//            displayStartScreen();
+//        } //else if (gameStarted && !characterChosen){
+//            displayChooseCharacter();
+//        } else if (characterChosen && !nameSelected) {
+//            enterNameScreen();
+//        } else {
+//            //enter the game (at a later date of course)
+//        }
+//
+//        translate((float) width / 2, height / 2);
+//        for (int i = 0; i < stars.length; i++) {
+//            stars[i].update();
+//            stars[i].show();
+//        }
     }
 
     public void displayStartScreen() {
