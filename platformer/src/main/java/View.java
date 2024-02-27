@@ -6,21 +6,21 @@ import java.awt.*;
 
 public class View {
     private final PApplet parent;
-    double height;
-    double width;
+    float height;
+    float width;
 
     View(PApplet parent) {
         this.parent = parent;
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        this.width = screenSize.getWidth();
-        this.height = screenSize.getHeight();
+        this.width = (float) screenSize.getWidth();
+        this.height = (float) screenSize.getHeight();
     }
 
-    public double getHeight() {
+    public float getHeight() {
         return height;
     }
 
-    public double getWidth() {
+    public float getWidth() {
         return width;
     }
 }
