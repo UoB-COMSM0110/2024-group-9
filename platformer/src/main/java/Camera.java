@@ -9,20 +9,19 @@ public class Camera {
 
     Camera(PApplet parent, float xPos, float yPos) {
         this.parent = parent;
-        this.xPos = xPos;
-        this.yPos = yPos;
+        setPos(xPos, yPos);
     }
 
-    public float getxPos() {
+    public float getXPos() {
         return xPos;
     }
 
-    public float getyPos() {
+    public float getYPos() {
         return yPos;
     }
 
     public float[] getPos() {
-        return new float[]{getxPos(), getyPos()};
+        return new float[]{getXPos(), getYPos()};
     }
 
     public void setPos(float xPos, float yPos) {

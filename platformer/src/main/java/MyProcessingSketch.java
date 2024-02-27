@@ -34,28 +34,28 @@ public class MyProcessingSketch extends PApplet {
         customFont1 = createFont(fontFilePath, 48);
         textFont(customFont1);
         for (int i = 0; i < stars.length; i++) {
-            stars[i] = new WarpSpeed.Star(MyProcessingSketch.this, 1200, 900);
+            stars[i] = new WarpSpeed.Star(MyProcessingSketch.this, view.getWidth(), view.getHeight());
         }
     }
 
     public void draw() {
         background(0);
 
-//        if(!gameStarted) {
-//            displayStartScreen();
-//        } //else if (gameStarted && !characterChosen){
-//            displayChooseCharacter();
-//        } else if (characterChosen && !nameSelected) {
-//            enterNameScreen();
-//        } else {
-//            //enter the game (at a later date of course)
-//        }
-//
-//        translate((float) width / 2, height / 2);
-//        for (int i = 0; i < stars.length; i++) {
-//            stars[i].update();
-//            stars[i].show();
-//        }
+        if(!gameStarted) {
+            displayStartScreen();
+        } else if (gameStarted && !characterChosen){
+            displayChooseCharacter();
+        } else if (characterChosen && !nameSelected) {
+            enterNameScreen();
+        } else {
+            //enter the game (at a later date of course)
+        }
+
+        translate((float) width / 2, height / 2);
+        for (int i = 0; i < stars.length; i++) {
+            stars[i].update();
+            stars[i].show();
+        }
     }
 
     public void displayStartScreen() {
