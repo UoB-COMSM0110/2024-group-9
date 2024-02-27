@@ -3,6 +3,9 @@ package main.java;
 import processing.core.PApplet;
 import processing.core.PFont;
 
+import java.awt.*;
+import java.io.File;
+
 public class MyProcessingSketch extends PApplet {
 
     public static void main(String[] args) {
@@ -26,7 +29,8 @@ public class MyProcessingSketch extends PApplet {
     public void setup() {
 
         background(0);
-        customFont1 = createFont("Impossible - 1000", 48);
+        String fontFilePath = sketchPath("platformer/src/main/resources/IMPOS10_.ttf");
+        customFont1 = createFont(fontFilePath, 48);
         textFont(customFont1);
         for (int i = 0; i < stars.length; i++) {
             stars[i] = new WarpSpeed.Star(MyProcessingSketch.this, 1200, 900);
