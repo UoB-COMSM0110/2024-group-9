@@ -2,9 +2,11 @@ from flask import Flask, request, g
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import declarative_base, sessionmaker
 import random
+from pathlib import Path
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///local.db'
+db_path = Path(__file__).parent / 'local.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
 db = SQLAlchemy(app)
 
 class Score(db.Model):
