@@ -1,19 +1,19 @@
 from flask import Flask, request, g
-from sqlalchemy import create_engine, Column, Integer, String
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import declarative_base, sessionmaker
 import random
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///local.db'
+db = SQLAlchemy(app)
 
-Base = declarative_base()
-
-class Score(Base):
+class Score(db.Model):
     __tablename__ = "scores"
 
-    id = Column(Integer, primary_key=True)
-    user_hash = Column(String)
-    nickname = Column(String)
-    score = Column(Integer)
+    id = db.Column(db.Integer, primary_key=True)
+    user_hash = db.Column(db.String)
+    nickname = db.Column(db.String)
+    score = db.Column(db.Integer)
 
 
 @app.route("/", methods=['POST'])
@@ -23,7 +23,6 @@ def input_score():
     new_score = Score(user_hash=str(random.random()), nickname=data["nickname"], score=data["score"])
     db_session.add(new_score)
     score_list = [(score.nickname, score.score) for score in db_session.query(Score).all()]
-    print(score_list)
     db_session.commit()
     return data
 
@@ -36,9 +35,11 @@ def get_top_ten():
 
 def get_db_session():
     if not hasattr(g, 'db_session'):
-        engine = create_engine("sqlite:///local.db")
-        Session = sessionmaker(bind=engine)
+        Session = sessionmaker(bind=db.engine)
         g.db_session = Session()
+        with app.app_context():
+            db.create_all()
+
     return g.db_session
 
 
@@ -46,7 +47,7 @@ def get_db_session():
 if __name__ == "__main__":
     from gevent.pywsgi import WSGIServer
 
-    Base.metadata.create_all(get_db_session().bind)
+    
 
     http_server = WSGIServer(('0.0.0.0', 5005), app)
     http_server.serve_forever()
