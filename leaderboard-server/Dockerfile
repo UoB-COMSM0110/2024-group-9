@@ -14,4 +14,4 @@ EXPOSE 5005
 
 WORKDIR /leaderboard-server/leaderboard_server
 
-CMD ["poetry", "run","gunicorn", "-w", "4", "-b", "0.0.0.0:5005", "main:app"]
+CMD ["poetry", "run", "gunicorn", "-w", "4", "-b", "0.0.0.0:5005", "main:app"]
