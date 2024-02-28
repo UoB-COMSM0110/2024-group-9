@@ -2,6 +2,7 @@ version: '3'
 networks:
   traefik:
     external: true
+  leaderboard_internal:
 
 services:
   leaderboard:
@@ -11,6 +12,7 @@ services:
     container_name: "leaderboard"
     networks:
       traefik:
+      leaderboard_internal:
     labels:
       # The labels are usefull for Traefik only
       - "traefik.enable=true"
@@ -29,3 +31,16 @@ services:
       # Apply autentificiation with http challenge
       - "traefik.http.routers.leaderboard-secured.tls=true"
       - "traefik.http.routers.leaderboard-secured.tls.certresolver=myhttpschallenge"
+
+  db:
+    container_name: leaderboard_db
+    image: postgres:16.2
+    environment:
+      POSTGRES_PASSWORD: placeholder
+      POSTGRES_USER: postgres
+      POSTGRES_DB: scores
+      PG_DATA: /var/lib/postgresql/data
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    networks:
+      leaderboard_internal:
