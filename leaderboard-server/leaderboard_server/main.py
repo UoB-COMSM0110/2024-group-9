@@ -2,11 +2,9 @@ from flask import Flask, request, g
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import declarative_base, sessionmaker
 import random
-from pathlib import Path
 
 app = Flask(__name__)
-db_path = Path(__file__).parent / 'local.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:placeholder@leaderboard_db:5432/scores'
 db = SQLAlchemy(app)
 
 class Score(db.Model):
