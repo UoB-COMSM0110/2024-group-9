@@ -1,0 +1,31 @@
+version: '3'
+networks:
+  traefik:
+    external: true
+
+services:
+  leaderboard:
+    build: .
+    expose: 
+      - 5005
+    container_name: "leaderboard"
+    networks:
+      traefik:
+    labels:
+      # The labels are usefull for Traefik only
+      - "traefik.enable=true"
+      - "traefik.port=5005"
+      - "traefik.docker.network=traefik"
+      # Get the routes from http
+      - "traefik.http.routers.leaderboard.rule=Host(`leaderboard.charris.xyz`)"
+      - "traefik.http.routers.leaderboard.entrypoints=web"
+      # Redirect these routes to https
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.leaderboard.middlewares=redirect-to-https@docker"
+      - "entrypoints.web.http.redirections.entrypoint.permanent=true"
+      # Get the routes from https
+      - "traefik.http.routers.leaderboard-secured.rule=Host(`leaderboard.charris.xyz`)"
+      - "traefik.http.routers.leaderboard-secured.entrypoints=web-secure"
+      # Apply autentificiation with http challenge
+      - "traefik.http.routers.leaderboard-secured.tls=true"
+      - "traefik.http.routers.leaderboard-secured.tls.certresolver=myhttpschallenge"
