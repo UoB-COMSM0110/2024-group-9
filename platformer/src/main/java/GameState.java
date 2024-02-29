@@ -7,21 +7,18 @@ public class GameState {
     private String playerNickname;
     private int score;
     private int lives;
-    private String weather;
-    private int level;
+    private WeatherVariant weather;
     private ModeVariant mode; // uses ModeVariant enum
     private SectionVariant section; // Uses SectionVariant enum
-
-
 
     // Constructor method
     public GameState(){
         started = true;
         score = 0;
         lives = 3; // TODO decide starting number of lives
-        weather = "Neutral";
+        weather = WeatherVariant.NEUTRAL;
         section = SectionVariant.STARTSCREEN;
-        // showTutorial, playerNickname, section and mode to be set using setter methods
+        // Initial showTutorial, playerNickname, section and mode to be set using setter methods
     }
 
     // Getter and setter methods
@@ -65,20 +62,12 @@ public class GameState {
         lives = newLives;
     }
 
-    public String getWeather(){
+    public WeatherVariant getWeather(){
         return weather;
     }
 
-    public void setWeather(String newWeather){
+    public void setWeather(WeatherVariant newWeather){
         weather = newWeather;
-    }
-
-    public int getLevel(){
-        return level;
-    }
-
-    public void setLevel(int newLevel){
-        level = newLevel;
     }
 
     public ModeVariant getMode(){
@@ -101,8 +90,7 @@ public class GameState {
     public void restart(){
         score = 0;
         lives = 3;
-        weather = "Neutral";
-        level = 1;
+        weather = WeatherVariant.NEUTRAL;
         showTutorial = false;
         section = SectionVariant.STARTSCREEN;
     }
