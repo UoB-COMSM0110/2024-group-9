@@ -35,6 +35,8 @@ public class MyProcessingSketch extends PApplet {
         for (int i = 0; i < stars.length; i++) {
             stars[i] = new WarpSpeed.Star(MyProcessingSketch.this, 1200, 900);
         }
+        Leaderboard leaderboard = new Leaderboard("https://leaderboard.charris.xyz", MyProcessingSketch.this);
+        leaderboard.getScores(true);
     }
 
     public void draw() {
