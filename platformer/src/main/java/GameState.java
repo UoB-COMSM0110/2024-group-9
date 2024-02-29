@@ -10,11 +10,11 @@ public class GameState {
     private String weather;
     private int level;
     private ModeVariant mode; // uses ModeVariant enum
-    private SectionVariant section; // For example 0 is start screen, 1 is choose character, 2 is enter nickname etc etc
+    private SectionVariant section; // Uses SectionVariant enum
 
 
 
-    // Constructor method - likely will need to tweak the arguments
+    // Constructor method
     public GameState(){
         started = true;
         score = 0;
@@ -24,7 +24,7 @@ public class GameState {
         // showTutorial, playerNickname, section and mode to be set using setter methods
     }
 
-    // Getter and setter methods - not sure if setStarted and setShowTutorial are necessary?
+    // Getter and setter methods
     public boolean getStarted(){
         return started;
     }
@@ -43,6 +43,10 @@ public class GameState {
 
     public String getPlayerNickname(){
         return playerNickname;
+    }
+
+    public void setPlayerNickname(String newPlayerNickname){
+        playerNickname = newPlayerNickname;
     }
 
     public int getScore(){
@@ -93,7 +97,7 @@ public class GameState {
         section = newSection;
     }
 
-    // Restart method
+    // Restart method - not sure if we need to reset anything else here?
     public void restart(){
         score = 0;
         lives = 3;
