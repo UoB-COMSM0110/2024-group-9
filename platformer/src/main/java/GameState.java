@@ -3,7 +3,6 @@ package main.java;
 public class GameState {
 
     private boolean started;
-    // TODO add restart - not sure of type
     private boolean showTutorial;
     private String playerNickname;
     private int score;
@@ -72,6 +71,15 @@ public class GameState {
 
     public void setLevel(int newLevel){
         level = newLevel;
+    }
+
+    // Restart method
+    public void restart(){
+        score = 0;
+        lives = 3;
+        weather = "Neutral";
+        level = 1;
+        showTutorial = false;
     }
 
 }
