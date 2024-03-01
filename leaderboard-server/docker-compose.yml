@@ -23,7 +23,10 @@ services:
       - "traefik.http.routers.leaderboard.entrypoints=web"
       # Redirect these routes to https
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
-      - "traefik.http.routers.leaderboard.middlewares=redirect-to-https@docker"
+      - "traefik.http.routers.leaderboard.middlewares=redirect-to-https@docker,leaderboard-allow-post@docker"
+      - "traefik.http.middlewares.leaderboard-allow-post.headers.customrequestheaders.Access-Control-Allow-Methods=POST"
+      - "traefik.http.middlewares.leaderboard-allow-post.headers.customrequestheaders.Access-Control-Allow-Origin=*"
+      - "traefik.http.routers.leaderboard-secured.middlewares=leaderboard-allow-post@docker"
       - "entrypoints.web.http.redirections.entrypoint.permanent=true"
       # Get the routes from https
       - "traefik.http.routers.leaderboard-secured.rule=Host(`leaderboard.charris.xyz`)"
