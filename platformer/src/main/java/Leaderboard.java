@@ -1,11 +1,12 @@
 package main.java;
 
 import processing.core.PApplet;
+import processing.data.JSONArray;
 import processing.data.JSONObject;
 
 class Leaderboard {
     private String domain;
-    private int[] scores;
+    private JSONArray topTen;
     private final PApplet parent;
 
     Leaderboard(String domain, PApplet parent) {
@@ -13,16 +14,16 @@ class Leaderboard {
         this.parent = parent;
     }
 
-    public JSONObject getScores(boolean update) {
+    public JSONArray getScores(boolean update) {
         if (update) {
             return updateScores();
         }
-        return null;
+        return this.topTen;
     }
 
-    public JSONObject updateScores() {
+    public JSONArray updateScores() {
         JSONObject jsonArray = parent.loadJSONObject(domain + "/top-ten");
-        System.out.println(jsonArray);
-        return jsonArray;
+        this.topTen = jsonArray.getJSONArray("top_ten");
+        return topTen;
     }
 }
