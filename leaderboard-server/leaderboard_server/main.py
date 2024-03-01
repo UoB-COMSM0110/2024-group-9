@@ -30,7 +30,7 @@ def input_score():
 def get_top_ten():
     db_session = get_db_session()
     top_ten = db_session.query(Score).order_by(Score.score.desc()).limit(10).all()
-    top_ten = [(result.nickname, result.score) for result in top_ten]
+    top_ten = [{result.nickname: result.score} for result in top_ten]
     return {"top_ten": top_ten}
 
 def get_db_session():
