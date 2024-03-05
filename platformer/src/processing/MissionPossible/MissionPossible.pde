@@ -23,6 +23,7 @@ void draw() {
     } else if (game.characterChosen && !game.nameSelected) {
       enterNameScreen();
     } else {
+      text("Welcome " + game.playerNickname + "!", width/2, height/2);
       //enter the game (at a later date of course)
     }
          
