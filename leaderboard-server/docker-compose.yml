@@ -1,0 +1,49 @@
+version: '3'
+networks:
+  traefik:
+    external: true
+  leaderboard_internal:
+
+services:
+  leaderboard:
+    build: .
+    expose: 
+      - 5005
+    container_name: "leaderboard"
+    networks:
+      traefik:
+      leaderboard_internal:
+    labels:
+      # The labels are usefull for Traefik only
+      - "traefik.enable=true"
+      - "traefik.port=5005"
+      - "traefik.docker.network=traefik"
+      # Get the routes from http
+      - "traefik.http.routers.leaderboard.rule=Host(`leaderboard.charris.xyz`)"
+      - "traefik.http.routers.leaderboard.entrypoints=web"
+      # Redirect these routes to https
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.leaderboard.middlewares=redirect-to-https@docker,leaderboard-allow-post@docker"
+      - "traefik.http.middlewares.leaderboard-allow-post.headers.customrequestheaders.Access-Control-Allow-Methods=POST"
+      - "traefik.http.middlewares.leaderboard-allow-post.headers.customrequestheaders.Access-Control-Allow-Origin=*"
+      - "traefik.http.routers.leaderboard-secured.middlewares=leaderboard-allow-post@docker"
+      - "entrypoints.web.http.redirections.entrypoint.permanent=true"
+      # Get the routes from https
+      - "traefik.http.routers.leaderboard-secured.rule=Host(`leaderboard.charris.xyz`)"
+      - "traefik.http.routers.leaderboard-secured.entrypoints=web-secure"
+      # Apply autentificiation with http challenge
+      - "traefik.http.routers.leaderboard-secured.tls=true"
+      - "traefik.http.routers.leaderboard-secured.tls.certresolver=myhttpschallenge"
+
+  db:
+    container_name: leaderboard_db
+    image: postgres:16.2
+    environment:
+      POSTGRES_PASSWORD: placeholder
+      POSTGRES_USER: postgres
+      POSTGRES_DB: scores
+      PG_DATA: /var/lib/postgresql/data
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    networks:
+      leaderboard_internal:
