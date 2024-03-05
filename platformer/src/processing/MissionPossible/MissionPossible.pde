@@ -12,6 +12,8 @@ void setup() {
   for (int i = 0; i < stars.length; i++) {
     stars[i] = new Star();
   }
+  Leaderboard leaderboard = new Leaderboard("https://leaderboard.charris.xyz");
+    System.out.println(leaderboard.getScores(true));
 }
 
 void draw() {
