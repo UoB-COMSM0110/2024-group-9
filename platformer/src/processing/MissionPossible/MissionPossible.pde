@@ -13,7 +13,7 @@ void setup() {
     stars[i] = new Star();
   }
   Leaderboard leaderboard = new Leaderboard("https://leaderboard.charris.xyz");
-    System.out.println(leaderboard.getScores(true));
+  System.out.println(leaderboard.getScores(true));
 }
 
 void draw() {
