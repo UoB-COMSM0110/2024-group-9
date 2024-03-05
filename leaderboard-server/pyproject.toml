@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "leaderboard-server"
+version = "0.1.0"
+description = ""
+authors = ["Charles Harris <charles@mexeng.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "^3.0.2"
+sqlalchemy = "^2.0.27"
+gunicorn = "^21.2.0"
+gevent = "^24.2.1"
+flask-sqlalchemy = "^3.1.1"
+psycopg2-binary = "^2.9.9"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
