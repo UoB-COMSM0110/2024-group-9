@@ -4,15 +4,16 @@ public abstract class Sprite{
   float speed;
   float yAcceleration;
   float xAcceleration;
+  float xSpeed;
+  float ySpeed;
   int spriteWidth;
   int spriteHeight;
   int spriteLayer;
-  int health; // Move to PlayerControlledSprite if only player has health
+  float health; // Move to PlayerControlledSprite if only player has health
+  float damage;
   boolean onGround;
+  boolean collision;
   PImage image;
-  // TODO direction - type?
-  // TODO damage - type?
-  // TODO collision - type?
   
   public Sprite(){}
 }
