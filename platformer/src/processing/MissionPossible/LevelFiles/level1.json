@@ -1,6 +1,6 @@
 {
- "height": 500,
- "width": 1000,
+ "height": 3000,
+ "width": 5000,
  "backgroundColour1": 150,
  "backgroundColour2": 227,
  "backgroundColour3": 170,
@@ -12,16 +12,18 @@
    },
    "spriteWidth": 20,
    "spriteHeight": 20,
-   "layer": 1
+   "layer": 1,
+   "shape": "square"
    },
    {
    "position": {
-     "x": 372,
-     "y": 137
+     "xPos": 372,
+     "yPos": 137
    },
    "spriteWidth": 20,
    "spriteHeight": 20,
-   "layer": 1
+   "layer": 1,
+   "shape": "circle"
    }
  ]
  }

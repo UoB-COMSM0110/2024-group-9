@@ -1,63 +1,70 @@
 
 GameState game = new GameState();
 Star[] stars = new Star[950];
+View currentView;
+
 PFont MPFont;
 
 
 void setup() {
-  size(1200, 900);
+  fullScreen();
   background(0);
   MPFont = createFont("IMPOS10_.ttf", 48);
   textFont(MPFont);
   for (int i = 0; i < stars.length; i++) {
     stars[i] = new Star();
   }
+  Level level1 = new Level("LevelFiles/level1.json");
+  currentView = new View(level1);
+  
 }
 
 void draw() {
   background(0);
-    if(!game.started) {
-      displayStartScreen();
-    } else if (game.started && !game.characterChosen){
-       displayChooseCharacter();
-    } else if (game.characterChosen && !game.nameSelected) {
-      enterNameScreen();
-    } else {
-      // Temporary - replace with entering game 
-      text("Welcome " + game.playerNickname + "!", width/2, height/2);
-      //enter the game (at a later date of course)
-    }
+  currentView.displayView();
+
+  //  if(!game.started) {
+  //    displayStartScreen();
+  //  } else if (game.started && !game.characterChosen){
+  //     displayChooseCharacter();
+  //  } else if (game.characterChosen && !game.nameSelected) {
+  //    enterNameScreen();
+  //  } else {
+  //    // Temporary - replace with entering game 
+  //    text("Welcome " + game.playerNickname + "!", displayWidth/2, displayHeight/2);
+  //    //enter the game (at a later date of course)
+  //  }
          
-    translate(width / 2, height / 2);
-    for (int i = 0; i < stars.length; i++) {
-      stars[i].update();
-      stars[i].show();
-  }
+  //  translate(displayWidth / 2, displayHeight / 2);
+  //  for (int i = 0; i < stars.length; i++) {
+  //    stars[i].update();
+  //    stars[i].show();
+  //}
 }
 
 void displayStartScreen() {
   fill(200, 20, 0);
   textAlign(CENTER, CENTER);
   textSize(90);
-  text("MISSION: POSSIBLE", width/2, height/2);
+  text("MISSION: POSSIBLE", displayWidth/2, displayHeight/2);
   fill(255); 
   textAlign(LEFT, BOTTOM); 
-  float mainTextX = width / 2 - 400;
-  float mainTextY = height / 2 - 35; 
+  float mainTextX = displayWidth / 2 - 400;
+  float mainTextY = displayHeight / 2 - 35; 
   textSize(30);
   text("GROUP 09", mainTextX, mainTextY);
   fill(128, 128, 128);
   textAlign(CENTER, CENTER);
   textSize(30);
-  text("PRESS ANY KEY TO BEGIN", width/2, height/2 + 120);
+  text("PRESS ANY KEY TO BEGIN", displayWidth/2, displayHeight/2 + 120);
 }  
 
 void displayChooseCharacter() {
   fill(200, 20, 0);
   textAlign(CENTER, CENTER);
   textSize(80);
-  text("CHOOSE YOUR", width/2, 105);
-  text("CHARACTER", width/2, 185);
+  text("CHOOSE YOUR", displayWidth/2, 105);
+  text("CHARACTER", displayWidth/2, 185);
   noFill();
   square(150, 300, 160);
   square(520, 300, 160);
@@ -73,10 +80,10 @@ void enterNameScreen() {
   fill(200, 20, 0);
   textAlign(CENTER, CENTER);
   textSize(80);
-  text("ENTER YOUR NAME:", width/2, 105);
+  text("ENTER YOUR NAME:", displayWidth/2, 105);
   fill(255);
   textSize(95);
-  text(game.playerNickname, width/2 - 40, 400);
+  text(game.playerNickname, displayWidth/2 - 40, 400);
 }
   
 void keyPressed() {

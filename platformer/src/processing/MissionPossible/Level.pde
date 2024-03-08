@@ -6,6 +6,7 @@ public class Level{
   int backgroundColour1;
   int backgroundColour2;
   int backgroundColour3;
+  Sprite[] sprites; 
   WeatherVariant weather;
   
  // Constructor - gets most of the level information from JSON file
@@ -24,7 +25,7 @@ public class Level{
      
      // Sprites
     JSONArray spriteData = (JSONArray) json.get("sprites");
-    NonPlayerControlledSprite sprites[] = new NonPlayerControlledSprite[spriteData.size()];
+    Sprite sprites[] = new NonPlayerControlledSprite[spriteData.size()];
     for (int i = 0; i < spriteData.size(); i++) {
       // Get each object in the array
       JSONObject sprite = spriteData.getJSONObject(i);
@@ -37,9 +38,12 @@ public class Level{
       int spriteWidth = sprite.getInt("spriteWidth");
       int spriteHeight = sprite.getInt("spriteHeight");
       int spriteLayer = sprite.getInt("layer");
+      String shape = sprite.getString("shape");
+      print(shape);
   
       // Put objects in array
-      sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, spriteLayer);
+      sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, shape);
     }
+    this.sprites = sprites;
   }
 }
