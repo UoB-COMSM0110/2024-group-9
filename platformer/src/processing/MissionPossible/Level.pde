@@ -6,6 +6,7 @@ public class Level{
   int backgroundColour1;
   int backgroundColour2;
   int backgroundColour3;
+  WeatherVariant weather;
   
  // Constructor - gets most of the level information from JSON file
    Level(String jsonFilePath){

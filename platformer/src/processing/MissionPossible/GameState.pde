@@ -6,7 +6,6 @@ public class GameState {
   String playerNickname;
   int score;
   int lives;
-  WeatherVariant weather;
   ModeVariant mode;
   SectionVariant section;
   CharacterVariant playerCharacter;
@@ -16,7 +15,6 @@ public class GameState {
     started = false;
     score = 0;
     lives = 3;
-    weather = WeatherVariant.NEUTRAL;
     section = SectionVariant.STARTSCREEN;
     playerNickname = "";
     // Initial showTutorial, playerNickname, playerCharacter, section and mode values to be set once player has started entering information
@@ -26,7 +24,6 @@ public class GameState {
   void restart(){
     score = 0;
     lives = 3;
-    weather = WeatherVariant.NEUTRAL;
     showTutorial = false;
     section = SectionVariant.GAMELEVELS;
   }
