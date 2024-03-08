@@ -1,24 +1,24 @@
 public class Camera {
-    private float xPos;
-    private float yPos;
+    private int xPos;
+    private int yPos;
 
-    Camera(float xPos, float yPos) {
+    Camera(int xPos, int yPos) {
         setPos(xPos, yPos);
     }
 
-    public float getXPos() {
+    public int getXPos() {
         return xPos;
     }
 
-    public float getYPos() {
+    public int getYPos() {
         return yPos;
     }
 
-    public float[] getPos() {
-        return new float[]{getXPos(), getYPos()};
+    public int[] getPos() {
+        return new int[]{getXPos(), getYPos()};
     }
 
-    public void setPos(float xPos, float yPos) {
+    public void setPos(int xPos, int yPos) {
         this.xPos = xPos;
         this.yPos = yPos;
     }

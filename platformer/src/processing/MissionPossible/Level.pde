@@ -39,8 +39,6 @@ public class Level{
       int spriteHeight = sprite.getInt("spriteHeight");
       int spriteLayer = sprite.getInt("layer");
       String shape = sprite.getString("shape");
-      print(shape);
-  
       // Put objects in array
       sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, shape);
     }

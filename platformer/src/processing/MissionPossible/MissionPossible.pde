@@ -2,7 +2,7 @@
 GameState game = new GameState();
 Star[] stars = new Star[950];
 View currentView;
-
+  int pos = 10;
 PFont MPFont;
 
 
