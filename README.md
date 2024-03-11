@@ -102,3 +102,31 @@ The main things that we realised from developing the user stories and use cases 
 For example, an player should be able to skip the tutorial if they want to, but a novice player should really easily be able to see what they need to do to start the tutorial. We might choose not to have character selection or entering the player's name for the tutorial, but these menu screens will need to be available for the main game. If we include the option to change the keybinds to make it easier for players to use the keys best suited to their physical requirements, we should do this as early on as possible. 
 
 We also noted that we are still undecided about exactly what our three challenges will be, how many levels to have, and what details to include on the leaderboard. For example, how will we calculate a score for a player, will we show duplicates (i.e. if a player has played twice, will their two different scores appear in the leaderboard) and how will we show the current player's high score if it is not in, say, the top 10? 
+
+## Design
+
+## Implementation
+
+## Evaluation
+
+Rough notes:
+
+Think aloud evaluation:
+- Menu screens - clear what you need to do - clicked through and entered name with no problems.
+- Jump physics feels natural.
+
+Heuristic evaluation:
+- User control and freedom: would like ability to go back and change character and name before game levels start.
+- Aesthetic - extra space in welcome name screen. Not frequent or persistent, cosmetic problem. 
+- Match between system and real world - can jump from mid-air. Is this intended? Frequent but not persistent (i.e. player can get used to it).
+- Consistency and standards - several keys being used for the same movements, but not clear why for example A and D are used for right and left, but W is not used for jump. Frequent, minor usability problem which can be overcome. 
+
+### Qualitative
+
+### Quantitative
+
+### Testing
+
+## Process
+
+## Conclusion
