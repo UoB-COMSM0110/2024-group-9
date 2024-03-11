@@ -1,0 +1,28 @@
+{
+ "height": 500,
+ "width": 1000,
+ "backgroundColour1": 150,
+ "backgroundColour2": 227,
+ "backgroundColour3": 170,
+ "sprites": [
+   {
+   "position": {
+     "xPos": 160,
+     "yPos": 103
+   },
+   "spriteWidth": 20,
+   "spriteHeight": 20,
+   "layer": 1
+   },
+   {
+   "position": {
+     "x": 372,
+     "y": 137
+   },
+   "spriteWidth": 20,
+   "spriteHeight": 20,
+   "layer": 1
+   }
+ ]
+ }
+ 
