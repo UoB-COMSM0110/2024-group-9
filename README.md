@@ -109,6 +109,18 @@ We also noted that we are still undecided about exactly what our three challenge
 
 ## Evaluation
 
+Rough notes:
+
+Think aloud evaluation:
+- Menu screens - clear what you need to do - clicked through and entered name with no problems.
+- Jump physics feels natural.
+
+Heuristic evaluation:
+- User control and freedom: would like ability to go back and change character and name before game levels start.
+- Aesthetic - extra space in welcome name screen. Not frequent or persistent, cosmetic problem. 
+- Match between system and real world - can jump from mid-air. Is this intended? Frequent but not persistent (i.e. player can get used to it).
+- Consistency and standards - several keys being used for the same movements, but not clear why for example A and D are used for right and left, but W is not used for jump. Frequent, minor usability problem which can be overcome. 
+
 ### Qualitative
 
 ### Quantitative
