@@ -8,8 +8,8 @@
   "sprites": [
     {
       "position": {
-        "xPos": 0,
-        "yPos": 1100
+        "x": 0,
+        "y": 1100
       },
       "spriteWidth": 1200,
       "spriteHeight": 100,

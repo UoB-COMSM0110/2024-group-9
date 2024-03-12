@@ -19,12 +19,7 @@ public class View {
       }
       for (int sprite = 0; sprite < currentLevel.sprites.length; sprite++) {
         int[] currentSpriteViewPos = spriteViewPos(currentLevel.sprites[sprite]);
-        if (currentLevel.sprites[sprite].shape.equals("square")) {
-
-          square(currentSpriteViewPos[0], currentSpriteViewPos[1], currentLevel.sprites[sprite].spriteWidth);
-        } else {
-          circle(currentSpriteViewPos[0], currentSpriteViewPos[1], currentLevel.sprites[sprite].spriteWidth);
-        }
+        rect(currentSpriteViewPos[0], currentSpriteViewPos[1], currentLevel.sprites[sprite].spriteWidth, currentLevel.sprites[sprite].spriteHeight);
       }
     }
 

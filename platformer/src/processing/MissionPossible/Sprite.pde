@@ -14,14 +14,12 @@ public abstract class Sprite{
   boolean onGround;
   boolean collision;
   PImage image;
-  String shape;
   
-  public Sprite(int xPos, int yPos, int spriteWidth, int spriteHeight, int spriteLayer, String shape) {
+  public Sprite(int xPos, int yPos, int spriteWidth, int spriteHeight, int spriteLayer) {
     this.xPos = xPos;
     this.yPos = yPos;
     this.spriteWidth = spriteWidth;
     this.spriteHeight = spriteHeight;
     this.spriteLayer = spriteLayer;
-    this.shape = shape;
   }
 }

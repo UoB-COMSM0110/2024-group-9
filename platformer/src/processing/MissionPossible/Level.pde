@@ -56,8 +56,7 @@ public class Level{
       int spriteWidth = sprite.getInt("spriteWidth");
       int spriteHeight = sprite.getInt("spriteHeight");
       int spriteLayer = sprite.getInt("layer");
-      String shape = sprite.getString("shape");
-      boolean isEnemy = sprite.getBoolean("enemy");
+      boolean isEnemy = sprite.getBoolean("isEnemy");
       // Put objects in array
       sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, isEnemy);
     }

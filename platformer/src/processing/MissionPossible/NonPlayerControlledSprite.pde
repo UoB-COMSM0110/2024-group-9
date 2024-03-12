@@ -3,8 +3,8 @@ public class NonPlayerControlledSprite extends Sprite{
   boolean isEnemy;
   
   // Constructor
-  public NonPlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, int spriteLayer, String shape) {
-    super(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, shape);
+  public NonPlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, int spriteLayer, boolean isEnemy) {
+    super(xPos, yPos, spriteWidth, spriteHeight, spriteLayer);
     this.isEnemy = isEnemy;
   }
 
