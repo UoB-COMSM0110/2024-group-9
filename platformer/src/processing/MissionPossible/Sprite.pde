@@ -8,7 +8,7 @@ public abstract class Sprite{
   float ySpeed;
   int spriteWidth;
   int spriteHeight;
-  int spriteLayer;
+  int spriteLayer; // 0 is in background, 1 is in foreground and will interact with player Sprite
   float health; // Move to PlayerControlledSprite if only player has health
   float damage;
   boolean onGround;
