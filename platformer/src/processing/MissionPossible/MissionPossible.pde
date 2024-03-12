@@ -16,7 +16,6 @@ void setup() {
   }
   Level level1 = new Level("LevelFiles/level1.json");
   currentView = new View(level1);
-  
   Leaderboard leaderboard = new Leaderboard("https://leaderboard.charris.xyz");
   System.out.println(leaderboard.getScores(true));
 }
