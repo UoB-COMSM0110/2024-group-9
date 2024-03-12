@@ -5,6 +5,8 @@ public class PlayerControlledSprite extends Sprite{
     super(xPos, yPos, spriteWidth, spriteHeight, spriteLayer);
   }
   
-  void processInput(){}
+  public void updatePosition(boolean moveLeft, boolean moveRight, boolean moveUp, boolean moveDown) {
+    super.updatePosition(moveLeft, moveRight, moveUp, moveDown);
+  }
 
 }

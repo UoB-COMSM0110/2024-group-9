@@ -87,21 +87,21 @@ void enterNameScreen() {
   text(game.playerNickname, displayWidth/2 - 40, 400);
 }
   
-void keyPressed() {
-  if(!game.started) {
-    game.started = true;
-  } else if (!game.nameSelected) {
-    if (key == BACKSPACE) {
-      if (game.playerNickname.length() > 0) {
-        game.playerNickname = game.playerNickname.substring(0, game.playerNickname.length() - 1);
-      }
-    } else if (key == ENTER || key == RETURN) {
-      game.nameSelected = true;
-    } else {
-      game.playerNickname += key;
-    }
-  }
-}
+//void keyPressed() {
+//  if(!game.started) {
+//    game.started = true;
+//  } else if (!game.nameSelected) {
+//    if (key == BACKSPACE) {
+//      if (game.playerNickname.length() > 0) {
+//        game.playerNickname = game.playerNickname.substring(0, game.playerNickname.length() - 1);
+//      }
+//    } else if (key == ENTER || key == RETURN) {
+//      game.nameSelected = true;
+//    } else {
+//      game.playerNickname += key;
+//    }
+//  }
+//}
 
 void mouseClicked() {
   if(!game.started){  

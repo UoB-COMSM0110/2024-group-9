@@ -43,15 +43,15 @@ public class Level{
      
      // Sprites
     JSONArray spriteData = (JSONArray) json.get("sprites");
-    Sprite sprites[] = new NonPlayerControlledSprite[spriteData.size()];
+    Sprite sprites[] = new Sprite[spriteData.size() + 1];
     for (int i = 0; i < spriteData.size(); i++) {
       // Get each object in the array
       JSONObject sprite = spriteData.getJSONObject(i);
       // Get a position object
       JSONObject position = sprite.getJSONObject("position");
       // Get xPos, yPos from position
-      int xPos = position.getInt("xPos");
-      int yPos = position.getInt("yPos");
+      int xPos = position.getInt("x");
+      int yPos = position.getInt("y");
       // Get sprite width, height and layer from sprite
       int spriteWidth = sprite.getInt("spriteWidth");
       int spriteHeight = sprite.getInt("spriteHeight");
@@ -60,6 +60,7 @@ public class Level{
       // Put objects in array
       sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, isEnemy);
     }
+    sprites[9] = new PlayerControlledSprite(0, 1070, 30, 30, 1);
     this.sprites = sprites;
   }
 }
