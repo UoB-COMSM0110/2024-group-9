@@ -15,12 +15,30 @@ public class Level{
      
      JSONObject json = loadJSONObject(jsonFilePath);
      
-     // Level height, width and background colour
+     // Level height, width, weather and background colour
      levelHeight = json.getInt("height");
      levelWidth = json.getInt("width");
      backgroundColour1 = json.getInt("backgroundColour1");
      backgroundColour2  = json.getInt("backgroundColour2");
      backgroundColour3 = json.getInt("backgroundColour3");
+     String weatherType = json.getString("weather");
+     
+     if(weatherType == "hot"){
+       weather = WeatherVariant.HOT;
+     }
+     else if(weatherType == "windy"){
+       weather = WeatherVariant.WINDY;
+     }
+     else if(weatherType == "icy"){
+       weather = WeatherVariant.ICY;
+     }
+     else if(weatherType == "foggy"){
+       weather = WeatherVariant.FOGGY;
+     }
+     else{
+       weather = WeatherVariant.NEUTRAL;
+     }
+     
      
      // Sprites
     JSONArray spriteData = (JSONArray) json.get("sprites");
@@ -37,9 +55,10 @@ public class Level{
       int spriteWidth = sprite.getInt("spriteWidth");
       int spriteHeight = sprite.getInt("spriteHeight");
       int spriteLayer = sprite.getInt("layer");
+      boolean isEnemy = sprite.getBoolean("enemy");
   
       // Put objects in array
-      sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, spriteLayer);
+      sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, isEnemy);
     }
   }
 }
