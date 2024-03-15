@@ -23,20 +23,24 @@ public class Level{
      backgroundColour3 = json.getInt("backgroundColour3");
      String weatherType = json.getString("weather");
      
-     if(weatherType == "hot"){
-       weather = WeatherVariant.HOT;
-     }
-     else if(weatherType == "windy"){
-       weather = WeatherVariant.WINDY;
-     }
-     else if(weatherType == "icy"){
-       weather = WeatherVariant.ICY;
-     }
-     else if(weatherType == "foggy"){
-       weather = WeatherVariant.FOGGY;
-     }
-     else{
-       weather = WeatherVariant.NEUTRAL;
+     switch(weatherType){
+       case "hot":
+         weather=WeatherVariant.HOT;
+         break;
+       case "windy":
+         weather=WeatherVariant.WINDY;
+         break;
+       case "icy":
+         weather=WeatherVariant.ICY;
+         break;
+       case "foggy":
+         weather=WeatherVariant.FOGGY;
+         break;
+       case "neutral":
+         weather=WeatherVariant.NEUTRAL;
+         break;
+       default:
+         weather=WeatherVariant.NEUTRAL;
      }
      
      // Player sprite
