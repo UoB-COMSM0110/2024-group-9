@@ -40,15 +40,15 @@ public class Level{
      }
      
      // Player sprite
-     JSONObject playerData = json.get("player");
-     JSONObject playerPosition = playerData.get("position");
-     int playerxPos = playerPosition.getInt("xPos");
-     int playeryPos = playerPosition.getInt("yPos");
+     JSONArray playerData = (JSONArray) json.get("player");
+     JSONObject playerPosition = playerData.getJSONObject("position");
+     int playerXPos = playerPosition.getInt("xPos");
+     int playerYPos = playerPosition.getInt("yPos");
      int playerWidth = playerData.getInt("spriteWidth");
      int playerHeight = playerData.getInt("spriteHeight");
      int playerLayer = playerData.getInt("layer");
      
-     PlayerControlledSprite player = new PlayerControlledSprite(xPos, yPos, playerWidth, playerHeight, playerLayer);
+     PlayerControlledSprite player = new PlayerControlledSprite(playerXPos, playerYPos, playerWidth, playerHeight, playerLayer);
      
      
      // Sprites
