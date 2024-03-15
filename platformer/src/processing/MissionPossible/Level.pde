@@ -39,6 +39,17 @@ public class Level{
        weather = WeatherVariant.NEUTRAL;
      }
      
+     // Player sprite
+     JSONObject playerData = json.get("player");
+     JSONObject playerPosition = playerData.get("position");
+     int playerxPos = playerPosition.getInt("xPos");
+     int playeryPos = playerPosition.getInt("yPos");
+     int playerWidth = playerData.getInt("spriteWidth");
+     int playerHeight = playerData.getInt("spriteHeight");
+     int playerLayer = playerData.getInt("layer");
+     
+     PlayerControlledSprite player = new PlayerControlledSprite(xPos, yPos, playerWidth, playerHeight, playerLayer);
+     
      
      // Sprites
     JSONArray spriteData = (JSONArray) json.get("sprites");

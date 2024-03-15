@@ -5,13 +5,22 @@
   "backgroundColour2": 175,
   "backgroundColour3": 209,
   "weather": "neutral",
+  "player": {
+    "position": {
+      "xPos": 40,
+      "yPos": 1100
+    },
+    "spriteWidth": 35,
+    "spriteHeight": 35,
+    "layer": 1    
+  },
   "sprites": [
     {
       "position": {
         "xPos": 0,
         "yPos": 1100
       },
-      "spriteWidth": 1200,
+      "spriteWidth": 2000,
       "spriteHeight": 100,
       "layer": 1,
       "isEnemy": false
