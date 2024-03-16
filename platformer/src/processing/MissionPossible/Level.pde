@@ -6,6 +6,7 @@ public class Level{
   int backgroundColour1;
   int backgroundColour2;
   int backgroundColour3;
+  int numPlayers;
   Sprite[] sprites; 
   WeatherVariant weather;
   
@@ -17,6 +18,7 @@ public class Level{
      JSONObject json = loadJSONObject(jsonFilePath);
      
      // Level height, width, weather and background colour
+     numPlayers = 1;
      levelHeight = json.getInt("height");
      levelWidth = json.getInt("width");
      backgroundColour1 = json.getInt("backgroundColour1");
@@ -45,7 +47,7 @@ public class Level{
      }
      
      // Player sprite
-     JSONArray playerData = (JSONArray) json.get("player");
+     JSONObject playerData = (JSONObject) json.get("player");
      JSONObject playerPosition = playerData.getJSONObject("position");
      int playerXPos = playerPosition.getInt("xPos");
      int playerYPos = playerPosition.getInt("yPos");
@@ -58,7 +60,7 @@ public class Level{
      
      // Sprites
     JSONArray spriteData = (JSONArray) json.get("sprites");
-    Sprite sprites[] = new Sprite[spriteData.size() + 1];
+    Sprite sprites[] = new Sprite[spriteData.size() + numPlayers];
     for (int i = 0; i < spriteData.size(); i++) {
       // Get each object in the array
       JSONObject sprite = spriteData.getJSONObject(i);
@@ -75,7 +77,7 @@ public class Level{
       // Put objects in array
       sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, isEnemy);
     }
-    sprites[9] = new PlayerControlledSprite(0, 1070, 30, 30, 1);
+    sprites[sprites.length - 1] = player;
     this.sprites = sprites;
   }
 }
