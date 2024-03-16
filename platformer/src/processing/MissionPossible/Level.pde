@@ -24,21 +24,36 @@ public class Level{
      backgroundColour3 = json.getInt("backgroundColour3");
      String weatherType = json.getString("weather");
      
-     if(weatherType == "hot"){
-       weather = WeatherVariant.HOT;
+     switch(weatherType){
+       case "hot":
+         weather=WeatherVariant.HOT;
+         break;
+       case "windy":
+         weather=WeatherVariant.WINDY;
+         break;
+       case "icy":
+         weather=WeatherVariant.ICY;
+         break;
+       case "foggy":
+         weather=WeatherVariant.FOGGY;
+         break;
+       case "neutral":
+         weather=WeatherVariant.NEUTRAL;
+         break;
+       default:
+         weather=WeatherVariant.NEUTRAL;
      }
-     else if(weatherType == "windy"){
-       weather = WeatherVariant.WINDY;
-     }
-     else if(weatherType == "icy"){
-       weather = WeatherVariant.ICY;
-     }
-     else if(weatherType == "foggy"){
-       weather = WeatherVariant.FOGGY;
-     }
-     else{
-       weather = WeatherVariant.NEUTRAL;
-     }
+     
+     // Player sprite
+     JSONArray playerData = (JSONArray) json.get("player");
+     JSONObject playerPosition = playerData.getJSONObject("position");
+     int playerXPos = playerPosition.getInt("xPos");
+     int playerYPos = playerPosition.getInt("yPos");
+     int playerWidth = playerData.getInt("spriteWidth");
+     int playerHeight = playerData.getInt("spriteHeight");
+     int playerLayer = playerData.getInt("layer");
+     
+     PlayerControlledSprite player = new PlayerControlledSprite(playerXPos, playerYPos, playerWidth, playerHeight, playerLayer);
      
      
      // Sprites
