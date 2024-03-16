@@ -1,5 +1,7 @@
 public abstract class Sprite{
   int xPos;
+  int maxXPos;
+  int maxYPos;
   int yPos;
   float speed;
   float yAcceleration;
@@ -17,7 +19,7 @@ public abstract class Sprite{
   boolean collision;
   PImage image;
   
-  public Sprite(int xPos, int yPos, int spriteWidth, int spriteHeight, int spriteLayer) {
+  public Sprite(int xPos, int yPos, int spriteWidth, int spriteHeight, int spriteLayer, int maxXPos, int maxYPos) {
     this.xPos = xPos;
     this.yPos = yPos;
     this.spriteWidth = spriteWidth;
@@ -27,6 +29,8 @@ public abstract class Sprite{
     this.yAcceleration = 0.1f;
     this.maxSpeedX = 5.0f;
     this.maxSpeedY = 5.0f;
+    this.maxXPos = maxXPos;
+    this.maxYPos = maxYPos;
   }
   
       // Update the position based on speed and acceleration
@@ -69,7 +73,9 @@ public abstract class Sprite{
 
     // Update positions
     xPos += xSpeed;
+    xPos = constrain(xPos, 0, maxXPos - spriteWidth);
     yPos += ySpeed;
+    yPos = constrain(yPos, 0, maxYPos - spriteHeight);
   }
   
   public int getXPos() {

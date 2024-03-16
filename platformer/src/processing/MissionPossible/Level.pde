@@ -55,7 +55,7 @@ public class Level{
      int playerHeight = playerData.getInt("spriteHeight");
      int playerLayer = playerData.getInt("layer");
      
-     PlayerControlledSprite player = new PlayerControlledSprite(playerXPos, playerYPos, playerWidth, playerHeight, playerLayer);
+     PlayerControlledSprite player = new PlayerControlledSprite(playerXPos, playerYPos, playerWidth, playerHeight, playerLayer, levelWidth, levelHeight);
      
      
      // Sprites
@@ -75,7 +75,7 @@ public class Level{
       int spriteLayer = sprite.getInt("layer");
       boolean isEnemy = sprite.getBoolean("isEnemy");
       // Put objects in array
-      sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, isEnemy);
+      sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, isEnemy, levelWidth, levelHeight);
     }
     sprites[sprites.length - 1] = player;
     this.sprites = sprites;
