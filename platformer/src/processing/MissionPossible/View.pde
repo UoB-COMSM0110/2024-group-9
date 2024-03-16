@@ -8,7 +8,8 @@ public class View {
     Level currentLevel;
 
     View(Level currentLevel) {
-        this.camera = new Camera(0, 0);
+        int[] levelDims = currentLevel.getLevelDims();
+        this.camera = new Camera(levelDims[0], levelDims[1]);
         this.currentLevel = currentLevel;
     }
     
@@ -29,9 +30,10 @@ public class View {
           rect(currentSpriteViewPos[0], currentSpriteViewPos[1], currentLevel.sprites[sprite].spriteWidth, currentLevel.sprites[sprite].spriteHeight);
         } else {
           fill(color(255, 0, 0));
-          print(frameRate + "\n");
           currentLevel.sprites[sprite].updatePosition(moveLeft, moveRight, moveUp, moveDown);
           rect(currentSpriteViewPos[0], currentSpriteViewPos[1], currentLevel.sprites[sprite].spriteWidth, currentLevel.sprites[sprite].spriteHeight);
+          print(currentLevel.sprites[sprite].getXPos() - displayWidth / 2 + "\n");
+          print(currentLevel.sprites[sprite].getYPos() - displayHeight / 2+ "\n");
           this.camera.setPos(currentLevel.sprites[sprite].getXPos() - displayWidth / 2, currentLevel.sprites[sprite].getYPos() - displayHeight / 2);
         }
         

@@ -40,10 +40,10 @@ public abstract class Sprite{
           // Apply deceleration when no keys are pressed
           if (xSpeed > 0) {
               xSpeed -= xAcceleration;
-              xSpeed = Math.max(0, xSpeed);
+              xSpeed = max(0, xSpeed);
           } else if (xSpeed < 0) {
               xSpeed += xAcceleration;
-              xSpeed = Math.min(0, xSpeed);
+              xSpeed = min(0, xSpeed);
           }
       }
   
@@ -56,10 +56,10 @@ public abstract class Sprite{
           // Apply deceleration when no keys are pressed
           if (ySpeed > 0) {
               ySpeed -= yAcceleration;
-              ySpeed = Math.max(0, ySpeed);
+              ySpeed = max(0, ySpeed);
           } else if (ySpeed < 0) {
               ySpeed += yAcceleration;
-              ySpeed = Math.min(0, ySpeed);
+              ySpeed = min(0, ySpeed);
           }
       }
 
@@ -79,11 +79,5 @@ public abstract class Sprite{
   public int getYPos() {
     return this.yPos;
   }
-    
-
-    // Utility function to constrain a value within a given range
-    private float constrain(float value, float min, float max) {
-        return Math.max(min, Math.min(value, max));
-    }
   
 }

@@ -1,9 +1,12 @@
 public class Camera {
+    private int levelWidth;
+    private int levelHeight;
     private int xPos;
     private int yPos;
 
-    Camera(int xPos, int yPos) {
-        setPos(xPos, yPos);
+    Camera(int levelWidth, int levelHeight) {
+      this.levelWidth = levelWidth;
+      this.levelHeight = levelHeight;
     }
 
     public int getXPos() {
@@ -19,7 +22,7 @@ public class Camera {
     }
 
     public void setPos(int xPos, int yPos) {
-        this.xPos = xPos;
-        this.yPos = yPos;
+        this.xPos = constrain(xPos, 0, levelWidth - displayWidth);
+        this.yPos = constrain(yPos, 0, levelHeight - displayHeight);
     }
 }

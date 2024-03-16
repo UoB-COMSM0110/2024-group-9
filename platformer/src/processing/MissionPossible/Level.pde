@@ -80,4 +80,8 @@ public class Level{
     sprites[sprites.length - 1] = player;
     this.sprites = sprites;
   }
+
+  public int[] getLevelDims() {
+    return new int[]{levelWidth, levelHeight};
+  }
 }
