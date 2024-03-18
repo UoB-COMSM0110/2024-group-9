@@ -16,19 +16,17 @@ public class View {
     public void displayView() {
       for (int sprite = 0; sprite < currentLevel.sprites.length; sprite++) {
         int[] currentSpriteViewPos = spriteViewPos(currentLevel.sprites[sprite]);
-        if (sprite < currentLevel.sprites.length -1) {
-          fill(color(255, 255, 255));
-          rect(currentSpriteViewPos[0], currentSpriteViewPos[1], currentLevel.sprites[sprite].spriteWidth, currentLevel.sprites[sprite].spriteHeight);
-        } else {
-          fill(color(255, 0, 0));
-          currentLevel.sprites[sprite].updatePosition(moveLeft, moveRight, moveUp, moveDown);
-          rect(currentSpriteViewPos[0], currentSpriteViewPos[1], currentLevel.sprites[sprite].spriteWidth, currentLevel.sprites[sprite].spriteHeight);
-          print(currentLevel.sprites[sprite].getXPos() - displayWidth / 2 + "\n");
-          print(currentLevel.sprites[sprite].getYPos() - displayHeight / 2+ "\n");
-          this.camera.setPos(currentLevel.sprites[sprite].getXPos() - displayWidth / 2, currentLevel.sprites[sprite].getYPos() - displayHeight / 2);
-        }
-        
+        fill(color(255, 255, 255));
+        rect(currentSpriteViewPos[0], currentSpriteViewPos[1], currentLevel.sprites[sprite].spriteWidth, currentLevel.sprites[sprite].spriteHeight);
       }
+      fill(color(255, 0, 0));
+      
+      currentLevel.player.updatePosition(moveLeft, moveRight, moveUp, moveDown, currentLevel.sprites);
+      int[] playerPos = spriteViewPos(currentLevel.player);
+      rect(playerPos[0], playerPos[1], currentLevel.player.spriteWidth, currentLevel.player.spriteHeight);
+      print(currentLevel.player.getXPos() - displayWidth / 2 + "\n");
+      print(currentLevel.player.getYPos() - displayHeight / 2+ "\n");
+      this.camera.setPos(currentLevel.player.getXPos() - displayWidth / 2, currentLevel.player.getYPos() - displayHeight / 2);
     }
 
     public int[] spriteViewPos(Sprite sprite) {
