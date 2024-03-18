@@ -40,6 +40,12 @@ void draw() {
     modeScreen();
   } 
   else {
+    if(game.showTutorial){
+      game.section = SectionVariant.TUTORIAL;
+    }
+    else{
+      game.section = SectionVariant.GAMELEVELS;
+    }
     currentView.displayView();
   }
          
@@ -129,20 +135,35 @@ void modeScreen(){
 }
   
 void keyPressed() {
+  if(game.section == SectionVariant.TUTORIAL || game.section == SectionVariant.GAMELEVELS){
+      if (key == 'd') {
+        moveRight = true;
+    } else if (key == 'a') {
+        moveLeft = true;
+    }
+
+    if (key == 'w') {
+        moveUp = true;
+    } else if (key == 's') {
+        moveDown = true;
+    }
+  }
+  else{
   if(!game.started) {
     game.started = true;
   } 
-  else if (!game.nameSelected) {
-    if (key == BACKSPACE) {
-      if (game.playerNickname.length() > 0) {
-        game.playerNickname = game.playerNickname.substring(0, game.playerNickname.length() - 1);
+    else if (!game.nameSelected) {
+      if (key == BACKSPACE) {
+        if (game.playerNickname.length() > 0) {
+          game.playerNickname = game.playerNickname.substring(0, game.playerNickname.length() - 1);
+        }
+      } 
+      else if (key == ENTER || key == RETURN) {
+        game.nameSelected = true;
+      } 
+      else {
+        game.playerNickname += key;
       }
-    } 
-    else if (key == ENTER || key == RETURN) {
-      game.nameSelected = true;
-    } 
-    else {
-      game.playerNickname += key;
     }
   }
 }

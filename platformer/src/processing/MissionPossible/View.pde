@@ -37,20 +37,6 @@ public class View {
     }
 }
 
-/*void keyPressed() {
-    if (key == 'd') {
-        moveRight = true;
-    } else if (key == 'a') {
-        moveLeft = true;
-    }
-
-    if (key == 'w') {
-        moveUp = true;
-    } else if (key == 's') {
-        moveDown = true;
-    }
-}*/
-
 void keyReleased() {
     if (key == 'd') {
         moveRight = false;
