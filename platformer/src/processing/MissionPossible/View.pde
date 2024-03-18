@@ -37,7 +37,7 @@ public class View {
     }
 }
 
-void keyPressed() {
+/*void keyPressed() {
     if (key == 'd') {
         moveRight = true;
     } else if (key == 'a') {
@@ -49,7 +49,7 @@ void keyPressed() {
     } else if (key == 's') {
         moveDown = true;
     }
-}
+}*/
 
 void keyReleased() {
     if (key == 'd') {
