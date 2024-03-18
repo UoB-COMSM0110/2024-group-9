@@ -52,21 +52,52 @@ if (moveLeft) {
   }
   
 public void checkCollision(Sprite[] sprites) {
-  boolean collideLeft;
-  boolean collideRight;
-  boolean collideTop;
-  boolean collideBottom;
+    boolean collideLeft;
+    boolean collideRight;
+    boolean collideTop;
+    boolean collideBottom;
+    
     for (Sprite sprite : sprites) {
-      if (this.xPos + this.spriteWidth > sprite.xPos && this.xPos < sprite.xPos + sprite.spriteWidth && this.yPos + this.spriteHeight > sprite.yPos && this.yPos < sprite.yPos + sprite.spriteHeight) {
-        this.ySpeed = -ySpeed;
-      }
-      if (this.xPos + this.spriteWidth > sprite.xPos && this.xPos < sprite.xPos + sprite.spriteWidth && this.yPos + this.spriteHeight > sprite.yPos && this.yPos < sprite.yPos + sprite.spriteHeight) {
-        this.xSpeed -= xSpeed;
-      }
-      //if (this.xPos < sprite.xPos + sprite.spriteWidth && this.xPos + this.spriteWidth > sprite.xPos && this.yPos < sprite.yPos + sprite.spriteHeight && this.yPos + sprite.spriteHeight > sprite.yPos) {
-      //  this.ySpeed = constrain(this.ySpeed, 0, maxSpeedY);
-      //}
+        collideBottom = this.yPos + this.spriteHeight > sprite.yPos &&
+                     this.yPos < sprite.yPos + sprite.spriteHeight &&
+                     this.xPos < sprite.xPos + sprite.spriteWidth &&
+                     this.xPos + this.spriteWidth > sprite.xPos;
 
+        collideTop = this.yPos > sprite.yPos &&
+                        this.yPos < sprite.yPos + sprite.spriteHeight &&
+                        this.xPos < sprite.xPos + sprite.spriteWidth &&
+                        this.xPos + this.spriteWidth > sprite.xPos;
+
+        collideRight = this.xPos < sprite.xPos + sprite.spriteWidth &&
+                      this.xPos + this.spriteWidth > sprite.xPos &&
+                      this.yPos < sprite.yPos + sprite.spriteHeight &&
+                      this.yPos + this.spriteHeight > sprite.yPos;
+
+        collideLeft = this.xPos + this.spriteWidth > sprite.xPos &&
+                       this.xPos < sprite.xPos + sprite.spriteWidth &&
+                       this.yPos < sprite.yPos + sprite.spriteHeight &&
+                       this.yPos + this.spriteHeight > sprite.yPos;
+
+        // Handle collisions based on the boolean variables
+        //if (collideTop) {
+        //    //this.yPos = sprite.yPos + sprite.spriteHeight; // Move player below colliding sprite
+        //    this.ySpeed = -ySpeed; // Stop upward movement
+        //}
+
+        if (collideBottom) {
+            //this.yPos = sprite.yPos - this.spriteHeight; // Move player above colliding sprite
+            this.ySpeed = -ySpeed; // Stop downward movement
+        }
+
+        if (collideLeft) {
+            //this.xPos = sprite.xPos + sprite.spriteWidth; // Move player to the right of colliding sprite
+            this.xSpeed = -xSpeed; // Stop leftward movement
+        }
+
+        //if (collideRight) {
+        //    //this.xPos = sprite.xPos - this.spriteWidth; // Move player to the left of colliding sprite
+        //    this.xSpeed = -xSpeed; // Stop rightward movement
+        //}
     }
-}  
+}
 }
