@@ -23,22 +23,20 @@ void setup() {
 
 void draw() {
   background(0);
-  /*print(mouseX, mouseY, "\n");
-  print(displayWidth/6, displayWidth/6 + boxWH, "\n");*/
 
   if(!game.started) {
     displayStartScreen();
   } 
   else if (!game.characterChosen){
-       displayChooseCharacter();
+    displayChooseCharacter();
   } 
   else if (game.characterChosen && !game.nameSelected) {
-      enterNameScreen();
+    enterNameScreen();
   } 
-  else if (game.tutorialChosen == false) {
+  else if (game.nameSelected && !game.tutorialChosen) {
     tutorialScreen();
   }
-  else if(game.mode == null){
+  else if(game.showTutorial && game.mode == null){
     modeScreen();
   } 
   else {
@@ -72,11 +70,11 @@ void displayStartScreen() {
 
 void displayChooseCharacter() {
   game.section = SectionVariant.CHOOSECHARACTER;
-  fill(200, 20, 0);
+  fill(255);
   textAlign(CENTER, CENTER);
   textSize(80);
-  text("CHOOSE YOUR CHARACTER", displayWidth/2, displayHeight/6);
-  fill(0);
+  text("Click to choose your character", displayWidth/2, displayHeight/6);
+  fill(200, 20, 0);
   square(displayWidth/6, displayHeight/3.5, boxWH);
   square(displayWidth/2 - (boxWH/2), displayHeight/3.5, boxWH);
   square(displayWidth - (displayWidth/6) - boxWH, displayHeight/3.5, boxWH);
@@ -88,10 +86,10 @@ void displayChooseCharacter() {
 
 void enterNameScreen() {
   game.section = SectionVariant.ENTERNAME;
-  fill(200, 20, 0);
+  fill(255);
   textAlign(CENTER, CENTER);
   textSize(80);
-  text("ENTER YOUR NAME:", displayWidth/2, 105);
+  text("Enter your name:", displayWidth/2, 105);
   fill(255);
   textSize(95);
   text(game.playerNickname, displayWidth/2 - 40, 400);
@@ -102,13 +100,14 @@ void tutorialScreen(){
   fill(200, 20, 0);
   textAlign(CENTER, CENTER);
   textSize(80);
-  text("Welcome " + game.playerNickname + "!", displayWidth/2, displayHeight/5);
+  text("Welcome " + game.playerNickname + "!", displayWidth/2, displayHeight/6);
   fill(255);
   text("Play tutorial?", displayWidth/2, displayHeight/3);
-  noFill();
+  fill(200, 20, 0);
   square(displayWidth/4, displayHeight/2, boxWH);
   square(displayWidth - (displayWidth/4) - boxWH, displayHeight/2, boxWH);
   textSize(40);
+  fill(255);
   text("Yes", (displayWidth/4)+(boxWH/2), (displayHeight/2)+(boxWH/2));
   text("No", displayWidth - (displayWidth/4) - (boxWH/2), (displayHeight/2)+(boxWH/2));
 }
@@ -118,11 +117,12 @@ void modeScreen(){
   fill(255);
   textAlign(CENTER, CENTER);
   textSize(80);
-  text("Choose difficulty", displayWidth/2, displayHeight/4);
-  noFill();
+  text("Choose difficulty", displayWidth/2, displayHeight/6);
+  fill(200, 20, 0);
   square(displayWidth/4, displayHeight/2, boxWH);
   square(displayWidth - (displayWidth/4) - boxWH, displayHeight/2, boxWH);
   textSize(30);
+  fill(255);
   text("Easy", (displayWidth/4)+(boxWH/2), (displayHeight/2)+(boxWH/2));
   text("Difficult", displayWidth - (displayWidth/4) - (boxWH/2), (displayHeight/2)+(boxWH/2));
 
@@ -131,14 +131,17 @@ void modeScreen(){
 void keyPressed() {
   if(!game.started) {
     game.started = true;
-  } else if (!game.nameSelected) {
+  } 
+  else if (!game.nameSelected) {
     if (key == BACKSPACE) {
       if (game.playerNickname.length() > 0) {
         game.playerNickname = game.playerNickname.substring(0, game.playerNickname.length() - 1);
       }
-    } else if (key == ENTER || key == RETURN) {
+    } 
+    else if (key == ENTER || key == RETURN) {
       game.nameSelected = true;
-    } else {
+    } 
+    else {
       game.playerNickname += key;
     }
   }
@@ -149,30 +152,46 @@ if (game.section == SectionVariant.CHOOSECHARACTER) {
       if(mouseX >= displayWidth/6 && mouseX <=(displayWidth/6)+boxWH && mouseY >= displayHeight/3.5 && mouseY <= (displayHeight/3.5)+boxWH) {
         game.characterChosen = true;
         game.playerCharacter = CharacterVariant.SPACEMAN;
-      } else if(mouseX >= (displayWidth/2)-(boxWH/2) && mouseX <=(displayWidth/2)+(boxWH/2) && mouseY >= displayHeight/3.5 && mouseY <= (displayHeight/3.5)+boxWH) {
+      } 
+      else if(mouseX >= (displayWidth/2)-(boxWH/2) && mouseX <=(displayWidth/2)+(boxWH/2) && mouseY >= displayHeight/3.5 && mouseY <= (displayHeight/3.5)+boxWH) {
         game.characterChosen = true;
         game.playerCharacter = CharacterVariant.COWBOY;
-      } else if(mouseX >= (displayWidth - (displayWidth/6) - boxWH) && mouseX <= displayWidth - (displayWidth/6) && mouseY >= displayHeight/3.5 && mouseY <= (displayHeight/3.5)+boxWH) {
+      } 
+      else if(mouseX >= (displayWidth - (displayWidth/6) - boxWH) && mouseX <= displayWidth - (displayWidth/6) && mouseY >= displayHeight/3.5 && mouseY <= (displayHeight/3.5)+boxWH) {
         game.characterChosen = true;
         game.playerCharacter = CharacterVariant.SPONGEBOB;
-      } else if(mouseX >=displayWidth/6 && mouseX <=(displayWidth/6)+boxWH && mouseY >= displayHeight/1.5 && mouseY <= (displayHeight/1.5)+boxWH) {
+      } 
+      else if(mouseX >=displayWidth/6 && mouseX <=(displayWidth/6)+boxWH && mouseY >= displayHeight/1.5 && mouseY <= (displayHeight/1.5)+boxWH) {
         game.characterChosen = true;
         game.playerCharacter = CharacterVariant.CAT;
-      } else if(mouseX >= (displayWidth/2)-(boxWH/2) && mouseX <=(displayWidth/2)+(boxWH/2) && mouseY >= displayHeight/1.5 && mouseY <= (displayHeight/1.5)+boxWH) {
+      } 
+      else if(mouseX >= (displayWidth/2)-(boxWH/2) && mouseX <=(displayWidth/2)+(boxWH/2) && mouseY >= displayHeight/1.5 && mouseY <= (displayHeight/1.5)+boxWH) {
         game.characterChosen = true;
         game.playerCharacter = CharacterVariant.SKELETON;
-      } else if(mouseX >= (displayWidth - (displayWidth/6) - boxWH) && mouseX <= displayWidth - (displayWidth/6) && mouseY >= displayHeight/1.5 && mouseY <= (displayHeight/1.5)+boxWH){
+      } 
+      else if(mouseX >= (displayWidth - (displayWidth/6) - boxWH) && mouseX <= displayWidth - (displayWidth/6) && mouseY >= displayHeight/1.5 && mouseY <= (displayHeight/1.5)+boxWH){
         game.characterChosen = true;
         game.playerCharacter = CharacterVariant.DOG;
-      }
-     
+      } 
   }
   
   else if (game.section == SectionVariant.CHOOSETUTORIAL){
-  
+    if(mouseX >= displayWidth/4 && mouseX <=(displayWidth/4)+boxWH && mouseY >= displayHeight/2 && mouseY <= (displayHeight/2)+boxWH) {
+        game.showTutorial = true;
+        game.tutorialChosen = true;
+      } 
+    else if(mouseX >= (displayWidth - (displayWidth/4) - boxWH) && mouseX <= displayWidth - (displayWidth/4) && mouseY >= displayHeight/2 && mouseY <= (displayHeight/2)+boxWH) {
+        game.showTutorial =false;
+        game.tutorialChosen = true;
+      } 
   }
   
   else if (game.section == SectionVariant.CHOOSEDIFFICULTY){
-  
+  if(mouseX >= displayWidth/4 && mouseX <=(displayWidth/4)+boxWH && mouseY >= displayHeight/2 && mouseY <= (displayHeight/2)+boxWH) {
+        game.mode = ModeVariant.EASY;
+      } 
+    else if(mouseX >= (displayWidth - (displayWidth/4) - boxWH) && mouseX <= displayWidth - (displayWidth/4) && mouseY >= displayHeight/2 && mouseY <= (displayHeight/2)+boxWH) {
+        game.mode = ModeVariant.DIFFICULT;
+      } 
   }
 }
