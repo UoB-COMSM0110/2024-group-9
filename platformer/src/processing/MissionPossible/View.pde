@@ -14,15 +14,6 @@ public class View {
     }
     
     public void displayView() {
-      //if (key == 'w') {
-      //  this.camera.setPos(this.camera.getXPos(), this.camera.getYPos() - 1);
-      //} else if (key == 's') {
-      //  this.camera.setPos(this.camera.getXPos(), this.camera.getYPos() + 1);
-      //} else if (key == 'a') {
-      //  this.camera.setPos(this.camera.getXPos() - 1, this.camera.getYPos());
-      //} else if (key == 'd') {
-      //  this.camera.setPos(this.camera.getXPos() + 1, this.camera.getYPos());
-      //}
       for (int sprite = 0; sprite < currentLevel.sprites.length; sprite++) {
         int[] currentSpriteViewPos = spriteViewPos(currentLevel.sprites[sprite]);
         if (sprite < currentLevel.sprites.length -1) {
