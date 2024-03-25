@@ -20,11 +20,13 @@ class Score(db.Model):
 def input_score():
     db_session = get_db_session()
     data = request.json
-    new_score = Score(user_hash=str(random.random()), nickname=data["nickname"], score=data["score"])
-    db_session.add(new_score)
-    score_list = [(score.nickname, score.score) for score in db_session.query(Score).all()]
-    db_session.commit()
-    return data
+    print(data)
+    # data = request.json
+    # new_score = Score(user_hash=str(random.random()), nickname=data["nickname"], score=data["score"])
+    # db_session.add(new_score)
+    # score_list = [(score.nickname, score.score) for score in db_session.query(Score).all()]
+    # db_session.commit()
+    # return data
 
 @app.route("/top-ten", methods=['GET'])
 def get_top_ten():

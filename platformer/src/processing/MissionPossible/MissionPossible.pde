@@ -1,3 +1,8 @@
+import java.util.UUID;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import http.requests.*;
+
 
 GameState game = new GameState();
 Star[] stars = new Star[950];
@@ -22,25 +27,57 @@ void setup() {
 
 void draw() {
   background(0);
-  currentView.displayView();
 
-  //  if(!game.started) {
-  //    displayStartScreen();
-  //  } else if (game.started && !game.characterChosen){
-  //     displayChooseCharacter();
-  //  } else if (game.characterChosen && !game.nameSelected) {
-  //    enterNameScreen();
-  //  } else {
-  //    // Temporary - replace with entering game 
-  //    text("Welcome " + game.playerNickname + "!", displayWidth/2, displayHeight/2);
-  //    //enter the game (at a later date of course)
-  //  }
+
+    if(!game.started) {
+      displayStartScreen();
+    } else if (game.started && !game.characterChosen){
+       displayChooseCharacter();
+    } else if (game.characterChosen && !game.nameSelected) {
+      enterNameScreen();
+    } else {
+      // Temporary - replace with entering game 
+      text("Welcome " + game.playerNickname + "!", displayWidth/2, displayHeight/2);
+      String hostname = "";
+      String username = "";
+      String osName = "";
+      try {
+        hostname = InetAddress.getLocalHost().getHostName();
+      } catch (UnknownHostException e) {
+        
+      }
+      
+      try {
+        username = System.getProperty("user.name");
+      } catch (SecurityException e) {
+    
+      }
+      
+      try {
+        osName = System.getProperty("os.name");
+      } catch (SecurityException e) {
+    
+      }
+      print(hostname + "\n" + username + "\n" + osName + "\n");
+  
+      String userID = UUID.nameUUIDFromBytes((hostname + username + osName + game.playerNickname).getBytes()).toString();
+      print(userID + "\n");
+      PostRequest post = new PostRequest("https://leaderboard.charris.xyz");
+      post.addData("userID", userID);
+      post.addHeader("Content-Type", "application/json");
+      post.send();
+       
+      //enter the game (at a later date of course)
+    } 
+    //if (keyPressed) {
+    //  currentView.displayView();
+    //}
          
-  //  translate(displayWidth / 2, displayHeight / 2);
-  //  for (int i = 0; i < stars.length; i++) {
-  //    stars[i].update();
-  //    stars[i].show();
-  //}
+    translate(displayWidth / 2, displayHeight / 2);
+    for (int i = 0; i < stars.length; i++) {
+      stars[i].update();
+      stars[i].show();
+  }
 }
 
 void displayStartScreen() {
@@ -85,23 +122,25 @@ void enterNameScreen() {
   fill(255);
   textSize(95);
   text(game.playerNickname, displayWidth/2 - 40, 400);
+
+
 }
   
-//void keyPressed() {
-//  if(!game.started) {
-//    game.started = true;
-//  } else if (!game.nameSelected) {
-//    if (key == BACKSPACE) {
-//      if (game.playerNickname.length() > 0) {
-//        game.playerNickname = game.playerNickname.substring(0, game.playerNickname.length() - 1);
-//      }
-//    } else if (key == ENTER || key == RETURN) {
-//      game.nameSelected = true;
-//    } else {
-//      game.playerNickname += key;
-//    }
-//  }
-//}
+void keyPressed() {
+  if(!game.started) {
+    game.started = true;
+  } else if (!game.nameSelected) {
+    if (key == BACKSPACE) {
+      if (game.playerNickname.length() > 0) {
+        game.playerNickname = game.playerNickname.substring(0, game.playerNickname.length() - 1);
+      }
+    } else if (key == ENTER || key == RETURN) {
+      game.nameSelected = true;
+    } else {
+      game.playerNickname += key;
+    }
+  }
+}
 
 void mouseClicked() {
   if(!game.started){  

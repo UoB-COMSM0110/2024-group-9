@@ -22,9 +22,7 @@ public class View {
         } else {
           fill(color(255, 0, 0));
           currentLevel.sprites[sprite].updatePosition(moveLeft, moveRight, moveUp, moveDown);
-          rect(currentSpriteViewPos[0], currentSpriteViewPos[1], currentLevel.sprites[sprite].spriteWidth, currentLevel.sprites[sprite].spriteHeight);
-          print(currentLevel.sprites[sprite].getXPos() - displayWidth / 2 + "\n");
-          print(currentLevel.sprites[sprite].getYPos() - displayHeight / 2+ "\n");
+          rect(currentSpriteViewPos[0], currentSpriteViewPos[1], currentLevel.sprites[sprite].spriteWidth, currentLevel.sprites[sprite].spriteHeight);         
           this.camera.setPos(currentLevel.sprites[sprite].getXPos() - displayWidth / 2, currentLevel.sprites[sprite].getYPos() - displayHeight / 2);
         }
         
@@ -37,30 +35,30 @@ public class View {
     }
 }
 
-void keyPressed() {
-    if (key == 'd') {
-        moveRight = true;
-    } else if (key == 'a') {
-        moveLeft = true;
-    }
+//void keyPressed() {
+//    if (key == 'd') {
+//        moveRight = true;
+//    } else if (key == 'a') {
+//        moveLeft = true;
+//    }
 
-    if (key == 'w') {
-        moveUp = true;
-    } else if (key == 's') {
-        moveDown = true;
-    }
-}
+//    if (key == 'w') {
+//        moveUp = true;
+//    } else if (key == 's') {
+//        moveDown = true;
+//    }
+//}
 
-void keyReleased() {
-    if (key == 'd') {
-        moveRight = false;
-    } else if (key == 'a') {
-        moveLeft = false;
-    }
+//void keyReleased() {
+//    if (key == 'd') {
+//        moveRight = false;
+//    } else if (key == 'a') {
+//        moveLeft = false;
+//    }
 
-    if (key == 'w') {
-        moveUp = false;
-    } else if (key == 's') {
-        moveDown = false;
-    }
-}
+//    if (key == 'w') {
+//        moveUp = false;
+//    } else if (key == 's') {
+//        moveDown = false;
+//    }
+//}
