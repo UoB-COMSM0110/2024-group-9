@@ -9,6 +9,7 @@ Star[] stars = new Star[950];
 View currentView;
   int pos = 10;
 PFont MPFont;
+boolean sent = false;
 
 
 void setup() {
@@ -38,6 +39,23 @@ void draw() {
     } else {
       // Temporary - replace with entering game 
       text("Welcome " + game.playerNickname + "!", displayWidth/2, displayHeight/2);
+
+    if (!sent) {
+        sendRequest();
+        sent = true;
+      }
+    }
+
+
+
+    translate(displayWidth / 2, displayHeight / 2);
+    for (int i = 0; i < stars.length; i++) {
+      stars[i].update();
+      stars[i].show();
+  }
+}
+
+void sendRequest() {
       String hostname = "";
       String username = "";
       String osName = "";
@@ -63,23 +81,17 @@ void draw() {
       String userID = UUID.nameUUIDFromBytes((hostname + username + osName + game.playerNickname).getBytes()).toString();
       print(userID + "\n");
       PostRequest post = new PostRequest("https://leaderboard.charris.xyz");
-      post.addData("userID", userID);
+      JSONObject json = new JSONObject();
+      json.setString("userid", userID);
+      json.setString("nickname", game.playerNickname);
+      json.setInt("score", 300);
+      post.addData(json.toString());
       post.addHeader("Content-Type", "application/json");
       post.send();
+      println("Reponse Content: " + post.getContent());
        
       //enter the game (at a later date of course)
-    } 
-    //if (keyPressed) {
-    //  currentView.displayView();
-    //}
-         
-    translate(displayWidth / 2, displayHeight / 2);
-    for (int i = 0; i < stars.length; i++) {
-      stars[i].update();
-      stars[i].show();
-  }
-}
-
+} 
 void displayStartScreen() {
   fill(200, 20, 0);
   textAlign(CENTER, CENTER);
