@@ -10,6 +10,7 @@ View currentView;
   int pos = 10;
 PFont MPFont;
 boolean sent = false;
+String validCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_"; // Define valid characters
 
 
 void setup() {
@@ -91,7 +92,7 @@ void sendRequest() {
       println("Reponse Content: " + post.getContent());
        
       //enter the game (at a later date of course)
-} 
+}
 void displayStartScreen() {
   fill(200, 20, 0);
   textAlign(CENTER, CENTER);
@@ -147,8 +148,9 @@ void keyPressed() {
         game.playerNickname = game.playerNickname.substring(0, game.playerNickname.length() - 1);
       }
     } else if (key == ENTER || key == RETURN) {
+      game.playerNickname = game.playerNickname.toUpperCase();
       game.nameSelected = true;
-    } else {
+    } else if (key != CODED && validCharacters.indexOf(key) != -1) {
       game.playerNickname += key;
     }
   }
