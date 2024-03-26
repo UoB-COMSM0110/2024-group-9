@@ -4,6 +4,7 @@ Star[] stars = new Star[950];
 View currentView;
   int pos = 10;
 PFont MPFont;
+PImage img;
 
 
 void setup() {
@@ -18,6 +19,8 @@ void setup() {
   currentView = new View(level1);
   Leaderboard leaderboard = new Leaderboard("https://leaderboard.charris.xyz");
   System.out.println(leaderboard.getScores(true));
+  img = loadImage("Background-1.png");
+  img.resize(1920, 1080);
 }
 
 void draw() {

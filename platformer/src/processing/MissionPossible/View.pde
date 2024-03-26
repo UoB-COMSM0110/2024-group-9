@@ -15,6 +15,8 @@ public class View {
     }
     
     public void displayView() {
+      int[] cameraPos = this.camera.getPos();
+      image(img, (0 - cameraPos[0]) / 4, (0 - cameraPos[1]) / 4);
       for (int sprite = 0; sprite < currentLevel.sprites.length; sprite++) {
         int[] currentSpriteViewPos = spriteViewPos(currentLevel.sprites[sprite]);
         fill(color(255, 255, 255));
