@@ -6,7 +6,6 @@ class BackToMain{
   
   public BackToMain(){
     fill(255);
-    textSize(45);
     this.text = "Back to Main Menu";
     float itemWidth = 750;
     float itemHeight = 160;

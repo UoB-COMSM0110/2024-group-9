@@ -7,6 +7,11 @@ PFont MPFont;
 float boxWH = 160;
 PImage img;
 PImage spaceship;
+int backToMainSize;
+int clickedSize;
+int notClickedSize;
+float menuItemWidth = 1000;
+float menuItemHeight = 120;
 
 
 void setup() {
@@ -23,6 +28,8 @@ void setup() {
   currentView = new View(level1);
   Leaderboard leaderboard = new Leaderboard("https://leaderboard.charris.xyz");
   System.out.println(leaderboard.getScores(true));
+  clickedSize = 60;
+  notClickedSize = 45;
 }
 
 void draw() {
@@ -95,10 +102,39 @@ void displayMainMenu(){
   textSize(80);
   fill(200, 20, 0);
   text("Main menu", displayWidth/2, displayHeight/6);
+  fill(255);
+  
+  if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 2*displayHeight/10 && mouseY <= (2*displayHeight/10)+menuItemHeight){
+    textSize(clickedSize);
+  }
+  else{
+    textSize(notClickedSize);
+  }
   MainMenuItem menuItem1 = new MainMenuItem("Play Mission Possible!", 2*displayHeight/10);
+  
+  if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 3*displayHeight/10 && mouseY <= (3*displayHeight/10)+menuItemHeight){
+    textSize(clickedSize);
+  }
+  else{
+    textSize(notClickedSize);
+  }
   MainMenuItem menuItem2 = new MainMenuItem("Play tutorial", 3*displayHeight/10);
+  
+  if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 4*displayHeight/10 && mouseY <= (4*displayHeight/10)+menuItemHeight){
+    textSize(clickedSize);
+  }
+  else{
+    textSize(notClickedSize);
+  }
   MainMenuItem menuItem3 = new MainMenuItem("Game settings", 4*displayHeight/10);
-  MainMenuItem menuItem4 = new MainMenuItem("View leaderboard", 5*displayHeight/10); 
+  
+  if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 5*displayHeight/10 && mouseY <= (5*displayHeight/10)+menuItemHeight){
+    textSize(clickedSize);
+  }
+  else{
+    textSize(notClickedSize);
+  }  
+  MainMenuItem menuItem4 = new MainMenuItem("View leaderboard", 5*displayHeight/10);
 }
 
 void displayChooseCharacter() {
@@ -113,7 +149,12 @@ void displayChooseCharacter() {
   square(displayWidth/6, displayHeight/1.5, boxWH);
   square(displayWidth/2 - (boxWH/2), displayHeight/1.5, boxWH);
   square(displayWidth - (displayWidth/6) - boxWH, displayHeight/1.5, boxWH);
-  fill(200,20,0);
+  if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){
+    textSize(clickedSize);
+  }  
+  else{
+    textSize(notClickedSize);
+  }
   BackToMain backToMain = new BackToMain();
 }
 
@@ -125,6 +166,12 @@ void enterNameScreen() {
   fill(255);
   textSize(95);
   text(game.playerNickname, displayWidth/2 - 40, 400);
+  if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){
+    textSize(clickedSize);
+  }  
+  else{
+    textSize(notClickedSize);
+  }
   BackToMain backToMain = new BackToMain();
 }
 
@@ -137,13 +184,30 @@ void modeScreen(){
   fill(255);
   textSize(80);
   text("Choose difficulty", displayWidth/2, displayHeight/5);
-  fill(200, 20, 0);
+  if(mouseX >= displayWidth/4 && mouseX <=(displayWidth/4)+boxWH && mouseY >= displayHeight/2 && mouseY <= (displayHeight/2)+boxWH){
+    fill(200, 20, 0);
+  }
+  else{
+    fill(255);
+  }
   square(displayWidth/4, displayHeight/2, boxWH);
+  if(mouseX >= (displayWidth - (displayWidth/4) - boxWH) && mouseX <= displayWidth - (displayWidth/4) && mouseY >= displayHeight/2 && mouseY <= (displayHeight/2)+boxWH){
+    fill(200,20,0);
+  }
+  else{
+    fill(255);
+  }
   square(displayWidth - (displayWidth/4) - boxWH, displayHeight/2, boxWH);
   textSize(30);
-  fill(255);
+  fill(0);
   text("Easy", (displayWidth/4)+(boxWH/2), (displayHeight/2)+(boxWH/2));
   text("Difficult", displayWidth - (displayWidth/4) - (boxWH/2), (displayHeight/2)+(boxWH/2));
+  if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){
+    textSize(clickedSize);
+  }  
+  else{
+    textSize(notClickedSize);
+  }
   BackToMain backToMain = new BackToMain();
 }
 
@@ -199,16 +263,16 @@ void keyPressed() {
 void mouseClicked() {
 
   if(game.section == SectionVariant.MAINMENU){
-    if(mouseX >= displayWidth/2 - 375  && mouseX <=displayWidth/2 + 375 && mouseY >= 2*displayHeight/10 && mouseY <= (2*displayHeight/10)+boxWH){
+    if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 2*displayHeight/10 && mouseY <= (2*displayHeight/10)+menuItemHeight){
       game.section = SectionVariant.CHOOSECHARACTER;
     }
-    else if(mouseX >= displayWidth/2 - 375  && mouseX <=displayWidth/2 + 375 && mouseY >= 3*displayHeight/10 && mouseY <= (3*displayHeight/10)+boxWH){
+    else if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 3*displayHeight/10 && mouseY <= (3*displayHeight/10)+menuItemHeight){
       game.section = SectionVariant.TUTORIAL;
     }
-    else if(mouseX >= displayWidth/2 - 375  && mouseX <=displayWidth/2 + 375 && mouseY >= 4*displayHeight/10 && mouseY <= (4*displayHeight/10)+boxWH){
+    else if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 4*displayHeight/10 && mouseY <= (4*displayHeight/10)+menuItemHeight){
       game.section = SectionVariant.GAMESETTINGS;
     }
-    else if(mouseX >= displayWidth/2 - 375  && mouseX <=displayWidth/2 + 375 && mouseY >= 5*displayHeight/10 && mouseY <= (5*displayHeight/10)+boxWH){
+    else if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 5*displayHeight/10 && mouseY <= (5*displayHeight/10)+menuItemHeight){
       game.section = SectionVariant.LEADERBOARD;
     }
   }
@@ -238,13 +302,13 @@ void mouseClicked() {
         game.playerCharacter = CharacterVariant.DOG;
         game.section = SectionVariant.ENTERNAME;
       }
-      else if(mouseX >= displayWidth/2 - 375  && mouseX <=displayWidth/2 + 375 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+boxWH){
+      else if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){
         game.section = SectionVariant.MAINMENU;
       }
   }
   
   else if (game.section == SectionVariant.ENTERNAME){
-    if(mouseX >= displayWidth/2 - 375  && mouseX <=displayWidth/2 + 375 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+boxWH){
+    if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){
       game.section = SectionVariant.MAINMENU;
     }
   }
@@ -258,7 +322,7 @@ void mouseClicked() {
         game.mode = ModeVariant.DIFFICULT;
         game.section = SectionVariant.MISSION;
     }
-    else if(mouseX >= displayWidth/2 - 375  && mouseX <=displayWidth/2 + 375 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+boxWH){
+    else if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){
       game.section = SectionVariant.MAINMENU;
     }
   }
