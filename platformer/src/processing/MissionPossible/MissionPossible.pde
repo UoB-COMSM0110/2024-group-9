@@ -5,6 +5,8 @@ View currentView;
   int pos = 10;
 PFont MPFont;
 float boxWH = 160;
+PImage img;
+PImage spaceship;
 
 
 void setup() {
@@ -12,6 +14,8 @@ void setup() {
   background(0);
   MPFont = createFont("IMPOS10_.ttf", 48);
   textFont(MPFont);
+  img = loadImage("bg5.jpg");
+  spaceship = loadImage("spaceship.png");
   for (int i = 0; i < stars.length; i++) {
     stars[i] = new Star();
   }
@@ -37,22 +41,28 @@ void draw() {
     enterNameScreen();
   }
   else if(game.section == SectionVariant.CHOOSEDIFFICULTY){
-      modeScreen();
+    modeScreen();
   }
-  else {
-    if(game.showTutorial){
-      game.section = SectionVariant.TUTORIAL;
+  else if(game.section == SectionVariant.MISSION){
+    missionScreen();
+  }
+
+  else{
+  
+    if(game.section == SectionVariant.TUTORIAL){
+      //imageMode(CORNER);
+      //image(img, 0, 0,displayWidth,displayHeight);
+      currentView.displayView();
     }
-    else{
-      game.section = SectionVariant.GAMELEVELS;
-    }
-    PImage img;
-    img = loadImage("bg5.jpg");
-    imageMode(CORNER);
-    image(img,0,0,displayWidth,displayHeight);
-    currentView.displayView();
+    
+    else if(game.section == SectionVariant.GAMELEVELS){
+      //imageMode(CORNER);
+      //image(img, 0, 0,displayWidth,displayHeight);
+      currentView.displayView();
+    }  
   }
   
+  // Stars
   if(game.section != SectionVariant.GAMELEVELS && game.section != SectionVariant.TUTORIAL){
     translate(displayWidth / 2, displayHeight / 2);
     for (int i = 0; i < stars.length; i++) {
@@ -136,6 +146,18 @@ void modeScreen(){
   text("Difficult", displayWidth - (displayWidth/4) - (boxWH/2), (displayHeight/2)+(boxWH/2));
   BackToMain backToMain = new BackToMain();
 }
+
+void missionScreen(){
+  textAlign(CENTER, CENTER);
+  fill(255);
+  textSize(50);
+  text("Your mission is to collect the pieces of your broken spaceship \n and return to planet Earth-X4B.", displayWidth/2, displayHeight/4);
+  imageMode(CENTER);
+  image(spaceship, displayWidth/2, displayHeight/2);
+  fill(128, 128, 128);
+  textSize(30);
+  text("PRESS ANY KEY TO START THE GAME", displayWidth/2, 8*displayHeight/10);
+}
   
 void keyPressed() {
   if(game.section == SectionVariant.TUTORIAL || game.section == SectionVariant.GAMELEVELS){
@@ -151,24 +173,26 @@ void keyPressed() {
         moveDown = true;
     }
   }
-  else{
-  if(!game.started) {
+  else if(!game.started) {
     game.section = SectionVariant.MAINMENU;
     game.started = true;
-  } 
-    else if (game.section == SectionVariant.ENTERNAME) {
-      if (key == BACKSPACE) {
-        if (game.playerNickname.length() > 0) {
-          game.playerNickname = game.playerNickname.substring(0, game.playerNickname.length() - 1);
-        }
-      } 
-      else if (key == ENTER || key == RETURN) {
-        game.section = SectionVariant.CHOOSEDIFFICULTY;
-      } 
-      else if ((key >= 'A' && key <= 'Z') || (key >= 'a' && key <= 'z')){
-        game.playerNickname += key;
+  }
+  else if (game.section == SectionVariant.ENTERNAME) {
+    if (key == BACKSPACE) {
+      if (game.playerNickname.length() > 0) {
+        game.playerNickname = game.playerNickname.substring(0, game.playerNickname.length() - 1);
       }
+    } 
+    else if (key == ENTER || key == RETURN) {
+      game.section = SectionVariant.CHOOSEDIFFICULTY;
+    } 
+    else if ((key >= 'A' && key <= 'Z') || (key >= 'a' && key <= 'z')){
+      game.playerNickname += key;
+      game.playerNickname = game.playerNickname.toUpperCase();
     }
+  }
+  else if(game.started){
+    game.section = SectionVariant.GAMELEVELS;
   }
 }
 
@@ -228,11 +252,11 @@ void mouseClicked() {
   else if (game.section == SectionVariant.CHOOSEDIFFICULTY){
     if(mouseX >= displayWidth/4 && mouseX <=(displayWidth/4)+boxWH && mouseY >= displayHeight/2 && mouseY <= (displayHeight/2)+boxWH) {
         game.mode = ModeVariant.EASY;
-        game.section = SectionVariant.GAMELEVELS;
+        game.section = SectionVariant.MISSION;
       } 
     else if(mouseX >= (displayWidth - (displayWidth/4) - boxWH) && mouseX <= displayWidth - (displayWidth/4) && mouseY >= displayHeight/2 && mouseY <= (displayHeight/2)+boxWH) {
         game.mode = ModeVariant.DIFFICULT;
-        game.section = SectionVariant.GAMELEVELS;
+        game.section = SectionVariant.MISSION;
     }
     else if(mouseX >= displayWidth/2 - 375  && mouseX <=displayWidth/2 + 375 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+boxWH){
       game.section = SectionVariant.MAINMENU;
