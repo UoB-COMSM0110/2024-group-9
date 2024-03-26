@@ -2,12 +2,14 @@
 GameState game = new GameState();
 Star[] stars = new Star[950];
 View currentView;
-  int pos = 10;
+int pos = 10;
 PFont MPFont;
 float boxWH = 160;
 PImage img;
 PImage backgroundImage;
 PImage spaceship;
+JSONArray topTen;
+
 
 
 void setup() {
@@ -23,6 +25,7 @@ void setup() {
   Level level1 = new Level("LevelFiles/level1.json");
   currentView = new View(level1);
   Leaderboard leaderboard = new Leaderboard("https://leaderboard.charris.xyz");
+  topTen = leaderboard.getScores(true);
   System.out.println(leaderboard.getScores(true));
 
 }
@@ -35,6 +38,9 @@ void draw() {
   } 
   else if (game.section == SectionVariant.MAINMENU){
     displayMainMenu();
+  }
+  else if (game.section == SectionVariant.LEADERBOARD) {
+    displayLeaderboard();
   }
   else if (game.section == SectionVariant.CHOOSECHARACTER){
     displayChooseCharacter();
@@ -102,6 +108,20 @@ void displayMainMenu(){
   MainMenuItem menuItem2 = new MainMenuItem("Play tutorial", 3*displayHeight/10);
   MainMenuItem menuItem3 = new MainMenuItem("Game settings", 4*displayHeight/10);
   MainMenuItem menuItem4 = new MainMenuItem("View leaderboard", 5*displayHeight/10); 
+}
+
+void displayLeaderboard(){
+  text("Name", displayWidth / 5, displayHeight / 10);
+  text("Score", 4 * displayWidth / 5, displayHeight / 10);
+  for (int i = 0; i < topTen.size(); i++) {
+    JSONObject leaderboardEntry = topTen.getJSONObject(i);
+    for (Object key : leaderboardEntry.keys()) {
+      int score = leaderboardEntry.getInt(key.toString());
+      text(key.toString(), displayWidth / 5, displayHeight / 15 * i + 2 * displayHeight / 10);
+      text(score, 4 * displayWidth / 5, displayHeight / 15 * i + 2 * displayHeight / 10);
+    }
+  }
+  BackToMain backToMain = new BackToMain();
 }
 
 void displayChooseCharacter() {
@@ -216,11 +236,6 @@ void keyReleased() {
      if (keyCode == 17) {
        moveUp = false;
      }
-    if (key == 'w') {
-        moveUp = false;
-    } else if (key == 's') {
-        moveDown = false;
-    }
 }
 
 void mouseClicked() {
@@ -270,7 +285,7 @@ void mouseClicked() {
       }
   }
   
-  else if (game.section == SectionVariant.ENTERNAME){
+  else if (game.section == SectionVariant.ENTERNAME || game.section == SectionVariant.LEADERBOARD){
     if(mouseX >= displayWidth/2 - 375  && mouseX <=displayWidth/2 + 375 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+boxWH){
       game.section = SectionVariant.MAINMENU;
     }
