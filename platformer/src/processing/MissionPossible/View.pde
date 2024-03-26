@@ -47,6 +47,11 @@ void keyPressed() {
     if (key == ' ') {
       jump = true;
     }
+
+    if (keyCode == 17) {
+      moveUp = true;
+    }
+    
 }
 
 void keyReleased() {
@@ -58,5 +63,9 @@ void keyReleased() {
 
     if (key == ' ') {
       jump = false;
+    }
+
+    if (keyCode == 17) {
+      moveUp = false;
     }
 }

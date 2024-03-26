@@ -1,5 +1,6 @@
 public class PlayerControlledSprite extends Sprite{
   boolean landed = false;
+  int nextDashTime = 0;
 
   // Constructor
   PlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, int spriteLayer, int maxXPos, int maxYPos) {
@@ -9,9 +10,17 @@ public class PlayerControlledSprite extends Sprite{
   public void updatePosition(boolean moveLeft, boolean moveRight, boolean moveUp, boolean moveDown, boolean jump, Sprite[] sprites) {
     
       if (moveLeft) {
-          xSpeed -= xAcceleration;
-      } else if (moveRight) {
+        if (xSpeed < -maxSpeedX) {
           xSpeed += xAcceleration;
+        } else {
+          xSpeed -= xAcceleration;
+        }
+      } else if (moveRight) {
+          if (xSpeed > maxSpeedX) {
+            xSpeed -= xAcceleration;
+          } else {
+            xSpeed += xAcceleration;
+          }
       } else {
           // Apply deceleration when no keys are pressed
           if (xSpeed > 0) {
@@ -22,12 +31,23 @@ public class PlayerControlledSprite extends Sprite{
               xSpeed = min(0, xSpeed);
           }
       }
-      
+
     ySpeed += yAcceleration;
 
     // Constrain speeds to their respective maximum values
-    xSpeed = constrain(xSpeed, -maxSpeedX, maxSpeedX);
-    ySpeed = constrain(ySpeed, -maxSpeedY, maxSpeedY);
+    //xSpeed = constrain(xSpeed, -maxSpeedX, maxSpeedX);
+    //ySpeed = constrain(ySpeed, -maxSpeedY, maxSpeedY);
+    int currentTime = millis();
+
+    if (moveUp && nextDashTime < currentTime) {
+      if (moveRight) {
+        xSpeed = 16.0f;
+        nextDashTime = currentTime + 3000; // Dash every 3s
+      } else if (moveLeft) {
+        xSpeed = -16.0f;
+        nextDashTime = currentTime + 3000; // Dash every 3s
+      }
+    }
    
     
     checkCollision(sprites);
@@ -35,6 +55,9 @@ public class PlayerControlledSprite extends Sprite{
     if (jump && landed) {
       ySpeed = -15.0f;
     }
+    
+
+
 
     landed = false;
 
