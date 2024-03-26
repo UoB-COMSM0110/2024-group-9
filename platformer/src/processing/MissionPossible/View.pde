@@ -2,6 +2,7 @@ boolean moveLeft = false;
 boolean moveRight = false;
 boolean moveUp = false;
 boolean moveDown = false;
+boolean jump = false;
 
 public class View {
     private final Camera camera;
@@ -21,11 +22,11 @@ public class View {
       }
       fill(color(255, 0, 0));
       
-      currentLevel.player.updatePosition(moveLeft, moveRight, moveUp, moveDown, currentLevel.sprites);
+      currentLevel.player.updatePosition(moveLeft, moveRight, moveUp, moveDown, jump, currentLevel.sprites);
       int[] playerPos = spriteViewPos(currentLevel.player);
       rect(playerPos[0], playerPos[1], currentLevel.player.spriteWidth, currentLevel.player.spriteHeight);
-      print(currentLevel.player.getXPos() - displayWidth / 2 + "\n");
-      print(currentLevel.player.getYPos() - displayHeight / 2+ "\n");
+      //print(currentLevel.player.getXPos() - displayWidth / 2 + "\n");
+      //print(currentLevel.player.getYPos() - displayHeight / 2+ "\n");
       this.camera.setPos(currentLevel.player.getXPos() - displayWidth / 2, currentLevel.player.getYPos() - displayHeight / 2);
     }
 
@@ -41,11 +42,8 @@ void keyPressed() {
     } else if (key == 'a') {
         moveLeft = true;
     }
-
-    if (key == 'w') {
-        moveUp = true;
-    } else if (key == 's') {
-        moveDown = true;
+    if (key == ' ') {
+      jump = true;
     }
 }
 
@@ -56,9 +54,7 @@ void keyReleased() {
         moveLeft = false;
     }
 
-    if (key == 'w') {
-        moveUp = false;
-    } else if (key == 's') {
-        moveDown = false;
+    if (key == ' ') {
+      jump = false;
     }
 }

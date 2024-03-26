@@ -1,12 +1,14 @@
 public class PlayerControlledSprite extends Sprite{
+  boolean landed = false;
 
   // Constructor
   PlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, int spriteLayer, int maxXPos, int maxYPos) {
     super(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, maxXPos, maxYPos);
   }
   
-  public void updatePosition(boolean moveLeft, boolean moveRight, boolean moveUp, boolean moveDown, Sprite[] sprites) {
-if (moveLeft) {
+  public void updatePosition(boolean moveLeft, boolean moveRight, boolean moveUp, boolean moveDown, boolean jump, Sprite[] sprites) {
+    
+      if (moveLeft) {
           xSpeed -= xAcceleration;
       } else if (moveRight) {
           xSpeed += xAcceleration;
@@ -20,28 +22,21 @@ if (moveLeft) {
               xSpeed = min(0, xSpeed);
           }
       }
-  
-      // Update y position
-      if (moveUp) {
-          ySpeed -= yAcceleration;
-      } else if (moveDown) {
-          ySpeed += yAcceleration;
-      } else {
-          // Apply deceleration when no keys are pressed
-          if (ySpeed > 0) {
-              ySpeed -= yAcceleration;
-              ySpeed = max(0, ySpeed);
-          } else if (ySpeed < 0) {
-              ySpeed += yAcceleration;
-              ySpeed = min(0, ySpeed);
-          }
-      }
+      
+    ySpeed += yAcceleration;
 
     // Constrain speeds to their respective maximum values
     xSpeed = constrain(xSpeed, -maxSpeedX, maxSpeedX);
     ySpeed = constrain(ySpeed, -maxSpeedY, maxSpeedY);
+   
     
     checkCollision(sprites);
+    
+    if (jump && landed) {
+      ySpeed = -15.0f;
+    }
+
+    landed = false;
 
     // Update positions
     xPos += xSpeed;
@@ -58,8 +53,13 @@ public void checkCollision(Sprite[] sprites) {
           this.xSpeed = 0;
         }
         if (this.xPos + this.spriteWidth > sprite.xPos && this.xPos < sprite.xPos + sprite.spriteWidth && this.yPos + this.spriteHeight + this.ySpeed > sprite.yPos && this.yPos + this.ySpeed < sprite.yPos + sprite.spriteHeight) {
-          this.ySpeed = 0;
+          this.ySpeed = 0.0;
+          if (this.yPos + this.spriteHeight < sprite.yPos + 0.1) {
+            this.landed = true;
+          }
+          
         }
     }
+    
 }
 }
