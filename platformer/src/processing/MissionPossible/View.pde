@@ -14,13 +14,12 @@ public class View {
         this.camera = new Camera(levelDims[0], levelDims[1]);
         this.currentLevel = currentLevel;
         this.backgroundImage = loadImage("Background-1.png");
-        this.backgroundImage.resize(1920, 1080);
+        this.backgroundImage.resize(2300, 0);
     }
     
     public void displayView() {
       int[] cameraPos = this.camera.getPos();
       image(this.backgroundImage, (0 - cameraPos[0]) / 4, (0 - cameraPos[1]) / 4);
-      print((0 - cameraPos[0]) / 4, (0 - cameraPos[1]) / 4, "\n");
       for (int sprite = 0; sprite < currentLevel.sprites.length; sprite++) {
         int[] currentSpriteViewPos = spriteViewPos(currentLevel.sprites[sprite]);
         fill(color(255, 255, 255));

@@ -54,6 +54,7 @@ void draw() {
     if(game.section == SectionVariant.TUTORIAL){
       //imageMode(CORNER);
       //image(img, 0, 0,displayWidth,displayHeight);
+
       currentView.displayView();
     }
     
@@ -156,6 +157,7 @@ void missionScreen(){
   text("Your mission is to collect the pieces of your broken spaceship \n and return to planet Earth-X4B.", displayWidth/2, displayHeight/4);
   imageMode(CENTER);
   image(spaceship, displayWidth/2, displayHeight/2);
+  imageMode(CORNER);
   fill(128, 128, 128);
   textSize(30);
   text("PRESS ANY KEY TO START THE GAME", displayWidth/2, 8*displayHeight/10);
