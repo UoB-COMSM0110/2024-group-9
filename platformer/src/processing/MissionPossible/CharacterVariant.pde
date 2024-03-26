@@ -4,5 +4,6 @@ enum CharacterVariant{
   COWBOY, 
   SPONGEBOB,
   CAT,
-  SKELETON;
+  SKELETON,
+  DOG;
 }

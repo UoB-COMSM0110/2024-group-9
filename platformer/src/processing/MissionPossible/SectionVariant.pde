@@ -1,10 +1,13 @@
 enum SectionVariant {
   // These are examples and can be changed
   STARTSCREEN,
+  MAINMENU,
   CHOOSECHARACTER,
   ENTERNAME,
   CHOOSEDIFFICULTY,
+  GAMESETTINGS,
   TUTORIAL,
+  MISSION,
   GAMELEVELS,
   GAMEOVER,
   LEADERBOARD,
