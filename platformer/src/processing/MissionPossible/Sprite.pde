@@ -26,15 +26,15 @@ public abstract class Sprite{
     this.spriteHeight = spriteHeight;
     this.spriteLayer = spriteLayer;
     this.xAcceleration = 0.1f;
-    this.yAcceleration = 0.1f;
-    this.maxSpeedX = 5.0f;
-    this.maxSpeedY = 5.0f;
+    this.yAcceleration = 0.5f;
+    this.maxSpeedX = 7.0f;
+    this.maxSpeedY = 20.0f;
     this.maxXPos = maxXPos;
     this.maxYPos = maxYPos;
   }
   
       // Update the position based on speed and acceleration
-  public void updatePosition(boolean moveLeft, boolean moveRight, boolean moveUp, boolean moveDown) {
+  public void updatePosition(boolean moveLeft, boolean moveRight, boolean moveUp, boolean moveDown, boolean jump) {
       // Update x position
       if (moveLeft) {
           xSpeed -= xAcceleration;

@@ -6,8 +6,8 @@ public class Level{
   int backgroundColour1;
   int backgroundColour2;
   int backgroundColour3;
-  int numPlayers;
-  Sprite[] sprites; 
+  Sprite[] sprites;
+  PlayerControlledSprite player;
   WeatherVariant weather;
   
  // Constructor - gets most of the level information from JSON file
@@ -18,7 +18,6 @@ public class Level{
      JSONObject json = loadJSONObject(jsonFilePath);
      
      // Level height, width, weather and background colour
-     numPlayers = 1;
      levelHeight = json.getInt("height");
      levelWidth = json.getInt("width");
      backgroundColour1 = json.getInt("backgroundColour1");
@@ -55,12 +54,13 @@ public class Level{
      int playerHeight = playerData.getInt("spriteHeight");
      int playerLayer = playerData.getInt("layer");
      
-     PlayerControlledSprite player = new PlayerControlledSprite(playerXPos, playerYPos, playerWidth, playerHeight, playerLayer, levelWidth, levelHeight);
+     this.player = new PlayerControlledSprite(playerXPos, playerYPos, playerWidth, playerHeight, playerLayer, levelWidth, levelHeight);
+
      
      
      // Sprites
     JSONArray spriteData = (JSONArray) json.get("sprites");
-    Sprite sprites[] = new Sprite[spriteData.size() + numPlayers];
+    Sprite sprites[] = new Sprite[spriteData.size()];
     for (int i = 0; i < spriteData.size(); i++) {
       // Get each object in the array
       JSONObject sprite = spriteData.getJSONObject(i);
@@ -74,10 +74,8 @@ public class Level{
       int spriteHeight = sprite.getInt("spriteHeight");
       int spriteLayer = sprite.getInt("layer");
       boolean isEnemy = sprite.getBoolean("isEnemy");
-      // Put objects in array
       sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, isEnemy, levelWidth, levelHeight);
     }
-    sprites[sprites.length - 1] = player;
     this.sprites = sprites;
   }
 
