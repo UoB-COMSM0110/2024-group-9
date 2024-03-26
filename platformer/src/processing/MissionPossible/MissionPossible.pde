@@ -1,18 +1,22 @@
 
 GameState game = new GameState();
+GameSettings settings = new GameSettings();
 Star[] stars = new Star[950];
 View currentView;
   int pos = 10;
-PFont MPFont;
+
 float boxWH = 160;
 PImage img;
 PImage backgroundImage;
-PImage spaceship;
+
+// Menu variables
+PFont MPFont;
 int backToMainSize;
 int clickedSize;
 int notClickedSize;
 float menuItemWidth = 1000;
-float menuItemHeight = 120;
+float menuItemHeight = 100;
+PImage spaceship;
 
 
 void setup() {
@@ -53,6 +57,9 @@ void draw() {
   }
   else if(game.section == SectionVariant.MISSION){
     missionScreen();
+  }
+  else if(game.section == SectionVariant.GAMESETTINGS){
+    gameSettingsScreen();
   }
 
   else{
@@ -106,21 +113,13 @@ void displayMainMenu(){
   text("Main menu", displayWidth/2, displayHeight/6);
   fill(255);
   
-  if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 2*displayHeight/10 && mouseY <= (2*displayHeight/10)+menuItemHeight){
-    textSize(clickedSize);
-  }
-  else{
-    textSize(notClickedSize);
-  }
-  MainMenuItem menuItem1 = new MainMenuItem("Play Mission Possible!", 2*displayHeight/10);
-  
   if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 3*displayHeight/10 && mouseY <= (3*displayHeight/10)+menuItemHeight){
     textSize(clickedSize);
   }
   else{
     textSize(notClickedSize);
   }
-  MainMenuItem menuItem2 = new MainMenuItem("Play tutorial", 3*displayHeight/10);
+  MainMenuItem menuItem1 = new MainMenuItem("Play Mission Possible!", 3*displayHeight/10);
   
   if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 4*displayHeight/10 && mouseY <= (4*displayHeight/10)+menuItemHeight){
     textSize(clickedSize);
@@ -128,15 +127,23 @@ void displayMainMenu(){
   else{
     textSize(notClickedSize);
   }
-  MainMenuItem menuItem3 = new MainMenuItem("Game settings", 4*displayHeight/10);
+  MainMenuItem menuItem2 = new MainMenuItem("Play tutorial", 4*displayHeight/10);
   
   if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 5*displayHeight/10 && mouseY <= (5*displayHeight/10)+menuItemHeight){
     textSize(clickedSize);
   }
   else{
     textSize(notClickedSize);
+  }
+  MainMenuItem menuItem3 = new MainMenuItem("Game settings", 5*displayHeight/10);
+  
+  if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 6*displayHeight/10 && mouseY <= (6*displayHeight/10)+menuItemHeight){
+    textSize(clickedSize);
+  }
+  else{
+    textSize(notClickedSize);
   }  
-  MainMenuItem menuItem4 = new MainMenuItem("View leaderboard", 5*displayHeight/10);
+  MainMenuItem menuItem4 = new MainMenuItem("View leaderboard", 6*displayHeight/10);
 }
 
 void displayChooseCharacter() {
@@ -164,7 +171,7 @@ void enterNameScreen() {
   fill(255);
   textAlign(CENTER, CENTER);
   textSize(80);
-  text("Enter your name:", displayWidth/2, displayHeight/6);
+  text("Enter your name and press return:", displayWidth/2, displayHeight/6);
   fill(255);
   textSize(95);
   text(game.playerNickname, displayWidth/2 - 40, 400);
@@ -225,20 +232,74 @@ void missionScreen(){
   textSize(30);
   text("PRESS ANY KEY TO START THE GAME", displayWidth/2, 8*displayHeight/10);
 }
+
+void gameSettingsScreen(){
+  
+  textAlign(CENTER, CENTER);
+  fill(255);
+  textSize(50);
+  text("The game uses the following keyboard keys:", displayWidth/2, displayHeight/5);
+  
+  if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 3*displayHeight/10 && mouseY <= (3*displayHeight/10)+menuItemHeight){
+    textSize(clickedSize);
+  }
+  else{
+    textSize(notClickedSize);
+  }
+  text("Move left:  " + settings.leftKey, displayWidth/2, 3*displayHeight/10);
+  
+  if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 4*displayHeight/10 && mouseY <= (4*displayHeight/10)+menuItemHeight){
+    textSize(clickedSize);
+  }
+  else{
+    textSize(notClickedSize);
+  }
+  text("Move right:  " + settings.rightKey, displayWidth/2, 4*displayHeight/10);
+  
+  if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 5*displayHeight/10 && mouseY <= (5*displayHeight/10)+menuItemHeight){
+    textSize(clickedSize);
+  }
+  else{
+    textSize(notClickedSize);
+  }
+  text("Jump:  " + settings.jumpKey, displayWidth/2, 5*displayHeight/10);
+  
+  if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 6*displayHeight/10 && mouseY <= (6*displayHeight/10)+menuItemHeight){
+    textSize(clickedSize);
+  }
+  else{
+    textSize(notClickedSize);
+  }
+  text("Dash:  " + settings.dashKey, displayWidth/2, 6*displayHeight/10);
+  
+  textSize(50);
+  fill(200, 20, 0);
+  text("Click on the text above to change a key. \nYou can choose letters, numbers, characters and arrow keys.", displayWidth/2, displayHeight-(displayHeight/5));
+  
+  fill(255);
+  if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){
+    textSize(clickedSize);
+  }  
+  else{
+    textSize(notClickedSize);
+  }
+  BackToMain backToMain = new BackToMain();
+}
   
 void keyPressed() {
   if(game.section == SectionVariant.TUTORIAL || game.section == SectionVariant.GAMELEVELS){
-      if (key == 'd') {
+    if (key == settings.rightKey) {
         moveRight = true;
-    } else if (key == 'a') {
-        moveLeft = true;
+    } 
+    else if (key == settings.leftKey) {
+      moveLeft = true;
     }
 
-    if (key == ' ') {
+    if (key == settings.jumpKey) {
         jump = true;
     } 
     
-    if (keyCode  == 17) {
+    if (keyCode  == settings.dashKey) {
         moveUp = true;
     }
   }
@@ -260,45 +321,41 @@ void keyPressed() {
       game.playerNickname = game.playerNickname.toUpperCase();
     }
   }
-  else if(game.started){
+  else if(game.section == SectionVariant.MISSION){
     game.section = SectionVariant.GAMELEVELS;
   }
 }
 
 void keyReleased() {
-    if (key == 'd') {
+  if(game.section == SectionVariant.TUTORIAL || game.section == SectionVariant.GAMELEVELS){
+    if (key == settings.rightKey) {
         moveRight = false;
-    } else if (key == 'a') {
+    } 
+    else if (key == settings.leftKey) {
         moveLeft = false;
-     }
- 
-     if (key == ' ') {
+    }
+    if (key == settings.jumpKey) {
        jump = false;
     }
-
-     if (keyCode == 17) {
+    if (keyCode == settings.dashKey) {
        moveUp = false;
-     }
-    if (key == 'w') {
-        moveUp = false;
-    } else if (key == 's') {
-        moveDown = false;
-    }
+    } 
+  }  
 }
 
 void mouseClicked() {
 
   if(game.section == SectionVariant.MAINMENU){
-    if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 2*displayHeight/10 && mouseY <= (2*displayHeight/10)+menuItemHeight){
+    if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 3*displayHeight/10 && mouseY <= (3*displayHeight/10)+menuItemHeight){
       game.section = SectionVariant.CHOOSECHARACTER;
     }
-    else if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 3*displayHeight/10 && mouseY <= (3*displayHeight/10)+menuItemHeight){
+    else if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 4*displayHeight/10 && mouseY <= (4*displayHeight/10)+menuItemHeight){
       game.section = SectionVariant.TUTORIAL;
     }
-    else if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 4*displayHeight/10 && mouseY <= (4*displayHeight/10)+menuItemHeight){
+    else if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 5*displayHeight/10 && mouseY <= (5*displayHeight/10)+menuItemHeight){
       game.section = SectionVariant.GAMESETTINGS;
     }
-    else if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 5*displayHeight/10 && mouseY <= (5*displayHeight/10)+menuItemHeight){
+    else if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 6*displayHeight/10 && mouseY <= (6*displayHeight/10)+menuItemHeight){
       game.section = SectionVariant.LEADERBOARD;
     }
   }
@@ -333,7 +390,7 @@ void mouseClicked() {
       }
   }
   
-  else if (game.section == SectionVariant.ENTERNAME){
+  else if (game.section == SectionVariant.ENTERNAME || game.section == SectionVariant.GAMESETTINGS){
     if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){
       game.section = SectionVariant.MAINMENU;
     }
