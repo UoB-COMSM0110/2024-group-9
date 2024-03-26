@@ -1,7 +1,5 @@
 public class GameState {
   boolean started;
-  boolean characterChosen;
-  boolean nameSelected;
   boolean showTutorial;
   String playerNickname;
   int score;
