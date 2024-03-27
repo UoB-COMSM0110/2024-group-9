@@ -12,19 +12,19 @@ public class GameSettings{
     dashKey = CONTROL;
   }
 
-  public void setLeftKey(char lKey){
+  public void setLeftKey(int lKey){
     leftKey = lKey;
   }
   
-  public void setRightKey(char rKey){
+  public void setRightKey(int rKey){
     rightKey = rKey;
   }
   
-  public void setJumpKey(char jKey){
+  public void setJumpKey(int jKey){
     jumpKey = jKey;
   }
   
-  public void setDashKey(char dKey){
+  public void setDashKey(int dKey){
     dashKey = dKey;
   }
 

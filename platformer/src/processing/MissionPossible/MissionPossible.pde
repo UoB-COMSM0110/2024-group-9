@@ -62,6 +62,18 @@ void draw() {
   else if(game.section == SectionVariant.GAMESETTINGS){
     gameSettingsScreen();
   }
+  else if(game.section == SectionVariant.SETLEFT){
+    setKey("left");
+  }
+  else if(game.section == SectionVariant.SETRIGHT){
+    setKey("right");
+  }
+  else if(game.section == SectionVariant.SETJUMP){
+    setKey("jump");
+  }
+  else if(game.section == SectionVariant.SETDASH){
+    setKey("dash");
+  }
 
   else{
   
@@ -76,6 +88,8 @@ void draw() {
       //imageMode(CORNER);
       //image(img, 0, 0,displayWidth,displayHeight);
       currentView.displayView();
+      println(settings.leftKey);
+      println(settings.rightKey);
     }  
   }
   
@@ -286,6 +300,40 @@ void gameSettingsScreen(){
   }
   BackToMain backToMain = new BackToMain();
 }
+
+void setKey(String keyToChange){
+
+  fill(255);
+  textAlign(CENTER, CENTER);
+  textSize(50);
+  text("Press the key you want to use to move " + keyToChange + ":", displayWidth/2, displayHeight/6);
+  
+  fill(200, 20, 0);
+  textSize(80);
+  
+  if(game.section == SectionVariant.SETLEFT){
+    text(KeyEvent.getKeyText(settings.leftKey), displayWidth/2, displayHeight/2);
+  }
+  else if(game.section == SectionVariant.SETRIGHT){
+    text(KeyEvent.getKeyText(settings.rightKey), displayWidth/2, displayHeight/2);
+  }
+  else if(game.section == SectionVariant.SETJUMP){
+    text(KeyEvent.getKeyText(settings.jumpKey), displayWidth/2, displayHeight/2);
+  }
+  else if(game.section == SectionVariant.SETDASH){
+    text(KeyEvent.getKeyText(settings.dashKey), displayWidth/2, displayHeight/2);
+  }
+    
+  fill(255);
+  if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){
+    textSize(clickedSize);
+  }  
+  else{
+    textSize(notClickedSize);
+  }
+  text("Back to game settings", displayWidth/2 - menuItemWidth/2, 9 * displayHeight/10, menuItemWidth, menuItemHeight);
+
+}
   
 void keyPressed() {
   if(game.section == SectionVariant.TUTORIAL || game.section == SectionVariant.GAMELEVELS){
@@ -324,6 +372,18 @@ void keyPressed() {
   }
   else if(game.section == SectionVariant.MISSION){
     game.section = SectionVariant.GAMELEVELS;
+  }
+  else if(game.section == SectionVariant.SETLEFT){
+    settings.setLeftKey(keyCode);
+  }
+  else if(game.section == SectionVariant.SETRIGHT){
+    settings.setRightKey(keyCode);
+  }
+  else if(game.section == SectionVariant.SETJUMP){
+    settings.setJumpKey(keyCode);
+  }
+  else if(game.section == SectionVariant.SETDASH){
+    settings.setDashKey(keyCode);
   }
 }
 
@@ -391,7 +451,7 @@ void mouseClicked() {
       }
   }
   
-  else if (game.section == SectionVariant.ENTERNAME || game.section == SectionVariant.GAMESETTINGS || game.section == SectionVariant.LEADERBOARD){
+  else if (game.section == SectionVariant.ENTERNAME || game.section == SectionVariant.LEADERBOARD){
     if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){
       game.section = SectionVariant.MAINMENU;
     }
@@ -408,6 +468,30 @@ void mouseClicked() {
     }
     else if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){
       game.section = SectionVariant.MAINMENU;
+    }
+  }
+  
+  else if (game.section == SectionVariant.GAMESETTINGS){
+    if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 3*displayHeight/10 && mouseY <= (3*displayHeight/10)+menuItemHeight){
+      game.section = SectionVariant.SETLEFT;
+    }
+    else if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 4*displayHeight/10 && mouseY <= (4*displayHeight/10)+menuItemHeight){   
+      game.section = SectionVariant.SETRIGHT; 
+    }
+    else if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 5*displayHeight/10 && mouseY <= (5*displayHeight/10)+menuItemHeight){
+      game.section = SectionVariant.SETJUMP; 
+    }
+    else if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 6*displayHeight/10 && mouseY <= (6*displayHeight/10)+menuItemHeight){
+      game.section = SectionVariant.SETDASH;
+    } 
+    else if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){
+      game.section = SectionVariant.MAINMENU;
+    }
+  }
+  
+  else if (game.section == SectionVariant.SETLEFT || game.section == SectionVariant.SETRIGHT || game.section == SectionVariant.SETJUMP || game.section == SectionVariant.SETDASH){
+    if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){
+      game.section = SectionVariant.GAMESETTINGS;
     }
   }
 }
