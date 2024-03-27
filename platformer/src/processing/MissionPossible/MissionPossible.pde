@@ -4,14 +4,14 @@ GameState game = new GameState();
 GameSettings settings = new GameSettings();
 Star[] stars = new Star[950];
 View currentView;
-  int pos = 10;
+int pos = 10;
+PFont MPFont;
 
 float boxWH = 160;
 PImage img;
 PImage backgroundImage;
 
 // Menu variables
-PFont MPFont;
 int backToMainSize;
 int clickedSize;
 int notClickedSize;
@@ -391,7 +391,7 @@ void mouseClicked() {
       }
   }
   
-  else if (game.section == SectionVariant.ENTERNAME || game.section == SectionVariant.GAMESETTINGS){
+  else if (game.section == SectionVariant.ENTERNAME || game.section == SectionVariant.GAMESETTINGS || game.section == SectionVariant.LEADERBOARD){
     if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){
       game.section = SectionVariant.MAINMENU;
     }
