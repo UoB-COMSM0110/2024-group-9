@@ -1,10 +1,13 @@
+import java.util.UUID;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import http.requests.*;
 import java.awt.event.KeyEvent;
 
 GameState game = new GameState();
 GameSettings settings = new GameSettings();
 Star[] stars = new Star[950];
 View currentView;
-int pos = 10;
 PFont MPFont;
 
 float boxWH = 160;
@@ -113,6 +116,40 @@ void draw() {
   }
 }
 
+void sendScore() {
+      String hostname = "";
+      String username = "";
+      String osName = "";
+      try {
+        hostname = InetAddress.getLocalHost().getHostName();
+      } catch (UnknownHostException e) {
+        
+      }
+      
+      try {
+        username = System.getProperty("user.name");
+      } catch (SecurityException e) {
+    
+      }
+      
+      try {
+        osName = System.getProperty("os.name");
+      } catch (SecurityException e) {
+    
+      }
+  
+      String userID = UUID.nameUUIDFromBytes((hostname + username + osName + game.playerNickname).getBytes()).toString();
+      PostRequest post = new PostRequest("https://leaderboard.charris.xyz");
+      JSONObject json = new JSONObject();
+      json.setString("userid", userID);
+      json.setString("nickname", game.playerNickname);
+      json.setInt("score", 300);
+      post.addData(json.toString());
+      post.addHeader("Content-Type", "application/json");
+      post.send();
+      println("Reponse Content: " + post.getContent());
+}
+
 void displayStartScreen() {
   game.section = SectionVariant.STARTSCREEN;
   fill(200, 20, 0);
@@ -172,8 +209,10 @@ void displayMainMenu(){
 }
 
 void displayLeaderboard(){
+  textSize(headerSize);
   text("Name", displayWidth / 5, displayHeight / 10);
   text("Score", 4 * displayWidth / 5, displayHeight / 10);
+  textSize(notHoveredSize);
   for (int i = 0; i < topTen.size(); i++) {
     JSONObject leaderboardEntry = topTen.getJSONObject(i);
     for (Object key : leaderboardEntry.keys()) {
@@ -181,6 +220,12 @@ void displayLeaderboard(){
       text(key.toString(), displayWidth / 5, displayHeight / 15 * i + 2 * displayHeight / 10);
       text(score, 4 * displayWidth / 5, displayHeight / 15 * i + 2 * displayHeight / 10);
     }
+  }
+  if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){
+    textSize(hoveredSize);
+  }
+  else{
+    textSize(notHoveredSize);
   }
   BackToMain backToMain = new BackToMain();
 }
