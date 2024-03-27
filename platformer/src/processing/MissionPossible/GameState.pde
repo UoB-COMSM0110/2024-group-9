@@ -28,4 +28,8 @@ public class GameState {
     showTutorial = false;
     section = SectionVariant.GAMELEVELS;
   }
+  
+  GameState getGameState() {
+    return this;
+  }
 }

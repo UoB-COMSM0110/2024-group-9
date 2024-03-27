@@ -29,7 +29,8 @@ JSONArray topTen;
 
 
 void setup() {
-  fullScreen();
+  fullScreen(P2D);
+  smooth(3);
   background(0);
   MPFont = createFont("IMPOS10_.ttf", 48);
   textFont(MPFont);
@@ -48,6 +49,7 @@ void setup() {
   titleSize = displayHeight/12;
   headerSize = displayHeight/15;
   smallSize = displayHeight/40;
+  //frameRate(200);
 }
 
 void draw() {
@@ -114,6 +116,7 @@ void draw() {
       stars[i].show();
     }
   }
+  text(frameRate, 100, 100);
 }
 
 void sendScore() {
