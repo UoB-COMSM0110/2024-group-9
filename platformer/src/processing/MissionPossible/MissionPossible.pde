@@ -18,6 +18,8 @@ int notClickedSize;
 float menuItemWidth = 1000;
 float menuItemHeight = 100;
 PImage spaceship;
+JSONArray topTen;
+
 
 
 void setup() {
@@ -33,6 +35,7 @@ void setup() {
   Level level1 = new Level("LevelFiles/level1.json");
   currentView = new View(level1);
   Leaderboard leaderboard = new Leaderboard("https://leaderboard.charris.xyz");
+  topTen = leaderboard.getScores(true);
   System.out.println(leaderboard.getScores(true));
   clickedSize = 60;
   notClickedSize = 45;
@@ -46,6 +49,9 @@ void draw() {
   } 
   else if (game.section == SectionVariant.MAINMENU){
     displayMainMenu();
+  }
+  else if (game.section == SectionVariant.LEADERBOARD) {
+    displayLeaderboard();
   }
   else if (game.section == SectionVariant.CHOOSECHARACTER){
     displayChooseCharacter();
@@ -145,6 +151,20 @@ void displayMainMenu(){
     textSize(notClickedSize);
   }  
   MainMenuItem menuItem4 = new MainMenuItem("View leaderboard", 6*displayHeight/10);
+}
+
+void displayLeaderboard(){
+  text("Name", displayWidth / 5, displayHeight / 10);
+  text("Score", 4 * displayWidth / 5, displayHeight / 10);
+  for (int i = 0; i < topTen.size(); i++) {
+    JSONObject leaderboardEntry = topTen.getJSONObject(i);
+    for (Object key : leaderboardEntry.keys()) {
+      int score = leaderboardEntry.getInt(key.toString());
+      text(key.toString(), displayWidth / 5, displayHeight / 15 * i + 2 * displayHeight / 10);
+      text(score, 4 * displayWidth / 5, displayHeight / 15 * i + 2 * displayHeight / 10);
+    }
+  }
+  BackToMain backToMain = new BackToMain();
 }
 
 void displayChooseCharacter() {
