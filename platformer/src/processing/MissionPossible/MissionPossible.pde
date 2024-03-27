@@ -209,8 +209,10 @@ void displayMainMenu(){
 }
 
 void displayLeaderboard(){
+  textSize(headerSize);
   text("Name", displayWidth / 5, displayHeight / 10);
   text("Score", 4 * displayWidth / 5, displayHeight / 10);
+  textSize(notHoveredSize);
   for (int i = 0; i < topTen.size(); i++) {
     JSONObject leaderboardEntry = topTen.getJSONObject(i);
     for (Object key : leaderboardEntry.keys()) {
@@ -218,6 +220,12 @@ void displayLeaderboard(){
       text(key.toString(), displayWidth / 5, displayHeight / 15 * i + 2 * displayHeight / 10);
       text(score, 4 * displayWidth / 5, displayHeight / 15 * i + 2 * displayHeight / 10);
     }
+  }
+  if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){
+    textSize(hoveredSize);
+  }
+  else{
+    textSize(notHoveredSize);
   }
   BackToMain backToMain = new BackToMain();
 }
