@@ -13,8 +13,11 @@ PImage backgroundImage;
 
 // Menu variables
 int backToMainSize;
-int clickedSize;
-int notClickedSize;
+int hoveredSize;
+int notHoveredSize;
+int titleSize;
+int headerSize;
+int smallSize;
 float menuItemWidth = 1000;
 float menuItemHeight = 100;
 PImage spaceship;
@@ -37,8 +40,11 @@ void setup() {
   Leaderboard leaderboard = new Leaderboard("https://leaderboard.charris.xyz");
   topTen = leaderboard.getScores(true);
   System.out.println(leaderboard.getScores(true));
-  clickedSize = 60;
-  notClickedSize = 45;
+  hoveredSize = displayHeight/20;
+  notHoveredSize = displayHeight/25;
+  titleSize = displayHeight/12;
+  headerSize = displayHeight/15;
+  smallSize = displayHeight/40;
 }
 
 void draw() {
@@ -94,8 +100,6 @@ void draw() {
       //imageMode(CORNER);
       //image(img, 0, 0,displayWidth,displayHeight);
       currentView.displayView();
-      println(settings.leftKey);
-      println(settings.rightKey);
     }  
   }
   
@@ -113,56 +117,56 @@ void displayStartScreen() {
   game.section = SectionVariant.STARTSCREEN;
   fill(200, 20, 0);
   textAlign(CENTER, CENTER);
-  textSize(90);
+  textSize(titleSize);
   text("MISSION: POSSIBLE", displayWidth/2, displayHeight/2);
   fill(255); 
   textAlign(LEFT, BOTTOM); 
   float mainTextX = displayWidth / 2 - 400;
   float mainTextY = displayHeight / 2 - 35; 
-  textSize(30);
+  textSize(smallSize);
   text("GROUP 09", mainTextX, mainTextY);
   fill(128, 128, 128);
   textAlign(CENTER, CENTER);
-  textSize(30);
+  textSize(smallSize);
   text("PRESS ANY KEY TO BEGIN", displayWidth/2, displayHeight/2 + 120);
 }  
 
 void displayMainMenu(){
   textAlign(CENTER, CENTER);
-  textSize(80);
+  textSize(headerSize);
   fill(200, 20, 0);
   text("Main menu", displayWidth/2, displayHeight/6);
   fill(255);
   
   if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 3*displayHeight/10 && mouseY <= (3*displayHeight/10)+menuItemHeight){
-    textSize(clickedSize);
+    textSize(hoveredSize);
   }
   else{
-    textSize(notClickedSize);
+    textSize(notHoveredSize);
   }
   MainMenuItem menuItem1 = new MainMenuItem("Play Mission Possible!", 3*displayHeight/10);
   
   if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 4*displayHeight/10 && mouseY <= (4*displayHeight/10)+menuItemHeight){
-    textSize(clickedSize);
+    textSize(hoveredSize);
   }
   else{
-    textSize(notClickedSize);
+    textSize(notHoveredSize);
   }
   MainMenuItem menuItem2 = new MainMenuItem("Play tutorial", 4*displayHeight/10);
   
   if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 5*displayHeight/10 && mouseY <= (5*displayHeight/10)+menuItemHeight){
-    textSize(clickedSize);
+    textSize(hoveredSize);
   }
   else{
-    textSize(notClickedSize);
+    textSize(notHoveredSize);
   }
   MainMenuItem menuItem3 = new MainMenuItem("Game settings", 5*displayHeight/10);
   
   if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 6*displayHeight/10 && mouseY <= (6*displayHeight/10)+menuItemHeight){
-    textSize(clickedSize);
+    textSize(hoveredSize);
   }
   else{
-    textSize(notClickedSize);
+    textSize(notHoveredSize);
   }  
   MainMenuItem menuItem4 = new MainMenuItem("View leaderboard", 6*displayHeight/10);
 }
@@ -184,7 +188,7 @@ void displayLeaderboard(){
 void displayChooseCharacter() {
   fill(255);
   textAlign(CENTER, CENTER);
-  textSize(80);
+  textSize(headerSize);
   text("Click to choose your character", displayWidth/2, displayHeight/6);
   fill(200, 20, 0);
   square(displayWidth/6, displayHeight/3.5, boxWH);
@@ -194,10 +198,10 @@ void displayChooseCharacter() {
   square(displayWidth/2 - (boxWH/2), displayHeight/1.5, boxWH);
   square(displayWidth - (displayWidth/6) - boxWH, displayHeight/1.5, boxWH);
   if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){
-    textSize(clickedSize);
+    textSize(hoveredSize);
   }  
   else{
-    textSize(notClickedSize);
+    textSize(notHoveredSize);
   }
   BackToMain backToMain = new BackToMain();
 }
@@ -205,16 +209,16 @@ void displayChooseCharacter() {
 void enterNameScreen() {
   fill(255);
   textAlign(CENTER, CENTER);
-  textSize(80);
+  textSize(headerSize);
   text("Enter your name and press return:", displayWidth/2, displayHeight/6);
   fill(255);
-  textSize(95);
+  textSize(titleSize);
   text(game.playerNickname, displayWidth/2 - 40, 400);
   if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){
-    textSize(clickedSize);
+    textSize(hoveredSize);
   }  
   else{
-    textSize(notClickedSize);
+    textSize(notHoveredSize);
   }
   BackToMain backToMain = new BackToMain();
 }
@@ -223,10 +227,10 @@ void modeScreen(){
   game.section = SectionVariant.CHOOSEDIFFICULTY;
   fill(200, 20, 0);
   textAlign(CENTER, CENTER);
-  textSize(60);
+  textSize(hoveredSize);
   text("Welcome " + game.playerNickname + "!", displayWidth/2, displayHeight/8);
   fill(255);
-  textSize(80);
+  textSize(headerSize);
   text("Choose difficulty", displayWidth/2, displayHeight/5);
   if(mouseX >= displayWidth/4 && mouseX <=(displayWidth/4)+boxWH && mouseY >= displayHeight/2 && mouseY <= (displayHeight/2)+boxWH){
     fill(200, 20, 0);
@@ -242,15 +246,15 @@ void modeScreen(){
     fill(255);
   }
   square(displayWidth - (displayWidth/4) - boxWH, displayHeight/2, boxWH);
-  textSize(30);
+  textSize(smallSize);
   fill(0);
   text("Easy", (displayWidth/4)+(boxWH/2), (displayHeight/2)+(boxWH/2));
   text("Difficult", displayWidth - (displayWidth/4) - (boxWH/2), (displayHeight/2)+(boxWH/2));
   if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){
-    textSize(clickedSize);
+    textSize(hoveredSize);
   }  
   else{
-    textSize(notClickedSize);
+    textSize(notHoveredSize);
   }
   BackToMain backToMain = new BackToMain();
 }
@@ -258,13 +262,13 @@ void modeScreen(){
 void missionScreen(){
   textAlign(CENTER, CENTER);
   fill(255);
-  textSize(50);
-  text("Your mission is to collect the pieces of your broken spaceship \n and return to planet Earth-X4B.", displayWidth/2, displayHeight/4);
+  textSize(notHoveredSize);
+  text("Your mission is to collect the pieces of your broken spaceship \n and return to planet Earth-X4B.", displayWidth/2, displayHeight/4, menuItemWidth);
   imageMode(CENTER);
   image(spaceship, displayWidth/2, displayHeight/2);
   imageMode(CORNER);
   fill(128, 128, 128);
-  textSize(30);
+  textSize(smallSize);
   text("PRESS ANY KEY TO START THE GAME", displayWidth/2, 8*displayHeight/10);
 }
 
@@ -272,51 +276,51 @@ void gameSettingsScreen(){
   
   textAlign(CENTER, CENTER);
   fill(255);
-  textSize(50);
+  textSize(hoveredSize);
   text("The game uses the following keyboard keys:", displayWidth/2, displayHeight/5);
   
   if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 3*displayHeight/10 && mouseY <= (3*displayHeight/10)+menuItemHeight){
-    textSize(clickedSize);
+    textSize(hoveredSize);
   }
   else{
-    textSize(notClickedSize);
+    textSize(notHoveredSize);
   }
   text("Move left:  " + KeyEvent.getKeyText(settings.leftKey), displayWidth/2, 3*displayHeight/10);
   
   if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 4*displayHeight/10 && mouseY <= (4*displayHeight/10)+menuItemHeight){
-    textSize(clickedSize);
+    textSize(hoveredSize);
   }
   else{
-    textSize(notClickedSize);
+    textSize(notHoveredSize);
   }
   text("Move right:  " + KeyEvent.getKeyText(settings.rightKey), displayWidth/2, 4*displayHeight/10);
   
   if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 5*displayHeight/10 && mouseY <= (5*displayHeight/10)+menuItemHeight){
-    textSize(clickedSize);
+    textSize(hoveredSize);
   }
   else{
-    textSize(notClickedSize);
+    textSize(notHoveredSize);
   }
   text("Jump:  " + KeyEvent.getKeyText(settings.jumpKey), displayWidth/2, 5*displayHeight/10);
   
   if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 6*displayHeight/10 && mouseY <= (6*displayHeight/10)+menuItemHeight){
-    textSize(clickedSize);
+    textSize(hoveredSize);
   }
   else{
-    textSize(notClickedSize);
+    textSize(notHoveredSize);
   }
   text("Dash:  " + KeyEvent.getKeyText(settings.dashKey), displayWidth/2, 6*displayHeight/10);
   
-  textSize(50);
+  textSize(hoveredSize);
   fill(200, 20, 0);
   text("Click on the text above to change a key command.", displayWidth/2, displayHeight-(displayHeight/5));
   
   fill(255);
   if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){
-    textSize(clickedSize);
+    textSize(hoveredSize);
   }  
   else{
-    textSize(notClickedSize);
+    textSize(notHoveredSize);
   }
   BackToMain backToMain = new BackToMain();
 }
@@ -325,11 +329,11 @@ void setKey(String keyToChange){
 
   fill(255);
   textAlign(CENTER, CENTER);
-  textSize(50);
+  textSize(hoveredSize);
   text("Press the key you want to use to move " + keyToChange + ":", displayWidth/2, displayHeight/6);
   
   fill(200, 20, 0);
-  textSize(80);
+  textSize(headerSize);
   
   if(game.section == SectionVariant.SETLEFT){
     text(KeyEvent.getKeyText(settings.leftKey), displayWidth/2, displayHeight/2);
@@ -346,10 +350,10 @@ void setKey(String keyToChange){
     
   fill(255);
   if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){
-    textSize(clickedSize);
+    textSize(hoveredSize);
   }  
   else{
-    textSize(notClickedSize);
+    textSize(notHoveredSize);
   }
   text("Back to game settings", displayWidth/2 - menuItemWidth/2, 9 * displayHeight/10, menuItemWidth, menuItemHeight);
 
@@ -357,14 +361,14 @@ void setKey(String keyToChange){
   
 void keyPressed() {
   if(game.section == SectionVariant.TUTORIAL || game.section == SectionVariant.GAMELEVELS){
-    if (key == settings.rightKey) {
+    if (keyCode == settings.rightKey) {
         moveRight = true;
     } 
-    else if (key == settings.leftKey) {
+    else if (keyCode == settings.leftKey) {
       moveLeft = true;
     }
 
-    if (key == settings.jumpKey) {
+    if (keyCode == settings.jumpKey) {
         jump = true;
     } 
     
@@ -409,13 +413,13 @@ void keyPressed() {
 
 void keyReleased() {
   if(game.section == SectionVariant.TUTORIAL || game.section == SectionVariant.GAMELEVELS){
-    if (key == settings.rightKey) {
+    if (keyCode == settings.rightKey) {
         moveRight = false;
     } 
-    else if (key == settings.leftKey) {
+    else if (keyCode == settings.leftKey) {
         moveLeft = false;
     }
-    if (key == settings.jumpKey) {
+    if (keyCode == settings.jumpKey) {
        jump = false;
     }
     if (keyCode == settings.dashKey) {
