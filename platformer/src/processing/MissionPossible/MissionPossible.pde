@@ -9,8 +9,6 @@ GameSettings settings = new GameSettings();
 Star[] stars = new Star[950];
 View currentView;
 PFont MPFont;
-boolean sent = false;
-String validCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_"; // Define valid characters
 
 float boxWH = 160;
 PImage img;
