@@ -7,7 +7,6 @@ import http.requests.*;
 GameState game = new GameState();
 Star[] stars = new Star[950];
 View currentView;
-  int pos = 10;
 PFont MPFont;
 boolean sent = false;
 String validCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_"; // Define valid characters
@@ -40,14 +39,7 @@ void draw() {
     } else {
       // Temporary - replace with entering game 
       text("Welcome " + game.playerNickname + "!", displayWidth/2, displayHeight/2);
-
-    if (!sent) {
-        sendRequest();
-        sent = true;
-      }
     }
-
-
 
     translate(displayWidth / 2, displayHeight / 2);
     for (int i = 0; i < stars.length; i++) {
@@ -56,7 +48,7 @@ void draw() {
   }
 }
 
-void sendRequest() {
+void sendScore() {
       String hostname = "";
       String username = "";
       String osName = "";
@@ -77,10 +69,8 @@ void sendRequest() {
       } catch (SecurityException e) {
     
       }
-      print(hostname + "\n" + username + "\n" + osName + "\n");
   
       String userID = UUID.nameUUIDFromBytes((hostname + username + osName + game.playerNickname).getBytes()).toString();
-      print(userID + "\n");
       PostRequest post = new PostRequest("https://leaderboard.charris.xyz");
       JSONObject json = new JSONObject();
       json.setString("userid", userID);
@@ -90,9 +80,8 @@ void sendRequest() {
       post.addHeader("Content-Type", "application/json");
       post.send();
       println("Reponse Content: " + post.getContent());
-       
-      //enter the game (at a later date of course)
 }
+
 void displayStartScreen() {
   fill(200, 20, 0);
   textAlign(CENTER, CENTER);
