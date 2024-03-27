@@ -223,19 +223,20 @@ void keyPressed() {
 }
 
 void keyReleased() {
-    if (key == 'd') {
+  if(game.section == SectionVariant.TUTORIAL || game.section == SectionVariant.GAMELEVELS){
+    if (key == settings.rightKey) {
         moveRight = false;
-    } else if (key == 'a') {
+    } 
+    else if (key == settings.leftKey) {
         moveLeft = false;
-     }
- 
-     if (key == ' ') {
+    }
+    if (key == settings.jumpKey) {
        jump = false;
     }
-
-     if (keyCode == 17) {
+    if (keyCode == settings.dashKey) {
        moveUp = false;
-     }
+    } 
+  }  
 }
 
 void mouseClicked() {
