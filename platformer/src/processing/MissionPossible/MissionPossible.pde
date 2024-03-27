@@ -1,3 +1,4 @@
+import java.awt.event.KeyEvent;
 
 GameState game = new GameState();
 GameSettings settings = new GameSettings();
@@ -246,7 +247,7 @@ void gameSettingsScreen(){
   else{
     textSize(notClickedSize);
   }
-  text("Move left:  " + settings.leftKey, displayWidth/2, 3*displayHeight/10);
+  text("Move left:  " + KeyEvent.getKeyText(settings.leftKey), displayWidth/2, 3*displayHeight/10);
   
   if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 4*displayHeight/10 && mouseY <= (4*displayHeight/10)+menuItemHeight){
     textSize(clickedSize);
@@ -254,7 +255,7 @@ void gameSettingsScreen(){
   else{
     textSize(notClickedSize);
   }
-  text("Move right:  " + settings.rightKey, displayWidth/2, 4*displayHeight/10);
+  text("Move right:  " + KeyEvent.getKeyText(settings.rightKey), displayWidth/2, 4*displayHeight/10);
   
   if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 5*displayHeight/10 && mouseY <= (5*displayHeight/10)+menuItemHeight){
     textSize(clickedSize);
@@ -262,7 +263,7 @@ void gameSettingsScreen(){
   else{
     textSize(notClickedSize);
   }
-  text("Jump:  " + settings.jumpKey, displayWidth/2, 5*displayHeight/10);
+  text("Jump:  " + KeyEvent.getKeyText(settings.jumpKey), displayWidth/2, 5*displayHeight/10);
   
   if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 6*displayHeight/10 && mouseY <= (6*displayHeight/10)+menuItemHeight){
     textSize(clickedSize);
@@ -270,11 +271,11 @@ void gameSettingsScreen(){
   else{
     textSize(notClickedSize);
   }
-  text("Dash:  " + settings.dashKey, displayWidth/2, 6*displayHeight/10);
+  text("Dash:  " + KeyEvent.getKeyText(settings.dashKey), displayWidth/2, 6*displayHeight/10);
   
   textSize(50);
   fill(200, 20, 0);
-  text("Click on the text above to change a key. \nYou can choose letters, numbers, characters and arrow keys.", displayWidth/2, displayHeight-(displayHeight/5));
+  text("Click on the text above to change a key command.", displayWidth/2, displayHeight-(displayHeight/5));
   
   fill(255);
   if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){

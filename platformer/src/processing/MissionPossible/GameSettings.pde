@@ -1,15 +1,15 @@
 public class GameSettings{
-    char leftKey;
-    char rightKey;
-    char jumpKey;
-    char dashKey;
+    int leftKey;
+    int rightKey;
+    int jumpKey;
+    int dashKey;
     
     
   public GameSettings(){
-    leftKey = 'a';
-    rightKey = 'd';
+    leftKey = 'A';
+    rightKey = 'D';
     jumpKey = ' ';
-    dashKey = 17;
+    dashKey = CONTROL;
   }
 
   public void setLeftKey(char lKey){
