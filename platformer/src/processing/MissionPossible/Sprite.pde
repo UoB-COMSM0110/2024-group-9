@@ -17,9 +17,9 @@ public abstract class Sprite{
   float damage;
   boolean onGround;
   boolean collision;
-  PImage image;
+  String image;
   
-  public Sprite(int xPos, int yPos, int spriteWidth, int spriteHeight, int spriteLayer, int maxXPos, int maxYPos) {
+  public Sprite(int xPos, int yPos, int spriteWidth, int spriteHeight, int spriteLayer, int maxXPos, int maxYPos, String imgFile) {
     this.xPos = xPos;
     this.yPos = yPos;
     this.spriteWidth = spriteWidth;
@@ -31,6 +31,8 @@ public abstract class Sprite{
     this.maxSpeedY = 20.0f;
     this.maxXPos = maxXPos;
     this.maxYPos = maxYPos;
+    this.image = imgFile;
+    
   }
   
       // Update the position based on speed and acceleration

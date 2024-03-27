@@ -1,10 +1,8 @@
 {
   "height": 1200,
   "width": 3000,
-  "backgroundColour1": 117,
-  "backgroundColour2": 175,
-  "backgroundColour3": 209,
   "weather": "neutral",
+  "platformImage": "platform.png",
   "player": {
     "position": {
       "xPos": 40,
@@ -12,7 +10,8 @@
     },
     "spriteWidth": 35,
     "spriteHeight": 35,
-    "layer": 1
+    "layer": 1,
+    "spriteImage": "spaceman.png"
   },
   "sprites": [
     {
@@ -23,7 +22,8 @@
       "spriteWidth": 3000,
       "spriteHeight": 100,
       "layer": 1,
-      "isEnemy": false
+      "isEnemy": false,
+      "spriteImage": "platform.png"
     },
     {
       "position": {
@@ -33,7 +33,8 @@
       "spriteWidth": 100,
       "spriteHeight": 20,
       "layer": 1,
-      "isEnemy": false
+      "isEnemy": false,
+      "spriteImage": "platform.png"
     },
     {
       "position": {
@@ -43,7 +44,8 @@
       "spriteWidth": 150,
       "spriteHeight": 20,
       "layer": 1,
-      "isEnemy": false
+      "isEnemy": false,
+      "spriteImage": "platform.png"
     },
     {
       "position": {
@@ -53,7 +55,8 @@
       "spriteWidth": 120,
       "spriteHeight": 350,
       "layer": 1,
-      "isEnemy": false
+      "isEnemy": false,
+      "spriteImage": "platform.png"
     },
     {
       "position": {
@@ -63,7 +66,8 @@
       "spriteWidth": 130,
       "spriteHeight": 20,
       "layer": 1,
-      "isEnemy": false
+      "isEnemy": false,
+      "spriteImage": "platform.png"
     },
     {
       "position": {
@@ -73,7 +77,8 @@
       "spriteWidth": 100,
       "spriteHeight": 20,
       "layer": 1,
-      "isEnemy": false
+      "isEnemy": false,
+      "spriteImage": "platform.png"
     },
     {
       "position": {
@@ -83,7 +88,8 @@
       "spriteWidth": 100,
       "spriteHeight": 20,
       "layer": 1,
-      "isEnemy": false
+      "isEnemy": false,
+      "spriteImage": "platform.png"
     },
     {
       "position": {
@@ -93,7 +99,8 @@
       "spriteWidth": 400,
       "spriteHeight": 20,
       "layer": 1,
-      "isEnemy": false
+      "isEnemy": false,
+      "spriteImage": "platform.png"
     },
     {
       "position": {
@@ -103,7 +110,8 @@
       "spriteWidth": 200,
       "spriteHeight": 20,
       "layer": 1,
-      "isEnemy": false
+      "isEnemy": false,
+      "spriteImage": "platform.png"
     },
     {
       "position": {
@@ -113,7 +121,8 @@
       "spriteWidth": 200,
       "spriteHeight": 20,
       "layer": 1,
-      "isEnemy": false
+      "isEnemy": false,
+      "spriteImage": "platform.png"
     },
     {
       "position": {
@@ -123,7 +132,8 @@
       "spriteWidth": 100,
       "spriteHeight": 20,
       "layer": 1,
-      "isEnemy": false
+      "isEnemy": false,
+      "spriteImage": "platform.png"
     },
     {
       "position": {
@@ -133,7 +143,8 @@
       "spriteWidth": 200,
       "spriteHeight": 20,
       "layer": 1,
-      "isEnemy": false
+      "isEnemy": false,
+      "spriteImage": "platform.png"
     },
     {
       "position": {
@@ -143,7 +154,19 @@
       "spriteWidth": 35,
       "spriteHeight": 35,
       "layer": 1,
-      "isEnemy": true
+      "isEnemy": true,
+      "spriteImage": "monster1.png"
+    },
+    {
+      "position": {
+        "x": 2700,
+        "y": 95
+      },
+      "spriteWidth": 55,
+      "spriteHeight": 55,
+      "layer": 1,
+      "isEnemy": false,
+      "spriteImage": "spaceship_part1.png"
     }
   ]
 }

@@ -3,9 +3,6 @@ public class Level{
   int score;
   int levelHeight;
   int levelWidth;
-  int backgroundColour1;
-  int backgroundColour2;
-  int backgroundColour3;
   Sprite[] sprites;
   PlayerControlledSprite player;
   WeatherVariant weather;
@@ -20,9 +17,6 @@ public class Level{
      // Level height, width, weather and background colour
      levelHeight = json.getInt("height");
      levelWidth = json.getInt("width");
-     backgroundColour1 = json.getInt("backgroundColour1");
-     backgroundColour2  = json.getInt("backgroundColour2");
-     backgroundColour3 = json.getInt("backgroundColour3");
      String weatherType = json.getString("weather");
      
      switch(weatherType){
@@ -53,8 +47,9 @@ public class Level{
      int playerWidth = playerData.getInt("spriteWidth");
      int playerHeight = playerData.getInt("spriteHeight");
      int playerLayer = playerData.getInt("layer");
-     
-     this.player = new PlayerControlledSprite(playerXPos, playerYPos, playerWidth, playerHeight, playerLayer, levelWidth, levelHeight);
+     String playerImage = playerData.getString("spriteImage");
+          
+     this.player = new PlayerControlledSprite(playerXPos, playerYPos, playerWidth, playerHeight, playerLayer, levelWidth, levelHeight, playerImage);
 
      
      
@@ -74,7 +69,8 @@ public class Level{
       int spriteHeight = sprite.getInt("spriteHeight");
       int spriteLayer = sprite.getInt("layer");
       boolean isEnemy = sprite.getBoolean("isEnemy");
-      sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, isEnemy, levelWidth, levelHeight);
+      String spriteImage = sprite.getString("spriteImage");
+      sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, isEnemy, levelWidth, levelHeight, spriteImage);
     }
     this.sprites = sprites;
   }
