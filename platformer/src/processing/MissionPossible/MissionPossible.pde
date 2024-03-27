@@ -29,7 +29,7 @@ JSONArray topTen;
 
 
 void setup() {
-  fullScreen();
+  fullScreen(P2D);
   background(0);
   MPFont = createFont("IMPOS10_.ttf", 48);
   textFont(MPFont);
@@ -52,7 +52,7 @@ void setup() {
 
 void draw() {
   background(0);
-
+  println(frameRate);
   if(!game.started) {
     displayStartScreen();
   } 
