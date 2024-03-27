@@ -48,10 +48,10 @@
     {
       "position": {
         "x": 750,
-        "y": 800
+        "y": 650
       },
       "spriteWidth": 120,
-      "spriteHeight": 200,
+      "spriteHeight": 350,
       "layer": 1,
       "isEnemy": false
     },
@@ -91,6 +91,46 @@
         "y": 600
       },
       "spriteWidth": 400,
+      "spriteHeight": 20,
+      "layer": 1,
+      "isEnemy": false
+    },
+    {
+      "position": {
+        "x": 2000,
+        "y": 400
+      },
+      "spriteWidth": 200,
+      "spriteHeight": 20,
+      "layer": 1,
+      "isEnemy": false
+    },
+    {
+      "position": {
+        "x": 2100,
+        "y": 250
+      },
+      "spriteWidth": 200,
+      "spriteHeight": 20,
+      "layer": 1,
+      "isEnemy": false
+    },
+    {
+      "position": {
+        "x": 2300,
+        "y": 150
+      },
+      "spriteWidth": 100,
+      "spriteHeight": 20,
+      "layer": 1,
+      "isEnemy": false
+    },
+    {
+      "position": {
+        "x": 2600,
+        "y": 150
+      },
+      "spriteWidth": 200,
       "spriteHeight": 20,
       "layer": 1,
       "isEnemy": false
