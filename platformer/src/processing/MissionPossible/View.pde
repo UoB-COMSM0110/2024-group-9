@@ -8,6 +8,7 @@ public class View {
     private final Camera camera;
     Level currentLevel;
     PImage backgroundImage;
+    UserInterface userInterface;
 
     View(Level currentLevel) {
         int[] levelDims = currentLevel.getLevelDims();
@@ -15,6 +16,7 @@ public class View {
         this.currentLevel = currentLevel;
         this.backgroundImage = loadImage("Background-1.png");
         this.backgroundImage.resize(2300, 0);
+        userInterface = new UserInterface();
     }
     
     public void displayView() {
@@ -31,6 +33,9 @@ public class View {
       int[] playerPos = spriteViewPos(currentLevel.player);
       rect(playerPos[0], playerPos[1], currentLevel.player.spriteWidth, currentLevel.player.spriteHeight);
       this.camera.setPos(currentLevel.player.getXPos() - displayWidth / 2, currentLevel.player.getYPos() - displayHeight / 2);
+      UIElement health = userInterface.getElement("health");
+      health.setTextContent(String.valueOf(frameRate));
+      userInterface.drawUI();
     }
 
     public int[] spriteViewPos(Sprite sprite) {
