@@ -34,6 +34,8 @@ public class View {
       rect(playerPos[0], playerPos[1], currentLevel.player.spriteWidth, currentLevel.player.spriteHeight);
       this.camera.setPos(currentLevel.player.getXPos() - displayWidth / 2, currentLevel.player.getYPos() - displayHeight / 2);
       UIElement health = userInterface.getElement("health");
+      UIElement part1 = userInterface.getElement("part1");
+      part1.drawElement();
       health.setTextContent(String.valueOf(frameRate));
       userInterface.drawUI();
     }

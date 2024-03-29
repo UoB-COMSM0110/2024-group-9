@@ -7,8 +7,9 @@ class UIElement {
   int colour;
   int elementWidth;
   int elementHeight;
+  int tintAmount;
 
-  public UIElement(UIElementVariant type, int xPos, int yPos, String textContent, int colour, PImage asset, int elementWidth, int elementHeight) {
+  public UIElement(UIElementVariant type, int xPos, int yPos, String textContent, int colour, PImage asset, int elementWidth, int elementHeight, int tintAmount) {
     this.type = type;
     this.xPos = xPos;
     this.yPos = yPos;
@@ -17,6 +18,7 @@ class UIElement {
     this.asset = asset;
     this.elementWidth = elementWidth;
     this.elementHeight = elementHeight;
+    this.tintAmount = tintAmount;
   }
   
   public void drawElement() {
@@ -24,12 +26,15 @@ class UIElement {
 
     switch (type) {
       case IMAGE:
+      println(asset);
+        tint(255, tintAmount);
         image(asset, xPos, yPos);
+        println(asset.width);
+        tint(255, 255);
         break;
       case TEXT:
         textAlign(CENTER, CENTER);
         text(textContent, xPos, yPos);
-        println("dingdong");
         break;
       case RECT:
         rect(xPos, yPos, elementWidth, elementHeight);
