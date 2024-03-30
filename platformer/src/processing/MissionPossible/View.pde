@@ -17,6 +17,7 @@ public class View {
         this.backgroundImage = loadImage("Background-1.png");
         this.backgroundImage.resize(2300, 0);
         userInterface = new UserInterface();
+        
     }
     
     public void displayView() {
@@ -28,15 +29,14 @@ public class View {
         rect(currentSpriteViewPos[0], currentSpriteViewPos[1], currentLevel.sprites[sprite].spriteWidth, currentLevel.sprites[sprite].spriteHeight);
       }
       fill(color(255, 0, 0));
-      
       currentLevel.player.updatePosition(moveLeft, moveRight, moveUp, moveDown, jump, currentLevel.sprites);
       int[] playerPos = spriteViewPos(currentLevel.player);
       rect(playerPos[0], playerPos[1], currentLevel.player.spriteWidth, currentLevel.player.spriteHeight);
       this.camera.setPos(currentLevel.player.getXPos() - displayWidth / 2, currentLevel.player.getYPos() - displayHeight / 2);
-      UIElement health = userInterface.getElement("health");
-      UIElement part1 = userInterface.getElement("part1");
-      part1.drawElement();
-      health.setTextContent(String.valueOf(frameRate));
+      UIElement health2 = userInterface.getElement("health2");
+      UIElement fps = userInterface.getElement("fps");
+      fps.setTextContent(String.valueOf(frameRate));
+      health2.setAsset(loadImage(dataPath("heart-empty.png")));
       userInterface.drawUI();
     }
 

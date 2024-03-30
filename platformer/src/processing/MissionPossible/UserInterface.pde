@@ -6,8 +6,11 @@ class UserInterface{
   
   public UserInterface() {
     uiElements = new HashMap<>();
-    uiElements.put("health", new UIElement(UIElementVariant.TEXT, displayWidth / 13, displayHeight / 20, "100!", 255, null, 0, 0, 255));
-    uiElements.put("part1", new UIElement(UIElementVariant.IMAGE, 10 * displayWidth / 13, displayHeight / 20, "", 255, loadImage(dataPath("spaceship_part1.png")), 0, 0, 128));
+    uiElements.put("fps", new UIElement(UIElementVariant.TEXT, 11 * displayWidth / 13, displayHeight / 20, "100!", 255, null, 0, 0, 255));
+    for (int i = 0; i < 3; i++) {
+      uiElements.put("health" + String.valueOf(i), new UIElement(UIElementVariant.IMAGE, displayWidth / 30 + i * displayWidth / 35, displayHeight / 20, "", 255, loadImage(dataPath("heart.png")), displayHeight / 20, displayHeight / 20, 255));
+    }
+    uiElements.put("part1", new UIElement(UIElementVariant.IMAGE, 10 * displayWidth / 13, displayHeight / 20, "", 255, loadImage(dataPath("spaceship_part1.png")), displayHeight / 20, displayHeight / 20, 128));
   }
   
   public void drawUI() {
