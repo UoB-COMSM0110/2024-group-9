@@ -10,18 +10,25 @@ public class PlayerControlledSprite extends Sprite{
   public void updatePosition(boolean moveLeft, boolean moveRight, boolean moveUp, boolean moveDown, boolean jump, Sprite[] sprites) {
     
       if (moveLeft) {
-        if (xSpeed > 0) {
-          xSpeed -= 2 * xAcceleration;
+        if (xSpeed < -maxSpeedX) {
+          xSpeed += xAcceleration;
         } else {
-          xSpeed -= xAcceleration;
+          if (xSpeed > 0) {
+            xSpeed -= 2 * xAcceleration;
+          } else {
+            xSpeed -= xAcceleration;
+          }
         }
       } else if (moveRight) {
-        if (xSpeed < 0) {
-          println("dingdong");
-          xSpeed += 2 * xAcceleration;
-        } else {
-          xSpeed += xAcceleration;
-        }
+          if (xSpeed > maxSpeedX) {
+            xSpeed -= xAcceleration;
+          } else {
+            if (xSpeed < 0) {
+              xSpeed += 2 * xAcceleration;
+            } else {
+              xSpeed += xAcceleration;
+            }
+          }
       } else {
           // Apply deceleration when no keys are pressed
           if (xSpeed > 0) {
