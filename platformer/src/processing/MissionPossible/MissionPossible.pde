@@ -103,17 +103,10 @@ void draw() {
   else{
   
     if(game.section == SectionVariant.TUTORIAL){
-      spaceman.resize(35, 0);
       currentView.displayView();
     }
     
     else if(game.section == SectionVariant.GAMELEVELS){
-      spaceman.resize(35, 0);
-      cowboy.resize(35, 0);
-      rhino.resize(35, 0);
-      cat.resize(35, 0);
-      skeleton.resize(35, 0);
-      dog.resize(35, 0);
       currentView.displayView();
     }  
   }
