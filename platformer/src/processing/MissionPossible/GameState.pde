@@ -31,4 +31,23 @@ public class GameState {
     section = SectionVariant.GAMELEVELS;
     spaceshipPieces = 0;
   }
+  
+ PImage getCharacter(){
+    switch(playerCharacter){
+       case SPACEMAN:
+         return spaceman;
+       case COWBOY:
+         return cowboy;
+       case RHINO:
+         return rhino;
+       case CAT:
+         return cat;
+       case SKELETON:
+         return skeleton;
+       case DOG:
+         return dog;
+       default:
+         return spaceman;
+     }
+  }
 }

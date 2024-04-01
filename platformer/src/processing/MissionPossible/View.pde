@@ -29,7 +29,7 @@ public class View {
       
       currentLevel.player.updatePosition(moveLeft, moveRight, moveUp, moveDown, jump, currentLevel.sprites);
       int[] playerPos = spriteViewPos(currentLevel.player);
-      rect(playerPos[0], playerPos[1], currentLevel.player.spriteWidth, currentLevel.player.spriteHeight);
+      image(game.getCharacter(), playerPos[0], playerPos[1], currentLevel.player.spriteWidth, currentLevel.player.spriteHeight);
       this.camera.setPos(currentLevel.player.getXPos() - displayWidth / 2, currentLevel.player.getYPos() - displayHeight / 2);
     }
 
@@ -37,4 +37,5 @@ public class View {
       int[] cameraPos = this.camera.getPos();
       return new int[]{sprite.xPos - cameraPos[0], sprite.yPos - cameraPos[1] };
     }
+    
 }

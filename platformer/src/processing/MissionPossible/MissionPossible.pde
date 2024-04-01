@@ -223,11 +223,17 @@ void displayChooseCharacter() {
   text("Click to choose your character", displayWidth/2, displayHeight/6);
   fill(200, 20, 0);
   image(spaceman, displayWidth/6, displayHeight/3.5, boxWH, boxWH);
+  hoverCharacter(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/3.5, (displayHeight/3.5)+boxWH, "Spaceman");
   image(cowboy, displayWidth/2 - (boxWH/2), displayHeight/3.5, boxWH, boxWH);
+  hoverCharacter((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/3.5, (displayHeight/3.5)+boxWH, "Cowboy");
   image(rhino, displayWidth - (displayWidth/6) - boxWH, displayHeight/3.5, boxWH, boxWH);
+  hoverCharacter(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/3.5, (displayHeight/3.5)+boxWH, "Rhino");
   image(cat, displayWidth/6, displayHeight/1.5, boxWH, boxWH);
+  hoverCharacter(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/1.5, (displayHeight/1.5)+boxWH, "Cat");
   image(skeleton, displayWidth/2 - (boxWH/2), displayHeight/1.5, boxWH, boxWH);
+  hoverCharacter((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/1.5, (displayHeight/1.5)+boxWH, "Skeleton");
   image(dog, displayWidth - (displayWidth/6) - boxWH, displayHeight/1.5, boxWH, boxWH);
+  hoverCharacter(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/1.5, (displayHeight/1.5)+boxWH, "Dog");
   BackToMain backToMain = new BackToMain();
 }
 
@@ -415,10 +421,10 @@ void mouseClicked() {
   else if (game.section == SectionVariant.CHOOSECHARACTER) {
     characterClicks(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.SPACEMAN, SectionVariant.ENTERNAME);
     characterClicks((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.COWBOY, SectionVariant.ENTERNAME);
-    characterClicks(displayWidth - (displayWidth/6), displayWidth - (displayWidth/6), displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.RHINO, SectionVariant.ENTERNAME);
+    characterClicks(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.RHINO, SectionVariant.ENTERNAME);
     characterClicks(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.CAT, SectionVariant.ENTERNAME);
     characterClicks((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.SKELETON,SectionVariant.ENTERNAME);
-    characterClicks(displayWidth - (displayWidth/6), displayWidth - (displayWidth/6), displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.DOG, SectionVariant.ENTERNAME);
+    characterClicks(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.DOG, SectionVariant.ENTERNAME);
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight, SectionVariant.MAINMENU);
   }
   
@@ -462,6 +468,14 @@ void hoverBoxColour(float xMin, float xMax, float yMin, float yMax){
   else{
     fill(255);
   }
+}
+
+void hoverCharacter (float xMin, float xMax, float yMin, float yMax, String character){
+  if(mouseX >= xMin  && mouseX <= xMax && mouseY >= yMin && mouseY <= yMax){
+    textSize(hoveredSize);
+    fill(200, 20, 0);
+    text(character, displayWidth/2, displayHeight/2);
+  }   
 }
 
 void menuClicks(float xMin, float xMax, float yMin, float yMax, SectionVariant section){
