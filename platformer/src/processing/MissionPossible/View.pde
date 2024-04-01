@@ -52,10 +52,20 @@ public class View {
       int[] playerPos = spriteViewPos(currentLevel.player);
       image(game.getCharacter(), playerPos[0], playerPos[1], currentLevel.player.spriteWidth, currentLevel.player.spriteHeight);
       this.camera.setPos(currentLevel.player.getXPos() - displayWidth / 2, currentLevel.player.getYPos() - displayHeight / 2);
+      UIElement health0 = userInterface.getElement("health0");
+      UIElement health1 = userInterface.getElement("health1");
       UIElement health2 = userInterface.getElement("health2");
+      if(currentLevel.player.health == 2){
+        health2.setAsset(loadImage(dataPath("heart-empty.png")));
+      }
+      if(currentLevel.player.health == 1){
+        health1.setAsset(loadImage(dataPath("heart-empty.png")));
+      }
+      if(currentLevel.player.health == 0){
+        health0.setAsset(loadImage(dataPath("heart-empty.png")));
+      }
       UIElement fps = userInterface.getElement("fps");
       fps.setTextContent(String.valueOf(frameRate));
-      health2.setAsset(loadImage(dataPath("heart-empty.png")));
       userInterface.drawUI();
       if(game.section == SectionVariant.TUTORIAL){
         runTutorial();

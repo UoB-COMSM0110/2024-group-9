@@ -6,7 +6,7 @@ public class Level{
   int score;
   int levelHeight;
   int levelWidth;
-  Sprite[] sprites;
+  NonPlayerControlledSprite[] sprites;
   PlayerControlledSprite player;
   WeatherVariant weather;
   HashMap<String, PImage> imageMap;
@@ -71,7 +71,7 @@ public class Level{
      
      // Sprites
     JSONArray spriteData = (JSONArray) json.get("sprites");
-    Sprite sprites[] = new Sprite[spriteData.size()];
+    NonPlayerControlledSprite sprites[] = new NonPlayerControlledSprite[spriteData.size()];
     for (int i = 0; i < spriteData.size(); i++) {
       // Get each object in the array
       JSONObject sprite = spriteData.getJSONObject(i);
