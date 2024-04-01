@@ -90,7 +90,7 @@ public class Level{
       String spriteImage = sprite.getString("spriteImage");
       sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, isEnemy, levelWidth, levelHeight, spriteImage);
     }
-    this.sprites = sprites;
+    this.sprites = sprites;    
   }
 
   public int[] getLevelDims() {

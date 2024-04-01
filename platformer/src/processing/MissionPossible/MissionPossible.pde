@@ -103,6 +103,7 @@ void draw() {
   else{
   
     if(game.section == SectionVariant.TUTORIAL){
+      game.playerCharacter = CharacterVariant.SPACEMAN;
       currentView.displayView();
     }
     
@@ -349,6 +350,9 @@ void keyPressed() {
     if (keyCode  == settings.dashKey) {
         moveUp = true;
     }
+    if (keyCode == 'E'){
+      game.section = SectionVariant.MAINMENU;
+    }
   }
   else if(!game.started) {
     game.section = SectionVariant.MAINMENU;
@@ -383,6 +387,24 @@ void keyPressed() {
   else if(game.section == SectionVariant.SETDASH){
     settings.setDashKey(keyCode);
   }
+  if(game.section == SectionVariant.TUTORIAL){
+    if(currentView.currentInstructionIndex == 0 && currentView.rightCompleted == false && keyCode == settings.rightKey){
+      currentView.currentInstructionIndex++;
+      currentView.rightCompleted = true;
+    }
+    if(currentView.currentInstructionIndex == 1 && currentView.leftCompleted == false && keyCode == settings.leftKey){
+      currentView.currentInstructionIndex++;
+      currentView.leftCompleted = true;
+    }
+    if(currentView.currentInstructionIndex == 2 && currentView.jumpCompleted == false && keyCode == settings.jumpKey){
+      currentView.currentInstructionIndex++;
+      currentView.jumpCompleted = true;
+    }
+    if(currentView.currentInstructionIndex == 3 && currentView.dashCompleted == false && keyCode == settings.dashKey){
+      currentView.currentInstructionIndex++;
+      currentView.dashCompleted = true;
+    }
+  }
 }
 
 void keyReleased() {
@@ -409,6 +431,12 @@ void mouseClicked() {
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 4*displayHeight/10, (4*displayHeight/10)+menuItemHeight, SectionVariant.TUTORIAL);
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 5*displayHeight/10, (5*displayHeight/10)+menuItemHeight, SectionVariant.GAMESETTINGS);
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 6*displayHeight/10, (6*displayHeight/10)+menuItemHeight, SectionVariant.LEADERBOARD);
+    
+    if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <= displayWidth/2 + menuItemWidth/2 && mouseY >= 4*displayHeight/10 && mouseY <= (4*displayHeight/10)+menuItemHeight){
+    Level tutorial = new Level("tutorial/tutorial.json");
+    currentView = new View(tutorial);
+  }
+    
   }
   
   else if (game.section == SectionVariant.CHOOSECHARACTER) {
