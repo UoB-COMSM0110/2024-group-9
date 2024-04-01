@@ -2,7 +2,6 @@
   "height": 1200,
   "width": 3000,
   "weather": "neutral",
-  "platformImage": "platform.png",
   "player": {
     "position": {
       "xPos": 40,

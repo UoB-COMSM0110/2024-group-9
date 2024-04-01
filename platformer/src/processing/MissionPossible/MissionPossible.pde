@@ -48,8 +48,6 @@ void setup() {
   for (int i = 0; i < stars.length; i++) {
     stars[i] = new Star();
   }
-  Level level1 = new Level("level1/level1.json");
-  currentView = new View(level1);
   Leaderboard leaderboard = new Leaderboard("https://leaderboard.charris.xyz");
   topTen = leaderboard.getScores(true);
   System.out.println(leaderboard.getScores(true));
@@ -350,9 +348,6 @@ void keyPressed() {
     if (keyCode  == settings.dashKey) {
         moveUp = true;
     }
-    if (keyCode == 'E'){
-      game.section = SectionVariant.MAINMENU;
-    }
   }
   else if(!game.started) {
     game.section = SectionVariant.MAINMENU;
@@ -374,6 +369,9 @@ void keyPressed() {
   }
   else if(game.section == SectionVariant.MISSION){
     game.section = SectionVariant.GAMELEVELS;
+    game.level = "level1";
+    Level level1 = new Level("level1/level1.json");
+    currentView = new View(level1);
   }
   else if(game.section == SectionVariant.SETLEFT){
     settings.setLeftKey(keyCode);
@@ -433,9 +431,9 @@ void mouseClicked() {
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 6*displayHeight/10, (6*displayHeight/10)+menuItemHeight, SectionVariant.LEADERBOARD);
     
     if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <= displayWidth/2 + menuItemWidth/2 && mouseY >= 4*displayHeight/10 && mouseY <= (4*displayHeight/10)+menuItemHeight){
-    Level tutorial = new Level("tutorial/tutorial.json");
-    currentView = new View(tutorial);
-  }
+      Level tutorial = new Level("tutorial/tutorial.json");
+      currentView = new View(tutorial);
+    }
     
   }
   
@@ -470,6 +468,9 @@ void mouseClicked() {
     if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){
       game.section = SectionVariant.GAMESETTINGS;
     }
+  }
+  else if (game.section == SectionVariant.TUTORIAL){
+    game.section = SectionVariant.MAINMENU;
   }
 }
 

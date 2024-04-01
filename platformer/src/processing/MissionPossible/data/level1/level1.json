@@ -2,7 +2,6 @@
   "height": 1200,
   "width": 3000,
   "weather": "neutral",
-  "platformImage": "platform.png",
   "player": {
     "position": {
       "xPos": 40,
@@ -148,18 +147,18 @@
     },
     {
       "position": {
-        "x": 1800,
-        "y": 665
+        "x": 1750,
+        "y": 600
       },
-      "spriteWidth": 35,
-      "spriteHeight": 35,
+      "spriteWidth": 100,
+      "spriteHeight": 100,
       "layer": 1,
       "isEnemy": true,
       "spriteImage": "monster1.png"
     },
     {
       "position": {
-        "x": 2650,
+        "x": 2675,
         "y": 105
       },
       "spriteWidth": 55,

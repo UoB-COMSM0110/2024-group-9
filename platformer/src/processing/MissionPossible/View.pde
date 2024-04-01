@@ -14,7 +14,7 @@ public class View {
       "To move left, press "+KeyEvent.getKeyText(settings.leftKey)+".",
       "To jump, press "+KeyEvent.getKeyText(settings.jumpKey)+"\nYou can use this tutorial to practice jumping between platforms.",
       "To dash, move left or right and press "+KeyEvent.getKeyText(settings.dashKey)+".",
-      "You can change these key commands in the game settings menu.\n\nPress E to exit to the main menu."
+      "You can change these key commands in the game settings menu.\n\nClick anywhere to exit to the main menu."
     };
     int currentInstructionIndex = 0;
     boolean rightCompleted;
@@ -26,21 +26,21 @@ public class View {
         int[] levelDims = currentLevel.getLevelDims();
         this.camera = new Camera(levelDims[0], levelDims[1]);
         this.currentLevel = currentLevel;
-        if(game.section != SectionVariant.TUTORIAL){
+       // if(game.section != SectionVariant.TUTORIAL){
           this.backgroundImage = loadImage("Background-1.png");
           this.backgroundImage.resize(2300, 0);
-        }
+        //}
     }
     
     public void displayView() {
       int[] cameraPos = this.camera.getPos();
-      if(game.section != SectionVariant.TUTORIAL){
+      //if(game.section != SectionVariant.TUTORIAL){
         image(this.backgroundImage, (0 - cameraPos[0]) / 4, (0 - cameraPos[1]) / 4);
-      }
+      //}
       for (int sprite = 0; sprite < currentLevel.sprites.length; sprite++) {
         int[] currentSpriteViewPos = spriteViewPos(currentLevel.sprites[sprite]);
         fill(color(255, 255, 255));
-        image(currentLevel.imageMap.get("platform.png"), currentSpriteViewPos[0], currentSpriteViewPos[1], currentLevel.sprites[sprite].spriteWidth, currentLevel.sprites[sprite].spriteHeight);
+        image(currentLevel.imageMap.get(currentLevel.sprites[sprite].image), currentSpriteViewPos[0], currentSpriteViewPos[1], currentLevel.sprites[sprite].spriteWidth, currentLevel.sprites[sprite].spriteHeight);
       }
       fill(color(255, 0, 0));
       
