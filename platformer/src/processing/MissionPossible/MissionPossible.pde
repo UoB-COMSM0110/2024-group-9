@@ -11,8 +11,13 @@ View currentView;
 PFont MPFont;
 
 float boxWH = 160;
-PImage img;
 PImage backgroundImage;
+PImage spaceman;
+PImage cowboy;
+PImage rhino;
+PImage cat;
+PImage skeleton;
+PImage dog;
 
 // Menu variables
 int backToMainSize;
@@ -33,13 +38,16 @@ void setup() {
   background(0);
   MPFont = createFont("IMPOS10_.ttf", 48);
   textFont(MPFont);
-  img = loadImage("bg5.jpg");
   spaceship = loadImage("spaceship.png");
+  spaceman = loadImage("spaceman.png");
+  cowboy = loadImage("cowboy.png");
+  rhino = loadImage("rhino.png");
+  cat = loadImage("cat.png");
+  skeleton = loadImage("skeleton.png");
+  dog = loadImage("dog.png");
   for (int i = 0; i < stars.length; i++) {
     stars[i] = new Star();
   }
-  Level level1 = new Level("LevelFiles/level1.json");
-  currentView = new View(level1);
   Leaderboard leaderboard = new Leaderboard("https://leaderboard.charris.xyz");
   topTen = leaderboard.getScores(true);
   System.out.println(leaderboard.getScores(true));
@@ -93,15 +101,11 @@ void draw() {
   else{
   
     if(game.section == SectionVariant.TUTORIAL){
-      //imageMode(CORNER);
-      //image(img, 0, 0,displayWidth,displayHeight);
-
+      game.playerCharacter = CharacterVariant.SPACEMAN;
       currentView.displayView();
     }
     
     else if(game.section == SectionVariant.GAMELEVELS){
-      //imageMode(CORNER);
-      //image(img, 0, 0,displayWidth,displayHeight);
       currentView.displayView();
     }  
   }
@@ -210,12 +214,18 @@ void displayChooseCharacter() {
   textSize(headerSize);
   text("Click to choose your character", displayWidth/2, displayHeight/6);
   fill(200, 20, 0);
-  square(displayWidth/6, displayHeight/3.5, boxWH);
-  square(displayWidth/2 - (boxWH/2), displayHeight/3.5, boxWH);
-  square(displayWidth - (displayWidth/6) - boxWH, displayHeight/3.5, boxWH);
-  square(displayWidth/6, displayHeight/1.5, boxWH);
-  square(displayWidth/2 - (boxWH/2), displayHeight/1.5, boxWH);
-  square(displayWidth - (displayWidth/6) - boxWH, displayHeight/1.5, boxWH);
+  image(spaceman, displayWidth/6, displayHeight/3.5, boxWH, boxWH);
+  hoverCharacter(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/3.5, (displayHeight/3.5)+boxWH, "Spaceman");
+  image(cowboy, displayWidth/2 - (boxWH/2), displayHeight/3.5, boxWH, boxWH);
+  hoverCharacter((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/3.5, (displayHeight/3.5)+boxWH, "Cowboy");
+  image(rhino, displayWidth - (displayWidth/6) - boxWH, displayHeight/3.5, boxWH, boxWH);
+  hoverCharacter(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/3.5, (displayHeight/3.5)+boxWH, "Rhino");
+  image(cat, displayWidth/6, displayHeight/1.5, boxWH, boxWH);
+  hoverCharacter(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/1.5, (displayHeight/1.5)+boxWH, "Cat");
+  image(skeleton, displayWidth/2 - (boxWH/2), displayHeight/1.5, boxWH, boxWH);
+  hoverCharacter((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/1.5, (displayHeight/1.5)+boxWH, "Skeleton");
+  image(dog, displayWidth - (displayWidth/6) - boxWH, displayHeight/1.5, boxWH, boxWH);
+  hoverCharacter(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/1.5, (displayHeight/1.5)+boxWH, "Dog");
   BackToMain backToMain = new BackToMain();
 }
 
@@ -359,6 +369,9 @@ void keyPressed() {
   }
   else if(game.section == SectionVariant.MISSION){
     game.section = SectionVariant.GAMELEVELS;
+    game.level = "level1";
+    Level level1 = new Level("level1/level1.json");
+    currentView = new View(level1);
   }
   else if(game.section == SectionVariant.SETLEFT){
     settings.setLeftKey(keyCode);
@@ -371,6 +384,24 @@ void keyPressed() {
   }
   else if(game.section == SectionVariant.SETDASH){
     settings.setDashKey(keyCode);
+  }
+  if(game.section == SectionVariant.TUTORIAL){
+    if(currentView.currentInstructionIndex == 0 && currentView.rightCompleted == false && keyCode == settings.rightKey){
+      currentView.currentInstructionIndex++;
+      currentView.rightCompleted = true;
+    }
+    if(currentView.currentInstructionIndex == 1 && currentView.leftCompleted == false && keyCode == settings.leftKey){
+      currentView.currentInstructionIndex++;
+      currentView.leftCompleted = true;
+    }
+    if(currentView.currentInstructionIndex == 2 && currentView.jumpCompleted == false && keyCode == settings.jumpKey){
+      currentView.currentInstructionIndex++;
+      currentView.jumpCompleted = true;
+    }
+    if(currentView.currentInstructionIndex == 3 && currentView.dashCompleted == false && keyCode == settings.dashKey){
+      currentView.currentInstructionIndex++;
+      currentView.dashCompleted = true;
+    }
   }
 }
 
@@ -398,15 +429,21 @@ void mouseClicked() {
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 4*displayHeight/10, (4*displayHeight/10)+menuItemHeight, SectionVariant.TUTORIAL);
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 5*displayHeight/10, (5*displayHeight/10)+menuItemHeight, SectionVariant.GAMESETTINGS);
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 6*displayHeight/10, (6*displayHeight/10)+menuItemHeight, SectionVariant.LEADERBOARD);
+    
+    if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <= displayWidth/2 + menuItemWidth/2 && mouseY >= 4*displayHeight/10 && mouseY <= (4*displayHeight/10)+menuItemHeight){
+      Level tutorial = new Level("tutorial/tutorial.json");
+      currentView = new View(tutorial);
+    }
+    
   }
   
   else if (game.section == SectionVariant.CHOOSECHARACTER) {
     characterClicks(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.SPACEMAN, SectionVariant.ENTERNAME);
     characterClicks((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.COWBOY, SectionVariant.ENTERNAME);
-    characterClicks(displayWidth - (displayWidth/6), displayWidth - (displayWidth/6), displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.SPONGEBOB, SectionVariant.ENTERNAME);
+    characterClicks(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.RHINO, SectionVariant.ENTERNAME);
     characterClicks(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.CAT, SectionVariant.ENTERNAME);
     characterClicks((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.SKELETON,SectionVariant.ENTERNAME);
-    characterClicks(displayWidth - (displayWidth/6), displayWidth - (displayWidth/6), displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.DOG, SectionVariant.ENTERNAME);
+    characterClicks(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.DOG, SectionVariant.ENTERNAME);
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight, SectionVariant.MAINMENU);
   }
   
@@ -432,6 +469,9 @@ void mouseClicked() {
       game.section = SectionVariant.GAMESETTINGS;
     }
   }
+  else if (game.section == SectionVariant.TUTORIAL){
+    game.section = SectionVariant.MAINMENU;
+  }
 }
 
 void hoverTextSize(float xMin, float xMax, float yMin, float yMax){
@@ -450,6 +490,14 @@ void hoverBoxColour(float xMin, float xMax, float yMin, float yMax){
   else{
     fill(255);
   }
+}
+
+void hoverCharacter (float xMin, float xMax, float yMin, float yMax, String character){
+  if(mouseX >= xMin  && mouseX <= xMax && mouseY >= yMin && mouseY <= yMax){
+    textSize(hoveredSize);
+    fill(200, 20, 0);
+    text(character, displayWidth/2, displayHeight/2);
+  }   
 }
 
 void menuClicks(float xMin, float xMax, float yMin, float yMax, SectionVariant section){

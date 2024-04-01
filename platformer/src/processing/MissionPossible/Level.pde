@@ -1,28 +1,40 @@
+import java.io.File;
+import java.util.HashMap;
+
 public class Level{
   boolean started;
   int score;
   int levelHeight;
   int levelWidth;
-  int backgroundColour1;
-  int backgroundColour2;
-  int backgroundColour3;
   Sprite[] sprites;
   PlayerControlledSprite player;
   WeatherVariant weather;
+  HashMap<String, PImage> imageMap;
   
  // Constructor - gets most of the level information from JSON file
    Level(String jsonFilePath){
+     imageMap = new HashMap<>();
      started = true;
      score = 0;
-     
+
      JSONObject json = loadJSONObject(jsonFilePath);
      
-     // Level height, width, weather and background colour
+     File levelDir = new File(dataPath(jsonFilePath)).getParentFile();
+     //println(levelDir.getAbsolutePath());
+     File[] files = levelDir.listFiles();
+
+     if (files != null) {
+       for (File file: files) {
+         if (file.isFile() && (file.getName().toLowerCase().endsWith(".png") || file.getName().toLowerCase().endsWith(".jpg"))) {
+           imageMap.put(file.getName(), loadImage(file.getAbsolutePath()));
+         }
+       }
+     }
+     //println(imageMap);
+     
+     // Level height, width, weather
      levelHeight = json.getInt("height");
      levelWidth = json.getInt("width");
-     backgroundColour1 = json.getInt("backgroundColour1");
-     backgroundColour2  = json.getInt("backgroundColour2");
-     backgroundColour3 = json.getInt("backgroundColour3");
      String weatherType = json.getString("weather");
      
      switch(weatherType){
@@ -53,8 +65,9 @@ public class Level{
      int playerWidth = playerData.getInt("spriteWidth");
      int playerHeight = playerData.getInt("spriteHeight");
      int playerLayer = playerData.getInt("layer");
-     
-     this.player = new PlayerControlledSprite(playerXPos, playerYPos, playerWidth, playerHeight, playerLayer, levelWidth, levelHeight);
+     String playerImage = playerData.getString("spriteImage");
+          
+     this.player = new PlayerControlledSprite(playerXPos, playerYPos, playerWidth, playerHeight, playerLayer, levelWidth, levelHeight, playerImage);
 
      
      
@@ -74,12 +87,17 @@ public class Level{
       int spriteHeight = sprite.getInt("spriteHeight");
       int spriteLayer = sprite.getInt("layer");
       boolean isEnemy = sprite.getBoolean("isEnemy");
-      sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, isEnemy, levelWidth, levelHeight);
+      String spriteImage = sprite.getString("spriteImage");
+      sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, isEnemy, levelWidth, levelHeight, spriteImage);
     }
-    this.sprites = sprites;
+    this.sprites = sprites;    
   }
 
   public int[] getLevelDims() {
     return new int[]{levelWidth, levelHeight};
+  }
+  
+   public HashMap<String, PImage> getImageMap() {
+    return this.imageMap;
   }
 }
