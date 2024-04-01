@@ -13,6 +13,12 @@ PFont MPFont;
 float boxWH = 160;
 PImage img;
 PImage backgroundImage;
+PImage spaceman;
+PImage cowboy;
+PImage rhino;
+PImage cat;
+PImage skeleton;
+PImage dog;
 
 // Menu variables
 int backToMainSize;
@@ -35,6 +41,12 @@ void setup() {
   textFont(MPFont);
   img = loadImage("bg5.jpg");
   spaceship = loadImage("spaceship.png");
+  spaceman = loadImage("spaceman.png");
+  cowboy = loadImage("cowboy.png");
+  rhino = loadImage("rhino.png");
+  cat = loadImage("cat.png");
+  skeleton = loadImage("skeleton.png");
+  dog = loadImage("dog.png");
   for (int i = 0; i < stars.length; i++) {
     stars[i] = new Star();
   }
@@ -236,12 +248,12 @@ void displayChooseCharacter() {
   textSize(headerSize);
   text("Click to choose your character", displayWidth/2, displayHeight/6);
   fill(200, 20, 0);
-  square(displayWidth/6, displayHeight/3.5, boxWH);
-  square(displayWidth/2 - (boxWH/2), displayHeight/3.5, boxWH);
-  square(displayWidth - (displayWidth/6) - boxWH, displayHeight/3.5, boxWH);
-  square(displayWidth/6, displayHeight/1.5, boxWH);
-  square(displayWidth/2 - (boxWH/2), displayHeight/1.5, boxWH);
-  square(displayWidth - (displayWidth/6) - boxWH, displayHeight/1.5, boxWH);
+  image(spaceman, displayWidth/6, displayHeight/3.5, boxWH, boxWH);
+  image(cowboy, displayWidth/2 - (boxWH/2), displayHeight/3.5, boxWH, boxWH);
+  image(rhino, displayWidth - (displayWidth/6) - boxWH, displayHeight/3.5, boxWH, boxWH);
+  image(cat, displayWidth/6, displayHeight/1.5, boxWH, boxWH);
+  image(skeleton, displayWidth/2 - (boxWH/2), displayHeight/1.5, boxWH, boxWH);
+  image(dog, displayWidth - (displayWidth/6) - boxWH, displayHeight/1.5, boxWH, boxWH);
   if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){
     textSize(hoveredSize);
   }  
@@ -500,7 +512,7 @@ void mouseClicked() {
         game.section = SectionVariant.ENTERNAME;
       } 
       else if(mouseX >= (displayWidth - (displayWidth/6) - boxWH) && mouseX <= displayWidth - (displayWidth/6) && mouseY >= displayHeight/3.5 && mouseY <= (displayHeight/3.5)+boxWH) {
-        game.playerCharacter = CharacterVariant.SPONGEBOB;
+        game.playerCharacter = CharacterVariant.RHINO;
         game.section = SectionVariant.ENTERNAME;
       } 
       else if(mouseX >=displayWidth/6 && mouseX <=(displayWidth/6)+boxWH && mouseY >= displayHeight/1.5 && mouseY <= (displayHeight/1.5)+boxWH) {
