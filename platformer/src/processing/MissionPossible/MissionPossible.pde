@@ -11,7 +11,6 @@ View currentView;
 PFont MPFont;
 
 float boxWH = 160;
-PImage img;
 PImage backgroundImage;
 PImage spaceman;
 PImage cowboy;
@@ -39,7 +38,6 @@ void setup() {
   background(0);
   MPFont = createFont("IMPOS10_.ttf", 48);
   textFont(MPFont);
-  img = loadImage("bg5.jpg");
   spaceship = loadImage("spaceship.png");
   spaceman = loadImage("spaceman.png");
   cowboy = loadImage("cowboy.png");
@@ -50,7 +48,7 @@ void setup() {
   for (int i = 0; i < stars.length; i++) {
     stars[i] = new Star();
   }
-  Level level1 = new Level("LevelFiles/level1.json");
+  Level level1 = new Level("level1/level1.json");
   currentView = new View(level1);
   Leaderboard leaderboard = new Leaderboard("https://leaderboard.charris.xyz");
   topTen = leaderboard.getScores(true);
@@ -105,15 +103,17 @@ void draw() {
   else{
   
     if(game.section == SectionVariant.TUTORIAL){
-      //imageMode(CORNER);
-      //image(img, 0, 0,displayWidth,displayHeight);
-
+      spaceman.resize(35, 0);
       currentView.displayView();
     }
     
     else if(game.section == SectionVariant.GAMELEVELS){
-      //imageMode(CORNER);
-      //image(img, 0, 0,displayWidth,displayHeight);
+      spaceman.resize(35, 0);
+      cowboy.resize(35, 0);
+      rhino.resize(35, 0);
+      cat.resize(35, 0);
+      skeleton.resize(35, 0);
+      dog.resize(35, 0);
       currentView.displayView();
     }  
   }

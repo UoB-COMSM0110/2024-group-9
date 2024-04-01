@@ -1,3 +1,6 @@
+import java.io.File;
+import java.util.HashMap;
+
 public class Level{
   boolean started;
   int score;
@@ -6,15 +9,30 @@ public class Level{
   Sprite[] sprites;
   PlayerControlledSprite player;
   WeatherVariant weather;
+  HashMap<String, PImage> imageMap;
   
  // Constructor - gets most of the level information from JSON file
    Level(String jsonFilePath){
+     imageMap = new HashMap<>();
      started = true;
      score = 0;
-     
+     println(jsonFilePath);
      JSONObject json = loadJSONObject(jsonFilePath);
      
-     // Level height, width, weather and background colour
+     File levelDir = new File(dataPath(jsonFilePath)).getParentFile();
+     println(levelDir.getAbsolutePath());
+     File[] files = levelDir.listFiles();
+
+     if (files != null) {
+       for (File file: files) {
+         if (file.isFile() && (file.getName().toLowerCase().endsWith(".png") || file.getName().toLowerCase().endsWith(".jpg"))) {
+           imageMap.put(file.getName(), loadImage(file.getAbsolutePath()));
+         }
+       }
+     }
+     println(imageMap);
+     
+     // Level height, width, weather
      levelHeight = json.getInt("height");
      levelWidth = json.getInt("width");
      String weatherType = json.getString("weather");
@@ -77,5 +95,9 @@ public class Level{
 
   public int[] getLevelDims() {
     return new int[]{levelWidth, levelHeight};
+  }
+  
+   public HashMap<String, PImage> getImageMap() {
+    return this.imageMap;
   }
 }

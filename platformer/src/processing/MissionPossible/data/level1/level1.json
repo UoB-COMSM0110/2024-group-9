@@ -6,10 +6,10 @@
   "player": {
     "position": {
       "xPos": 40,
-      "yPos": 965
+      "yPos": 935
     },
-    "spriteWidth": 35,
-    "spriteHeight": 35,
+    "spriteWidth": 65,
+    "spriteHeight": 65,
     "layer": 1,
     "spriteImage": "spaceman.png"
   },
