@@ -3,8 +3,8 @@ public class PlayerControlledSprite extends Sprite{
   int nextDashTime = 0;
 
   // Constructor
-  PlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, int spriteLayer, int maxXPos, int maxYPos) {
-    super(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, maxXPos, maxYPos);
+  PlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, int spriteLayer, int maxXPos, int maxYPos, String imgFile) {
+    super(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, maxXPos, maxYPos, imgFile);
   }
   
   public void updatePosition(boolean moveLeft, boolean moveRight, boolean moveUp, boolean moveDown, boolean jump, Sprite[] sprites) {
