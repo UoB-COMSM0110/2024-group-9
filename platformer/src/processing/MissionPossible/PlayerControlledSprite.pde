@@ -13,13 +13,21 @@ public class PlayerControlledSprite extends Sprite{
         if (xSpeed < -maxSpeedX) {
           xSpeed += xAcceleration;
         } else {
-          xSpeed -= xAcceleration;
+          if (xSpeed > 0) {
+            xSpeed -= 2 * xAcceleration;
+          } else {
+            xSpeed -= xAcceleration;
+          }
         }
       } else if (moveRight) {
           if (xSpeed > maxSpeedX) {
             xSpeed -= xAcceleration;
           } else {
-            xSpeed += xAcceleration;
+            if (xSpeed < 0) {
+              xSpeed += 2 * xAcceleration;
+            } else {
+              xSpeed += xAcceleration;
+            }
           }
       } else {
           // Apply deceleration when no keys are pressed
