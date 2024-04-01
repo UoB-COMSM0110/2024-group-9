@@ -370,7 +370,7 @@ void keyPressed() {
   else if(game.section == SectionVariant.MISSION){
     game.section = SectionVariant.GAMELEVELS;
     game.level = "level1";
-    Level level1 = new Level("level1/level1.json");
+    Level level1 = new Level("level1"+File.separator+"level1.json");
     currentView = new View(level1);
   }
   else if(game.section == SectionVariant.SETLEFT){
@@ -431,7 +431,7 @@ void mouseClicked() {
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 6*displayHeight/10, (6*displayHeight/10)+menuItemHeight, SectionVariant.LEADERBOARD);
     
     if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <= displayWidth/2 + menuItemWidth/2 && mouseY >= 4*displayHeight/10 && mouseY <= (4*displayHeight/10)+menuItemHeight){
-      Level tutorial = new Level("tutorial/tutorial.json");
+      Level tutorial = new Level("tutorial"+File.separator+"tutorial.json");
       currentView = new View(tutorial);
     }
     
