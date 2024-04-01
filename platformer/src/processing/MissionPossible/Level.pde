@@ -20,7 +20,6 @@ public class Level{
      JSONObject json = loadJSONObject(jsonFilePath);
      
      File levelDir = new File(dataPath(jsonFilePath)).getParentFile();
-     //println(levelDir.getAbsolutePath());
      File[] files = levelDir.listFiles();
 
      if (files != null) {
@@ -30,7 +29,6 @@ public class Level{
          }
        }
      }
-     //println(imageMap);
      
      // Level height, width, weather
      levelHeight = json.getInt("height");

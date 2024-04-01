@@ -26,10 +26,8 @@ class UIElement {
 
     switch (type) {
       case IMAGE:
-      println(asset);
         tint(255, tintAmount);
         image(asset, xPos, yPos, elementWidth, elementHeight);
-        println(asset.width);
         tint(255, 255);
         break;
       case TEXT:
