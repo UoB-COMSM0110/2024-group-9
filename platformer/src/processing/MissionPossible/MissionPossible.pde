@@ -151,7 +151,6 @@ void sendScore() {
       post.addData(json.toString());
       post.addHeader("Content-Type", "application/json");
       post.send();
-      println("Reponse Content: " + post.getContent());
 }
 
 void displayStartScreen() {
