@@ -9,6 +9,7 @@ public class View {
     private final Camera camera;
     Level currentLevel;
     PImage backgroundImage;
+    UserInterface userInterface;
     String[] tutorialInstructions = {
       "Welcome to the Mission Possible tutorial!\n\nTo move right, press "+KeyEvent.getKeyText(settings.rightKey)+".",
       "To move left, press "+KeyEvent.getKeyText(settings.leftKey)+".",
@@ -26,6 +27,10 @@ public class View {
         int[] levelDims = currentLevel.getLevelDims();
         this.camera = new Camera(levelDims[0], levelDims[1]);
         this.currentLevel = currentLevel;
+        this.backgroundImage = loadImage("Background-1.png");
+        this.backgroundImage.resize(2300, 0);
+        userInterface = new UserInterface();
+        
         if(game.section != SectionVariant.TUTORIAL){
           this.backgroundImage = loadImage("Background-1.png");
           this.backgroundImage.resize(2300, 0);
@@ -43,11 +48,15 @@ public class View {
         image(currentLevel.imageMap.get(currentLevel.sprites[sprite].image), currentSpriteViewPos[0], currentSpriteViewPos[1], currentLevel.sprites[sprite].spriteWidth, currentLevel.sprites[sprite].spriteHeight);
       }
       fill(color(255, 0, 0));
-      
       currentLevel.player.updatePosition(moveLeft, moveRight, moveUp, moveDown, jump, currentLevel.sprites);
       int[] playerPos = spriteViewPos(currentLevel.player);
       image(game.getCharacter(), playerPos[0], playerPos[1], currentLevel.player.spriteWidth, currentLevel.player.spriteHeight);
       this.camera.setPos(currentLevel.player.getXPos() - displayWidth / 2, currentLevel.player.getYPos() - displayHeight / 2);
+      UIElement health2 = userInterface.getElement("health2");
+      UIElement fps = userInterface.getElement("fps");
+      fps.setTextContent(String.valueOf(frameRate));
+      health2.setAsset(loadImage(dataPath("heart-empty.png")));
+      userInterface.drawUI();
       if(game.section == SectionVariant.TUTORIAL){
         runTutorial();
       }
