@@ -34,7 +34,7 @@ JSONArray topTen;
 
 
 void setup() {
-  fullScreen();
+  fullScreen(P2D);
   background(0);
   MPFont = createFont("IMPOS10_.ttf", 48);
   textFont(MPFont);
