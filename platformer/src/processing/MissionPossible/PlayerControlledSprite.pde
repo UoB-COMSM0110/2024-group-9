@@ -86,21 +86,31 @@ public void checkCollision(NonPlayerControlledSprite[] sprites) {
     
     for (NonPlayerControlledSprite sprite : sprites) {
         if (this.xPos + this.spriteWidth + this.xSpeed > sprite.xPos && this.xPos + this.xSpeed < sprite.xPos + sprite.spriteWidth && this.yPos + this.spriteHeight > sprite.yPos && this.yPos < sprite.yPos + sprite.spriteHeight) {
-          this.xSpeed = 0;
           if(sprite.isEnemy){
             this.health = health - 1;
+            this.xSpeed = Math.signum(this.xSpeed) * -1 * this.maxSpeedX;
+            this.ySpeed = Math.signum(this.ySpeed) * -0.5 * this.maxSpeedY;
+          } else {
+            this.xSpeed = 0;
           }
+
         }
         if (this.xPos + this.spriteWidth > sprite.xPos && this.xPos < sprite.xPos + sprite.spriteWidth && this.yPos + this.spriteHeight + this.ySpeed > sprite.yPos && this.yPos + this.ySpeed < sprite.yPos + sprite.spriteHeight) {
-          this.ySpeed = 0.0;
-          if (this.yPos + this.spriteHeight < sprite.yPos + 0.1) {
-            this.landed = true;
-          }
           if(sprite.isEnemy){
             this.health = health - 1;
+            this.xSpeed = Math.signum(this.xSpeed) * -1 * this.maxSpeedX;
+            this.ySpeed = Math.signum(this.ySpeed) * -0.5 * this.maxSpeedY;
+          } else {
+            this.ySpeed = 0.0;
+            if (this.yPos + this.spriteHeight < sprite.yPos + 0.1) {
+              this.landed = true;
+            }
           }
         }
     }
-    
-}
+  }
+
+  public boolean getFaceToRight() {
+    return this.faceToRight;
+  }
 }
