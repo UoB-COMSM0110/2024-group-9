@@ -22,9 +22,11 @@ public class View {
     boolean leftCompleted;
     boolean jumpCompleted;
     boolean dashCompleted;
+    int scale = 1;
 
     View(Level currentLevel) {
         int[] levelDims = currentLevel.getLevelDims();
+
         this.camera = new Camera(levelDims[0], levelDims[1]);
         this.currentLevel = currentLevel;
         this.backgroundImage = loadImage("Background-1.png");
@@ -50,19 +52,26 @@ public class View {
       fill(color(255, 0, 0));
       currentLevel.player.updatePosition(moveLeft, moveRight, moveUp, moveDown, jump, currentLevel.sprites);
       int[] playerPos = spriteViewPos(currentLevel.player);
-      image(game.getCharacter(), playerPos[0], playerPos[1], currentLevel.player.spriteWidth, currentLevel.player.spriteHeight);
+      pushMatrix();
+      if (!currentLevel.player.getFaceToRight()) {
+        this.scale = -1;
+      }
+      scale(this.scale, 1);
+      image(game.getCharacter(), playerPos[0] * this.scale, playerPos[1], currentLevel.player.spriteWidth * this.scale, currentLevel.player.spriteHeight);
+      this.scale = 1;
+      popMatrix();
       this.camera.setPos(currentLevel.player.getXPos() - displayWidth / 2, currentLevel.player.getYPos() - displayHeight / 2);
       UIElement health0 = userInterface.getElement("health0");
       UIElement health1 = userInterface.getElement("health1");
       UIElement health2 = userInterface.getElement("health2");
       if(currentLevel.player.health == 2){
-        health2.setAsset(loadImage(dataPath("heart-empty.png")));
+        health2.setAsset(userInterface.getAsset("heart-empty.png"));
       }
       if(currentLevel.player.health == 1){
-        health1.setAsset(loadImage(dataPath("heart-empty.png")));
+        health1.setAsset(userInterface.getAsset("heart-empty.png"));
       }
       if(currentLevel.player.health == 0){
-        health0.setAsset(loadImage(dataPath("heart-empty.png")));
+        health0.setAsset(userInterface.getAsset("heart-empty.png"));
       }
       UIElement fps = userInterface.getElement("fps");
       fps.setTextContent(String.valueOf(frameRate));
