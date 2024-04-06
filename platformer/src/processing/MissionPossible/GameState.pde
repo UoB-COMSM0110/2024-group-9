@@ -41,12 +41,12 @@ public class GameState {
   
  String getCharacter(){
     switch(playerCharacter){
-       //case SPACEMAN:
-       //  return spaceman;
+       case SPACEMAN:
+         return "spaceman";
        case COWBOY:
          return "cowboy";
-       //case RHINO:
-       //  return rhino;
+       case FOX:
+         return "fox";
        case CAT:
          return "cat";
        //case SKELETON:

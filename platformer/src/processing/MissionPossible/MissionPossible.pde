@@ -14,7 +14,7 @@ float boxWH = 160;
 PImage backgroundImage;
 Animation spaceman;
 Animation cowboy;
-PImage rhino;
+Animation fox;
 Animation cat;
 PImage skeleton;
 PImage dog;
@@ -41,7 +41,7 @@ void setup() {
   spaceship = loadImage("spaceship.png");
   spaceman = new Animation("spaceman", "standing");
   cowboy = new Animation("cowboy", "standing");
-  rhino = loadImage("rhino.png");
+  fox = new Animation("fox", "standing");
   cat = new Animation("cat", "standing");
   skeleton = loadImage("skeleton.png");
   dog = loadImage("dog.png");
@@ -213,12 +213,12 @@ void displayChooseCharacter() {
   textSize(headerSize);
   text("Click to choose your character", displayWidth/2, displayHeight/6);
   fill(200, 20, 0);
-  image(spaceman.nextFrame(1), displayWidth/6, displayHeight/3.5, boxWH, boxWH);
+  image(spaceman.nextFrame(1)  , displayWidth/6, displayHeight/3.5, boxWH, boxWH);
   hoverCharacter(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/3.5, (displayHeight/3.5)+boxWH, "Spaceman");
   image(cowboy.nextFrame(1), displayWidth/2 - (boxWH/2), displayHeight/3.5, boxWH, boxWH);
   hoverCharacter((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/3.5, (displayHeight/3.5)+boxWH, "Cowboy");
-  image(rhino, displayWidth - (displayWidth/6) - boxWH, displayHeight/3.5, boxWH, boxWH);
-  hoverCharacter(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/3.5, (displayHeight/3.5)+boxWH, "Rhino");
+  image(fox.nextFrame(1), displayWidth - (displayWidth/6) - boxWH, displayHeight/3.5, boxWH, boxWH);
+  hoverCharacter(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/3.5, (displayHeight/3.5)+boxWH, "Fox");
   image(cat.nextFrame(1), displayWidth/6, displayHeight/1.5, boxWH, boxWH);
   hoverCharacter(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/1.5, (displayHeight/1.5)+boxWH, "Cat");
   image(skeleton, displayWidth/2 - (boxWH/2), displayHeight/1.5, boxWH, boxWH);
@@ -439,7 +439,7 @@ void mouseClicked() {
   else if (game.section == SectionVariant.CHOOSECHARACTER) {
     characterClicks(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.SPACEMAN, SectionVariant.ENTERNAME);
     characterClicks((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.COWBOY, SectionVariant.ENTERNAME);
-    characterClicks(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.RHINO, SectionVariant.ENTERNAME);
+    characterClicks(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.FOX, SectionVariant.ENTERNAME);
     characterClicks(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.CAT, SectionVariant.ENTERNAME);
     characterClicks((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.SKELETON,SectionVariant.ENTERNAME);
     characterClicks(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.DOG, SectionVariant.ENTERNAME);
