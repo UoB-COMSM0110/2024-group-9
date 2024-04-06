@@ -17,7 +17,7 @@ Animation cowboy;
 Animation fox;
 Animation cat;
 PImage skeleton;
-PImage dog;
+Animation wolf;
 
 // Menu variables
 int backToMainSize;
@@ -44,7 +44,7 @@ void setup() {
   fox = new Animation("fox", "standing");
   cat = new Animation("cat", "standing");
   skeleton = loadImage("skeleton.png");
-  dog = loadImage("dog.png");
+  wolf = new Animation("wolf", "standing");
   for (int i = 0; i < stars.length; i++) {
     stars[i] = new Star();
   }
@@ -223,8 +223,8 @@ void displayChooseCharacter() {
   hoverCharacter(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/1.5, (displayHeight/1.5)+boxWH, "Cat");
   image(skeleton, displayWidth/2 - (boxWH/2), displayHeight/1.5, boxWH, boxWH);
   hoverCharacter((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/1.5, (displayHeight/1.5)+boxWH, "Skeleton");
-  image(dog, displayWidth - (displayWidth/6) - boxWH, displayHeight/1.5, boxWH, boxWH);
-  hoverCharacter(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/1.5, (displayHeight/1.5)+boxWH, "Dog");
+  image(wolf.nextFrame(1), displayWidth - (displayWidth/6) - boxWH, displayHeight/1.5, boxWH, boxWH);
+  hoverCharacter(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/1.5, (displayHeight/1.5)+boxWH, "Wolf");
   BackToMain backToMain = new BackToMain();
 }
 
@@ -442,7 +442,7 @@ void mouseClicked() {
     characterClicks(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.FOX, SectionVariant.ENTERNAME);
     characterClicks(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.CAT, SectionVariant.ENTERNAME);
     characterClicks((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.SKELETON,SectionVariant.ENTERNAME);
-    characterClicks(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.DOG, SectionVariant.ENTERNAME);
+    characterClicks(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.WOLF, SectionVariant.ENTERNAME);
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight, SectionVariant.MAINMENU);
   }
   

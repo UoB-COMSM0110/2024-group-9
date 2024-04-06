@@ -5,5 +5,5 @@ enum CharacterVariant{
   FOX,
   CAT,
   SKELETON,
-  DOG;
+  WOLF;
 }
