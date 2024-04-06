@@ -77,6 +77,7 @@ public class View {
           game.section = SectionVariant.RESTARTLEVEL;
         }
         else{
+          sendScore();
           game.restart();
           game.section = SectionVariant.GAMEOVER;
         }

@@ -352,11 +352,12 @@ void restartLevel(){
 void restartGame(){
   fill(200, 20, 0);
   textAlign(CENTER, CENTER);
+  textSize(titleSize);
+  text("GAME OVER", displayWidth/2, displayHeight/6);
   textSize(hoveredSize);
-  text("Oh no, you lost all your lives!", displayWidth/2, displayHeight/6);
+  text("You lost all your lives!", displayWidth/2, displayHeight/3);
   fill(255);
-  hoverTextSize(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 3*displayHeight/10, (3*displayHeight/10)+menuItemHeight);
-  text("Click anywhere to submit your score and return to the main menu.", displayWidth/2, displayHeight/3);
+  text("Click anywhere to submit your score\n and return to the main menu.", displayWidth/2, displayHeight/2);
 }
   
 void keyPressed() {
