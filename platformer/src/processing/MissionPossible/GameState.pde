@@ -33,10 +33,11 @@ public class GameState {
   void restart(){
     score = 0;
     lives = 3;
-    weather = WeatherVariant.NEUTRAL;
-    showTutorial = false;
-    section = SectionVariant.GAMELEVELS;
     spaceshipPieces = 0;
+    playerNickname = "";
+    level1Score = 0;
+    level2Score = 0;
+    level3Score = 0;
   }
   
  PImage getCharacter(){
