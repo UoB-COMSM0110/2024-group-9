@@ -2,12 +2,14 @@
 Thank you for playing Mission Possible!
 
 
-Credits
-This game was created by Charles Harris and Liz Elliott.
-Opening screen star field Copyright (c) 2017 Babu Thomas
+CREDITS
+Mission Possible was created by Group 9.
+Starfield animation Copyright (c) 2017 Babu Thomas
 Sprite images from OpenGameArt:
 Cat sprite by dogchicken
 Cowboy sprite by software_atelier
 
 
 Press ESCAPE to leave the game...
+
+Or click anywhere to return to the main menu
