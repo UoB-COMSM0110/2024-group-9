@@ -504,7 +504,7 @@ void mouseClicked() {
     game.section = SectionVariant.GAMELEVELS;
     enterLevel("level1");
   }
-  else if (game.section == SectionVariant.TUTORIAL){
+  else if (game.section == SectionVariant.TUTORIAL || game.section == SectionVariant.CREDITS){
     game.section = SectionVariant.MAINMENU;
   }
   else if (game.section == SectionVariant.RESTARTLEVEL){
