@@ -43,8 +43,8 @@ public class GameState {
     switch(playerCharacter){
        //case SPACEMAN:
        //  return spaceman;
-       //case COWBOY:
-       //  return cowboy;
+       case COWBOY:
+         return "cowboy";
        //case RHINO:
        //  return rhino;
        case CAT:

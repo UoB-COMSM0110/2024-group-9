@@ -1,5 +1,9 @@
 [
     {
+        "filename": "0.png",
+        "delay": 120
+    },
+    {
         "filename": "1.png",
         "delay": 120
     },
@@ -9,10 +13,6 @@
     },
     {
         "filename": "3.png",
-        "delay": 120
-    },
-    {
-        "filename": "4.png",
         "delay": 120
     }
 ]

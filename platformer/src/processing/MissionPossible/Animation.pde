@@ -14,9 +14,8 @@ class Animation {
         this.images = new ArrayList<ImageData>();
         this.nextFrameNum = 0;
         this.lastFrameTime = 0;
-        println(dataPath(spriteName + File.separator + animationName + File.separator + "info.json"));
         JSONArray info = loadJSONArray(dataPath(spriteName + File.separator + animationName + File.separator + "info.json"));
-        for (int i = 0; i < info.size() - 1; i++) {
+        for (int i = 0; i < info.size(); i++) {
             JSONObject frameInfo = info.getJSONObject(i);
             String frameFileName = frameInfo.getString("filename");
             float delay = frameInfo.getFloat("delay");
@@ -37,10 +36,9 @@ class Animation {
         nextFrameNum++;
         lastFrameTime = currentTime;
       }
-      if (nextFrameNum >= this.images.size() - 1) {
+      if (nextFrameNum >= this.images.size()) {
         nextFrameNum = 0;
       }
-      
       return this.images.get(nextFrameNum).getImage();
     }
 
