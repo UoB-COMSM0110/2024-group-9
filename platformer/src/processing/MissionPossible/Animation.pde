@@ -15,7 +15,7 @@ class Animation {
         this.nextFrameNum = 0;
         this.lastFrameTime = 0;
         JSONArray info = loadJSONArray(dataPath(spriteName + File.separator + animationName + File.separator + "info.json"));
-        for (int i = 0; i < info.size(); i++) {
+        for (int i = 0; i < info.size() - 1; i++) {
             JSONObject frameInfo = info.getJSONObject(i);
             String frameFileName = frameInfo.getString("filename");
             float delay = frameInfo.getFloat("delay");
