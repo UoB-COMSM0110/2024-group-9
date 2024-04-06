@@ -58,9 +58,7 @@ void setup() {
   smallSize = displayHeight/40;
   
   String[] lines = loadStrings("credits.txt");
-  println(lines);
   creditText = join(lines, "\n");
-  println(creditText);
   
 }
 
