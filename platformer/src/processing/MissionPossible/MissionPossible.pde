@@ -60,7 +60,11 @@ void setup() {
 
 void draw() {
   background(0);
+  selectScreen();
+}
 
+// Select between menu screens and game play screens
+void selectScreen(){
   if(!game.started) {
     displayStartScreen();
   } 
@@ -74,16 +78,16 @@ void draw() {
     displayChooseCharacter();
   }
   else if(game.section == SectionVariant.ENTERNAME){
-    enterNameScreen();
+    displayEnterNameScreen();
   }
   else if(game.section == SectionVariant.CHOOSEDIFFICULTY){
-    modeScreen();
+    displayModeScreen();
   }
   else if(game.section == SectionVariant.MISSION){
-    missionScreen();
+    displayMissionScreen();
   }
   else if(game.section == SectionVariant.GAMESETTINGS){
-    gameSettingsScreen();
+    displayGameSettingsScreen();
   }
   else if(game.section == SectionVariant.SETLEFT){
     setKey("left");
@@ -98,25 +102,16 @@ void draw() {
     setKey("dash");
   }
   else if(game.section == SectionVariant.RESTARTLEVEL){
-    restartLevel();
+    displayRestartLevel();
   }
   else if(game.section == SectionVariant.GAMEOVER){
-    restartGame();
+    displayRestartGame();
   }
-
-  else{
-  
-    if(game.section == SectionVariant.TUTORIAL){
-      game.playerCharacter = CharacterVariant.SPACEMAN;
-      currentView.displayView();
-    }
-    
-    else if(game.section == SectionVariant.GAMELEVELS){
-      currentView.displayView();
-    }  
+  else if(game.section == SectionVariant.TUTORIAL || game.section == SectionVariant.GAMELEVELS){
+    currentView.displayView();
   }
   
-  // Stars
+  // Opening screen stars
   if(game.section != SectionVariant.GAMELEVELS && game.section != SectionVariant.TUTORIAL){
     translate(displayWidth / 2, displayHeight / 2);
     for (int i = 0; i < stars.length; i++) {
@@ -234,7 +229,7 @@ void displayChooseCharacter() {
   BackToMain backToMain = new BackToMain();
 }
 
-void enterNameScreen() {
+void displayEnterNameScreen() {
   fill(255);
   textAlign(CENTER, CENTER);
   textSize(headerSize);
@@ -245,7 +240,7 @@ void enterNameScreen() {
   BackToMain backToMain = new BackToMain();
 }
 
-void modeScreen(){
+void displayModeScreen(){
   game.section = SectionVariant.CHOOSEDIFFICULTY;
   fill(200, 20, 0);
   textAlign(CENTER, CENTER);
@@ -268,7 +263,7 @@ void modeScreen(){
   BackToMain backToMain = new BackToMain();
 }
 
-void missionScreen(){
+void displayMissionScreen(){
   textAlign(CENTER, CENTER);
   fill(255);
   textSize(notHoveredSize);
@@ -281,7 +276,7 @@ void missionScreen(){
   text("CLICK ANYWHERE TO START THE GAME", displayWidth/2, 8*displayHeight/10);
 }
 
-void gameSettingsScreen(){
+void displayGameSettingsScreen(){
   
   textAlign(CENTER, CENTER);
   fill(255);
@@ -309,12 +304,10 @@ void gameSettingsScreen(){
 }
 
 void setKey(String keyToChange){
-
   fill(255);
   textAlign(CENTER, CENTER);
   textSize(hoveredSize);
   text("Press the key you want to use to move " + keyToChange + ":", displayWidth/2, displayHeight/6);
-  
   fill(200, 20, 0);
   textSize(headerSize);
   
@@ -334,10 +327,9 @@ void setKey(String keyToChange){
   fill(255);
   hoverTextSize(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight);
   text("Back to game settings", displayWidth/2 - menuItemWidth/2, 9 * displayHeight/10, menuItemWidth, menuItemHeight);
-
 }
 
-void restartLevel(){
+void displayRestartLevel(){
   fill(200, 20, 0);
   textAlign(CENTER, CENTER);
   textSize(hoveredSize);
@@ -349,7 +341,7 @@ void restartLevel(){
   BackToMain backToMain = new BackToMain();
 }
 
-void restartGame(){
+void displayRestartGame(){
   fill(200, 20, 0);
   textAlign(CENTER, CENTER);
   textSize(titleSize);
@@ -358,6 +350,12 @@ void restartGame(){
   text("You lost all your lives!", displayWidth/2, displayHeight/3);
   fill(255);
   text("Click anywhere to submit your score\n and return to the main menu.", displayWidth/2, displayHeight/2);
+}
+
+void enterLevel(String levelName){
+  game.level = levelName;
+  Level level = new Level(game.level+File.separator+game.level+".json");
+  currentView = new View(level);  
 }
   
 void keyPressed() {
@@ -368,11 +366,9 @@ void keyPressed() {
     else if (keyCode == settings.leftKey) {
       moveLeft = true;
     }
-
     if (keyCode == settings.jumpKey) {
         jump = true;
     } 
-    
     if (keyCode  == settings.dashKey) {
         moveUp = true;
     }
@@ -452,12 +448,10 @@ void mouseClicked() {
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 6*displayHeight/10, (6*displayHeight/10)+menuItemHeight, SectionVariant.LEADERBOARD);
     
     if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <= displayWidth/2 + menuItemWidth/2 && mouseY >= 4*displayHeight/10 && mouseY <= (4*displayHeight/10)+menuItemHeight){
-      Level tutorial = new Level("tutorial"+File.separator+"tutorial.json");
-      currentView = new View(tutorial);
-    }
-    
+      game.playerCharacter = CharacterVariant.SPACEMAN;
+      enterLevel("tutorial");
+    }   
   }
-  
   else if (game.section == SectionVariant.CHOOSECHARACTER) {
     characterClicks(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.SPACEMAN, SectionVariant.ENTERNAME);
     characterClicks((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.COWBOY, SectionVariant.ENTERNAME);
@@ -467,7 +461,6 @@ void mouseClicked() {
     characterClicks(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.DOG, SectionVariant.ENTERNAME);
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight, SectionVariant.MAINMENU);
   }
-  
   else if (game.section == SectionVariant.ENTERNAME || game.section == SectionVariant.LEADERBOARD){
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight, SectionVariant.MAINMENU);
   }
@@ -476,15 +469,13 @@ void mouseClicked() {
     modeClicks(displayWidth - (displayWidth/4) - boxWH, displayWidth - (displayWidth/4), displayHeight/2, (displayHeight/2)+boxWH, ModeVariant.DIFFICULT, SectionVariant.MISSION);
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight, SectionVariant.MAINMENU);
   }
-  
   else if (game.section == SectionVariant.GAMESETTINGS){
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 3*displayHeight/10, (3*displayHeight/10)+menuItemHeight, SectionVariant.SETLEFT);
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 4*displayHeight/10, (4*displayHeight/10)+menuItemHeight, SectionVariant.SETRIGHT);
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 5*displayHeight/10, (5*displayHeight/10)+menuItemHeight, SectionVariant.SETJUMP);
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 6*displayHeight/10, (6*displayHeight/10)+menuItemHeight, SectionVariant.SETDASH);
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight, SectionVariant.MAINMENU);
-  }
-  
+  } 
   else if (game.section == SectionVariant.SETLEFT || game.section == SectionVariant.SETRIGHT || game.section == SectionVariant.SETJUMP || game.section == SectionVariant.SETDASH){
     if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){
       game.section = SectionVariant.GAMESETTINGS;
@@ -492,9 +483,7 @@ void mouseClicked() {
   }
   else if(game.section == SectionVariant.MISSION){
     game.section = SectionVariant.GAMELEVELS;
-    game.level = "level1";
-    Level level = new Level(game.level+File.separator+game.level+".json");
-    currentView = new View(level);
+    enterLevel("level1");
   }
   else if (game.section == SectionVariant.TUTORIAL){
     game.section = SectionVariant.MAINMENU;
@@ -502,9 +491,7 @@ void mouseClicked() {
   else if (game.section == SectionVariant.RESTARTLEVEL){
     if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <= displayWidth/2 + menuItemWidth/2 && mouseY >= 3*displayHeight/10 && mouseY <= (3*displayHeight/10)+menuItemHeight){
       game.section = SectionVariant.GAMELEVELS;
-      game.level = "level1";
-      Level level = new Level(game.level+File.separator+game.level+".json");
-      currentView = new View(level);
+      enterLevel("level1");
     }
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight, SectionVariant.MAINMENU);
   }
