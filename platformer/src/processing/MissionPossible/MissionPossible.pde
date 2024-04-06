@@ -383,7 +383,7 @@ void keyPressed() {
         game.playerNickname = game.playerNickname.substring(0, game.playerNickname.length() - 1);
       }
     } 
-    else if (key == ENTER || key == RETURN) {
+    else if ((key == ENTER || key == RETURN) && game.playerNickname != "") {
       game.section = SectionVariant.CHOOSEDIFFICULTY;
     } 
     else if ((key >= 'A' && key <= 'Z') || (key >= 'a' && key <= 'z')){
