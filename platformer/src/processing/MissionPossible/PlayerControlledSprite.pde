@@ -12,6 +12,7 @@ public class PlayerControlledSprite extends Sprite{
     this.animations = new HashMap<>();
     this.animations.put("standing", new Animation(game.getCharacter(), "standing"));
     this.animations.put("moving", new Animation(game.getCharacter(), "moving"));
+    this.animations.put("jumping", new Animation(game.getCharacter(), "jumping"));
   }
   
   public void updatePosition(boolean moveLeft, boolean moveRight, boolean moveUp, boolean moveDown, boolean jump, NonPlayerControlledSprite[] sprites) {
@@ -119,10 +120,12 @@ public void checkCollision(NonPlayerControlledSprite[] sprites) {
   }
   
   public PImage getNextFrame() {
-    if (xSpeed - 0 < 0.0001) {
-      return this.animations.get("standing").nextFrame();
+    if (Math.abs(ySpeed) - 0 > 0.0001) {
+      return this.animations.get("jumping").nextFrame(ySpeed / 5);
+    } else if (Math.abs(xSpeed) - 0 < 0.0001) {
+      return this.animations.get("standing").nextFrame(1);
     }
-    return this.animations.get("moving").nextFrame();
+    return this.animations.get("moving").nextFrame(xSpeed / 3);
   }
   
 }

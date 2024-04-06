@@ -6,7 +6,7 @@ class Animation {
     private String spriteName;
     private String animationName;
     private int nextFrameNum;
-    private int lastFrameTime;
+    private float lastFrameTime;
 
     public Animation(String spriteName, String animationName) {
         this.spriteName = spriteName;
@@ -14,6 +14,7 @@ class Animation {
         this.images = new ArrayList<ImageData>();
         this.nextFrameNum = 0;
         this.lastFrameTime = 0;
+        println(dataPath(spriteName + File.separator + animationName + File.separator + "info.json"));
         JSONArray info = loadJSONArray(dataPath(spriteName + File.separator + animationName + File.separator + "info.json"));
         for (int i = 0; i < info.size() - 1; i++) {
             JSONObject frameInfo = info.getJSONObject(i);
@@ -24,9 +25,15 @@ class Animation {
         }
     }
     
-    public PImage nextFrame() {
-      int currentTime = millis();
-      if (currentTime - lastFrameTime > this.images.get(nextFrameNum).getDelay()) {
+    public PImage nextFrame(float speed) {
+      if (speed < 0f) {
+        speed *= -1f;
+      }
+      if (speed < 1f) {
+        speed = 1f;
+      }
+      float currentTime = (float) millis();
+      if (currentTime - lastFrameTime > this.images.get(nextFrameNum).getDelay() / speed) {
         nextFrameNum++;
         lastFrameTime = currentTime;
       }
