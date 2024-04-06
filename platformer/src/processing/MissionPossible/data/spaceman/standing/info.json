@@ -1,0 +1,23 @@
+[
+    {
+        "filename": "0.png",
+        "delay": 100
+    },
+    {
+        "filename": "1.png",
+        "delay": 100
+    },
+    {
+        "filename": "2.png",
+        "delay": 100
+    },
+    {
+        "filename": "3.png",
+        "delay": 100
+    }
+    ,
+    {
+        "filename": "4.png",
+        "delay": 100
+    }
+]

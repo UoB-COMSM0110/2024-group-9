@@ -12,7 +12,7 @@ PFont MPFont;
 
 float boxWH = 160;
 PImage backgroundImage;
-PImage spaceman;
+Animation spaceman;
 Animation cowboy;
 PImage rhino;
 Animation cat;
@@ -39,7 +39,7 @@ void setup() {
   MPFont = createFont("IMPOS10_.ttf", 48);
   textFont(MPFont);
   spaceship = loadImage("spaceship.png");
-  spaceman = loadImage("spaceman.png");
+  spaceman = new Animation("spaceman", "standing");
   cowboy = new Animation("cowboy", "standing");
   rhino = loadImage("rhino.png");
   cat = new Animation("cat", "standing");
@@ -213,7 +213,7 @@ void displayChooseCharacter() {
   textSize(headerSize);
   text("Click to choose your character", displayWidth/2, displayHeight/6);
   fill(200, 20, 0);
-  image(spaceman, displayWidth/6, displayHeight/3.5, boxWH, boxWH);
+  image(spaceman.nextFrame(1), displayWidth/6, displayHeight/3.5, boxWH, boxWH);
   hoverCharacter(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/3.5, (displayHeight/3.5)+boxWH, "Spaceman");
   image(cowboy.nextFrame(1), displayWidth/2 - (boxWH/2), displayHeight/3.5, boxWH, boxWH);
   hoverCharacter((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/3.5, (displayHeight/3.5)+boxWH, "Cowboy");
