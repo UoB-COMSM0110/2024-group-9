@@ -15,7 +15,7 @@ PImage backgroundImage;
 PImage spaceman;
 PImage cowboy;
 PImage rhino;
-PImage cat;
+Animation cat;
 PImage skeleton;
 PImage dog;
 
@@ -42,7 +42,7 @@ void setup() {
   spaceman = loadImage("spaceman.png");
   cowboy = loadImage("cowboy.png");
   rhino = loadImage("rhino.png");
-  cat = loadImage(dataPath("cat" + File.separator + "cat.png"));
+  cat = new Animation("cat", "standing");
   skeleton = loadImage("skeleton.png");
   dog = loadImage("dog.png");
   for (int i = 0; i < stars.length; i++) {
@@ -219,7 +219,7 @@ void displayChooseCharacter() {
   hoverCharacter((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/3.5, (displayHeight/3.5)+boxWH, "Cowboy");
   image(rhino, displayWidth - (displayWidth/6) - boxWH, displayHeight/3.5, boxWH, boxWH);
   hoverCharacter(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/3.5, (displayHeight/3.5)+boxWH, "Rhino");
-  image(cat, displayWidth/6, displayHeight/1.5, boxWH, boxWH);
+  image(cat.nextFrame(1), displayWidth/6, displayHeight/1.5, boxWH, boxWH);
   hoverCharacter(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/1.5, (displayHeight/1.5)+boxWH, "Cat");
   image(skeleton, displayWidth/2 - (boxWH/2), displayHeight/1.5, boxWH, boxWH);
   hoverCharacter((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/1.5, (displayHeight/1.5)+boxWH, "Skeleton");
