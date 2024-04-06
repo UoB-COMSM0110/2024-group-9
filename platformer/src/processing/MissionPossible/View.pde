@@ -72,6 +72,15 @@ public class View {
       }
       if(currentLevel.player.health == 0){
         health0.setAsset(userInterface.getAsset("heart-empty.png"));
+        if(game.mode == ModeVariant.EASY){
+          currentLevel.restartLevel();
+          game.section = SectionVariant.RESTARTLEVEL;
+        }
+        else{
+          sendScore();
+          game.restart();
+          game.section = SectionVariant.GAMEOVER;
+        }
       }
       UIElement fps = userInterface.getElement("fps");
       fps.setTextContent(String.valueOf(frameRate));

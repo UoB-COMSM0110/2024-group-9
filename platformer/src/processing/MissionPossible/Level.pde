@@ -98,4 +98,9 @@ public class Level{
    public HashMap<String, PImage> getImageMap() {
     return this.imageMap;
   }
+  
+  public void restartLevel(){
+    score = 0;
+    game.lives = 3;
+  }
 }

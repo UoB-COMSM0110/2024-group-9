@@ -97,6 +97,12 @@ void draw() {
   else if(game.section == SectionVariant.SETDASH){
     setKey("dash");
   }
+  else if(game.section == SectionVariant.RESTARTLEVEL){
+    restartLevel();
+  }
+  else if(game.section == SectionVariant.GAMEOVER){
+    restartGame();
+  }
 
   else{
   
@@ -168,7 +174,7 @@ void displayStartScreen() {
   fill(128, 128, 128);
   textAlign(CENTER, CENTER);
   textSize(smallSize);
-  text("PRESS ANY KEY TO BEGIN", displayWidth/2, displayHeight/2 + 120);
+  text("CLICK ANYWHERE TO BEGIN", displayWidth/2, displayHeight/2 + 120);
 }  
 
 void displayMainMenu(){
@@ -272,7 +278,7 @@ void missionScreen(){
   imageMode(CORNER);
   fill(128, 128, 128);
   textSize(smallSize);
-  text("PRESS ANY KEY TO START THE GAME", displayWidth/2, 8*displayHeight/10);
+  text("CLICK ANYWHERE TO START THE GAME", displayWidth/2, 8*displayHeight/10);
 }
 
 void gameSettingsScreen(){
@@ -330,6 +336,29 @@ void setKey(String keyToChange){
   text("Back to game settings", displayWidth/2 - menuItemWidth/2, 9 * displayHeight/10, menuItemWidth, menuItemHeight);
 
 }
+
+void restartLevel(){
+  fill(200, 20, 0);
+  textAlign(CENTER, CENTER);
+  textSize(hoveredSize);
+  text("Oh no, you lost all your lives!", displayWidth/2, displayHeight/6);
+  fill(255);
+  hoverTextSize(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 3*displayHeight/10, (3*displayHeight/10)+menuItemHeight);
+  text("Click here to restart level", displayWidth/2, 3*displayHeight/10);
+  fill(255);
+  BackToMain backToMain = new BackToMain();
+}
+
+void restartGame(){
+  fill(200, 20, 0);
+  textAlign(CENTER, CENTER);
+  textSize(titleSize);
+  text("GAME OVER", displayWidth/2, displayHeight/6);
+  textSize(hoveredSize);
+  text("You lost all your lives!", displayWidth/2, displayHeight/3);
+  fill(255);
+  text("Click anywhere to submit your score\n and return to the main menu.", displayWidth/2, displayHeight/2);
+}
   
 void keyPressed() {
   if(game.section == SectionVariant.TUTORIAL || game.section == SectionVariant.GAMELEVELS){
@@ -348,29 +377,19 @@ void keyPressed() {
         moveUp = true;
     }
   }
-  else if(!game.started) {
-    game.section = SectionVariant.MAINMENU;
-    game.started = true;
-  }
   else if (game.section == SectionVariant.ENTERNAME) {
     if (key == BACKSPACE) {
       if (game.playerNickname.length() > 0) {
         game.playerNickname = game.playerNickname.substring(0, game.playerNickname.length() - 1);
       }
     } 
-    else if (key == ENTER || key == RETURN) {
+    else if ((key == ENTER || key == RETURN) && game.playerNickname != "") {
       game.section = SectionVariant.CHOOSEDIFFICULTY;
     } 
     else if ((key >= 'A' && key <= 'Z') || (key >= 'a' && key <= 'z')){
       game.playerNickname += key;
       game.playerNickname = game.playerNickname.toUpperCase();
     }
-  }
-  else if(game.section == SectionVariant.MISSION){
-    game.section = SectionVariant.GAMELEVELS;
-    game.level = "level1";
-    Level level1 = new Level("level1"+File.separator+"level1.json");
-    currentView = new View(level1);
   }
   else if(game.section == SectionVariant.SETLEFT){
     settings.setLeftKey(keyCode);
@@ -422,8 +441,11 @@ void keyReleased() {
 }
 
 void mouseClicked() {
-
-  if(game.section == SectionVariant.MAINMENU){
+  if(!game.started) {
+    game.section = SectionVariant.MAINMENU;
+    game.started = true;
+  }
+  else if(game.section == SectionVariant.MAINMENU){
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 3*displayHeight/10, (3*displayHeight/10)+menuItemHeight, SectionVariant.CHOOSECHARACTER);
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 4*displayHeight/10, (4*displayHeight/10)+menuItemHeight, SectionVariant.TUTORIAL);
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 5*displayHeight/10, (5*displayHeight/10)+menuItemHeight, SectionVariant.GAMESETTINGS);
@@ -468,7 +490,25 @@ void mouseClicked() {
       game.section = SectionVariant.GAMESETTINGS;
     }
   }
+  else if(game.section == SectionVariant.MISSION){
+    game.section = SectionVariant.GAMELEVELS;
+    game.level = "level1";
+    Level level = new Level(game.level+File.separator+game.level+".json");
+    currentView = new View(level);
+  }
   else if (game.section == SectionVariant.TUTORIAL){
+    game.section = SectionVariant.MAINMENU;
+  }
+  else if (game.section == SectionVariant.RESTARTLEVEL){
+    if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <= displayWidth/2 + menuItemWidth/2 && mouseY >= 3*displayHeight/10 && mouseY <= (3*displayHeight/10)+menuItemHeight){
+      game.section = SectionVariant.GAMELEVELS;
+      game.level = "level1";
+      Level level = new Level(game.level+File.separator+game.level+".json");
+      currentView = new View(level);
+    }
+    menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight, SectionVariant.MAINMENU);
+  }
+  else if(game.section == SectionVariant.GAMEOVER){
     game.section = SectionVariant.MAINMENU;
   }
 }
