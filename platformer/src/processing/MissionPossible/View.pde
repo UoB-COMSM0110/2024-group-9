@@ -57,7 +57,7 @@ public class View {
         this.scale = -1;
       }
       scale(this.scale, 1);
-      image(game.getCharacter(), playerPos[0] * this.scale, playerPos[1], currentLevel.player.spriteWidth * this.scale, currentLevel.player.spriteHeight);
+      image(currentLevel.player.getNextFrame(), playerPos[0] * this.scale, playerPos[1], currentLevel.player.spriteWidth * this.scale, currentLevel.player.spriteHeight);
       this.scale = 1;
       popMatrix();
       this.camera.setPos(currentLevel.player.getXPos() - displayWidth / 2, currentLevel.player.getYPos() - displayHeight / 2);

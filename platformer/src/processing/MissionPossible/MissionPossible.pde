@@ -42,7 +42,7 @@ void setup() {
   spaceman = loadImage("spaceman.png");
   cowboy = loadImage("cowboy.png");
   rhino = loadImage("rhino.png");
-  cat = loadImage("cat.png");
+  cat = loadImage(dataPath("cat" + File.separator + "cat.png"));
   skeleton = loadImage("skeleton.png");
   dog = loadImage("dog.png");
   for (int i = 0; i < stars.length; i++) {

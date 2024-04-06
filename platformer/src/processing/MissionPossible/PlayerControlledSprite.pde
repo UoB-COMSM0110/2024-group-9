@@ -3,11 +3,13 @@ public class PlayerControlledSprite extends Sprite{
   int nextDashTime = 0;
   boolean faceToRight = true;
   int health = 3;
+  Animation animation;
 
   // Constructor
   PlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, int spriteLayer, int maxXPos, int maxYPos, String imgFile) {
     super(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, maxXPos, maxYPos, imgFile);
     this.health = health;
+    this.animation = new Animation(game.getCharacter(), "standing");
   }
   
   public void updatePosition(boolean moveLeft, boolean moveRight, boolean moveUp, boolean moveDown, boolean jump, NonPlayerControlledSprite[] sprites) {
@@ -113,4 +115,9 @@ public void checkCollision(NonPlayerControlledSprite[] sprites) {
   public boolean getFaceToRight() {
     return this.faceToRight;
   }
+  
+  public PImage getNextFrame() {
+    return this.animation.nextFrame();
+  }
+  
 }
