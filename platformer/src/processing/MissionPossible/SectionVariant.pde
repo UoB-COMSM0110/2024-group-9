@@ -1,5 +1,4 @@
 enum SectionVariant {
-  // These are examples and can be changed
   STARTSCREEN,
   MAINMENU,
   CHOOSECHARACTER,
@@ -16,5 +15,6 @@ enum SectionVariant {
   RESTARTLEVEL,
   GAMEOVER,
   LEADERBOARD,
-  ENDGAME;
+  ENDGAME,
+  CREDITS;
 }
