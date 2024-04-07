@@ -12,6 +12,7 @@ PFont MPFont;
 
 float boxWH = 160;
 PImage backgroundImage;
+float y = displayHeight;  
 Animation spaceman;
 Animation cowboy;
 Animation fox;
@@ -30,8 +31,7 @@ float menuItemWidth = 1000;
 float menuItemHeight = 100;
 PImage spaceship;
 JSONArray topTen;
-
-
+String creditText;
 
 void setup() {
   fullScreen(P2D);
@@ -56,6 +56,10 @@ void setup() {
   titleSize = displayHeight/12;
   headerSize = displayHeight/15;
   smallSize = displayHeight/40;
+  
+  String[] lines = loadStrings("credits.txt");
+  creditText = join(lines, "\n");
+  
 }
 
 void draw() {
@@ -106,6 +110,9 @@ void selectScreen(){
   }
   else if(game.section == SectionVariant.GAMEOVER){
     displayRestartGame();
+  }
+  else if(game.section == SectionVariant.CREDITS){
+    displayCredits();
   }
   else if(game.section == SectionVariant.TUTORIAL || game.section == SectionVariant.GAMELEVELS){
     currentView.displayView();
@@ -190,6 +197,9 @@ void displayMainMenu(){
    
   hoverTextSize(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 6*displayHeight/10, (6*displayHeight/10)+menuItemHeight);
   MainMenuItem menuItem4 = new MainMenuItem("View leaderboard", 6*displayHeight/10);
+  
+  hoverTextSize(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 7*displayHeight/10, (7*displayHeight/10)+menuItemHeight);
+  MainMenuItem menuItem5 = new MainMenuItem("View game credits", 7*displayHeight/10);
 }
 
 void displayLeaderboard(){
@@ -258,6 +268,8 @@ void displayModeScreen(){
   
   textSize(smallSize);
   fill(0);
+  textSize(notHoveredSize);
+  textAlign(CENTER);
   text("Easy", (displayWidth/4)+(boxWH/2), (displayHeight/2)+(boxWH/2));
   text("Difficult", displayWidth - (displayWidth/4) - (boxWH/2), (displayHeight/2)+(boxWH/2));
   BackToMain backToMain = new BackToMain();
@@ -350,6 +362,14 @@ void displayRestartGame(){
   text("You lost all your lives!", displayWidth/2, displayHeight/3);
   fill(255);
   text("Click anywhere to submit your score\n and return to the main menu.", displayWidth/2, displayHeight/2);
+}
+
+void displayCredits(){
+  fill(255);
+  textAlign(CENTER);
+  textSize(notHoveredSize);
+  text(creditText, width*0.05, y, width*0.9, height*3);
+  y--;
 }
 
 void enterLevel(String levelName){
@@ -446,7 +466,8 @@ void mouseClicked() {
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 4*displayHeight/10, (4*displayHeight/10)+menuItemHeight, SectionVariant.TUTORIAL);
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 5*displayHeight/10, (5*displayHeight/10)+menuItemHeight, SectionVariant.GAMESETTINGS);
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 6*displayHeight/10, (6*displayHeight/10)+menuItemHeight, SectionVariant.LEADERBOARD);
-    
+    menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 7*displayHeight/10, (7*displayHeight/10)+menuItemHeight, SectionVariant.CREDITS);
+     
     if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <= displayWidth/2 + menuItemWidth/2 && mouseY >= 4*displayHeight/10 && mouseY <= (4*displayHeight/10)+menuItemHeight){
       game.playerCharacter = CharacterVariant.SPACEMAN;
       enterLevel("tutorial");
@@ -485,7 +506,7 @@ void mouseClicked() {
     game.section = SectionVariant.GAMELEVELS;
     enterLevel("level1");
   }
-  else if (game.section == SectionVariant.TUTORIAL){
+  else if (game.section == SectionVariant.TUTORIAL || game.section == SectionVariant.CREDITS){
     game.section = SectionVariant.MAINMENU;
   }
   else if (game.section == SectionVariant.RESTARTLEVEL){
