@@ -12,12 +12,12 @@ PFont MPFont;
 
 float boxWH = 160;
 PImage backgroundImage;
-PImage spaceman;
-PImage cowboy;
-PImage rhino;
-PImage cat;
-PImage skeleton;
-PImage dog;
+Animation spaceman;
+Animation cowboy;
+Animation fox;
+Animation cat;
+Animation skeleton;
+Animation wolf;
 
 // Menu variables
 int backToMainSize;
@@ -39,12 +39,12 @@ void setup() {
   MPFont = createFont("IMPOS10_.ttf", 48);
   textFont(MPFont);
   spaceship = loadImage("spaceship.png");
-  spaceman = loadImage("spaceman.png");
-  cowboy = loadImage("cowboy.png");
-  rhino = loadImage("rhino.png");
-  cat = loadImage("cat.png");
-  skeleton = loadImage("skeleton.png");
-  dog = loadImage("dog.png");
+  spaceman = new Animation("spaceman", "standing");
+  cowboy = new Animation("cowboy", "standing");
+  fox = new Animation("fox", "standing");
+  cat = new Animation("cat", "standing");
+  skeleton = new Animation("skeleton", "standing");
+  wolf = new Animation("wolf", "standing");
   for (int i = 0; i < stars.length; i++) {
     stars[i] = new Star();
   }
@@ -214,18 +214,18 @@ void displayChooseCharacter() {
   textSize(headerSize);
   text("Click to choose your character", displayWidth/2, displayHeight/6);
   fill(200, 20, 0);
-  image(spaceman, displayWidth/6, displayHeight/3.5, boxWH, boxWH);
+  image(spaceman.nextFrame(1)  , displayWidth/6, displayHeight/3.5, boxWH, boxWH);
   hoverCharacter(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/3.5, (displayHeight/3.5)+boxWH, "Spaceman");
-  image(cowboy, displayWidth/2 - (boxWH/2), displayHeight/3.5, boxWH, boxWH);
+  image(cowboy.nextFrame(1), displayWidth/2 - (boxWH/2), displayHeight/3.5, boxWH, boxWH);
   hoverCharacter((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/3.5, (displayHeight/3.5)+boxWH, "Cowboy");
-  image(rhino, displayWidth - (displayWidth/6) - boxWH, displayHeight/3.5, boxWH, boxWH);
-  hoverCharacter(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/3.5, (displayHeight/3.5)+boxWH, "Rhino");
-  image(cat, displayWidth/6, displayHeight/1.5, boxWH, boxWH);
+  image(fox.nextFrame(1), displayWidth - (displayWidth/6) - boxWH, displayHeight/3.5, boxWH, boxWH);
+  hoverCharacter(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/3.5, (displayHeight/3.5)+boxWH, "Fox");
+  image(cat.nextFrame(1), displayWidth/6, displayHeight/1.5, boxWH, boxWH);
   hoverCharacter(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/1.5, (displayHeight/1.5)+boxWH, "Cat");
-  image(skeleton, displayWidth/2 - (boxWH/2), displayHeight/1.5, boxWH, boxWH);
+  image(skeleton.nextFrame(1), displayWidth/2 - (boxWH/2), displayHeight/1.5, boxWH, boxWH);
   hoverCharacter((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/1.5, (displayHeight/1.5)+boxWH, "Skeleton");
-  image(dog, displayWidth - (displayWidth/6) - boxWH, displayHeight/1.5, boxWH, boxWH);
-  hoverCharacter(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/1.5, (displayHeight/1.5)+boxWH, "Dog");
+  image(wolf.nextFrame(1), displayWidth - (displayWidth/6) - boxWH, displayHeight/1.5, boxWH, boxWH);
+  hoverCharacter(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/1.5, (displayHeight/1.5)+boxWH, "Wolf");
   BackToMain backToMain = new BackToMain();
 }
 
@@ -455,10 +455,10 @@ void mouseClicked() {
   else if (game.section == SectionVariant.CHOOSECHARACTER) {
     characterClicks(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.SPACEMAN, SectionVariant.ENTERNAME);
     characterClicks((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.COWBOY, SectionVariant.ENTERNAME);
-    characterClicks(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.RHINO, SectionVariant.ENTERNAME);
+    characterClicks(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.FOX, SectionVariant.ENTERNAME);
     characterClicks(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.CAT, SectionVariant.ENTERNAME);
     characterClicks((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.SKELETON,SectionVariant.ENTERNAME);
-    characterClicks(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.DOG, SectionVariant.ENTERNAME);
+    characterClicks(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.WOLF, SectionVariant.ENTERNAME);
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight, SectionVariant.MAINMENU);
   }
   else if (game.section == SectionVariant.ENTERNAME || game.section == SectionVariant.LEADERBOARD){
