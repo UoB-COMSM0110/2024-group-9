@@ -16,7 +16,7 @@ Animation spaceman;
 Animation cowboy;
 Animation fox;
 Animation cat;
-PImage skeleton;
+Animation skeleton;
 Animation wolf;
 
 // Menu variables
@@ -43,7 +43,7 @@ void setup() {
   cowboy = new Animation("cowboy", "standing");
   fox = new Animation("fox", "standing");
   cat = new Animation("cat", "standing");
-  skeleton = loadImage("skeleton.png");
+  skeleton = new Animation("skeleton", "standing");
   wolf = new Animation("wolf", "standing");
   for (int i = 0; i < stars.length; i++) {
     stars[i] = new Star();
@@ -221,7 +221,7 @@ void displayChooseCharacter() {
   hoverCharacter(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/3.5, (displayHeight/3.5)+boxWH, "Fox");
   image(cat.nextFrame(1), displayWidth/6, displayHeight/1.5, boxWH, boxWH);
   hoverCharacter(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/1.5, (displayHeight/1.5)+boxWH, "Cat");
-  image(skeleton, displayWidth/2 - (boxWH/2), displayHeight/1.5, boxWH, boxWH);
+  image(skeleton.nextFrame(1), displayWidth/2 - (boxWH/2), displayHeight/1.5, boxWH, boxWH);
   hoverCharacter((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/1.5, (displayHeight/1.5)+boxWH, "Skeleton");
   image(wolf.nextFrame(1), displayWidth - (displayWidth/6) - boxWH, displayHeight/1.5, boxWH, boxWH);
   hoverCharacter(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/1.5, (displayHeight/1.5)+boxWH, "Wolf");

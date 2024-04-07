@@ -49,8 +49,8 @@ public class GameState {
          return "fox";
        case CAT:
          return "cat";
-       //case SKELETON:
-       //  return skeleton;
+       case SKELETON:
+         return "skeleton";
        case WOLF:
          return "wolf";
        default:
