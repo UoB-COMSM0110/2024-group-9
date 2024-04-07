@@ -1,8 +1,8 @@
 enum CharacterVariant{
   SPACEMAN,
   COWBOY, 
-  RHINO,
+  FOX,
   CAT,
   SKELETON,
-  DOG;
+  WOLF;
 }

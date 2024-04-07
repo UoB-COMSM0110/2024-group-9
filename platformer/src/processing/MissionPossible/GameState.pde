@@ -40,22 +40,22 @@ public class GameState {
     level3Score = 0;
   }
   
- PImage getCharacter(){
+ String getCharacter(){
     switch(playerCharacter){
        case SPACEMAN:
-         return spaceman;
+         return "spaceman";
        case COWBOY:
-         return cowboy;
-       case RHINO:
-         return rhino;
+         return "cowboy";
+       case FOX:
+         return "fox";
        case CAT:
-         return cat;
+         return "cat";
        case SKELETON:
-         return skeleton;
-       case DOG:
-         return dog;
+         return "skeleton";
+       case WOLF:
+         return "wolf";
        default:
-         return spaceman;
+         return "cat";
      }
   }
 }
