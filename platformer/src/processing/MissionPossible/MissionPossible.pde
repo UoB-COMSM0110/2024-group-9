@@ -366,7 +366,9 @@ void displayRestartGame(){
 
 void displayCredits(){
   fill(255);
-  text(creditText, 0, y, width, height*2);
+  textAlign(CENTER);
+  textSize(notHoveredSize);
+  text(creditText, width*0.05, y, width*0.9, height*3);
   y--;
 }
 

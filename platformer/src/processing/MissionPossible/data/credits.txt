@@ -1,13 +1,21 @@
 
+
 Thank you for playing Mission Possible!
 
 
 CREDITS
-Mission Possible was created by Group 9.
+
+Mission Possible was created by Group 9
+
 Starfield animation Copyright (c) 2017 Babu Thomas
-Sprite images from OpenGameArt:
-Cat sprite by dogchicken
-Cowboy sprite by software_atelier
+
+Animated sprite images are from OpenGameArt.org
+Cat: Cat fighter sprite sheet by dogchicken is licensed under CC-BY 3.0
+Cowboy: Cowboy by software_atelier is licensed under CC0
+Fox: Fox (animated) by HDST is licensed under CC0
+Skeleton: Animated skeleton by Calciumtrice is licensed under CC-BY 3.0
+Spaceman: Spaceman sprite sheets by av8rgamez is licensed under CC-BY 4.0
+Wolf:[LPC] Wolf animation by Stephen "Redshrike" Challener as graphic artist and William.Thompsonj as contributor is licensed CC-BY 4.0, CC-BY 3.0, GPL 3.0, GPL 2.0 and OGA-BY 3.0
 
 
 Press ESCAPE to leave the game...
