@@ -268,7 +268,6 @@ void displayModeScreen(){
   
   textSize(smallSize);
   fill(0);
-  textSize(notHoveredSize);
   textAlign(CENTER);
   text("Easy", (displayWidth/4)+(boxWH/2), (displayHeight/2)+(boxWH/2));
   text("Difficult", displayWidth - (displayWidth/4) - (boxWH/2), (displayHeight/2)+(boxWH/2));
