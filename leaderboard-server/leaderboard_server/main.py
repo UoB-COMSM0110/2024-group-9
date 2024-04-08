@@ -1,4 +1,4 @@
-from flask import Flask, request, g
+from flask import Flask, request, g, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import declarative_base, sessionmaker
 import random
@@ -35,7 +35,7 @@ def input_score():
         new_score = Score(user_hash=data["userid"], nickname=data["nickname"], score=data["score"])
         db_session.add(new_score)
     db_session.commit()
-    return
+    return jsonify({'message': 'Score created successfully'}), 200
 
 @app.route("/top-ten", methods=['GET'])
 def get_top_ten():
