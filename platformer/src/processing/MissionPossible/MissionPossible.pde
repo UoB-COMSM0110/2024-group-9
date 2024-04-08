@@ -19,6 +19,7 @@ Animation fox;
 Animation cat;
 Animation skeleton;
 Animation wolf;
+Level currentLevel;
 
 // Menu variables
 int backToMainSize;
@@ -373,11 +374,19 @@ void displayCredits(){
 
 void enterLevel(String levelName){
   game.level = levelName;
-  Level level = new Level(game.level+File.separator+game.level+".json");
-  currentView = new View(level);  
+  currentLevel = new Level(game.level+File.separator+game.level+".json");
+  currentView = new View(currentLevel);  
 }
   
 void keyPressed() {
+  
+  if(game.section != SectionVariant.TUTORIAL && game.section != SectionVariant.GAMELEVELS){
+    moveRight = false;
+    moveLeft = false;
+    jump = false;
+    moveUp = false;
+  }
+  
   if(game.section == SectionVariant.TUTORIAL || game.section == SectionVariant.GAMELEVELS){
     if (keyCode == settings.rightKey) {
         moveRight = true;
@@ -452,7 +461,12 @@ void keyReleased() {
     if (keyCode == settings.dashKey) {
        moveUp = false;
     } 
-  }  
+  } else {
+    moveRight = false;
+    moveLeft = false;
+    jump = false;
+    moveUp = false;
+  }
 }
 
 void mouseClicked() {
