@@ -77,6 +77,13 @@ public class View {
           game.section = SectionVariant.RESTARTLEVEL;
         }
         else{
+          currentLevel.calculateLevelScore();
+          println("level start = "+currentLevel.startTime);
+          println("level end = "+currentLevel.endTime);
+          println("level time = "+(currentLevel.endTime-currentLevel.startTime));
+          println("level score = "+currentLevel.score);
+          game.calculateGameScore();
+          println("game score = "+game.score);
           sendScore();
           game.restart();
           game.section = SectionVariant.GAMEOVER;

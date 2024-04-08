@@ -3,13 +3,15 @@ import java.util.HashMap;
 
 public class Level{
   boolean started;
-  int score;
+  long score;
   int levelHeight;
   int levelWidth;
   NonPlayerControlledSprite[] sprites;
   PlayerControlledSprite player;
   WeatherVariant weather;
   HashMap<String, PImage> imageMap;
+  long startTime;
+  long endTime;
   
  // Constructor - gets most of the level information from JSON file
    Level(String jsonFilePath){
@@ -101,6 +103,12 @@ public class Level{
   
   public void restartLevel(){
     score = 0;
-    game.lives = 3;
+    //game.lives = 3;
+  }
+  
+  public void calculateLevelScore(){
+    endTime = System.currentTimeMillis()/1000;
+    score = 1000/(endTime - startTime);    
+    game.updateLevelScore(game.level, score);
   }
 }
