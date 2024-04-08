@@ -24,11 +24,16 @@ def input_score():
     if matching_hash:
         if len(matching_hash > 1):
             db_session.query(Score).filter(Score.user_hash == data["userid"]).delete()
+            new_score = Score(user_hash=data["userid"], nickname=data["nickname"], score=data["score"])
+            db_session.add(new_score)
         else:
             if data["score"] > matching_hash[0].score:
                 db_session.query(Score).filter(Score.user_hash == data["userid"]).delete()
                 new_score = Score(user_hash=data["userid"], nickname=data["nickname"], score=data["score"])
                 db_session.add(new_score)
+    else:
+        new_score = Score(user_hash=data["userid"], nickname=data["nickname"], score=data["score"])
+        db_session.add(new_score)
     db_session.commit()
     return
 

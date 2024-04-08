@@ -155,7 +155,8 @@ void sendScore() {
       JSONObject json = new JSONObject();
       json.setString("userid", userID);
       json.setString("nickname", game.playerNickname);
-      json.setInt("score", 300);
+      json.setInt("score", 301);
+      println(json.toString());
       post.addData(json.toString());
       post.addHeader("Content-Type", "application/json");
       post.send();
