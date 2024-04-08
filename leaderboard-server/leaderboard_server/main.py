@@ -22,7 +22,7 @@ def input_score():
     data = request.json
     matching_hash = db_session.query(Score).filter(Score.user_hash == data["userid"]).all()
     if matching_hash:
-        if len(matching_hash > 1):
+        if len(matching_hash) > 1:
             db_session.query(Score).filter(Score.user_hash == data["userid"]).delete()
             new_score = Score(user_hash=data["userid"], nickname=data["nickname"], score=data["score"])
             db_session.add(new_score)
