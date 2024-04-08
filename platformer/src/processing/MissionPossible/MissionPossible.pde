@@ -49,8 +49,6 @@ void setup() {
   for (int i = 0; i < stars.length; i++) {
     stars[i] = new Star();
   }
-
-
   hoveredSize = displayHeight/20;
   notHoveredSize = displayHeight/25;
   titleSize = displayHeight/12;
@@ -156,7 +154,6 @@ void sendScore() {
       json.setString("userid", userID);
       json.setString("nickname", game.playerNickname);
       json.setInt("score", 301);
-      println(json.toString());
       post.addData(json.toString());
       post.addHeader("Content-Type", "application/json");
       post.send();
