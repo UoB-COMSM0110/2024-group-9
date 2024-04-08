@@ -10,6 +10,7 @@ Star[] stars = new Star[950];
 View currentView;
 PFont MPFont;
 
+
 float boxWH = 160;
 PImage backgroundImage;
 float y = displayHeight;  
@@ -126,9 +127,6 @@ void selectScreen(){
       stars[i].update();
       stars[i].show();
     }
-  }
-  if(game.section == SectionVariant.TUTORIAL){
-    drawSnowstorm();
   }
 }
 
@@ -582,34 +580,4 @@ void modeClicks(float xMin, float xMax, float yMin, float yMax, ModeVariant mode
     game.section = section;
   }   
 }
-
-public void drawSnowstorm(){
-    float[] xPos = new float[500];
-    float[] yPos = new float[500];
-    float[] xVel = new float[500];
-    float[] yVel = new float[500];
-    float[] s = new float[500]; 
-    
-    for (int i=0; i < 500; i++) {
-        xPos[i] = random(1, displayWidth);
-      }
-    
-      for (int i=0; i < 500; i++) {
-        yPos[i] = random(1, displayHeight);
-      }
-    
-      for (int i=0; i < 500; i++) {
-        xVel[i] = random(-10, 10);
-      }
-    
-      for (int i=0; i < 500; i++) {
-        yVel[i] = random(-10, 10);
-      }
-      for (int i=0; i < 500; i++) {
-        s[i] = random(1, 6);
-      }
-      for (int i=0; i < 500; i++) {
-        noStroke ();
-        ellipse(xPos[i], yPos[i], s[i], s[i]);
-    }
-  }
+  

@@ -3,7 +3,7 @@ boolean moveRight = false;
 boolean moveUp = false;
 boolean moveDown = false;
 boolean jump = false;
-
+ArrayList<FallingSnowflake> snowflakes;
 
 public class View {
     private final Camera camera;
@@ -32,10 +32,13 @@ public class View {
         this.backgroundImage = loadImage("Background-1.png");
         this.backgroundImage.resize(2300, 0);
         userInterface = new UserInterface();
-        
         if(game.section != SectionVariant.TUTORIAL){
           this.backgroundImage = loadImage("Background-1.png");
           this.backgroundImage.resize(2300, 0);
+        }
+        snowflakes = new ArrayList<FallingSnowflake>();
+        for (int i = 0; i < 500; i++) {
+          snowflakes.add(new FallingSnowflake(currentLevel.levelWidth, currentLevel.levelHeight));
         }
     }
     
@@ -45,13 +48,13 @@ public class View {
         image(this.backgroundImage, (0 - cameraPos[0]) / 4, (0 - cameraPos[1]) / 4);
       }
       for (int sprite = 0; sprite < currentLevel.sprites.length; sprite++) {
-        int[] currentSpriteViewPos = spriteViewPos(currentLevel.sprites[sprite]);
+        int[] currentSpriteViewPos = spriteViewPos(currentLevel.sprites[sprite].xPos, currentLevel.sprites[sprite].yPos);
         fill(color(255, 255, 255));
         image(currentLevel.imageMap.get(currentLevel.sprites[sprite].image), currentSpriteViewPos[0], currentSpriteViewPos[1], currentLevel.sprites[sprite].spriteWidth, currentLevel.sprites[sprite].spriteHeight);
       }
       fill(color(255, 0, 0));
       currentLevel.player.updatePosition(moveLeft, moveRight, moveUp, moveDown, jump, currentLevel.sprites);
-      int[] playerPos = spriteViewPos(currentLevel.player);
+      int[] playerPos = spriteViewPos(currentLevel.player.xPos, currentLevel.player.yPos);
       pushMatrix();
       if (!currentLevel.player.getFaceToRight()) {
         this.scale = -1;
@@ -88,11 +91,17 @@ public class View {
       if(game.section == SectionVariant.TUTORIAL){
         runTutorial();
       }
+      if (game.section == SectionVariant.TUTORIAL) {
+        for (FallingSnowflake flake : snowflakes) {
+          flake.update();
+          flake.display(spriteViewPos(flake.getX(), flake.getY()));
+        }
+      }
     }
 
-    public int[] spriteViewPos(Sprite sprite) {
+    public int[] spriteViewPos(int xPos, int yPos) {
       int[] cameraPos = this.camera.getPos();
-      return new int[]{sprite.xPos - cameraPos[0], sprite.yPos - cameraPos[1] };
+      return new int[]{xPos - cameraPos[0], yPos - cameraPos[1] };
     }
     
     public void runTutorial(){
