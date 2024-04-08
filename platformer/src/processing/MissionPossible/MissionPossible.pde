@@ -461,7 +461,12 @@ void keyReleased() {
     if (keyCode == settings.dashKey) {
        moveUp = false;
     } 
-  }  
+  } else {
+    moveRight = false;
+    moveLeft = false;
+    jump = false;
+    moveUp = false;
+  }
 }
 
 void mouseClicked() {
