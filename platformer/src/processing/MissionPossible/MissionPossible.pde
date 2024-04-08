@@ -9,6 +9,7 @@ GameSettings settings = new GameSettings();
 Star[] stars = new Star[950];
 View currentView;
 PFont MPFont;
+Leaderboard leaderboard = new Leaderboard("https://leaderboard.charris.xyz");
 
 float boxWH = 160;
 PImage backgroundImage;
@@ -49,9 +50,6 @@ void setup() {
   for (int i = 0; i < stars.length; i++) {
     stars[i] = new Star();
   }
-  Leaderboard leaderboard = new Leaderboard("https://leaderboard.charris.xyz");
-  topTen = leaderboard.getScores(true);
-  System.out.println(leaderboard.getScores(true));
   hoveredSize = displayHeight/20;
   notHoveredSize = displayHeight/25;
   titleSize = displayHeight/12;
@@ -156,7 +154,7 @@ void sendScore() {
       JSONObject json = new JSONObject();
       json.setString("userid", userID);
       json.setString("nickname", game.playerNickname);
-      json.setInt("score", 300);
+      json.setInt("score", 301);
       post.addData(json.toString());
       post.addHeader("Content-Type", "application/json");
       post.send();
@@ -478,6 +476,9 @@ void mouseClicked() {
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 3*displayHeight/10, (3*displayHeight/10)+menuItemHeight, SectionVariant.CHOOSECHARACTER);
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 4*displayHeight/10, (4*displayHeight/10)+menuItemHeight, SectionVariant.TUTORIAL);
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 5*displayHeight/10, (5*displayHeight/10)+menuItemHeight, SectionVariant.GAMESETTINGS);
+    if (mouseX >= displayWidth/2 - menuItemWidth/2 && mouseX <= displayWidth/2 + menuItemWidth/2 && mouseY >= 6*displayHeight/10 && mouseY <= 6*displayHeight/10 + menuItemHeight) {
+      topTen = leaderboard.getScores(true);
+    }
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 6*displayHeight/10, (6*displayHeight/10)+menuItemHeight, SectionVariant.LEADERBOARD);
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 7*displayHeight/10, (7*displayHeight/10)+menuItemHeight, SectionVariant.CREDITS);
      

@@ -1,4 +1,4 @@
-from flask import Flask, request, g
+from flask import Flask, request, g, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import declarative_base, sessionmaker
 import random
@@ -20,11 +20,22 @@ class Score(db.Model):
 def input_score():
     db_session = get_db_session()
     data = request.json
-    new_score = Score(user_hash=data["userid"], nickname=data["nickname"], score=data["score"])
-    db_session.add(new_score)
-    score_list = [(score.nickname, score.score) for score in db_session.query(Score).all()]
+    matching_hash = db_session.query(Score).filter(Score.user_hash == data["userid"]).all()
+    if matching_hash:
+        if len(matching_hash) > 1:
+            db_session.query(Score).filter(Score.user_hash == data["userid"]).delete()
+            new_score = Score(user_hash=data["userid"], nickname=data["nickname"], score=data["score"])
+            db_session.add(new_score)
+        else:
+            if data["score"] > matching_hash[0].score:
+                db_session.query(Score).filter(Score.user_hash == data["userid"]).delete()
+                new_score = Score(user_hash=data["userid"], nickname=data["nickname"], score=data["score"])
+                db_session.add(new_score)
+    else:
+        new_score = Score(user_hash=data["userid"], nickname=data["nickname"], score=data["score"])
+        db_session.add(new_score)
     db_session.commit()
-    return data
+    return jsonify({'message': 'Score created successfully'}), 200
 
 @app.route("/top-ten", methods=['GET'])
 def get_top_ten():
