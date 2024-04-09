@@ -4,6 +4,9 @@ public class PlayerControlledSprite extends Sprite{
   boolean faceToRight = true;
   int health = 3;
   HashMap<String, Animation> animations;
+  boolean doubleJump = true;//can or cant double jump
+  boolean flagDoubleJump = false;//this jump is or not double jump
+  boolean doubleJumped = false;
 
   // Constructor
   PlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, int spriteLayer, int maxXPos, int maxYPos, String imgFile) {
@@ -70,8 +73,19 @@ public class PlayerControlledSprite extends Sprite{
     
     checkCollision(sprites);
     
-    if (jump && landed) {
-      ySpeed = -15.0f;
+    if (jump) {
+        if(landed) {
+          ySpeed = -15.0f;
+        }
+        else if (flagDoubleJump) {
+          ySpeed = -10.0f;
+          flagDoubleJump = false;
+          doubleJumped = true;
+        }
+      }
+    
+    if (!jump && !landed && !doubleJumped) {
+      flagDoubleJump = true;
     }
     
 
@@ -109,6 +123,8 @@ public void checkCollision(NonPlayerControlledSprite[] sprites) {
             this.ySpeed = 0.0;
             if (this.yPos + this.spriteHeight < sprite.yPos + 0.1) {
               this.landed = true;
+              this.flagDoubleJump = false;
+              this.doubleJumped = false;
             }
           }
         }
