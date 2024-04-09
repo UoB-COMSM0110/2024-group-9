@@ -78,7 +78,6 @@ public class View {
           currentLevel.calculateLevelScore();
           game.calculateGameScore();
           sendScore(game.getScore());
-          println(game.getScore());
           game.restart();
           game.section = SectionVariant.GAMEOVER;
         }
