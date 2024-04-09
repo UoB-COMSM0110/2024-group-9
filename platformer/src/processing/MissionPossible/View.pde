@@ -37,7 +37,7 @@ public class View {
           this.backgroundImage.resize(2300, 0);
         }
         snowflakes = new ArrayList<FallingSnowflake>();
-        for (int i = 0; i < 500; i++) {
+        for (int i = 0; i < 2000; i++) {
           snowflakes.add(new FallingSnowflake(currentLevel.levelWidth, currentLevel.levelHeight));
         }
     }
