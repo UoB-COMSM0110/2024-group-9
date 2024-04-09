@@ -11,6 +11,7 @@ public class NonPlayerControlledSprite extends Sprite{
   }
   public void Died(){
     this.isAlive = false;
+    currentLevel.score += 5;
   }
   public void updatePosition(){
     if(isEnemy && !isAlive){
