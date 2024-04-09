@@ -9,7 +9,7 @@ class FallingSnowflake {
     this.levelHeight = levelHeight;
     x = int(random(levelWidth));
     y = -int(random(levelHeight));
-    speed = random(8, 20);
+    speed = random(5, 10);
   }
   
   int getX() {

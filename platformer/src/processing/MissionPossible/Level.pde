@@ -68,7 +68,7 @@ public class Level{
      this.player = new PlayerControlledSprite(playerXPos, playerYPos, playerWidth, playerHeight, playerLayer, levelWidth, levelHeight, playerImage);
      
      if (weather == WeatherVariant.ICY) {
-       this.player.setXAcceleration(0.05f);
+       this.player.setXAcceleration(0.03f);
      } else {
        this.player.setXAcceleration(0.1f);
      }

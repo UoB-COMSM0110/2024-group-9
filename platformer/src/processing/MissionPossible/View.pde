@@ -39,7 +39,7 @@ public class View {
         }
         if (currentLevel.weather == WeatherVariant.ICY) {
           snowflakes = new ArrayList<FallingSnowflake>();
-          for (int i = 0; i < 2000; i++) {
+          for (int i = 0; i < 1000; i++) {
             snowflakes.add(new FallingSnowflake(currentLevel.levelWidth, currentLevel.levelHeight));
           }
         }
