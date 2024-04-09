@@ -72,6 +72,12 @@ public class Level{
      } else {
        this.player.setXAcceleration(0.1f);
      }
+     
+     if (weather == WeatherVariant.WINDY) {
+       this.player.setWindFactor(1.8f);
+     } else {
+       this.player.setWindFactor(1.0f);
+     }
 
      
      
