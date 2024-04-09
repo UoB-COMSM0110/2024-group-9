@@ -8,6 +8,7 @@ CREDITS
 Mission Possible was created by Group 9
 
 Starfield animation Copyright (c) 2017 Babu Thomas
+Game level background images: Space Backgrounds by Rawdanitsu is licensed under CC0.
 
 Animated sprite images are from OpenGameArt.org
 Cat: Cat fighter sprite sheet by dogchicken is licensed under CC-BY 3.0
