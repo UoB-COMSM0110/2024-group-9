@@ -29,21 +29,14 @@ public class View {
 
         this.camera = new Camera(levelDims[0], levelDims[1]);
         this.currentLevel = currentLevel;
-        this.backgroundImage = loadImage("Background-1.png");
-        this.backgroundImage.resize(2300, 0);
         userInterface = new UserInterface();
-        
-        if(game.section != SectionVariant.TUTORIAL){
-          this.backgroundImage = loadImage("Background-1.png");
-          this.backgroundImage.resize(2300, 0);
-        }
+        this.backgroundImage = currentLevel.imageMap.get("background.png");
+        this.backgroundImage.resize(levelDims[0], levelDims[1]);
     }
     
     public void displayView() {
       int[] cameraPos = this.camera.getPos();
-      if(game.section != SectionVariant.TUTORIAL){
-        image(this.backgroundImage, (0 - cameraPos[0]) / 4, (0 - cameraPos[1]) / 4);
-      }
+      image(this.backgroundImage, (0 - cameraPos[0]) / 4, (0 - cameraPos[1]) / 4);
       for (int sprite = 0; sprite < currentLevel.sprites.length; sprite++) {
         int[] currentSpriteViewPos = spriteViewPos(currentLevel.sprites[sprite]);
         fill(color(255, 255, 255));
