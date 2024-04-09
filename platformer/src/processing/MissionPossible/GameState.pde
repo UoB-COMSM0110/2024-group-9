@@ -55,7 +55,7 @@ public class GameState {
        case WOLF:
          return "wolf";
        default:
-         return "cat";
+         return "fox";
      }
   }
 }
