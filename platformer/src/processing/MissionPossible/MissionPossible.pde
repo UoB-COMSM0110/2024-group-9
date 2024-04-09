@@ -483,7 +483,7 @@ void mouseClicked() {
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 7*displayHeight/10, (7*displayHeight/10)+menuItemHeight, SectionVariant.CREDITS);
      
     if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <= displayWidth/2 + menuItemWidth/2 && mouseY >= 4*displayHeight/10 && mouseY <= (4*displayHeight/10)+menuItemHeight){
-      game.playerCharacter = CharacterVariant.SPACEMAN;
+      game.playerCharacter = CharacterVariant.FOX;
       enterLevel("tutorial");
     }   
   }
