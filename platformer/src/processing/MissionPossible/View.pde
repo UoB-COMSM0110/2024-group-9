@@ -48,6 +48,10 @@ public class View {
         int[] currentSpriteViewPos = spriteViewPos(currentLevel.sprites[sprite]);
         fill(color(255, 255, 255));
         image(currentLevel.imageMap.get(currentLevel.sprites[sprite].image), currentSpriteViewPos[0], currentSpriteViewPos[1], currentLevel.sprites[sprite].spriteWidth, currentLevel.sprites[sprite].spriteHeight);
+        //change the position of enemy
+        if(currentLevel.sprites[sprite].isEnemy){
+          currentLevel.sprites[sprite].updatePosition();
+        }
       }
       fill(color(255, 0, 0));
       currentLevel.player.updatePosition(moveLeft, moveRight, moveUp, moveDown, jump, currentLevel.sprites);
