@@ -376,6 +376,7 @@ void enterLevel(String levelName){
   game.level = levelName;
   currentLevel = new Level(game.level+File.separator+game.level+".json");
   currentView = new View(currentLevel);  
+  currentLevel.startTime = System.currentTimeMillis()/1000;
 }
   
 void keyPressed() {

@@ -108,7 +108,7 @@ public class Level{
   
   public void calculateLevelScore(){
     endTime = System.currentTimeMillis()/1000;
-    score = 1000/(endTime - startTime);    
+    score += 1000/(endTime - startTime);    
     game.updateLevelScore(game.level, score);
   }
 }
