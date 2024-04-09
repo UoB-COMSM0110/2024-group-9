@@ -73,17 +73,13 @@ public class View {
       if(currentLevel.player.health == 0){
         health0.setAsset(userInterface.getAsset("heart-empty.png"));
         if(game.mode == ModeVariant.EASY){
+          currentLevel.calculateLevelScore();
           currentLevel.restartLevel();
           game.section = SectionVariant.RESTARTLEVEL;
         }
         else{
           currentLevel.calculateLevelScore();
-          println("level start = "+currentLevel.startTime);
-          println("level end = "+currentLevel.endTime);
-          println("level time = "+(currentLevel.endTime-currentLevel.startTime));
-          println("level score = "+currentLevel.score);
           game.calculateGameScore();
-          println("game score = "+game.score);
           sendScore();
           game.restart();
           game.section = SectionVariant.GAMEOVER;

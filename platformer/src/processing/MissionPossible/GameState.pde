@@ -3,7 +3,6 @@ public class GameState {
   boolean showTutorial;
   String playerNickname;
   long score;
-  //int lives;
   WeatherVariant weather;
   ModeVariant mode;
   SectionVariant section;
@@ -18,7 +17,6 @@ public class GameState {
   GameState(){
     started = false;
     score = 0;
-    //lives = 3;
     weather = WeatherVariant.NEUTRAL;
     section = SectionVariant.STARTSCREEN;
     playerNickname = "";
@@ -32,7 +30,6 @@ public class GameState {
   // Restart
   void restart(){
     score = 0;
-    //lives = 3;
     spaceshipPieces = 0;
     playerNickname = "";
     level1Score = 0;
@@ -60,7 +57,10 @@ public class GameState {
   }
   
   public void calculateGameScore(){
-    score = level1Score + level2Score +level3Score + (10*currentLevel.player.health);
+    score = level1Score + level2Score +level3Score;
+    if(mode == ModeVariant.DIFFICULT){
+      score *= 1.25;
+    }
   }
   
   public void updateLevelScore(String levelNo, long levelScore){
