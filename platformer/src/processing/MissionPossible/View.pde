@@ -77,7 +77,7 @@ public class View {
         else{
           currentLevel.calculateLevelScore();
           game.calculateGameScore();
-          sendScore();
+          sendScore(game.getScore());
           game.restart();
           game.section = SectionVariant.GAMEOVER;
         }

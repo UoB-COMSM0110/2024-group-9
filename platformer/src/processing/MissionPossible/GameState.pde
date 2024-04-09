@@ -74,4 +74,8 @@ public class GameState {
       level3Score = levelScore;
     }
   }
+  
+  public long getScore() {
+    return score;
+  }
 }
