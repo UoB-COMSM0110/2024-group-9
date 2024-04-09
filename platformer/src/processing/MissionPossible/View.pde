@@ -23,6 +23,7 @@ public class View {
     boolean jumpCompleted;
     boolean dashCompleted;
     int scale = 1;
+    ArrayList<FogElement> fogElements;
 
     View(Level currentLevel) {
         int[] levelDims = currentLevel.getLevelDims();
@@ -39,6 +40,12 @@ public class View {
         snowflakes = new ArrayList<FallingSnowflake>();
         for (int i = 0; i < 2000; i++) {
           snowflakes.add(new FallingSnowflake(currentLevel.levelWidth, currentLevel.levelHeight));
+        
+        if (currentLevel.weather == WeatherVariant.FOGGY) {
+          this.fogElements = new ArrayList<FogElement>();
+          for (int i = 0; i < 200; i++) {
+            fogElements.add(new FogElement(currentLevel.levelWidth, currentLevel.levelHeight));
+          }
         }
     }
     
@@ -64,6 +71,13 @@ public class View {
       this.scale = 1;
       popMatrix();
       this.camera.setPos(currentLevel.player.getXPos() - displayWidth / 2, currentLevel.player.getYPos() - displayHeight / 2);
+      if (currentLevel.weather == WeatherVariant.FOGGY) {
+        for (FogElement fogElement : fogElements) {
+          fogElement.update();
+          
+          fogElement.display();
+        }
+      }
       UIElement health0 = userInterface.getElement("health0");
       UIElement health1 = userInterface.getElement("health1");
       UIElement health2 = userInterface.getElement("health2");
