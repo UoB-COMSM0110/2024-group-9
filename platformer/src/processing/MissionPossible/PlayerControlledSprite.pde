@@ -135,6 +135,14 @@ public void checkCollision(NonPlayerControlledSprite[] sprites) {
     return this.faceToRight;
   }
   
+  public void setXAcceleration(float acceleration) {
+    this.xAcceleration = acceleration;
+  }
+  
+  public void setYAcceleration(float acceleration) {
+    this.yAcceleration = acceleration;
+  }
+  
   public PImage getNextFrame() {
     if (Math.abs(ySpeed) - 0 > 0.0001) {
       return this.animations.get("jumping").nextFrame(ySpeed / 5);
