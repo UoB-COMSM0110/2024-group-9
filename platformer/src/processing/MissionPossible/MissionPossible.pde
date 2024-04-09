@@ -127,7 +127,7 @@ void selectScreen(){
   }
 }
 
-void sendScore() {
+void sendScore(long score) {
       String hostname = "";
       String username = "";
       String osName = "";
@@ -154,7 +154,7 @@ void sendScore() {
       JSONObject json = new JSONObject();
       json.setString("userid", userID);
       json.setString("nickname", game.playerNickname);
-      json.setInt("score", 301);
+      json.setLong("score", score);
       post.addData(json.toString());
       post.addHeader("Content-Type", "application/json");
       post.send();
