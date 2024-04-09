@@ -1,7 +1,7 @@
 {
   "height": 1200,
   "width": 3000,
-  "weather": "foggy",
+  "weather": "neutral",
   "player": {
     "position": {
       "xPos": 40,
