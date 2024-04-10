@@ -12,6 +12,7 @@ public class GameState {
   long level1Score;
   long level2Score;
   long level3Score;
+  long level4Score;
   
   // Constructor
   GameState(){
@@ -24,6 +25,7 @@ public class GameState {
     level1Score = 0;
     level2Score = 0;
     level3Score = 0;
+    level4Score = 0;
     // Initial showTutorial, playerNickname, playerCharacter, section and mode values to be set once player has started entering information
   }
   
@@ -35,6 +37,7 @@ public class GameState {
     level1Score = 0;
     level2Score = 0;
     level3Score = 0;
+    level4Score = 0;
   }
   
  String getCharacter(){
@@ -57,7 +60,7 @@ public class GameState {
   }
   
   public void calculateGameScore(){
-    score = level1Score + level2Score +level3Score;
+    score = level1Score + level2Score +level3Score + level4Score;
     if(mode == ModeVariant.DIFFICULT){
       score *= 1.25;
     }
@@ -72,6 +75,9 @@ public class GameState {
     }
     else if(levelNo == "level3"){
       level3Score = levelScore;
+    }
+    else if (levelNo == "level4"){
+      level4Score = levelScore;
     }
   }
   
