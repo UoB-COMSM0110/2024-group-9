@@ -13,7 +13,7 @@ Leaderboard leaderboard = new Leaderboard("https://leaderboard.charris.xyz");
 
 float boxWH = 160;
 PImage backgroundImage;
-float y = displayHeight;  
+float y;  
 Animation spaceman;
 Animation cowboy;
 Animation fox;
@@ -474,6 +474,7 @@ void mouseClicked() {
     game.started = true;
   }
   else if(game.section == SectionVariant.MAINMENU){
+    y = displayHeight;
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 3*displayHeight/10, (3*displayHeight/10)+menuItemHeight, SectionVariant.CHOOSECHARACTER);
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 4*displayHeight/10, (4*displayHeight/10)+menuItemHeight, SectionVariant.TUTORIAL);
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 5*displayHeight/10, (5*displayHeight/10)+menuItemHeight, SectionVariant.GAMESETTINGS);
