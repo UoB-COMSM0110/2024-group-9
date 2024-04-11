@@ -109,8 +109,7 @@ public void checkCollision(NonPlayerControlledSprite[] sprites) {
             this.health = health - 1;
             this.xSpeed = Math.signum(this.xSpeed) * -1 * this.maxSpeedX;
             this.ySpeed = Math.signum(this.ySpeed) * -0.5 * this.maxSpeedY;
-          }
-          else if(sprite.isSpaceshipPart && sprite.isAlive){
+          } else if(sprite.isSpaceshipPart && sprite.isAlive){
             collectSpaceshipPart(sprite);
           } else {
             this.xSpeed = 0;
@@ -122,6 +121,8 @@ public void checkCollision(NonPlayerControlledSprite[] sprites) {
             sprite.Died();
             this.xSpeed = Math.signum(this.xSpeed) * -1 * this.maxSpeedX;
             this.ySpeed = Math.signum(this.ySpeed) * -0.5 * this.maxSpeedY;
+          } else if(sprite.isSpaceshipPart && sprite.isAlive){
+            collectSpaceshipPart(sprite);
           } else {
             this.ySpeed = 0.0;
             if (this.yPos + this.spriteHeight < sprite.yPos + 0.1) {
