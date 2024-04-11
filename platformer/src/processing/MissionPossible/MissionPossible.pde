@@ -116,6 +116,9 @@ void selectScreen(){
   else if(game.section == SectionVariant.TUTORIAL || game.section == SectionVariant.GAMELEVELS){
     currentView.displayView();
   }
+  else if(game.section == SectionVariant.CHOOSELEVEL){
+    displayChooseLevel();
+  }
   
   // Opening screen stars
   if(game.section != SectionVariant.GAMELEVELS && game.section != SectionVariant.TUTORIAL){
@@ -287,7 +290,6 @@ void displayMissionScreen(){
 }
 
 void displayGameSettingsScreen(){
-  
   textAlign(CENTER, CENTER);
   fill(255);
   textSize(hoveredSize);
@@ -360,6 +362,35 @@ void displayRestartGame(){
   text("You lost all your lives!", displayWidth/2, displayHeight/3);
   fill(255);
   text("Click anywhere to submit your score\n and return to the main menu.", displayWidth/2, displayHeight/2);
+}
+
+void displayChooseLevel(){
+  textAlign(CENTER, CENTER);
+  fill(200, 20, 0);
+  textSize(hoveredSize);
+  text("Level completed! \nChoose your next level:", displayWidth/2, displayHeight/6);
+  
+  fill(255);
+  hoverTextSize(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 3*displayHeight/10, (3*displayHeight/10)+menuItemHeight);
+  text("Level 1: " + game.level1Score, displayWidth/2, 3*displayHeight/10);
+  
+  hoverTextSize(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 4*displayHeight/10, (4*displayHeight/10)+menuItemHeight);
+  text("Level 2: " + game.level2Score, displayWidth/2, 4*displayHeight/10);
+  
+  hoverTextSize(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 5*displayHeight/10, (5*displayHeight/10)+menuItemHeight);
+  text("Level 3: " + game.level3Score, displayWidth/2, 5*displayHeight/10);
+  
+  hoverTextSize(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 6*displayHeight/10, (6*displayHeight/10)+menuItemHeight);
+  text("Level 4: " + game.level4Score, displayWidth/2, 6*displayHeight/10);
+  
+  fill(200, 20, 0);
+  textSize(notHoveredSize);
+  text("Total score: " + game.score, displayWidth/2, 7*displayHeight/10);
+  
+  fill(255);
+  hoverTextSize(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight);
+  text("Submit score and quit", displayWidth/2, 9*displayHeight/10);
+  
 }
 
 void displayCredits(){
@@ -535,6 +566,13 @@ void mouseClicked() {
   else if(game.section == SectionVariant.GAMEOVER){
     game.section = SectionVariant.MAINMENU;
   }
+  else if(game.section == SectionVariant.CHOOSELEVEL){
+    levelClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 3*displayHeight/10, (3*displayHeight/10)+menuItemHeight, "level1");
+    levelClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 4*displayHeight/10, (4*displayHeight/10)+menuItemHeight, "level2");
+    levelClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 5*displayHeight/10, (5*displayHeight/10)+menuItemHeight, "level3");
+    levelClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 6*displayHeight/10, (6*displayHeight/10)+menuItemHeight, "level3");
+    levelClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight, "");
+  }
 }
 
 void hoverTextSize(float xMin, float xMax, float yMin, float yMax){
@@ -581,4 +619,18 @@ void modeClicks(float xMin, float xMax, float yMin, float yMax, ModeVariant mode
     game.mode = mode;
     game.section = section;
   }   
+}
+
+void levelClicks(float xMin, float xMax, float yMin, float yMax, String levelNo){
+  if(mouseX >= xMin  && mouseX <= xMax && mouseY >= yMin && mouseY <= yMax){
+    if(levelNo == ""){
+      sendScore(game.score);
+      game.restart();
+      game.section = SectionVariant.CREDITS;
+    }
+    else {
+      game.section = SectionVariant.GAMELEVELS;
+      enterLevel(levelNo);
+    }
+  }
 }

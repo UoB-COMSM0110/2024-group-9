@@ -22,6 +22,7 @@
       "spriteHeight": 100,
       "layer": 1,
       "isEnemy": false,
+      "isSpaceshipPart": false,
       "spriteImage": "platform.png"
     },
     {
@@ -33,6 +34,7 @@
       "spriteHeight": 20,
       "layer": 1,
       "isEnemy": false,
+      "isSpaceshipPart": false,
       "spriteImage": "platform.png"
     },
     {
@@ -44,6 +46,7 @@
       "spriteHeight": 20,
       "layer": 1,
       "isEnemy": false,
+      "isSpaceshipPart": false,
       "spriteImage": "platform.png"
     },    
     {
@@ -55,6 +58,7 @@
       "spriteHeight": 20,
       "layer": 1,
       "isEnemy": false,
+      "isSpaceshipPart": false,
       "spriteImage": "platform.png"
     },
     {
@@ -66,6 +70,7 @@
       "spriteHeight": 20,
       "layer": 1,
       "isEnemy": false,
+      "isSpaceshipPart": false,
       "spriteImage": "platform.png"
     },
     {
@@ -77,6 +82,7 @@
       "spriteHeight": 20,
       "layer": 1,
       "isEnemy": false,
+      "isSpaceshipPart": false,
       "spriteImage": "platform.png"
     },
     {
@@ -88,6 +94,7 @@
       "spriteHeight": 20,
       "layer": 1,
       "isEnemy": false,
+      "isSpaceshipPart": false,
       "spriteImage": "platform.png"
     },
     {
@@ -99,6 +106,7 @@
       "spriteHeight": 20,
       "layer": 1,
       "isEnemy": false,
+      "isSpaceshipPart": false,
       "spriteImage": "platform.png"
     },
     {
@@ -110,6 +118,7 @@
       "spriteHeight": 20,
       "layer": 1,
       "isEnemy": false,
+      "isSpaceshipPart": false,
       "spriteImage": "platform.png"
     }
   ]

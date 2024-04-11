@@ -87,8 +87,9 @@ public class Level{
       int spriteHeight = sprite.getInt("spriteHeight");
       int spriteLayer = sprite.getInt("layer");
       boolean isEnemy = sprite.getBoolean("isEnemy");
+      boolean isSpaceshipPart = sprite.getBoolean("isSpaceshipPart");
       String spriteImage = sprite.getString("spriteImage");
-      sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, isEnemy, levelWidth, levelHeight, spriteImage);
+      sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, isEnemy, isSpaceshipPart, levelWidth, levelHeight, spriteImage);
     }
     this.sprites = sprites;    
   }
@@ -109,5 +110,13 @@ public class Level{
     endTime = System.currentTimeMillis()/1000;
     score = score + (1000/(endTime - startTime))+(5*currentLevel.player.health);    
     game.updateLevelScore(game.level, score);
+  }
+  
+  public void endLevel(){
+    calculateLevelScore();
+    game.calculateGameScore();
+    int levelNum = parseInt(game.level.substring(5));
+    game.levelsComplete[levelNum-1] = true;
+    game.section = SectionVariant.CHOOSELEVEL;
   }
 }

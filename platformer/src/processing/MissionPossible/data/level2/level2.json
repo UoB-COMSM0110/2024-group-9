@@ -1,7 +1,7 @@
 {
   "height": 1800,
   "width": 2400,
-  "weather": "neutral",
+  "weather": "windy",
   "player": {
     "position": {
       "xPos": 40,
@@ -287,7 +287,7 @@
       "layer": 1,
       "isEnemy": false,
       "isSpaceshipPart": true,
-      "spriteImage": "spaceship_part1.png"
+      "spriteImage": "spaceship_part2.png"
     }
   ]
 }

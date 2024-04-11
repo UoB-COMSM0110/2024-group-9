@@ -42,7 +42,7 @@ public class View {
         fill(color(255, 255, 255));
         image(currentLevel.imageMap.get(currentLevel.sprites[sprite].image), currentSpriteViewPos[0], currentSpriteViewPos[1], currentLevel.sprites[sprite].spriteWidth, currentLevel.sprites[sprite].spriteHeight);
         //change the position of enemy
-        if(currentLevel.sprites[sprite].isEnemy){
+        if(currentLevel.sprites[sprite].isEnemy || currentLevel.sprites[sprite].isSpaceshipPart){
           currentLevel.sprites[sprite].updatePosition();
         }
       }

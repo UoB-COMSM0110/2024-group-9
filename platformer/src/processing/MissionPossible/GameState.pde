@@ -13,6 +13,7 @@ public class GameState {
   long level2Score;
   long level3Score;
   long level4Score;
+  boolean[] levelsComplete;
   
   // Constructor
   GameState(){
@@ -26,6 +27,10 @@ public class GameState {
     level2Score = 0;
     level3Score = 0;
     level4Score = 0;
+    levelsComplete = new boolean[4];
+    for(int i = 0; i < 4; i++){
+      levelsComplete[i] = false;
+    }
     // Initial showTutorial, playerNickname, playerCharacter, section and mode values to be set once player has started entering information
   }
   
@@ -83,5 +88,9 @@ public class GameState {
   
   public long getScore() {
     return score;
+  }
+  
+  public void increaseSpaceshipPieces(){
+    spaceshipPieces++;
   }
 }

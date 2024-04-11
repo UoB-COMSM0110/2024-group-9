@@ -109,11 +109,14 @@ public void checkCollision(NonPlayerControlledSprite[] sprites) {
             this.health = health - 1;
             this.xSpeed = Math.signum(this.xSpeed) * -1 * this.maxSpeedX;
             this.ySpeed = Math.signum(this.ySpeed) * -0.5 * this.maxSpeedY;
+          }
+          else if(sprite.isSpaceshipPart && sprite.isAlive){
+            collectSpaceshipPart(sprite);
           } else {
             this.xSpeed = 0;
           }
 
-        }
+        }     
         if (this.xPos + this.spriteWidth > sprite.xPos && this.xPos < sprite.xPos + sprite.spriteWidth && this.yPos + this.spriteHeight + this.ySpeed > sprite.yPos && this.yPos + this.ySpeed < sprite.yPos + sprite.spriteHeight) {
           if(sprite.isEnemy){
             sprite.Died();
@@ -142,6 +145,14 @@ public void checkCollision(NonPlayerControlledSprite[] sprites) {
       return this.animations.get("standing").nextFrame(1);
     }
     return this.animations.get("moving").nextFrame(xSpeed / 3);
+  }
+  
+  public void collectSpaceshipPart(NonPlayerControlledSprite sprite){
+    sprite.Died();
+    game.increaseSpaceshipPieces();
+    String part = "part"+game.level.substring(5);
+    currentView.userInterface.getElement(part).setTintAmount(255);
+    currentLevel.endLevel();
   }
   
 }
