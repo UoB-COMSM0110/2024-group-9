@@ -119,7 +119,6 @@ public void checkCollision(NonPlayerControlledSprite[] sprites) {
         if (this.xPos + this.spriteWidth > sprite.xPos && this.xPos < sprite.xPos + sprite.spriteWidth && this.yPos + this.spriteHeight + this.ySpeed > sprite.yPos && this.yPos + this.ySpeed < sprite.yPos + sprite.spriteHeight) {
           if(sprite.isEnemy){
             sprite.Died();
-            this.xSpeed = Math.signum(this.xSpeed) * -1 * this.maxSpeedX;
             this.ySpeed = Math.signum(this.ySpeed) * -0.5 * this.maxSpeedY;
           } else if(sprite.isSpaceshipPart && sprite.isAlive){
             collectSpaceshipPart(sprite);
