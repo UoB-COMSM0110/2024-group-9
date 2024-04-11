@@ -116,8 +116,11 @@ void selectScreen(){
   else if(game.section == SectionVariant.TUTORIAL || game.section == SectionVariant.GAMELEVELS){
     currentView.displayView();
   }
-  else if(game.section == SectionVariant.CHOOSELEVEL){
-    displayChooseLevel();
+  else if(game.section == SectionVariant.SHOWSCORES){
+    displayShowScores();
+  }
+  else if(game.section == SectionVariant.GAMECOMPLETE){
+    displayGameComplete();
   }
   
   // Opening screen stars
@@ -348,7 +351,7 @@ void displayRestartLevel(){
   text("Oh no, you lost all your lives!", displayWidth/2, displayHeight/6);
   fill(255);
   hoverTextSize(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 3*displayHeight/10, (3*displayHeight/10)+menuItemHeight);
-  text("Click here to restart level", displayWidth/2, 3*displayHeight/10);
+  text("Click here to restart level "+game.spaceshipPieces+1, displayWidth/2, 3*displayHeight/10);
   fill(255);
   BackToMain backToMain = new BackToMain();
 }
@@ -361,36 +364,39 @@ void displayRestartGame(){
   textSize(hoveredSize);
   text("You lost all your lives!", displayWidth/2, displayHeight/3);
   fill(255);
-  text("Click anywhere to submit your score\n and return to the main menu.", displayWidth/2, displayHeight/2);
+  text("Your final score was "+game.score+"\n\nClick anywhere to submit your score\n and return to the main menu.", displayWidth/2, displayHeight/1.5);
 }
 
-void displayChooseLevel(){
+void displayShowScores(){
   textAlign(CENTER, CENTER);
   fill(200, 20, 0);
   textSize(hoveredSize);
-  text("Level completed! \nChoose your next level:", displayWidth/2, displayHeight/6);
+  text("Level "+game.spaceshipPieces+" completed!", displayWidth/2, displayHeight/6);
   
   fill(255);
-  hoverTextSize(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 3*displayHeight/10, (3*displayHeight/10)+menuItemHeight);
-  text("Level 1: " + game.level1Score, displayWidth/2, 3*displayHeight/10);
-  
-  hoverTextSize(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 4*displayHeight/10, (4*displayHeight/10)+menuItemHeight);
-  text("Level 2: " + game.level2Score, displayWidth/2, 4*displayHeight/10);
-  
-  hoverTextSize(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 5*displayHeight/10, (5*displayHeight/10)+menuItemHeight);
-  text("Level 3: " + game.level3Score, displayWidth/2, 5*displayHeight/10);
-  
-  hoverTextSize(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 6*displayHeight/10, (6*displayHeight/10)+menuItemHeight);
-  text("Level 4: " + game.level4Score, displayWidth/2, 6*displayHeight/10);
-  
-  fill(200, 20, 0);
   textSize(notHoveredSize);
+  text("Level 1: " + game.level1Score, displayWidth/2, 3*displayHeight/10);
+  text("Level 2: " + game.level2Score, displayWidth/2, 4*displayHeight/10);
+  text("Level 3: " + game.level3Score, displayWidth/2, 5*displayHeight/10);
+  text("Level 4: " + game.level4Score, displayWidth/2, 6*displayHeight/10);
+  fill(200, 20, 0);
   text("Total score: " + game.score, displayWidth/2, 7*displayHeight/10);
   
   fill(255);
-  hoverTextSize(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight);
-  text("Submit score and quit", displayWidth/2, 9*displayHeight/10);
-  
+  text("Click anywhere to start the next level.", displayWidth/2, 9*displayHeight/10);
+}
+
+void displayGameComplete(){
+  textAlign(CENTER, CENTER);
+  fill(200, 20, 0);
+  textSize(hoveredSize);
+  textSize(headerSize);
+  text("CONGRATULATIONS!", displayWidth/2, displayHeight/6);
+  textSize(hoveredSize);
+  text("You completed Mission Possible!", displayWidth/2, displayHeight/4);
+  fill(255);
+  textSize(notHoveredSize);
+  text("Click anywhere to submit your score of "+game.score+" and end the game.", displayWidth/2, displayHeight/2);
 }
 
 void displayCredits(){
@@ -564,14 +570,18 @@ void mouseClicked() {
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight, SectionVariant.MAINMENU);
   }
   else if(game.section == SectionVariant.GAMEOVER){
+    sendScore(game.getScore());
+    game.restart();
     game.section = SectionVariant.MAINMENU;
   }
-  else if(game.section == SectionVariant.CHOOSELEVEL){
-    levelClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 3*displayHeight/10, (3*displayHeight/10)+menuItemHeight, "level1");
-    levelClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 4*displayHeight/10, (4*displayHeight/10)+menuItemHeight, "level2");
-    levelClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 5*displayHeight/10, (5*displayHeight/10)+menuItemHeight, "level3");
-    levelClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 6*displayHeight/10, (6*displayHeight/10)+menuItemHeight, "level3");
-    levelClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight, "");
+  else if(game.section == SectionVariant.SHOWSCORES){
+    game.section = SectionVariant.GAMELEVELS;
+    int nextLevel = parseInt(game.spaceshipPieces)+1;
+    enterLevel("level"+nextLevel);
+  }
+  else if(game.section == SectionVariant.GAMECOMPLETE){
+    sendScore(game.getScore());
+    game.section = SectionVariant.CREDITS;
   }
 }
 
@@ -619,18 +629,4 @@ void modeClicks(float xMin, float xMax, float yMin, float yMax, ModeVariant mode
     game.mode = mode;
     game.section = section;
   }   
-}
-
-void levelClicks(float xMin, float xMax, float yMin, float yMax, String levelNo){
-  if(mouseX >= xMin  && mouseX <= xMax && mouseY >= yMin && mouseY <= yMax){
-    if(levelNo == ""){
-      sendScore(game.score);
-      game.restart();
-      game.section = SectionVariant.CREDITS;
-    }
-    else {
-      game.section = SectionVariant.GAMELEVELS;
-      enterLevel(levelNo);
-    }
-  }
 }

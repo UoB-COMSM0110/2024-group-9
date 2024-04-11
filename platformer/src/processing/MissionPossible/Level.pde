@@ -112,15 +112,21 @@ public class Level{
   
   public void calculateLevelScoreAlive(){
     endTime = System.currentTimeMillis()/1000;
-    score = score + (1000/(endTime - startTime))+(5*currentLevel.player.health);    
+    score = score + (1000/(endTime - startTime))+(5*currentLevel.player.health);
+    if(game.mode == ModeVariant.DIFFICULT){
+      score *= 1.25;
+    }
     game.updateLevelScore(game.level, score);
   }
   
   public void endLevel(){
     calculateLevelScoreAlive();
     game.calculateGameScore();
-    int levelNum = parseInt(game.level.substring(5));
-    game.levelsComplete[levelNum-1] = true;
-    game.section = SectionVariant.CHOOSELEVEL;
+    if(game.level.equals("level4")){
+      game.section = SectionVariant.GAMECOMPLETE;
+    }
+    else{
+      game.section = SectionVariant.SHOWSCORES;
+    }
   }
 }

@@ -22,10 +22,8 @@ class UserInterface{
     uiElements.put("part2", new UIElement(UIElementVariant.IMAGE, 9 * displayWidth / 13 + 1 * displayWidth / 35, displayHeight / 20, "", 255, uiAssets.get("spaceship_part2.png"), displayHeight / 20, displayHeight / 20, 100));
     uiElements.put("part3", new UIElement(UIElementVariant.IMAGE, 9 * displayWidth / 13 + 2 * displayWidth / 35, displayHeight / 20, "", 255, uiAssets.get("spaceship_part3.png"), displayHeight / 20, displayHeight / 20, 100));
     uiElements.put("part4", new UIElement(UIElementVariant.IMAGE, 9 * displayWidth / 13 + 3 * displayWidth / 35, displayHeight / 20, "", 255, uiAssets.get("spaceship_part4.png"), displayHeight / 20, displayHeight / 20, 100));
-    for(int levelNum = 1; levelNum < 5; levelNum++){
-      if(game.levelsComplete[levelNum-1] == true){
-        getElement("part"+Integer.toString(levelNum)).setTintAmount(255);
-      }
+    for(int i = 1; i <= game.spaceshipPieces; i++){
+      getElement("part"+Integer.toString(i)).setTintAmount(255);
     }
   }
   

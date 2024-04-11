@@ -13,7 +13,6 @@ public class GameState {
   long level2Score;
   long level3Score;
   long level4Score;
-  boolean[] levelsComplete;
   
   // Constructor
   GameState(){
@@ -27,10 +26,6 @@ public class GameState {
     level2Score = 0;
     level3Score = 0;
     level4Score = 0;
-    levelsComplete = new boolean[4];
-    for(int i = 0; i < 4; i++){
-      levelsComplete[i] = false;
-    }
     // Initial showTutorial, playerNickname, playerCharacter, section and mode values to be set once player has started entering information
   }
   
@@ -66,22 +61,19 @@ public class GameState {
   
   public void calculateGameScore(){
     score = level1Score + level2Score +level3Score + level4Score;
-    if(mode == ModeVariant.DIFFICULT){
-      score *= 1.25;
-    }
   }
   
   public void updateLevelScore(String levelNo, long levelScore){
-    if(levelNo == "level1"){
+    if(levelNo.equals("level1")){
       level1Score = levelScore;
     }
-    else if(levelNo == "level2"){
+    else if(levelNo.equals("level2")){
       level2Score = levelScore;
     }
-    else if(levelNo == "level3"){
+    else if(levelNo.equals("level3")){
       level3Score = levelScore;
     }
-    else if (levelNo == "level4"){
+    else if (levelNo.equals("level4")){
       level4Score = levelScore;
     }
   }
