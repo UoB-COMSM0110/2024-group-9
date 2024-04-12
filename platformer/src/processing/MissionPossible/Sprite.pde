@@ -88,4 +88,8 @@ public abstract class Sprite{
     return this.yPos;
   }
   
+  public int getSpriteWidth() {
+    return this.spriteWidth;
+  }
+  
 }
