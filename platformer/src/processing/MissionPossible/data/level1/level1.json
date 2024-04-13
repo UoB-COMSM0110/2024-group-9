@@ -63,18 +63,6 @@
     },
     {
       "position": {
-        "x": 1000,
-        "y": 1400
-      },
-      "spriteWidth": 130,
-      "spriteHeight": 20,
-      "layer": 1,
-      "isEnemy": false,
-      "isSpaceshipPart": false,
-      "spriteImage": "platform.png"
-    },
-    {
-      "position": {
         "x": 1100,
         "y": 1500
       },

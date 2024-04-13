@@ -351,7 +351,7 @@ void displayRestartLevel(){
   text("Oh no, you lost all your lives!", displayWidth/2, displayHeight/6);
   fill(255);
   hoverTextSize(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 3*displayHeight/10, (3*displayHeight/10)+menuItemHeight);
-  text("Click here to restart level "+game.spaceshipPieces+1, displayWidth/2, 3*displayHeight/10);
+  text("Click here to restart level "+(game.spaceshipPieces+1), displayWidth/2, 3*displayHeight/10);
   fill(255);
   BackToMain backToMain = new BackToMain();
 }

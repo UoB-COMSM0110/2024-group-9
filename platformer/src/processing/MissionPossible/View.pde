@@ -14,7 +14,7 @@ public class View {
       "Welcome to the Mission Possible tutorial!\n\nTo move right, press "+KeyEvent.getKeyText(settings.rightKey)+".",
       "To move left, press "+KeyEvent.getKeyText(settings.leftKey)+".",
       "To jump, press "+KeyEvent.getKeyText(settings.jumpKey)+"\nPress twice to double jump.",
-      "To dash, move left or right and press "+KeyEvent.getKeyText(settings.dashKey)+".",
+      "To dash in the direction you're facing, press "+KeyEvent.getKeyText(settings.dashKey)+".",
       "You can change these key commands in the game settings menu.\n\nClick anywhere to exit to the main menu."
     };
     int currentInstructionIndex = 0;
