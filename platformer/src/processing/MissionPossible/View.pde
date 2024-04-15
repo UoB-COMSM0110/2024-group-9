@@ -40,11 +40,10 @@ public class View {
         
         if (currentLevel.weather == WeatherVariant.FOGGY) {
           this.fogElements = new ArrayList<FogElement>();
-          for (int b = 0; b < 2000; b++) {
+          for (int b = 0; b < 1000; b++) {
             fogElements.add(new FogElement(currentLevel.levelWidth, currentLevel.levelHeight, 0.005, 0.1));
           }
         }
-      }
         this.backgroundImage = currentLevel.imageMap.get("background.png");
         this.backgroundImage.resize(levelDims[0], levelDims[1]);
     }
