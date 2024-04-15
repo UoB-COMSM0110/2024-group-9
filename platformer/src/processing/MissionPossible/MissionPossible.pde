@@ -11,6 +11,7 @@ View currentView;
 PFont MPFont;
 Leaderboard leaderboard = new Leaderboard("https://leaderboard.charris.xyz");
 
+
 float boxWH = 160;
 PImage backgroundImage;
 float y;  
@@ -582,3 +583,4 @@ void modeClicks(float xMin, float xMax, float yMin, float yMax, ModeVariant mode
     game.section = section;
   }   
 }
+  

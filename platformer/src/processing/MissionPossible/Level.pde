@@ -68,6 +68,18 @@ public class Level{
      String playerImage = playerData.getString("spriteImage");
           
      this.player = new PlayerControlledSprite(playerXPos, playerYPos, playerWidth, playerHeight, playerLayer, levelWidth, levelHeight, playerImage);
+     
+     if (weather == WeatherVariant.ICY) {
+       this.player.setXAcceleration(0.03f);
+     } else {
+       this.player.setXAcceleration(0.1f);
+     }
+     
+     if (weather == WeatherVariant.WINDY) {
+       this.player.setWindFactor(1.8f);
+     } else {
+       this.player.setWindFactor(1.0f);
+     }
 
      
      
