@@ -43,7 +43,7 @@ public class View {
         image(currentLevel.imageMap.get(currentLevel.sprites[sprite].image), currentSpriteViewPos[0], currentSpriteViewPos[1], currentLevel.sprites[sprite].spriteWidth, currentLevel.sprites[sprite].spriteHeight);
         //change the position of enemy
         if(currentLevel.sprites[sprite].isEnemy || currentLevel.sprites[sprite].isSpaceshipPart){
-          currentLevel.sprites[sprite].updatePosition();
+          currentLevel.sprites[sprite].updatePosition(currentLevel.sprites[sprite - 1].getXPos(), currentLevel.sprites[sprite - 1].getXPos() + currentLevel.sprites[sprite - 1].getSpriteWidth() - currentLevel.sprites[sprite].getSpriteWidth());
         }
       }
       fill(color(255, 0, 0));
