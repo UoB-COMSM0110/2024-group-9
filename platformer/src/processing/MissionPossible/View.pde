@@ -13,7 +13,7 @@ public class View {
     String[] tutorialInstructions = {
       "Welcome to the Mission Possible tutorial!\n\nTo move right, press "+KeyEvent.getKeyText(settings.rightKey)+".",
       "To move left, press "+KeyEvent.getKeyText(settings.leftKey)+".",
-      "To jump, press "+KeyEvent.getKeyText(settings.jumpKey)+"\nYou can use this tutorial to practice jumping between platforms.",
+      "To jump, press "+KeyEvent.getKeyText(settings.jumpKey)+"\nPress twice to double jump.",
       "To dash, move left or right and press "+KeyEvent.getKeyText(settings.dashKey)+".",
       "You can change these key commands in the game settings menu.\n\nClick anywhere to exit to the main menu."
     };
@@ -30,13 +30,7 @@ public class View {
 
         this.camera = new Camera(levelDims[0], levelDims[1]);
         this.currentLevel = currentLevel;
-        this.backgroundImage = loadImage("Background-1.png");
-        this.backgroundImage.resize(2300, 0);
         userInterface = new UserInterface();
-        if(game.section != SectionVariant.TUTORIAL){
-          this.backgroundImage = loadImage("Background-1.png");
-          this.backgroundImage.resize(2300, 0);
-        }
         if (currentLevel.weather == WeatherVariant.ICY) {
           snowflakes = new ArrayList<FallingSnowflake>();
           for (int i = 0; i < 1000; i++) {
@@ -51,16 +45,21 @@ public class View {
           }
         }
       }
+        this.backgroundImage = currentLevel.imageMap.get("background.png");
+        this.backgroundImage.resize(levelDims[0], levelDims[1]);
+    }
     
     public void displayView() {
       int[] cameraPos = this.camera.getPos();
-      if(game.section != SectionVariant.TUTORIAL){
-        image(this.backgroundImage, (0 - cameraPos[0]) / 4, (0 - cameraPos[1]) / 4);
-      }
+      image(this.backgroundImage, (0 - cameraPos[0]) / 4, (0 - cameraPos[1]) / 4);
       for (int sprite = 0; sprite < currentLevel.sprites.length; sprite++) {
         int[] currentSpriteViewPos = spriteViewPos(currentLevel.sprites[sprite].xPos, currentLevel.sprites[sprite].yPos);
         fill(color(255, 255, 255));
         image(currentLevel.imageMap.get(currentLevel.sprites[sprite].image), currentSpriteViewPos[0], currentSpriteViewPos[1], currentLevel.sprites[sprite].spriteWidth, currentLevel.sprites[sprite].spriteHeight);
+        //change the position of enemy
+        if(currentLevel.sprites[sprite].isEnemy){
+          currentLevel.sprites[sprite].updatePosition(currentLevel.sprites[sprite - 1].getXPos(), currentLevel.sprites[sprite - 1].getXPos() + currentLevel.sprites[sprite - 1].getSpriteWidth() - currentLevel.sprites[sprite].getSpriteWidth());
+        }
       }
       fill(color(255, 0, 0));
       currentLevel.player.updatePosition(moveLeft, moveRight, moveUp, moveDown, jump, currentLevel.sprites);
@@ -87,11 +86,14 @@ public class View {
       if(currentLevel.player.health == 0){
         health0.setAsset(userInterface.getAsset("heart-empty.png"));
         if(game.mode == ModeVariant.EASY){
+          currentLevel.calculateLevelScore();
           currentLevel.restartLevel();
           game.section = SectionVariant.RESTARTLEVEL;
         }
         else{
-          sendScore();
+          currentLevel.calculateLevelScore();
+          game.calculateGameScore();
+          sendScore(game.getScore());
           game.restart();
           game.section = SectionVariant.GAMEOVER;
         }

@@ -14,7 +14,7 @@ Leaderboard leaderboard = new Leaderboard("https://leaderboard.charris.xyz");
 
 float boxWH = 160;
 PImage backgroundImage;
-float y = displayHeight;  
+float y;  
 Animation spaceman;
 Animation cowboy;
 Animation fox;
@@ -128,7 +128,7 @@ void selectScreen(){
   }
 }
 
-void sendScore() {
+void sendScore(long score) {
       String hostname = "";
       String username = "";
       String osName = "";
@@ -155,7 +155,7 @@ void sendScore() {
       JSONObject json = new JSONObject();
       json.setString("userid", userID);
       json.setString("nickname", game.playerNickname);
-      json.setInt("score", 301);
+      json.setLong("score", score);
       post.addData(json.toString());
       post.addHeader("Content-Type", "application/json");
       post.send();
@@ -375,6 +375,7 @@ void enterLevel(String levelName){
   game.level = levelName;
   currentLevel = new Level(game.level+File.separator+game.level+".json");
   currentView = new View(currentLevel);  
+  currentLevel.startTime = System.currentTimeMillis()/1000;
 }
   
 void keyPressed() {
@@ -474,6 +475,7 @@ void mouseClicked() {
     game.started = true;
   }
   else if(game.section == SectionVariant.MAINMENU){
+    y = displayHeight;
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 3*displayHeight/10, (3*displayHeight/10)+menuItemHeight, SectionVariant.CHOOSECHARACTER);
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 4*displayHeight/10, (4*displayHeight/10)+menuItemHeight, SectionVariant.TUTORIAL);
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 5*displayHeight/10, (5*displayHeight/10)+menuItemHeight, SectionVariant.GAMESETTINGS);
@@ -484,7 +486,7 @@ void mouseClicked() {
     menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 7*displayHeight/10, (7*displayHeight/10)+menuItemHeight, SectionVariant.CREDITS);
      
     if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <= displayWidth/2 + menuItemWidth/2 && mouseY >= 4*displayHeight/10 && mouseY <= (4*displayHeight/10)+menuItemHeight){
-      game.playerCharacter = CharacterVariant.SPACEMAN;
+      game.playerCharacter = CharacterVariant.FOX;
       enterLevel("tutorial");
     }   
   }
