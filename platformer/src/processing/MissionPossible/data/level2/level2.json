@@ -10,7 +10,6 @@
     },
     "spriteWidth": 65,
     "spriteHeight": 65,
-    "layer": 1,
     "spriteImage": ""
   },
   "sprites": [
@@ -21,7 +20,6 @@
       },
       "spriteWidth": 2400,
       "spriteHeight": 100,
-      "layer": 1,
       "isEnemy": false,
       "isSpaceshipPart": false,
       "spriteImage": "platform.png"
@@ -33,7 +31,6 @@
       },
       "spriteWidth": 600,
       "spriteHeight": 100,
-      "layer": 1,
       "isEnemy": false,
       "isSpaceshipPart": false,
       "spriteImage": "platform.png"
@@ -45,7 +42,6 @@
       },
       "spriteWidth": 100,
       "spriteHeight": 100,
-      "layer": 1,
       "isEnemy": true,
       "isSpaceshipPart": false,
       "spriteImage": "monster1.png"
@@ -57,7 +53,6 @@
       },
       "spriteWidth": 550,
       "spriteHeight": 100,
-      "layer": 1,
       "isEnemy": false,
       "isSpaceshipPart": false,
       "spriteImage": "platform.png"
@@ -69,7 +64,6 @@
       },
       "spriteWidth": 100,
       "spriteHeight": 100,
-      "layer": 1,
       "isEnemy": true,
       "isSpaceshipPart": false,
       "spriteImage": "monster1.png"
@@ -81,7 +75,6 @@
       },
       "spriteWidth": 800,
       "spriteHeight": 150,
-      "layer": 1,
       "isEnemy": false,
       "isSpaceshipPart": false,
       "spriteImage": "platform.png"
@@ -93,7 +86,6 @@
       },
       "spriteWidth": 100,
       "spriteHeight": 100,
-      "layer": 1,
       "isEnemy": true,
       "isSpaceshipPart": false,
       "spriteImage": "monster2.png"
@@ -105,7 +97,6 @@
       },
       "spriteWidth": 800,
       "spriteHeight": 150,
-      "layer": 1,
       "isEnemy": false,
       "isSpaceshipPart": false,
       "spriteImage": "platform.png"
@@ -117,7 +108,6 @@
       },
       "spriteWidth": 100,
       "spriteHeight": 100,
-      "layer": 1,
       "isEnemy": true,
       "isSpaceshipPart": false,
       "spriteImage": "monster2.png"
@@ -129,7 +119,6 @@
       },
       "spriteWidth": 350,
       "spriteHeight": 100,
-      "layer": 1,
       "isEnemy": false,
       "isSpaceshipPart": false,
       "spriteImage": "platform.png"
@@ -141,7 +130,6 @@
       },
       "spriteWidth": 200,
       "spriteHeight": 20,
-      "layer": 1,
       "isEnemy": false,
       "isSpaceshipPart": false,
       "spriteImage": "platform.png"
@@ -153,7 +141,6 @@
       },
       "spriteWidth": 200,
       "spriteHeight": 20,
-      "layer": 1,
       "isEnemy": false,
       "isSpaceshipPart": false,
       "spriteImage": "platform.png"
@@ -165,7 +152,6 @@
       },
       "spriteWidth": 350,
       "spriteHeight": 20,
-      "layer": 1,
       "isEnemy": false,
       "isSpaceshipPart": false,
       "spriteImage": "platform.png"
@@ -177,7 +163,6 @@
       },
       "spriteWidth": 100,
       "spriteHeight": 100,
-      "layer": 1,
       "isEnemy": true,
       "isSpaceshipPart": false,
       "spriteImage": "monster2.png"
@@ -189,7 +174,6 @@
       },
       "spriteWidth": 200,
       "spriteHeight": 100,
-      "layer": 1,
       "isEnemy": false,
       "isSpaceshipPart": false,
       "spriteImage": "platform.png"
@@ -201,7 +185,6 @@
       },
       "spriteWidth": 500,
       "spriteHeight": 250,
-      "layer": 1,
       "isEnemy": false,
       "isSpaceshipPart": false,
       "spriteImage": "platform.png"
@@ -213,7 +196,6 @@
       },
       "spriteWidth": 250,
       "spriteHeight": 270,
-      "layer": 1,
       "isEnemy": false,
       "isSpaceshipPart": false,
       "spriteImage": "platform.png"
@@ -225,7 +207,6 @@
       },
       "spriteWidth": 200,
       "spriteHeight": 20,
-      "layer": 1,
       "isEnemy": false,
       "isSpaceshipPart": false,
       "spriteImage": "platform.png"
@@ -237,7 +218,6 @@
       },
       "spriteWidth": 150,
       "spriteHeight": 30,
-      "layer": 1,
       "isEnemy": false,
       "isSpaceshipPart": false,
       "spriteImage": "platform.png"
@@ -249,7 +229,6 @@
       },
       "spriteWidth": 200,
       "spriteHeight": 50,
-      "layer": 1,
       "isEnemy": false,
       "isSpaceshipPart": false,
       "spriteImage": "platform.png"
@@ -261,7 +240,6 @@
       },
       "spriteWidth": 550,
       "spriteHeight": 50,
-      "layer": 1,
       "isEnemy": false,
       "isSpaceshipPart": false,
       "spriteImage": "platform.png"
@@ -273,7 +251,6 @@
       },
       "spriteWidth": 100,
       "spriteHeight": 100,
-      "layer": 1,
       "isEnemy": true,
       "isSpaceshipPart": false,
       "spriteImage": "monster2.png"
@@ -285,7 +262,6 @@
       },
       "spriteWidth": 55,
       "spriteHeight": 55,
-      "layer": 1,
       "isEnemy": false,
       "isSpaceshipPart": true,
       "spriteImage": "spaceship_part1.png"

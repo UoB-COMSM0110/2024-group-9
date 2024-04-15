@@ -9,8 +9,8 @@ public class PlayerControlledSprite extends Sprite{
   boolean doubleJumped = false;
 
   // Constructor
-  PlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, int spriteLayer, int maxXPos, int maxYPos, String imgFile) {
-    super(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, maxXPos, maxYPos, imgFile);
+  PlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, int maxXPos, int maxYPos, String imgFile) {
+    super(xPos, yPos, spriteWidth, spriteHeight, maxXPos, maxYPos, imgFile);
     this.health = health;
     this.animations = new HashMap<>();
     this.animations.put("standing", new Animation(game.getCharacter(), "standing"));

@@ -15,6 +15,7 @@ public class GameState {
   long level4Score;
   
   // Constructor
+  // Initial showTutorial, playerNickname, playerCharacter, section and mode values to be set once player has started entering information
   GameState(){
     started = false;
     score = 0;
@@ -26,7 +27,6 @@ public class GameState {
     level2Score = 0;
     level3Score = 0;
     level4Score = 0;
-    // Initial showTutorial, playerNickname, playerCharacter, section and mode values to be set once player has started entering information
   }
   
   // Restart
