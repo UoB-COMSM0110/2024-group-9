@@ -3,7 +3,7 @@ boolean moveRight = false;
 boolean moveUp = false;
 boolean moveDown = false;
 boolean jump = false;
-
+ArrayList<FallingSnowflake> snowflakes;
 
 public class View {
     private final Camera camera;
@@ -23,6 +23,7 @@ public class View {
     boolean jumpCompleted;
     boolean dashCompleted;
     int scale = 1;
+    ArrayList<FogElement> fogElements;
 
     View(Level currentLevel) {
         int[] levelDims = currentLevel.getLevelDims();
@@ -30,6 +31,19 @@ public class View {
         this.camera = new Camera(levelDims[0], levelDims[1]);
         this.currentLevel = currentLevel;
         userInterface = new UserInterface();
+        if (currentLevel.weather == WeatherVariant.ICY) {
+          snowflakes = new ArrayList<FallingSnowflake>();
+          for (int i = 0; i < 1000; i++) {
+            snowflakes.add(new FallingSnowflake(currentLevel.levelWidth, currentLevel.levelHeight));
+          }
+        }
+        
+        if (currentLevel.weather == WeatherVariant.FOGGY) {
+          this.fogElements = new ArrayList<FogElement>();
+          for (int b = 0; b < 1000; b++) {
+            fogElements.add(new FogElement(currentLevel.levelWidth, currentLevel.levelHeight, 0.005, 0.1));
+          }
+        }
         this.backgroundImage = currentLevel.imageMap.get("background.png");
         this.backgroundImage.resize(levelDims[0], levelDims[1]);
     }
@@ -38,7 +52,7 @@ public class View {
       int[] cameraPos = this.camera.getPos();
       image(this.backgroundImage, (0 - cameraPos[0]) / 4, (0 - cameraPos[1]) / 4);
       for (int sprite = 0; sprite < currentLevel.sprites.length; sprite++) {
-        int[] currentSpriteViewPos = spriteViewPos(currentLevel.sprites[sprite]);
+        int[] currentSpriteViewPos = spriteViewPos(currentLevel.sprites[sprite].xPos, currentLevel.sprites[sprite].yPos);
         fill(color(255, 255, 255));
         image(currentLevel.imageMap.get(currentLevel.sprites[sprite].image), currentSpriteViewPos[0], currentSpriteViewPos[1], currentLevel.sprites[sprite].spriteWidth, currentLevel.sprites[sprite].spriteHeight);
         //change the position of enemy
@@ -48,7 +62,7 @@ public class View {
       }
       fill(color(255, 0, 0));
       currentLevel.player.updatePosition(moveLeft, moveRight, moveUp, moveDown, jump, currentLevel.sprites);
-      int[] playerPos = spriteViewPos(currentLevel.player);
+      int[] playerPos = spriteViewPos(currentLevel.player.xPos, currentLevel.player.yPos);
       pushMatrix();
       if (!currentLevel.player.getFaceToRight()) {
         this.scale = -1;
@@ -58,6 +72,7 @@ public class View {
       this.scale = 1;
       popMatrix();
       this.camera.setPos(currentLevel.player.getXPos() - displayWidth / 2, currentLevel.player.getYPos() - displayHeight / 2);
+
       UIElement health0 = userInterface.getElement("health0");
       UIElement health1 = userInterface.getElement("health1");
       UIElement health2 = userInterface.getElement("health2");
@@ -86,11 +101,23 @@ public class View {
       if(game.section == SectionVariant.TUTORIAL){
         runTutorial();
       }
+      if (currentLevel.weather == WeatherVariant.FOGGY) {
+        for (FogElement fogElement : fogElements) {
+          fogElement.update();
+          fogElement.display(spriteViewPos(fogElement.getX(), fogElement.getY()));
+        }
+      }
+      if (currentLevel.weather == WeatherVariant.ICY) {
+        for (FallingSnowflake flake : snowflakes) {
+          flake.update();
+          flake.display(spriteViewPos(flake.getX(), flake.getY()));
+        }
+      }
     }
 
-    public int[] spriteViewPos(Sprite sprite) {
+    public int[] spriteViewPos(int xPos, int yPos) {
       int[] cameraPos = this.camera.getPos();
-      return new int[]{sprite.xPos - cameraPos[0], sprite.yPos - cameraPos[1] };
+      return new int[]{xPos - cameraPos[0], yPos - cameraPos[1] };
     }
     
     public void runTutorial(){
