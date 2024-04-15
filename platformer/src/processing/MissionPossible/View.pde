@@ -40,6 +40,7 @@ public class View {
     }
     
     public void displayView() {
+      currentLevel.updateLevel();
       int[] cameraPos = this.camera.getPos();
       if(game.section != SectionVariant.TUTORIAL){
         image(this.backgroundImage, (0 - cameraPos[0]) / 4, (0 - cameraPos[1]) / 4);
@@ -88,6 +89,28 @@ public class View {
       if(game.section == SectionVariant.TUTORIAL){
         runTutorial();
       }
+    }
+    
+    private void drawTransition(){
+      int[] cameraPos = this.camera.getPos();
+      if(currentLevel.blackoutTransitionRadius>0){
+        currentLevel.blackoutTransitionRadius-=10;
+      } else {
+        loadNextLevel();
+        currentLevel.transitioning=false;
+        //ask about designing the next level
+      }
+      fill(0);
+      noStroke();
+      beginShape();
+      vertex(0,0);
+      vertex(displayWidth,0);
+      vertex(displayWidth, displayHeight);
+      vertex(0, displayHeight);
+      beginContour();
+      ellipse(currentLevel.playerCentered.x - cameraPos[0], currentLevel.playerCentered.y - cameraPos[1], currentLevel.blackoutTransitionRadius*2, currentLevel.blackoutTransitionRadius*2);
+      endContour();
+      endShape(CLOSE);
     }
 
     public int[] spriteViewPos(Sprite sprite) {

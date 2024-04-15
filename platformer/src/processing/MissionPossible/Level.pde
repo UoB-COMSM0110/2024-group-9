@@ -10,6 +10,9 @@ public class Level{
   PlayerControlledSprite player;
   WeatherVariant weather;
   HashMap<String, PImage> imageMap;
+  PVector playerCentered;
+  float blackoutTransitionRadius;
+  boolean transitioning = false;
   
  // Constructor - gets most of the level information from JSON file
    Level(String jsonFilePath){
@@ -85,8 +88,9 @@ public class Level{
       int spriteHeight = sprite.getInt("spriteHeight");
       int spriteLayer = sprite.getInt("layer");
       boolean isEnemy = sprite.getBoolean("isEnemy");
+      boolean isCollectiblePart = sprite.getBoolean("isCollectiblePart");
       String spriteImage = sprite.getString("spriteImage");
-      sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, isEnemy, levelWidth, levelHeight, spriteImage);
+      sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, isEnemy, isCollectiblePart, levelWidth, levelHeight, spriteImage);
     }
     this.sprites = sprites;    
   }
@@ -103,4 +107,34 @@ public class Level{
     score = 0;
     game.lives = 3;
   }
+  
+  public void updateLevel(){
+    if(game.spaceshipParts>0 && !game.partCollected){
+      game.partCollected=true;
+    }
+    if(game.partCollected && !game.landedPostCollection){
+      if(player.landed){
+        game.landedPostCollection=true;
+        initiateTransition();
+      }
+    }
+  }
+  
+  private void initiateTransition(){
+    transitioning = true;
+    playerCentered = new PVector(player.getXPos()+player.spriteWidth/2, player.getYPos() + player.spriteHeight/2);
+    float screenDimsMax = max(displayWidth, displayHeight);
+    blackoutTransitionRadius = sqrt(sq(screenDimsMax)+sq(screenDimsMax))/2;
+  }
+  
+  public void loadNextLevel(){
+    //NEED A LEVEL IDENTIFIER AND CORRESPONDING TRACKER (for the nextLevelID string below)
+    //this is just skeleton-ish for now
+    if(nextLevelID!= null){ //ensure a next level exists
+      this.currentLevel=new Level(nextLevelID); //will reinitalise the level with the new data (map, sprites, parts) fpr it
+      game.section=SectionVariant.GAMELEVELS;
+      this.currentLevel.player.resetState(); //method to reset the position to the starting point of the next level (and lives unless we want to keep the lives over from one level to the next which i htink is how it should be)
+    } else {
+      game.section=SectionVariant.GAMEOVER;
+    }
 }

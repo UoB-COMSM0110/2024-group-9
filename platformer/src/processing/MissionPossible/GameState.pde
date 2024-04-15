@@ -8,7 +8,9 @@ public class GameState {
   ModeVariant mode;
   SectionVariant section;
   CharacterVariant playerCharacter;
-  int spaceshipPieces;
+  int spaceshipParts;
+  boolean partCollected=false;
+  boolean landedPostCollection=false;
   String level;
   int level1Score;
   int level2Score;
@@ -33,7 +35,7 @@ public class GameState {
   void restart(){
     score = 0;
     lives = 3;
-    spaceshipPieces = 0;
+    spaceshipParts = 0;
     playerNickname = "";
     level1Score = 0;
     level2Score = 0;

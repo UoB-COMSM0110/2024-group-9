@@ -95,8 +95,8 @@ public void checkCollision(NonPlayerControlledSprite[] sprites) {
             this.health = health - 1;
             this.xSpeed = Math.signum(this.xSpeed) * -1 * this.maxSpeedX;
             this.ySpeed = Math.signum(this.ySpeed) * -0.5 * this.maxSpeedY;
-          } else {
-            this.xSpeed = 0;
+          } else if (sprite.isCollectiblePart){
+            collectPart(sprite);
           }
 
         }
@@ -105,13 +105,21 @@ public void checkCollision(NonPlayerControlledSprite[] sprites) {
             this.health = health - 1;
             this.xSpeed = Math.signum(this.xSpeed) * -1 * this.maxSpeedX;
             this.ySpeed = Math.signum(this.ySpeed) * -0.5 * this.maxSpeedY;
-          } else {
-            this.ySpeed = 0.0;
+          } else if (sprite.isCollectiblePart) {
+            collectPart(sprite);
+          }
             if (this.yPos + this.spriteHeight < sprite.yPos + 0.1) {
               this.landed = true;
             }
-          }
         }
+    }
+  }
+  
+  private void collectPart(NonPlayerControlledSprite sprite) {
+    if(!sprite.isCollected){
+      sprite.isCollected=true;
+      game.gameState.spaceshipParts++;
+      System.out.println("nice, you got a spaceship part!");
     }
   }
 
