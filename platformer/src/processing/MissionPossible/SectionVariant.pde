@@ -16,5 +16,7 @@ enum SectionVariant {
   GAMEOVER,
   LEADERBOARD,
   ENDGAME,
-  CREDITS;
+  CREDITS,
+  SHOWSCORES,
+  GAMECOMPLETE;
 }

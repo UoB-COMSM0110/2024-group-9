@@ -11,8 +11,8 @@ public class PlayerControlledSprite extends Sprite{
   int windConstant;
 
   // Constructor
-  PlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, int spriteLayer, int maxXPos, int maxYPos, String imgFile) {
-    super(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, maxXPos, maxYPos, imgFile);
+  PlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, int maxXPos, int maxYPos, String imgFile) {
+    super(xPos, yPos, spriteWidth, spriteHeight, maxXPos, maxYPos, imgFile);
     this.health = health;
     this.animations = new HashMap<>();
     this.animations.put("standing", new Animation(game.getCharacter(), "standing"));
@@ -111,16 +111,19 @@ public void checkCollision(NonPlayerControlledSprite[] sprites) {
             this.health = health - 1;
             this.xSpeed = Math.signum(this.xSpeed) * -1 * this.maxSpeedX;
             this.ySpeed = Math.signum(this.ySpeed) * -0.5 * this.maxSpeedY;
+          } else if(sprite.isSpaceshipPart && sprite.isAlive){
+            collectSpaceshipPart(sprite);
           } else {
             this.xSpeed = 0;
           }
 
-        }
+        }     
         if (this.xPos + this.spriteWidth > sprite.xPos && this.xPos < sprite.xPos + sprite.spriteWidth && this.yPos + this.spriteHeight + this.ySpeed > sprite.yPos && this.yPos + this.ySpeed < sprite.yPos + sprite.spriteHeight) {
           if(sprite.isEnemy){
             sprite.Died();
-            this.xSpeed = Math.signum(this.xSpeed) * -1 * this.maxSpeedX;
             this.ySpeed = Math.signum(this.ySpeed) * -0.5 * this.maxSpeedY;
+          } else if(sprite.isSpaceshipPart && sprite.isAlive){
+            collectSpaceshipPart(sprite);
           } else {
             this.ySpeed = 0.0;
             if (this.yPos + this.spriteHeight < sprite.yPos + 0.1) {
@@ -161,6 +164,14 @@ public void checkCollision(NonPlayerControlledSprite[] sprites) {
       return this.animations.get("standing").nextFrame(1);
     }
     return this.animations.get("moving").nextFrame(xSpeed / 3);
+  }
+  
+  public void collectSpaceshipPart(NonPlayerControlledSprite sprite){
+    sprite.Died();
+    game.increaseSpaceshipPieces();
+    String part = "part"+game.level.substring(5);
+    currentView.userInterface.getElement(part).setTintAmount(255);
+    currentLevel.endLevel();
   }
   
 }

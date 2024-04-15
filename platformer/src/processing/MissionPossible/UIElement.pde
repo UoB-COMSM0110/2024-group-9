@@ -51,4 +51,8 @@ class UIElement {
   public void setAsset(PImage asset) {
     this.asset = asset;
   }
+  
+  public void setTintAmount(int tint){
+    this.tintAmount = tint;
+  }
 }

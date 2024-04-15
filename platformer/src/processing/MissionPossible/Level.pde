@@ -56,18 +56,18 @@ public class Level{
        default:
          weather=WeatherVariant.NEUTRAL;
      }
+    
      
-     // Player sprite
+     // Get player sprite data from JSON file
      JSONObject playerData = (JSONObject) json.get("player");
      JSONObject playerPosition = playerData.getJSONObject("position");
      int playerXPos = playerPosition.getInt("xPos");
      int playerYPos = playerPosition.getInt("yPos");
      int playerWidth = playerData.getInt("spriteWidth");
      int playerHeight = playerData.getInt("spriteHeight");
-     int playerLayer = playerData.getInt("layer");
      String playerImage = playerData.getString("spriteImage");
           
-     this.player = new PlayerControlledSprite(playerXPos, playerYPos, playerWidth, playerHeight, playerLayer, levelWidth, levelHeight, playerImage);
+     this.player = new PlayerControlledSprite(playerXPos, playerYPos, playerWidth, playerHeight, levelWidth, levelHeight, playerImage);
      
      if (weather == WeatherVariant.ICY) {
        this.player.setXAcceleration(0.03f);
@@ -83,7 +83,7 @@ public class Level{
 
      
      
-     // Sprites
+     // Get other sprite data from JSON file
     JSONArray spriteData = (JSONArray) json.get("sprites");
     NonPlayerControlledSprite sprites[] = new NonPlayerControlledSprite[spriteData.size()];
     for (int i = 0; i < spriteData.size(); i++) {
@@ -97,10 +97,10 @@ public class Level{
       // Get sprite width, height and layer from sprite
       int spriteWidth = sprite.getInt("spriteWidth");
       int spriteHeight = sprite.getInt("spriteHeight");
-      int spriteLayer = sprite.getInt("layer");
       boolean isEnemy = sprite.getBoolean("isEnemy");
+      boolean isSpaceshipPart = sprite.getBoolean("isSpaceshipPart");
       String spriteImage = sprite.getString("spriteImage");
-      sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, isEnemy, levelWidth, levelHeight, spriteImage);
+      sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, isEnemy, isSpaceshipPart, levelWidth, levelHeight, spriteImage);
     }
     this.sprites = sprites;    
   }
@@ -117,9 +117,31 @@ public class Level{
     score = 0;
   }
   
-  public void calculateLevelScore(){
-    endTime = System.currentTimeMillis()/1000;
-    score = score + (1000/(endTime - startTime))+(5*currentLevel.player.health);    
+  // Level score if lose all hearts
+  public void calculateLevelScoreDead(){
     game.updateLevelScore(game.level, score);
+  }
+  
+  // Level score if reach the end of level
+  public void calculateLevelScoreAlive(){
+    endTime = System.currentTimeMillis()/1000;
+    score = score + (1000/(endTime - startTime))+(5*currentLevel.player.health);
+    if(game.mode == ModeVariant.DIFFICULT){
+      score *= 1.25;
+    }
+    game.updateLevelScore(game.level, score);
+  }
+  
+  // If completing final level, go to game complete screen
+  // Otherwise go to the scores screen
+  public void endLevel(){
+    calculateLevelScoreAlive();
+    game.calculateGameScore();
+    if(game.level.equals("level4")){
+      game.section = SectionVariant.GAMECOMPLETE;
+    }
+    else{
+      game.section = SectionVariant.SHOWSCORES;
+    }
   }
 }

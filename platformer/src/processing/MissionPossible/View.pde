@@ -14,7 +14,7 @@ public class View {
       "Welcome to the Mission Possible tutorial!\n\nTo move right, press "+KeyEvent.getKeyText(settings.rightKey)+".",
       "To move left, press "+KeyEvent.getKeyText(settings.leftKey)+".",
       "To jump, press "+KeyEvent.getKeyText(settings.jumpKey)+"\nPress twice to double jump.",
-      "To dash, move left or right and press "+KeyEvent.getKeyText(settings.dashKey)+".",
+      "To dash in the direction you're facing, press "+KeyEvent.getKeyText(settings.dashKey)+".",
       "You can change these key commands in the game settings menu.\n\nClick anywhere to exit to the main menu."
     };
     int currentInstructionIndex = 0;
@@ -56,7 +56,7 @@ public class View {
         fill(color(255, 255, 255));
         image(currentLevel.imageMap.get(currentLevel.sprites[sprite].image), currentSpriteViewPos[0], currentSpriteViewPos[1], currentLevel.sprites[sprite].spriteWidth, currentLevel.sprites[sprite].spriteHeight);
         //change the position of enemy
-        if(currentLevel.sprites[sprite].isEnemy){
+        if(currentLevel.sprites[sprite].isEnemy || currentLevel.sprites[sprite].isSpaceshipPart){
           currentLevel.sprites[sprite].updatePosition(currentLevel.sprites[sprite - 1].getXPos(), currentLevel.sprites[sprite - 1].getXPos() + currentLevel.sprites[sprite - 1].getSpriteWidth() - currentLevel.sprites[sprite].getSpriteWidth());
         }
       }
@@ -85,15 +85,13 @@ public class View {
       if(currentLevel.player.health == 0){
         health0.setAsset(userInterface.getAsset("heart-empty.png"));
         if(game.mode == ModeVariant.EASY){
-          currentLevel.calculateLevelScore();
+          currentLevel.calculateLevelScoreDead();
           currentLevel.restartLevel();
           game.section = SectionVariant.RESTARTLEVEL;
         }
         else{
-          currentLevel.calculateLevelScore();
+          currentLevel.calculateLevelScoreDead();
           game.calculateGameScore();
-          sendScore(game.getScore());
-          game.restart();
           game.section = SectionVariant.GAMEOVER;
         }
       }

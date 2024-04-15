@@ -4,7 +4,7 @@ public class GameSettings{
     int jumpKey;
     int dashKey;
     
-    
+  // Set initial controls
   public GameSettings(){
     leftKey = 'A';
     rightKey = 'D';
@@ -12,6 +12,7 @@ public class GameSettings{
     dashKey = CONTROL;
   }
 
+  // Methods to set keybinds to player's choices
   public void setLeftKey(int lKey){
     leftKey = lKey;
   }
