@@ -27,6 +27,28 @@
     },
     {
       "position": {
+        "x": 870,
+        "y": 1700
+      },
+      "spriteWidth": 1530,
+      "spriteHeight": 100,
+      "layer": 1,
+      "isEnemy": false,
+      "spriteImage": "platform.png"
+    },
+    {
+      "position": {
+        "x": 1250,
+        "y": 1600
+      },
+      "spriteWidth": 100,
+      "spriteHeight": 100,
+      "layer": 1,
+      "isEnemy": true,
+      "spriteImage": "monster1.png"
+    },
+    {
+      "position": {
         "x": 200,
         "y": 1600
       },
@@ -96,6 +118,17 @@
       "isEnemy": false,
       "isSpaceshipPart": false,
       "spriteImage": "platform.png"
+    },
+    {
+      "position": {
+        "x": 1750,
+        "y": 1200
+      },
+      "spriteWidth": 100,
+      "spriteHeight": 100,
+      "layer": 1,
+      "isEnemy": true,
+      "spriteImage": "monster1.png"
     },
     {
       "position": {
@@ -183,15 +216,39 @@
     },
     {
       "position": {
+        "x": 1500,
+        "y": 350
+      },
+      "spriteWidth": 100,
+      "spriteHeight": 100,
+      "layer": 1,
+      "isSpaceshipPart": false,
+      "isEnemy": true,
+      "spriteImage": "monster2.png"
+    },
+    {
+      "position": {
         "x": 1800,
         "y": 350
       },
       "spriteWidth": 100,
       "spriteHeight": 20,
       "layer": 1,
-      "isEnemy": false,
       "isSpaceshipPart": false,
+      "isEnemy": false,
       "spriteImage": "platform.png"
+    },
+    {
+      "position": {
+        "x": 1800,
+        "y": 250
+      },
+      "spriteWidth": 100,
+      "spriteHeight": 100,
+      "layer": 1,
+      "isEnemy": true,
+      "isSpaceshipPart": false,
+      "spriteImage": "monster2.png"
     },
     {
       "position": {
@@ -204,54 +261,7 @@
       "isEnemy": false,
       "isSpaceshipPart": false,
       "spriteImage": "platform.png"
-    },
-    {
-      "position": {
-        "x": 1250,
-        "y": 1600
-      },
-      "spriteWidth": 100,
-      "spriteHeight": 100,
-      "layer": 1,
-      "isEnemy": true,
-      "isSpaceshipPart": false,
-      "spriteImage": "monster1.png"
-    },
-    {
-      "position": {
-        "x": 1750,
-        "y": 1200
-      },
-      "spriteWidth": 100,
-      "spriteHeight": 100,
-      "layer": 1,
-      "isEnemy": true,
-      "isSpaceshipPart": false,
-      "spriteImage": "monster1.png"
-    },
-    {
-      "position": {
-        "x": 1500,
-        "y": 350
-      },
-      "spriteWidth": 100,
-      "spriteHeight": 100,
-      "layer": 1,
-      "isEnemy": true,
-      "isSpaceshipPart": false,
-      "spriteImage": "monster2.png"
-    },
-    {
-      "position": {
-        "x": 1800,
-        "y": 250
-      },
-      "spriteWidth": 100,
-      "spriteHeight": 100,
-      "layer": 1,
-      "isEnemy": true,
-      "isSpaceshipPart": false,
-      "spriteImage": "monster2.png"
+
     },
     {
       "position": {

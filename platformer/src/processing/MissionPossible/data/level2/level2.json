@@ -288,7 +288,7 @@
       "layer": 1,
       "isEnemy": false,
       "isSpaceshipPart": true,
-      "spriteImage": "spaceship_part2.png"
+      "spriteImage": "spaceship_part1.png"
     }
   ]
 }
