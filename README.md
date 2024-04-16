@@ -108,8 +108,8 @@ We also noted that we are still undecided about exactly what our three challenge
 Because of the different elemnents we wanted to include in the game (such as a tutorial, the option to change keybinds and multiple levels), the game flow required careful implementation to ensure that the correct things are displayed on screen, and that it is clear to the player how to navigate the game. The game flow is based around an enumerated class SectionVariant which drives what is displayed on the screen, as well as the effect of any mouse clicks or key presses. Where a menu screen only contains information and one possible action, the player is invited to click anywhere. If there are two or more options to choose from, methods are invoked that highlight the option the mouse is hovering over, to make it clear what action will be taken with a mouse click in that place. Unless there's a clear reason for it not to, every menu screen includes a "Return to main menu" to aid navigation and clarity. 
 
 <p float="middle">
-  <img src="/report-images/main-menu.png" width="100" />
-  <img src="/report-images/main-menu-highlight.png" width="100" /> 
+  <img src="/report-photos/main-menu.png" width="100" />
+  <img src="/report-photos/main-menu-highlight.png" width="100" /> 
 </p>
 
 Players are able to change the keybinds for the game controls, and these are stored in the GameState class so that the tutorial instructions and Game Settings menu will always refer to the chosen keys. The tutorial instructions themselves are stored in an ArrayList which is stepped through as the player progresses through the tutorial. 
@@ -119,7 +119,7 @@ The scoring formula is based mainly on the inverse of the time taken to complete
 The design information for each level is stored in a JSON file, which constrains the width and height of the available space for the level and specifies the weather, background image, player sprite's starting location, and the size and location of the platforms, enemies and spaceship part. Once set up, this approach enabled us to quickly and smoothly add more levels while keeping the verbose level data out of the Processing code itself. When the player retrieves the level's spaceship part, the level ends and the score for each level completed is shown before the player is invited to continue to the next level. A new Level object is instantiated at that point. 
 
 <p float="middle">
-  <img src="/report-images/score-screen.png" width="200" />
+  <img src="/report-photos/score-screen.png" width="200" />
 </p>
 
 The four available spaceship parts are shown at the top of the screen with some transparency applied to begin with. When a spaceship part is collected a method is called to set its image transparency to zero for the rest of the current game, so the player can view their progress. 
