@@ -147,10 +147,10 @@
     },
     {
       "position": {
-        "x": 800,
+        "x": 0,
         "y": 500
       },
-      "spriteWidth": 350,
+      "spriteWidth": 1200,
       "spriteHeight": 20,
       "isEnemy": false,
       "isSpaceshipPart": false,
@@ -213,10 +213,10 @@
     },
     {
       "position": {
-        "x": 2250,
+        "x": 2150,
         "y": 1450
       },
-      "spriteWidth": 150,
+      "spriteWidth": 250,
       "spriteHeight": 30,
       "isEnemy": false,
       "isSpaceshipPart": false,
@@ -246,17 +246,6 @@
     },
     {
       "position": {
-        "x": 1900,
-        "y": 200
-      },
-      "spriteWidth": 100,
-      "spriteHeight": 100,
-      "isEnemy": true,
-      "isSpaceshipPart": false,
-      "spriteImage": "monster2.png"
-    },
-    {
-      "position": {
         "x": 2200,
         "y": 100
       },
@@ -264,7 +253,7 @@
       "spriteHeight": 55,
       "isEnemy": false,
       "isSpaceshipPart": true,
-      "spriteImage": "spaceship_part1.png"
+      "spriteImage": "spaceship_part2.png"
     }
   ]
 }

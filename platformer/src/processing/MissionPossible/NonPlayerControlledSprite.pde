@@ -4,7 +4,7 @@ public class NonPlayerControlledSprite extends Sprite{
   boolean isAlive = true;
   boolean isSpaceshipPart;
   boolean faceToRight = false;
-  int speed = 5;
+  float speed = 3;
   
   // Constructor
   public NonPlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, boolean isEnemy, boolean isSpaceshipPart, int maxXPos, int maxYPos, String imgFile) {
@@ -27,13 +27,13 @@ public class NonPlayerControlledSprite extends Sprite{
       if(this.xPos > leftBoundary && !faceToRight){
         this.xPos -= speed;
       }
-      if(this.xPos == leftBoundary){
+      if(this.xPos - speed <= leftBoundary){
         faceToRight = true;
       }
       if(this.xPos < rightBoundary && faceToRight){
         this.xPos += speed;
       }
-      if(this.xPos == rightBoundary){
+      if(this.xPos + speed >= rightBoundary){
         faceToRight = false;
       }
     }
