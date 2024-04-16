@@ -27,8 +27,8 @@ Twist: Weather system to affect efficacy of certain moves. For example:
 Challenges:
 
 1. Game flow logic
-2. Physics engine
-3. Leaderboard
+2. Leaderboard
+3. Physics engine
 
 IDEA 2: Tower Defense Game,
 
