@@ -20,15 +20,12 @@ Examples:
 Twist: Weather system to affect efficacy of certain moves. For example:
 - wind blows you forward or back
 - ice makes surface slipperly (lowers friction)
-- cloud obscures view
-- heat makes you move more slowly
+- fog obscures view
 
-Challenges (need to choose 3): 
-1. Physics engine
-2. Collision detection (hit boxes)
+Challenges: 
+1. Game flow logic
+2. Physics engine
 3. Leaderboard
-4. Map design
-5. Creating the skills/player abilities
 
 IDEA 2: Tower Defense Game,
 
@@ -46,7 +43,7 @@ Challenges:
 
 **Chosen game:** game idea 1 - platformer with weather conditions.
 
-We will develop a two-dimensional space-themed platform game which allows players to choose their character, enter their name, play and optional tutorial and play through several levels of the game. The player will be able to do various running, jumping and dashing moves, and will make their way through various obstacles in order to reach their spaceship and return home. The twist will be that the game play wil change depending on the weather, which will change randomly during the game. For example, hot weather would slow a player down, ice would make the surfaces slipperly and wind might make it easier or harder to jump over or past obstacles, depending on the direction.
+We will develop a two-dimensional space-themed platform game which allows players to choose their character, enter their name, play an optional tutorial and play through several levels of the game. The player will be able to do various running, jumping and dashing moves, and will make their way through various obstacles in order to find the parts of their broken spaceship and return home. The twist will be that the game play wil change depending on the weather, which will be different in each level. For example, hot weather would slow a player down, ice would make the surfaces slipperly and wind might make it easier or harder to jump over or past obstacles, depending on the direction.
 
 Working title: "Mission Possible!"
 
@@ -106,6 +103,15 @@ We also noted that we are still undecided about exactly what our three challenge
 ## Design
 
 ## Implementation
+
+### 1: Game Flow Logic
+Because of the different elemnents we wanted to include in the game (such as a tutorial, the option to change keybinds and multiple levels), the game flow required careful implementation to ensure that the correct things are displayed on screen, and that it is clear to the player how to navigate the game. The game flow is based around an enumerated class SectionVariant which drives what is displayed on the screen, as well as the effect of any mouse clicks or key presses. Where a menu screen only contains information and one possible action, the player is invited to click anywhere. If there are two or more options to choose from, methods are invoked that highlight the option the mouse is hovering over, to make it clear what action will be taken with a mouse click in that place. Unless there's a clear reason for it not to, every menu screen includes a "Return to main menu" to aid navigation and clarity. 
+
+Players are able to change the keybinds for the game controls, and these are stored in the GameState class so that the tutorial instructions and Game Settings menu will always refer to the chosen keys. The tutorial instructions themselves are stored in an ArrayList which is stepped through as the player progresses through the tutorial. 
+
+The scoring formula is based mainly on the inverse of the time taken to complete each level, with additional points for lives remaining at the end of each level and the number of enemies defeated, with an additional weighting for the difficult mode. Level scores are summed and sent to the leaderboard when a player either finishes the game or loses all three hearts in difficult mode. (In easy mode losing all three hearts means restarting the current level, rather than a Game Over scenario.) 
+
+The design information for each level is stored in a JSON file, which constrains the width and height of the available space for the level and specifies the weather, background image, player sprite's starting location, and the size and location of the platforms, enemies and spaceship part. Once set up, this approach enabled us to quickly and smoothly add more levels while keeping the verbose level data out of the Processing code itself. When the player retrieves the level's spaceship part, the level ends and the score for each level completed is shown before the player is invited to continue to the next level. A new Level object is instantiated at that point. The four available spaceship parts are shown at the top of the screen with some transparency applied to begin with. When a spaceship part is collected a method is called to set its image transparency to zero for the rest of the current game, so the player can view their progress. 
 
 ## Evaluation
 
