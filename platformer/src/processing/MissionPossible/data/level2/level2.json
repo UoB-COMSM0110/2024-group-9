@@ -236,7 +236,7 @@
     {
       "position": {
         "x": 1850,
-        "y": 300
+        "y": 400
       },
       "spriteWidth": 550,
       "spriteHeight": 50,
@@ -247,7 +247,7 @@
     {
       "position": {
         "x": 1900,
-        "y": 200
+        "y": 300
       },
       "spriteWidth": 100,
       "spriteHeight": 100,
@@ -258,7 +258,7 @@
     {
       "position": {
         "x": 2200,
-        "y": 100
+        "y": 200
       },
       "spriteWidth": 55,
       "spriteHeight": 55,
