@@ -12,19 +12,17 @@ public abstract class Sprite{
   float maxSpeedY;
   int spriteWidth;
   int spriteHeight;
-  int spriteLayer; // 0 is in background, 1 is in foreground and will interact with player Sprite
   float health; // Move to PlayerControlledSprite if only player has health
   float damage;
   boolean onGround;
   boolean collision;
   String image;
   
-  public Sprite(int xPos, int yPos, int spriteWidth, int spriteHeight, int spriteLayer, int maxXPos, int maxYPos, String imgFile) {
+  public Sprite(int xPos, int yPos, int spriteWidth, int spriteHeight, int maxXPos, int maxYPos, String imgFile) {
     this.xPos = xPos;
     this.yPos = yPos;
     this.spriteWidth = spriteWidth;
     this.spriteHeight = spriteHeight;
-    this.spriteLayer = spriteLayer;
     this.xAcceleration = 0.1f;
     this.yAcceleration = 0.5f;
     this.maxSpeedX = 7.0f;

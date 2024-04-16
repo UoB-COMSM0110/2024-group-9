@@ -10,19 +10,19 @@ Star[] stars = new Star[950];
 View currentView;
 PFont MPFont;
 Leaderboard leaderboard = new Leaderboard("https://leaderboard.charris.xyz");
-
-float boxWH = 160;
+Level currentLevel;
 PImage backgroundImage;
-float y;  
+
 Animation spaceman;
 Animation cowboy;
 Animation fox;
 Animation cat;
 Animation skeleton;
 Animation wolf;
-Level currentLevel;
+
 
 // Menu variables
+float boxWH = 160;
 int backToMainSize;
 int hoveredSize;
 int notHoveredSize;
@@ -34,6 +34,8 @@ float menuItemHeight = 100;
 PImage spaceship;
 JSONArray topTen;
 String creditText;
+float y;  
+
 
 void setup() {
   fullScreen(P2D);
@@ -66,7 +68,7 @@ void draw() {
   selectScreen();
 }
 
-// Select between menu screens and game play screens
+// Select which display method to run depending on game section
 void selectScreen(){
   if(!game.started) {
     displayStartScreen();
@@ -115,6 +117,12 @@ void selectScreen(){
   }
   else if(game.section == SectionVariant.TUTORIAL || game.section == SectionVariant.GAMELEVELS){
     currentView.displayView();
+  }
+  else if(game.section == SectionVariant.SHOWSCORES){
+    displayShowScores();
+  }
+  else if(game.section == SectionVariant.GAMECOMPLETE){
+    displayGameComplete();
   }
   
   // Opening screen stars
@@ -283,11 +291,10 @@ void displayMissionScreen(){
   imageMode(CORNER);
   fill(128, 128, 128);
   textSize(smallSize);
-  text("CLICK ANYWHERE TO START THE GAME", displayWidth/2, 8*displayHeight/10);
+  text("CLICK ANYWHERE TO START\n\nLEVEL 1 - LOST IN SPACE", displayWidth/2, 8*displayHeight/10);
 }
 
 void displayGameSettingsScreen(){
-  
   textAlign(CENTER, CENTER);
   fill(255);
   textSize(hoveredSize);
@@ -318,9 +325,12 @@ void setKey(String keyToChange){
   textAlign(CENTER, CENTER);
   textSize(hoveredSize);
   text("Press the key you want to use to move " + keyToChange + ":", displayWidth/2, displayHeight/6);
+  textSize(notHoveredSize);
+  text("You can use any keyboard key except ESCAPE.", displayWidth/2, displayHeight/4);
   fill(200, 20, 0);
   textSize(headerSize);
   
+  // Show what the player has chosen
   if(game.section == SectionVariant.SETLEFT){
     text(KeyEvent.getKeyText(settings.leftKey), displayWidth/2, displayHeight/2);
   }
@@ -346,7 +356,7 @@ void displayRestartLevel(){
   text("Oh no, you lost all your lives!", displayWidth/2, displayHeight/6);
   fill(255);
   hoverTextSize(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 3*displayHeight/10, (3*displayHeight/10)+menuItemHeight);
-  text("Click here to restart level", displayWidth/2, 3*displayHeight/10);
+  text("Click here to restart level "+(game.spaceshipPieces+1), displayWidth/2, 3*displayHeight/10);
   fill(255);
   BackToMain backToMain = new BackToMain();
 }
@@ -359,7 +369,40 @@ void displayRestartGame(){
   textSize(hoveredSize);
   text("You lost all your lives!", displayWidth/2, displayHeight/3);
   fill(255);
-  text("Click anywhere to submit your score\n and return to the main menu.", displayWidth/2, displayHeight/2);
+  text("Your final score was "+game.score+"\n\nClick anywhere to submit your score\n and return to the main menu.", displayWidth/2, displayHeight/1.5);
+}
+
+// Show the score for each level and the total score accumulated so far
+void displayShowScores(){
+  textAlign(CENTER, CENTER);
+  fill(200, 20, 0);
+  textSize(hoveredSize);
+  text("Level "+game.spaceshipPieces+" completed!", displayWidth/2, displayHeight/6);
+  
+  fill(255);
+  textSize(notHoveredSize);
+  text("Level 1 - Lost in Space: " + game.level1Score, displayWidth/2, 3*displayHeight/10);
+  text("Level 2 - Frozen Planet: " + game.level2Score, displayWidth/2, 4*displayHeight/10);
+  text("Level 3 - Hurricane Valley: " + game.level3Score, displayWidth/2, 5*displayHeight/10);
+  text("Level 4 - Misty Mountain: " + game.level4Score, displayWidth/2, 6*displayHeight/10);
+  fill(200, 20, 0);
+  text("Total score: " + game.score, displayWidth/2, 7*displayHeight/10);
+  
+  fill(255);
+  text("Click anywhere to start the next level.", displayWidth/2, 9*displayHeight/10);
+}
+
+void displayGameComplete(){
+  textAlign(CENTER, CENTER);
+  fill(200, 20, 0);
+  textSize(hoveredSize);
+  textSize(headerSize);
+  text("CONGRATULATIONS!", displayWidth/2, displayHeight/6);
+  textSize(hoveredSize);
+  text("You completed Mission Possible!", displayWidth/2, displayHeight/4);
+  fill(255);
+  textSize(notHoveredSize);
+  text("Click anywhere to submit your score of "+game.score+" and end the game.", displayWidth/2, displayHeight/2);
 }
 
 void displayCredits(){
@@ -370,6 +413,7 @@ void displayCredits(){
   y--;
 }
 
+// Instantiate and show a new level, and record the start time
 void enterLevel(String levelName){
   game.level = levelName;
   currentLevel = new Level(game.level+File.separator+game.level+".json");
@@ -378,7 +422,7 @@ void enterLevel(String levelName){
 }
   
 void keyPressed() {
-  
+  // To prevent movement going into a new level
   if(game.section != SectionVariant.TUTORIAL && game.section != SectionVariant.GAMELEVELS){
     moveRight = false;
     moveLeft = false;
@@ -386,6 +430,7 @@ void keyPressed() {
     moveUp = false;
   }
   
+  // Record key presses for player movement
   if(game.section == SectionVariant.TUTORIAL || game.section == SectionVariant.GAMELEVELS){
     if (keyCode == settings.rightKey) {
         moveRight = true;
@@ -400,6 +445,7 @@ void keyPressed() {
         moveUp = true;
     }
   }
+  // Record key pressed for player nickname
   else if (game.section == SectionVariant.ENTERNAME) {
     if (key == BACKSPACE) {
       if (game.playerNickname.length() > 0) {
@@ -414,6 +460,7 @@ void keyPressed() {
       game.playerNickname = game.playerNickname.toUpperCase();
     }
   }
+  // Setting keybinds
   else if(game.section == SectionVariant.SETLEFT){
     settings.setLeftKey(keyCode);
   }
@@ -426,6 +473,7 @@ void keyPressed() {
   else if(game.section == SectionVariant.SETDASH){
     settings.setDashKey(keyCode);
   }
+  // Recording that tutorial instructions have been followed
   if(game.section == SectionVariant.TUTORIAL){
     if(currentView.currentInstructionIndex == 0 && currentView.rightCompleted == false && keyCode == settings.rightKey){
       currentView.currentInstructionIndex++;
@@ -468,6 +516,7 @@ void keyReleased() {
   }
 }
 
+// Deal with mouse clicks in menu screens to capture player's choices
 void mouseClicked() {
   if(!game.started) {
     game.section = SectionVariant.MAINMENU;
@@ -475,14 +524,14 @@ void mouseClicked() {
   }
   else if(game.section == SectionVariant.MAINMENU){
     y = displayHeight;
-    menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 3*displayHeight/10, (3*displayHeight/10)+menuItemHeight, SectionVariant.CHOOSECHARACTER);
-    menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 4*displayHeight/10, (4*displayHeight/10)+menuItemHeight, SectionVariant.TUTORIAL);
-    menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 5*displayHeight/10, (5*displayHeight/10)+menuItemHeight, SectionVariant.GAMESETTINGS);
+    selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 3*displayHeight/10, (3*displayHeight/10)+menuItemHeight, SectionVariant.CHOOSECHARACTER);
+    selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 4*displayHeight/10, (4*displayHeight/10)+menuItemHeight, SectionVariant.TUTORIAL);
+    selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 5*displayHeight/10, (5*displayHeight/10)+menuItemHeight, SectionVariant.GAMESETTINGS);
     if (mouseX >= displayWidth/2 - menuItemWidth/2 && mouseX <= displayWidth/2 + menuItemWidth/2 && mouseY >= 6*displayHeight/10 && mouseY <= 6*displayHeight/10 + menuItemHeight) {
       topTen = leaderboard.getScores(true);
     }
-    menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 6*displayHeight/10, (6*displayHeight/10)+menuItemHeight, SectionVariant.LEADERBOARD);
-    menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 7*displayHeight/10, (7*displayHeight/10)+menuItemHeight, SectionVariant.CREDITS);
+    selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 6*displayHeight/10, (6*displayHeight/10)+menuItemHeight, SectionVariant.LEADERBOARD);
+    selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 7*displayHeight/10, (7*displayHeight/10)+menuItemHeight, SectionVariant.CREDITS);
      
     if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <= displayWidth/2 + menuItemWidth/2 && mouseY >= 4*displayHeight/10 && mouseY <= (4*displayHeight/10)+menuItemHeight){
       game.playerCharacter = CharacterVariant.FOX;
@@ -490,28 +539,28 @@ void mouseClicked() {
     }   
   }
   else if (game.section == SectionVariant.CHOOSECHARACTER) {
-    characterClicks(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.SPACEMAN, SectionVariant.ENTERNAME);
-    characterClicks((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.COWBOY, SectionVariant.ENTERNAME);
-    characterClicks(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.FOX, SectionVariant.ENTERNAME);
-    characterClicks(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.CAT, SectionVariant.ENTERNAME);
-    characterClicks((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.SKELETON,SectionVariant.ENTERNAME);
-    characterClicks(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.WOLF, SectionVariant.ENTERNAME);
-    menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight, SectionVariant.MAINMENU);
+    selectCharacter(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.SPACEMAN, SectionVariant.ENTERNAME);
+    selectCharacter((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.COWBOY, SectionVariant.ENTERNAME);
+    selectCharacter(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.FOX, SectionVariant.ENTERNAME);
+    selectCharacter(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.CAT, SectionVariant.ENTERNAME);
+    selectCharacter((displayWidth/2)-(boxWH/2), (displayWidth/2)+(boxWH/2), displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.SKELETON,SectionVariant.ENTERNAME);
+    selectCharacter(displayWidth - (displayWidth/6) - boxWH, displayWidth - (displayWidth/6), displayHeight/1.5, (displayHeight/1.5)+boxWH, CharacterVariant.WOLF, SectionVariant.ENTERNAME);
+    selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight, SectionVariant.MAINMENU);
   }
   else if (game.section == SectionVariant.ENTERNAME || game.section == SectionVariant.LEADERBOARD){
-    menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight, SectionVariant.MAINMENU);
+    selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight, SectionVariant.MAINMENU);
   }
   else if (game.section == SectionVariant.CHOOSEDIFFICULTY){
-    modeClicks(displayWidth/4, (displayWidth/4)+boxWH, displayHeight/2, (displayHeight/2)+boxWH, ModeVariant.EASY, SectionVariant.MISSION);
-    modeClicks(displayWidth - (displayWidth/4) - boxWH, displayWidth - (displayWidth/4), displayHeight/2, (displayHeight/2)+boxWH, ModeVariant.DIFFICULT, SectionVariant.MISSION);
-    menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight, SectionVariant.MAINMENU);
+    selectMode(displayWidth/4, (displayWidth/4)+boxWH, displayHeight/2, (displayHeight/2)+boxWH, ModeVariant.EASY, SectionVariant.MISSION);
+    selectMode(displayWidth - (displayWidth/4) - boxWH, displayWidth - (displayWidth/4), displayHeight/2, (displayHeight/2)+boxWH, ModeVariant.DIFFICULT, SectionVariant.MISSION);
+    selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight, SectionVariant.MAINMENU);
   }
   else if (game.section == SectionVariant.GAMESETTINGS){
-    menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 3*displayHeight/10, (3*displayHeight/10)+menuItemHeight, SectionVariant.SETLEFT);
-    menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 4*displayHeight/10, (4*displayHeight/10)+menuItemHeight, SectionVariant.SETRIGHT);
-    menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 5*displayHeight/10, (5*displayHeight/10)+menuItemHeight, SectionVariant.SETJUMP);
-    menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 6*displayHeight/10, (6*displayHeight/10)+menuItemHeight, SectionVariant.SETDASH);
-    menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight, SectionVariant.MAINMENU);
+    selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 3*displayHeight/10, (3*displayHeight/10)+menuItemHeight, SectionVariant.SETLEFT);
+    selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 4*displayHeight/10, (4*displayHeight/10)+menuItemHeight, SectionVariant.SETRIGHT);
+    selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 5*displayHeight/10, (5*displayHeight/10)+menuItemHeight, SectionVariant.SETJUMP);
+    selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 6*displayHeight/10, (6*displayHeight/10)+menuItemHeight, SectionVariant.SETDASH);
+    selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight, SectionVariant.MAINMENU);
   } 
   else if (game.section == SectionVariant.SETLEFT || game.section == SectionVariant.SETRIGHT || game.section == SectionVariant.SETJUMP || game.section == SectionVariant.SETDASH){
     if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <=displayWidth/2 + menuItemWidth/2 && mouseY >= 9*displayHeight/10 && mouseY <= (9*displayHeight/10)+menuItemHeight){
@@ -528,15 +577,27 @@ void mouseClicked() {
   else if (game.section == SectionVariant.RESTARTLEVEL){
     if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <= displayWidth/2 + menuItemWidth/2 && mouseY >= 3*displayHeight/10 && mouseY <= (3*displayHeight/10)+menuItemHeight){
       game.section = SectionVariant.GAMELEVELS;
-      enterLevel("level1");
+      enterLevel(game.level);
     }
-    menuClicks(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight, SectionVariant.MAINMENU);
+    selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 9*displayHeight/10, (9*displayHeight/10)+menuItemHeight, SectionVariant.MAINMENU);
   }
   else if(game.section == SectionVariant.GAMEOVER){
+    sendScore(game.getScore());
+    game.restart();
     game.section = SectionVariant.MAINMENU;
+  }
+  else if(game.section == SectionVariant.SHOWSCORES){
+    game.section = SectionVariant.GAMELEVELS;
+    int nextLevel = parseInt(game.spaceshipPieces)+1;
+    enterLevel("level"+nextLevel);
+  }
+  else if(game.section == SectionVariant.GAMECOMPLETE){
+    sendScore(game.getScore());
+    game.section = SectionVariant.CREDITS;
   }
 }
 
+// Increase text size when hovering over text menu option
 void hoverTextSize(float xMin, float xMax, float yMin, float yMax){
   if(mouseX >= xMin  && mouseX <= xMax && mouseY >= yMin && mouseY <= yMax){
     textSize(hoveredSize);
@@ -546,6 +607,7 @@ void hoverTextSize(float xMin, float xMax, float yMin, float yMax){
   }
 }
 
+// Turn box read when hovering over box menu option
 void hoverBoxColour(float xMin, float xMax, float yMin, float yMax){
   if(mouseX >= xMin  && mouseX <= xMax && mouseY >= yMin && mouseY <= yMax){
     fill(200, 20, 0);
@@ -555,6 +617,7 @@ void hoverBoxColour(float xMin, float xMax, float yMin, float yMax){
   }
 }
 
+// Display character name when hovering over character option
 void hoverCharacter (float xMin, float xMax, float yMin, float yMax, String character){
   if(mouseX >= xMin  && mouseX <= xMax && mouseY >= yMin && mouseY <= yMax){
     textSize(hoveredSize);
@@ -563,22 +626,25 @@ void hoverCharacter (float xMin, float xMax, float yMin, float yMax, String char
   }   
 }
 
-void menuClicks(float xMin, float xMax, float yMin, float yMax, SectionVariant section){
+// Go into different game section when clicking on menu option
+void selectMenuItem(float xMin, float xMax, float yMin, float yMax, SectionVariant section){
   if(mouseX >= xMin  && mouseX <= xMax && mouseY >= yMin && mouseY <= yMax){
     game.section = section;
   }
 }
 
-void characterClicks(float xMin, float xMax, float yMin, float yMax, CharacterVariant character, SectionVariant section){
+// Select character and go into next section
+void selectCharacter(float xMin, float xMax, float yMin, float yMax, CharacterVariant character, SectionVariant section){
   if(mouseX >= xMin  && mouseX <= xMax && mouseY >= yMin && mouseY <= yMax){
     game.playerCharacter = character;
     game.section = section;
   }
 }
-
-void modeClicks(float xMin, float xMax, float yMin, float yMax, ModeVariant mode, SectionVariant section){
+// Select difficulty mode and go into next section
+void selectMode(float xMin, float xMax, float yMin, float yMax, ModeVariant mode, SectionVariant section){
   if(mouseX >= xMin  && mouseX <= xMax && mouseY >= yMin && mouseY <= yMax){
     game.mode = mode;
     game.section = section;
   }   
 }
+  
