@@ -7,10 +7,12 @@ public class PlayerControlledSprite extends Sprite{
   boolean doubleJump = true;//can or cant double jump
   boolean flagDoubleJump = false;//this jump is or not double jump
   boolean doubleJumped = false;
+  float windFactor;
+  int windConstant;
 
   // Constructor
-  PlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, int spriteLayer, int maxXPos, int maxYPos, String imgFile) {
-    super(xPos, yPos, spriteWidth, spriteHeight, spriteLayer, maxXPos, maxYPos, imgFile);
+  PlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, int maxXPos, int maxYPos, String imgFile) {
+    super(xPos, yPos, spriteWidth, spriteHeight, maxXPos, maxYPos, imgFile);
     this.health = health;
     this.animations = new HashMap<>();
     this.animations.put("standing", new Animation(game.getCharacter(), "standing"));
@@ -21,35 +23,35 @@ public class PlayerControlledSprite extends Sprite{
   public void updatePosition(boolean moveLeft, boolean moveRight, boolean moveUp, boolean moveDown, boolean jump, NonPlayerControlledSprite[] sprites) {
     
       if (moveLeft) {
-        if (xSpeed < -maxSpeedX) {
-          xSpeed += xAcceleration;
+        if (xSpeed < -maxSpeedX * windFactor / 1.4f) {
+          xSpeed += xAcceleration * windFactor;
         } else {
           if (xSpeed > 0) {
-            xSpeed -= 2 * xAcceleration;
+            xSpeed -= 2 * xAcceleration * windFactor;
           } else {
-            xSpeed -= xAcceleration;
+            xSpeed -= xAcceleration * windFactor;
           }
         }
         faceToRight = false;
       } else if (moveRight) {
-          if (xSpeed > maxSpeedX) {
-            xSpeed -= xAcceleration;
+          if (xSpeed > maxSpeedX / windFactor) {
+            xSpeed -= xAcceleration * windFactor;
           } else {
             if (xSpeed < 0) {
-              xSpeed += 2 * xAcceleration;
+              xSpeed += 2 * xAcceleration / windFactor;
             } else {
-              xSpeed += xAcceleration;
+              xSpeed += xAcceleration / windFactor;
             }
           }
           faceToRight = true;
       } else {
           // Apply deceleration when no keys are pressed
-          if (xSpeed > 0) {
-              xSpeed -= xAcceleration;
-              xSpeed = max(0, xSpeed);
-          } else if (xSpeed < 0) {
-              xSpeed += xAcceleration;
-              xSpeed = min(0, xSpeed);
+          if (xSpeed > 0 - windConstant * windFactor * maxSpeedX / 5) {
+              xSpeed -= xAcceleration * windFactor;
+              xSpeed = max(0 - windConstant * windFactor * maxSpeedX / 5, xSpeed);
+          } else if (xSpeed < 0 - windConstant * windFactor * maxSpeedX / 5) {
+              xSpeed += xAcceleration * windFactor;
+              xSpeed = min(0 - windConstant * windFactor * maxSpeedX / 5, xSpeed);
           }
       }
 
@@ -109,16 +111,19 @@ public void checkCollision(NonPlayerControlledSprite[] sprites) {
             this.health = health - 1;
             this.xSpeed = Math.signum(this.xSpeed) * -1 * this.maxSpeedX;
             this.ySpeed = Math.signum(this.ySpeed) * -0.5 * this.maxSpeedY;
+          } else if(sprite.isSpaceshipPart && sprite.isAlive){
+            collectSpaceshipPart(sprite);
           } else {
             this.xSpeed = 0;
           }
 
-        }
+        }     
         if (this.xPos + this.spriteWidth > sprite.xPos && this.xPos < sprite.xPos + sprite.spriteWidth && this.yPos + this.spriteHeight + this.ySpeed > sprite.yPos && this.yPos + this.ySpeed < sprite.yPos + sprite.spriteHeight) {
           if(sprite.isEnemy){
             sprite.Died();
-            this.xSpeed = Math.signum(this.xSpeed) * -1 * this.maxSpeedX;
             this.ySpeed = Math.signum(this.ySpeed) * -0.5 * this.maxSpeedY;
+          } else if(sprite.isSpaceshipPart && sprite.isAlive){
+            collectSpaceshipPart(sprite);
           } else {
             this.ySpeed = 0.0;
             if (this.yPos + this.spriteHeight < sprite.yPos + 0.1) {
@@ -135,6 +140,23 @@ public void checkCollision(NonPlayerControlledSprite[] sprites) {
     return this.faceToRight;
   }
   
+  public void setXAcceleration(float acceleration) {
+    this.xAcceleration = acceleration;
+  }
+  
+  public void setYAcceleration(float acceleration) {
+    this.yAcceleration = acceleration;
+  }
+  
+  public void setWindFactor(float windFactor) {
+    this.windFactor = windFactor;
+    if (windFactor - 1.0f > 0.0001f) {
+      this.windConstant = 1;
+    } else {
+      this.windConstant = 0;
+    }
+  }
+  
   public PImage getNextFrame() {
     if (Math.abs(ySpeed) - 0 > 0.0001) {
       return this.animations.get("jumping").nextFrame(ySpeed / 5);
@@ -142,6 +164,14 @@ public void checkCollision(NonPlayerControlledSprite[] sprites) {
       return this.animations.get("standing").nextFrame(1);
     }
     return this.animations.get("moving").nextFrame(xSpeed / 3);
+  }
+  
+  public void collectSpaceshipPart(NonPlayerControlledSprite sprite){
+    sprite.Died();
+    game.increaseSpaceshipPieces();
+    String part = "part"+game.level.substring(5);
+    currentView.userInterface.getElement(part).setTintAmount(255);
+    currentLevel.endLevel();
   }
   
 }

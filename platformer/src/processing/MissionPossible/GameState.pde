@@ -15,6 +15,7 @@ public class GameState {
   long level4Score;
   
   // Constructor
+  // Initial showTutorial, playerNickname, playerCharacter, section and mode values to be set once player has started entering information
   GameState(){
     started = false;
     score = 0;
@@ -26,7 +27,6 @@ public class GameState {
     level2Score = 0;
     level3Score = 0;
     level4Score = 0;
-    // Initial showTutorial, playerNickname, playerCharacter, section and mode values to be set once player has started entering information
   }
   
   // Restart
@@ -61,27 +61,28 @@ public class GameState {
   
   public void calculateGameScore(){
     score = level1Score + level2Score +level3Score + level4Score;
-    if(mode == ModeVariant.DIFFICULT){
-      score *= 1.25;
-    }
   }
   
   public void updateLevelScore(String levelNo, long levelScore){
-    if(levelNo == "level1"){
+    if(levelNo.equals("level1")){
       level1Score = levelScore;
     }
-    else if(levelNo == "level2"){
+    else if(levelNo.equals("level2")){
       level2Score = levelScore;
     }
-    else if(levelNo == "level3"){
+    else if(levelNo.equals("level3")){
       level3Score = levelScore;
     }
-    else if (levelNo == "level4"){
+    else if (levelNo.equals("level4")){
       level4Score = levelScore;
     }
   }
   
   public long getScore() {
     return score;
+  }
+  
+  public void increaseSpaceshipPieces(){
+    spaceshipPieces++;
   }
 }
