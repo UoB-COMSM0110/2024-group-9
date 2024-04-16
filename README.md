@@ -9,7 +9,14 @@ Liz Elliott, Diwen Fan, Santiago Gasca Garcia, Guangfo Guo, Charles Harris
 
 This section sets out our two initial ideas and expands on the chosen game idea. 
 
-IDEA 1: Platformer
+IDEA 1: Platformer (which we have ended up committing to)
+
+Our game, Mission Possible, is a short story about a space explorer in the future who crash-lands on a distant planet and must return to their home planet of Earth B-13. In order to do so, the player must select their hero and embark on a journey to traverse various levels (the number and complexity of which will be affected by which of the two difficulty settings the player selects) and make it back to their ship, all while finding ways to avoid or work around the strongly disorienting and potentially fatal space monsters and weather conditions found in the far corners of outer space.
+
+Mission Possible is a traditional platformer game like the original Donkey Kong, a model still prevalent in the modern day, as seen in blockbuster games like the latest instalments in the Super Mario series as well as smaller independent releases such as Celeste. 
+
+Our distinguishing feature is the implementation of adverse weather effects in the levels. We have used a few conditions. Firstly, we use ice which, if stepped on, causes the player to lose the grip and restricts their ability to go back and forth at will, making it more difficult to time jumps and steps to get around obstacles and enemies. Secondly, we have gone for extreme winds which are constantly pushing the player in one direction thus making it much harder to progress. If a player jumps, the wind can send them flying backwards possibly even pushing them into an enemy and costing a life. And thirdly we have decided to add a fog setting. This blacks out the entire screen apart from a small circle of light around the player, so it becomes much harder to plan the optimal course in advance and relies on the player’s instinct to avoid the pitfalls of the level.
+
 
 Examples:
 - Celeste
@@ -75,7 +82,7 @@ Working title: "Mission Possible!"
 8. As a developer I want the game to have good performance and stability so that people enjoy playing it.
 9. As a developer I want the difficulty to be set so that not everyone finishes the game first time but it is possible to win eventually.
 10. As a marker I want to get an overview of the game in a few minutes in order to be able to give it a fair review.
-
+ 
 ### Use case specification for user story 1:
 1. Player opens the game and sees an intuitive navigation menu.
 2. Player selects tutorial.
@@ -103,6 +110,12 @@ For example, an player should be able to skip the tutorial if they want to, but 
 
 We also noted that we are still undecided about exactly what our three challenges will be, how many levels to have, and what details to include on the leaderboard. For example, how will we calculate a score for a player, will we show duplicates (i.e. if a player has played twice, will their two different scores appear in the leaderboard) and how will we show the current player's high score if it is not in, say, the top 10? 
 
+### Ideation process and how we settled on the final idea
+The process began by setting limits; it was important to know and manage expectations. Naturally, a totally revolutionary open-world RPG was well beyond anyone’s capabilities. But at the same time games like advanced Pong or Tic-Tac-Toe did not feel like enough of a challenge. Initially, the idea of a racing game seemed appealing but we quickly decided this felt a bit boring given what the kind of racing game we would be able to make and so we landed on a platformer with the idea of adding some kind of storyline to make it more interesting for the player. To make sure we did not end up doing something too derivative of a Super Mario we decided to take it extra-terrestrial and come up with our own storyline of a lost and crashed cowboy of the future; the solo space explorer. With a rough outline defined we were able to begin brainstorming features and ideas. Immediately, we decided we needed obstacles to add some sort of challenge, lives so that there is ‘something at risk’ and the player cannot just spam moves until something fortuitously happens to work and scores to add an incentive to complete the game faster/better (settling on how the player’s attempt would be scored was not something we were able to do in the earlier stages as this required more knowledge of the code we would be using and how complicated each scoring method would end up being).
+
+With these objectives decided we set about drawing up the very bare bones draft of the game which featured an intro menu with the option to play the game or the tutorial. We had the user ‘click’ the play button, which took them to an “ENTER YOUR NAME” screen. This was followed by a screen revealing a level map which starts off as a very simple ‘obstacle course’ in which the player need only jump to reach the next platform and complete that level. Then suggestions were made to include enemy sprites that the player was to avoid. Failing to do so would cost one of the player’s 3 lives and the loss of all 3 lives would take the player (initially) back to the start of the level. Eventually, the player completes the draft level and sees a ‘MISSION COMPLETE’ screen followed by a scoreboard screen with their name and score on it, comparing them to previous players.
+
+
 ## Design
 
 ## Implementation
@@ -128,5 +141,10 @@ Heuristic evaluation:
 ### Testing
 
 ## Process
+
+When placed in assigned teams, there is an important, inevitable stage at the beginning where everyone must make an effort to break the ice and establish team goals and ambitions for the project at hand. We quickly got on with introductions and discussed the types of games we had in mind based on previous experiences playing them and even, for some, designing them. At the start, most of the work was done in the Monday morning labs but there was also a significant bit of going away and individually seeing what was feasible and finding examples from which to draw inspiration that were then shared and further explored as a team on the Teams group which has served as our main form of communication throughout. We have also met in person various times throughout the course of the project which feels more efficient but is harder to coordinate. 
+
+In terms of team roles, at no point did we deem in necessary or even helpful to assign any specific roles. In my experience at least, for these types of projects the roles are very fluid and tend to define themselves if specifically needed. Although there were no specific roles, in our meetings and calls we discussed what each of us would be happy to attempt/do and this was a very smooth process with everyone volunteering to tackle one task or another. This was easier before the Easter break when everyone was in Bristol and focused solely on work. Naturally, with the holiday there can be a bit of a downturn in the pace and consistency of the work. However, we planned around this pre-emptively so that everyone could let the group know roughly of any dates over the holiday during which they would be totally unavailable, thus minimising the impact on the project and ensuring we stayed on track. For the most part, this worked well with only minor disruptions to the workflow. Once we returned [finish this off when it’s happened]
+
 
 ## Conclusion
