@@ -569,7 +569,7 @@ void mouseClicked() {
   }
   else if(game.section == SectionVariant.MISSION){
     game.section = SectionVariant.GAMELEVELS;
-    enterLevel("level1");
+    enterLevel("level4");
   }
   else if (game.section == SectionVariant.TUTORIAL || game.section == SectionVariant.CREDITS){
     game.section = SectionVariant.MAINMENU;
