@@ -3,7 +3,7 @@
 ## Team
 Liz Elliott, Diwen Fan, Santiago Gasca Garcia, Guangfo Guo, Charles Harris
 
-<img src="Image.jfif" width="250">
+<img src="report-photos/Image.jfif" width="250">
 
 ## Introduction
 
@@ -16,7 +16,7 @@ Examples:
 - Celeste
 - Super Mario
 
-<img src="Celeste_screenshot_02.png" width="350">
+<img src="report-photos/Celeste_screenshot_02.png" width="350">
 
 Twist: Weather system to affect efficacy of certain moves. For example:
 
@@ -40,7 +40,7 @@ Examples:
 - Tower Defense King
 - Kingdom Defense
 
-<img src="Tower-Defense-King-screenshot.png" width ="350">
+<img src="report-photos/Tower-Defense-King-screenshot.png" width ="350">
 
 Twist: Game mode which allows the player to be the attacking party. 
 
@@ -62,7 +62,7 @@ Working title: "Mission Possible!"
 
 ## Requirements
 
-### Stakeholders:
+### Stakeholders
 
 - Players of the game:
   - novice player
@@ -72,7 +72,7 @@ Working title: "Mission Possible!"
 - Game developers
 - Markers (who have 5 mins max to play the game)
 
-### User stories:
+### User stories
 
 1. As a novice gamer I want a tutorial to teach me the basic game commands, so I can become proficient at the game.
 2. As someone with problems with my hands I want to be able to remap the key binds to use my preferred layout.
@@ -85,14 +85,14 @@ Working title: "Mission Possible!"
 9. As a developer I want the difficulty to be set so that not everyone finishes the game first time, but it is possible to win eventually.
 10. As a marker I want to get an overview of the game in a few minutes in order to be able to give it a fair review.
 
-### Use case specification for user story 1:
+### Use case specification for user story 1
 
 1. Player opens the game and sees an intuitive navigation menu.
 2. Player selects tutorial.
 3. Tutorial opens showing the player a basic level that builds up from the basics in separate screens, focusing on one thing at a time.
 4. Player reaches the end of the tutorial and is taken back to the home screen, so they can decide whether to do the tutorial again or play the full game.
 
-### Use case specification for user story 7:
+### Use case specification for user story 7
 
 1. Player opens game
 2. Player selects to skip tutorial (already has pre-existing knowledge of game, keybinds, enemies, etc.)
@@ -105,13 +105,13 @@ Working title: "Mission Possible!"
 
 Use case diagram for user story 7
 
-<img src="use-case-story7.jpg" width="500">
+<img src="report-photos/use-case-story7.jpg" width="500">
 
 ### Reflections
 
-The main things that we realised from developing the user stories and use cases were how it's important to be clear about which order things will need to happen in, and being very clear to the players about what they need to do next. 
+The main things that we realised from developing the user stories and use cases were how it's important to be clear about which order things will need to happen in, and being very clear to the players about what they need to do next.
 
-For example, an player should be able to skip the tutorial if they want to, but a novice player should really easily be able to see what they need to do to start the tutorial. We might choose not to have character selection or entering the player's name for the tutorial, but these menu screens will need to be available for the main game. If we include the option to change the keybinds to make it easier for players to use the keys best suited to their physical requirements, we should do this as early on as possible. 
+For example, a player should be able to skip the tutorial if they want to, but a novice player should really easily be able to see what they need to do to start the tutorial. We might choose not to have character selection or entering the player's name for the tutorial, but these menu screens will need to be available for the main game. If we include the option to change the keybinds to make it easier for players to use the keys best suited to their physical requirements, we should do this as early on as possible.
 
 We also noted that we are still undecided about exactly what our three challenges will be, how many levels to have, and what details to include on the leaderboard. For example, how will we calculate a score for a player, will we show duplicates (i.e. if a player has played twice, will their two different scores appear in the leaderboard) and how will we show the current player's high score if it is not in, say, the top 10?
 
@@ -127,9 +127,11 @@ We identified 3 main areas of challenge when planning the design for our game. T
 
 Implementing a global leaderboard where scores are uploaded upon completion of (or death during) the game allows for minimal code to be included within the game itself for handling scores, as they are largely dealt with by the Python server. User ID generation is one aspect that is handled within the game. This generates a UUID (Universally Unique IDentifier) based on the system's hostname, username and OS name in combination with the player's nickname chosen when entering the game. This allows for player's with the same nickname to appear separately in the leaderboard, but also enables the same user to complete the game multiple times and only have their highest score appear on the leaderboard.
 
-The Python web server receives [POST](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST) and [GET](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET) to the root (`/`) and `/top-ten` paths respectively. The POST request to the `/` path consists of a JSON object containing the user's UUID, nickname and score. If the score is greater than the score for a matching UUID, or there are no matching UUIDs, it is inserted into the PostgreSQL database used for persistent storage. [SQLAlchemy](https://www.sqlalchemy.org/) is used for [ORM](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping) to minimise the risk of attack vectors such as SQL injection and to generate the SQL commands sent to the database server. The GET request to the `/top-ten` path sorts the scores contained within the 'Scores' table and returns a JSON object containing the top ten scores and their associated nicknames to be displayed in the Leaderboard menu. 
+The Python web server receives [POST](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST) and [GET](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET) to the root (`/`) and `/top-ten` paths respectively. The POST request to the `/` path consists of a JSON object containing the user's UUID, nickname and score. If the score is greater than the score for a matching UUID, or there are no matching UUIDs, it is inserted into the PostgreSQL database used for persistent storage. [SQLAlchemy](https://www.sqlalchemy.org/) is used for [ORM](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping) to minimise the risk of attack vectors such as SQL injection and to generate the SQL commands sent to the database server. The GET request to the `/top-ten` path sorts the scores contained within the 'Scores' table and returns a JSON object containing the top ten scores and their associated nicknames to be displayed in the Leaderboard menu.
 
+<img src="report-photos/leaderboard-json.png" width="500">
 
+<img src="report-photos/leaderboard-menu.png" width="500">
 
 [Docker](https://www.docker.com/) is used to containerise all components of the stack, enabling straightforward communication between the Python web server and PostgreSQL database, as well as between the Python webserver and [Traefik](https://traefik.io/traefik/) reverse proxy used to handle aspects such as [TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security) termination and [ACME (Automatic Certificate Management Environment)](https://en.wikipedia.org/wiki/Automatic_Certificate_Management_Environment).
 
