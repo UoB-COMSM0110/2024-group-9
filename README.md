@@ -122,10 +122,7 @@ We identified 3 main areas of challenge when planning the design for our game. T
 
 Because of the different elemnents we wanted to include in the game (such as a tutorial, the option to change keybinds and multiple levels), the game flow required careful implementation to ensure that the correct things are displayed on screen, and that it is clear to the player how to navigate the game. The game flow is based around an enumerated class SectionVariant which drives what is displayed on the screen, as well as the effect of any mouse clicks or key presses. Where a menu screen only contains information and one possible action, the player is invited to click anywhere. If there are two or more options to choose from, methods are invoked that highlight the option the mouse is hovering over, to make it clear what action will be taken with a mouse click in that place. Unless there's a clear reason for it not to, every menu screen includes a "Return to main menu" to aid navigation and clarity. 
 
-<p float="middle">
-  <img src="/report-photos/main-menu.png" width="250" />
-  <img src="/report-photos/main-menu-highlight.png" width="250" /> 
-</p>
+https://github.com/UoB-COMSM0110/2024-group-9/assets/150346688/9aba87e4-707f-4f0e-945d-71c6c36d82be
 
 Players are able to change the keybinds for the game controls, and these are stored in the GameState class so that the tutorial instructions and Game Settings menu will always refer to the chosen keys. The tutorial instructions themselves are stored in an ArrayList which is stepped through as the player progresses through the tutorial. 
 
