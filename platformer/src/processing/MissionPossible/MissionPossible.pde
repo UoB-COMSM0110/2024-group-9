@@ -194,10 +194,10 @@ void displayMainMenu(){
   fill(255);
 
   hoverTextSize(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 3*displayHeight/10, (3*displayHeight/10)+menuItemHeight);
-  MainMenuItem menuItem1 = new MainMenuItem("Play Mission Possible!", 3*displayHeight/10);
+  MainMenuItem menuItem1 = new MainMenuItem("Play tutorial", 3*displayHeight/10);
   
   hoverTextSize(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 4*displayHeight/10, (4*displayHeight/10)+menuItemHeight);
-  MainMenuItem menuItem2 = new MainMenuItem("Play tutorial", 4*displayHeight/10);
+  MainMenuItem menuItem2 = new MainMenuItem("Play Mission Possible!", 4*displayHeight/10);
   
   hoverTextSize(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 5*displayHeight/10, (5*displayHeight/10)+menuItemHeight);
   MainMenuItem menuItem3 = new MainMenuItem("Game settings", 5*displayHeight/10);
@@ -382,9 +382,9 @@ void displayShowScores(){
   fill(255);
   textSize(notHoveredSize);
   text("Level 1 - Lost in Space: " + game.level1Score, displayWidth/2, 3*displayHeight/10);
-  text("Level 2 - Frozen Planet: " + game.level2Score, displayWidth/2, 4*displayHeight/10);
-  text("Level 3 - Hurricane Valley: " + game.level3Score, displayWidth/2, 5*displayHeight/10);
-  text("Level 4 - Misty Mountain: " + game.level4Score, displayWidth/2, 6*displayHeight/10);
+  text("Level 2 - Misty Mountain: " + game.level2Score, displayWidth/2, 4*displayHeight/10);
+  text("Level 3 - Frozen Planet: " + game.level3Score, displayWidth/2, 5*displayHeight/10);
+  text("Level 4 - Hurricane Valley: " + game.level4Score, displayWidth/2, 6*displayHeight/10);
   fill(200, 20, 0);
   text("Total score: " + game.score, displayWidth/2, 7*displayHeight/10);
   
@@ -526,8 +526,8 @@ void mouseClicked() {
   }
   else if(game.section == SectionVariant.MAINMENU){
     y = displayHeight;
-    selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 3*displayHeight/10, (3*displayHeight/10)+menuItemHeight, SectionVariant.CHOOSECHARACTER);
-    selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 4*displayHeight/10, (4*displayHeight/10)+menuItemHeight, SectionVariant.TUTORIAL);
+    selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 3*displayHeight/10, (3*displayHeight/10)+menuItemHeight, SectionVariant.TUTORIAL);
+    selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 4*displayHeight/10, (4*displayHeight/10)+menuItemHeight, SectionVariant.CHOOSECHARACTER);
     selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 5*displayHeight/10, (5*displayHeight/10)+menuItemHeight, SectionVariant.GAMESETTINGS);
     if (mouseX >= displayWidth/2 - menuItemWidth/2 && mouseX <= displayWidth/2 + menuItemWidth/2 && mouseY >= 6*displayHeight/10 && mouseY <= 6*displayHeight/10 + menuItemHeight) {
       topTen = leaderboard.getScores(true);
@@ -535,7 +535,7 @@ void mouseClicked() {
     selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 6*displayHeight/10, (6*displayHeight/10)+menuItemHeight, SectionVariant.LEADERBOARD);
     selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 7*displayHeight/10, (7*displayHeight/10)+menuItemHeight, SectionVariant.CREDITS);
      
-    if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <= displayWidth/2 + menuItemWidth/2 && mouseY >= 4*displayHeight/10 && mouseY <= (4*displayHeight/10)+menuItemHeight){
+    if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <= displayWidth/2 + menuItemWidth/2 && mouseY >= 3*displayHeight/10 && mouseY <= (3*displayHeight/10)+menuItemHeight){
       game.playerCharacter = CharacterVariant.FOX;
       enterLevel("tutorial");
     }
@@ -625,6 +625,9 @@ void hoverCharacter (float xMin, float xMax, float yMin, float yMax, String char
     textSize(hoveredSize);
     fill(200, 20, 0);
     text(character, displayWidth/2, displayHeight/2);
+    stroke(200, 20, 0);
+    noFill();
+    rect(xMin-20, yMin-20, boxWH+40, boxWH+40);
   }   
 }
 
