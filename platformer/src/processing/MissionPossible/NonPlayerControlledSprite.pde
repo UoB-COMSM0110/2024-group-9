@@ -4,14 +4,17 @@ public class NonPlayerControlledSprite extends Sprite{
   boolean isAlive = true;
   boolean isSpaceshipPart;
   boolean faceToRight = false;
-  float speed;
+  int speed;
   
   // Constructor
-  public NonPlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, boolean isEnemy, boolean isSpaceshipPart, int maxXPos, int maxYPos, String imgFile) {
+  public NonPlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, boolean isEnemy, boolean isSpaceshipPart, int maxXPos, int maxYPos, String imgFile, ModeVariant mode) {
     super(xPos, yPos, spriteWidth, spriteHeight, maxXPos, maxYPos, imgFile);
     this.isEnemy = isEnemy;
     this.isAlive = true;
     this.isSpaceshipPart = isSpaceshipPart;
+    if (mode == ModeVariant.DIFFICULT) {
+      this.speed += 3;
+    }
   }
   
   public void Died(){
@@ -24,12 +27,6 @@ public class NonPlayerControlledSprite extends Sprite{
   }
 
   public void updatePosition(int leftBoundary, int rightBoundary){
-    if(game.mode == ModeVariant.DIFFICULT){
-      speed = 5;
-    }
-    else{
-      speed = 3;
-    }
     if((isEnemy || isSpaceshipPart) && !isAlive){
       this.xPos = 9999;
       this.yPos = 9999;

@@ -95,16 +95,20 @@ public class PlayerControlledSprite extends Sprite{
       flagDoubleJump = true;
     }
     
-
+    checkCollision(sprites);
 
     landed = false;
 
     // Update positions
+    if (xPos + xSpeed > maxXPos || xPos + xSpeed < 0) {
+      xSpeed = 0;
+    }
     xPos += xSpeed;
-    xPos = constrain(xPos, 0, maxXPos - spriteWidth);
+    
+    if (yPos + ySpeed > maxYPos || yPos + ySpeed < 0) {
+      ySpeed = 0;
+    }
     yPos += ySpeed;
-    yPos = constrain(yPos, 0, maxYPos - spriteHeight);
-
   }
   
 public void checkCollision(NonPlayerControlledSprite[] sprites) {

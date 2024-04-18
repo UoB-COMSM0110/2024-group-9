@@ -85,4 +85,8 @@ public class GameState {
   public void increaseSpaceshipPieces(){
     spaceshipPieces++;
   }
+  
+  public ModeVariant getModeVariant() {
+    return mode;
+  }
 }
