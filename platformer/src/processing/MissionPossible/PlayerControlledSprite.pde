@@ -90,7 +90,7 @@ public class PlayerControlledSprite extends Sprite{
       flagDoubleJump = true;
     }
     
-
+    checkCollision(sprites);
 
 
     landed = false;
