@@ -79,11 +79,10 @@
       "isSpaceshipPart": false,
       "spriteImage": "platform.png"
     },
-
     {
       "position": {
-        "x": 800,
-        "y": 0
+        "x": 1000,
+        "y": 50
       },
       "spriteWidth": 50,
       "spriteHeight": 900,
@@ -95,7 +94,7 @@
     {
       "position": {
         "x": 1050,
-        "y": 1350
+        "y": 1450
       },
       "spriteWidth": 350,
       "spriteHeight": 20,
@@ -116,14 +115,25 @@
     },
     {
       "position": {
-        "x": 2300,
-        "y": 1050
+        "x": 2250,
+        "y": 1200
       },
-      "spriteWidth": 100,
+      "spriteWidth": 150,
       "spriteHeight": 20,
       "isEnemy": false,
       "isSpaceshipPart": false,
       "spriteImage": "platform.png"
+    },
+    {
+        "position": {
+          "x": 2350,
+          "y": 900
+        },
+        "spriteWidth": 50,
+        "spriteHeight": 20,
+        "isEnemy": false,
+        "isSpaceshipPart": false,
+        "spriteImage": "platform.png"
     },
     {
       "position": {
@@ -138,8 +148,8 @@
     },
     {
       "position": {
-        "x": 1000,
-        "y": 950
+        "x": 1050,
+        "y": 930
       },
       "spriteWidth": 300,
       "spriteHeight": 20,
@@ -149,8 +159,8 @@
     },
     {
       "position": {
-        "x": 1000,
-        "y": 850
+        "x": 1050,
+        "y": 830
       },
       "spriteWidth": 100,
       "spriteHeight": 100,
@@ -219,7 +229,7 @@
     {
       "position": {
         "x": 2250,
-        "y": 550
+        "y": 400
       },
       "spriteWidth": 55,
       "spriteHeight": 55,
