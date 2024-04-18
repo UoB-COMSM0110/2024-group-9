@@ -45,21 +45,21 @@ void setup() {
   MPFont = createFont("IMPOS10_.ttf", 48);
   textFont(MPFont);
   spaceship = loadImage("spaceship.png");
-  takeoff = loadImage("takeoff.png");
+  takeoff = loadImage("TRANSPARENTtakeoff.png");
   spaceshipPartImagesTransition = new PImage[4];
-  spaceshipPartImagesTransition[0] = loadImage("part1rocketGREY.png");
+  spaceshipPartImagesTransition[0] = loadImage("TRANSPARENTpart1ship.png");
   if(spaceshipPartImagesTransition[0] == null){
     println("failed to load this one");
   }
-  spaceshipPartImagesTransition[1] = loadImage("spaceship2GREY-2.png");
+  spaceshipPartImagesTransition[1] = loadImage("TRANSPARENTpart2ship.png");
   if(spaceshipPartImagesTransition[1] == null){
     println("failed to load this 2");
   }
-  spaceshipPartImagesTransition[2] = loadImage("spaceshippart3GREY-2.png");
+  spaceshipPartImagesTransition[2] = loadImage("TRANSPARENTpart3ship.png");
   if(spaceshipPartImagesTransition[2] == null){
     println("failed to load this 3");
   }
-  spaceshipPartImagesTransition[3] = loadImage("takeoff.png");
+  spaceshipPartImagesTransition[3] = loadImage("TRANSPARENTtakeoff.png");
   if(spaceshipPartImagesTransition[3] == null){
     println("failed to load this one");
   }
