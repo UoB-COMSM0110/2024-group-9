@@ -18,6 +18,9 @@ public class Level{
      imageMap = new HashMap<>();
      started = true;
      score = 0;
+     
+     AudioPlayer bgmPlayer = minim.loadFile("sounds/game_bgm.mp3");
+     bgmPlayer.loop();
 
      JSONObject json = loadJSONObject(jsonFilePath);
      

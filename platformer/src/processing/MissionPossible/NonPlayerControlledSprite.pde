@@ -4,7 +4,7 @@ public class NonPlayerControlledSprite extends Sprite{
   boolean isAlive = true;
   boolean isSpaceshipPart;
   boolean faceToRight = false;
-  int speed = 4;
+  int speed;
   
   // Constructor
   public NonPlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, boolean isEnemy, boolean isSpaceshipPart, int maxXPos, int maxYPos, String imgFile, ModeVariant mode) {
@@ -13,12 +13,17 @@ public class NonPlayerControlledSprite extends Sprite{
     this.isAlive = true;
     this.isSpaceshipPart = isSpaceshipPart;
     if (mode == ModeVariant.DIFFICULT) {
-      this.speed *= 1.25;
+      this.speed += 3;
     }
   }
+  
   public void Died(){
     this.isAlive = false;
     currentLevel.score += 5;
+    AudioPlayer player = minim.loadFile("sounds/monster_died.wav");
+    if(player != null){
+      player.play();
+    }
   }
 
   public void updatePosition(int leftBoundary, int rightBoundary){
@@ -30,13 +35,13 @@ public class NonPlayerControlledSprite extends Sprite{
       if(this.xPos > leftBoundary && !faceToRight){
         this.xPos -= speed;
       }
-      if(this.xPos <= leftBoundary){
+      if(this.xPos - speed <= leftBoundary){
         faceToRight = true;
       }
       if(this.xPos < rightBoundary && faceToRight){
         this.xPos += speed;
       }
-      if(this.xPos >= rightBoundary){
+      if(this.xPos + speed >= rightBoundary){
         faceToRight = false;
       }
     }
