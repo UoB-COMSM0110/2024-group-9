@@ -14,7 +14,6 @@ class UserInterface{
     uiAssets.put("spaceship_part2.png", loadImage(dataPath("level2" + File.separator + "spaceship_part2.png")));
     uiAssets.put("spaceship_part3.png", loadImage(dataPath("level3" + File.separator + "spaceship_part3.png")));
     uiAssets.put("spaceship_part4.png", loadImage(dataPath("level4" + File.separator + "spaceship_part4.png")));
-    uiElements.put("fps", new UIElement(UIElementVariant.TEXT, 11 * displayWidth / 13, displayHeight / 20, "100!", 255, null, 0, 0, 255));
     for (int i = 0; i < 3; i++) {
       uiElements.put("health" + String.valueOf(i), new UIElement(UIElementVariant.IMAGE, displayWidth / 30 + i * displayWidth / 35, displayHeight / 20, "", 255, uiAssets.get("heart.png"), displayHeight / 20, displayHeight / 20, 255));
     }

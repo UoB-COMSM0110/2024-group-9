@@ -85,13 +85,22 @@ public class Level{
      this.player = new PlayerControlledSprite(playerXPos, playerYPos, playerWidth, playerHeight, levelWidth, levelHeight, playerImage, audioMap);
      
      if (weather == WeatherVariant.ICY) {
-       this.player.setXAcceleration(0.03f);
+       if (game.getModeVariant() == ModeVariant.DIFFICULT) {
+         this.player.setXAcceleration(0.05f);
+       } else {
+         this.player.setXAcceleration(0.1f);
+       }
      } else {
-       this.player.setXAcceleration(0.1f);
+       this.player.setXAcceleration(0.2f);
      }
      
      if (weather == WeatherVariant.WINDY) {
-       this.player.setWindFactor(1.8f);
+       if (game.getModeVariant() == ModeVariant.DIFFICULT) {
+          this.player.setWindFactor(1.8f);
+       } else {
+         this.player.setWindFactor(1.4f);
+       }
+
      } else {
        this.player.setWindFactor(1.0f);
      }
@@ -115,7 +124,7 @@ public class Level{
       boolean isEnemy = sprite.getBoolean("isEnemy");
       boolean isSpaceshipPart = sprite.getBoolean("isSpaceshipPart");
       String spriteImage = sprite.getString("spriteImage");
-      sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, isEnemy, isSpaceshipPart, levelWidth, levelHeight, spriteImage, audioMap);
+      sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, isEnemy, isSpaceshipPart, levelWidth, levelHeight, spriteImage, game.getModeVariant(), audioMap);
     }
     this.sprites = sprites;    
   }
