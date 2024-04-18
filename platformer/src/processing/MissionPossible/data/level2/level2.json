@@ -234,6 +234,17 @@
       "spriteImage": "platform.png"
     },
     {
+        "position": {
+          "x": 2050,
+          "y": 1300
+        },
+        "spriteWidth": 100,
+        "spriteHeight": 20,
+        "isEnemy": false,
+        "isSpaceshipPart": false,
+        "spriteImage": "platform.png"
+      },
+    {
       "position": {
         "x": 1850,
         "y": 400
