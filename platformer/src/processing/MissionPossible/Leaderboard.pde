@@ -22,7 +22,7 @@ class Leaderboard {
 
     public JSONArray updateScores() {
     int retries = 0;
-    JSONArray topTen = null;
+    JSONArray topTen = new JSONArray();
 
     while (retries < MAX_RETRIES) {
         HttpURLConnection connection = null;
@@ -59,7 +59,9 @@ class Leaderboard {
         }
         retries++;
     }
-
+    if (topTen.size() == 0) {
+      println("Unable to update leaderboard");
+    }
     return topTen;
 }
 }
