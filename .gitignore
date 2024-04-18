@@ -330,4 +330,4 @@ pyrightconfig.json
 *.bkp
 *.db
 db/
-*.pdf
+

@@ -1,0 +1,26 @@
+Menus
+- I like the fonts and that it highlights - very clear
+Tutorial
+- Physics feels good
+- Instructions - it would be better to wait a certain amount of time before the next instruction appears
+Easy:
+- You could have a loading screen before each level
+- What are those faded out parts? Oh, they're the spaceship
+- Feels bouncy and has in-air control which is nice
+- Still have momentum when you turn - that's ok
+- Is there a way of killing these guys? 
+- It might be good to see the calculation of the score
+- This one is a lit slower - it's harder to do (icy level)
+- Maybe dash is a little too weighty
+- Definitely need a wind graphic
+- There's no cool-down indicator for the dash
+- Magnitude of the wind is maybe a bit much
+- When you hit into an enemy you lose a heart and the enemy dies. That's not right is it?
+- It would be good to have a way to restart the current level
+- Love the leaderboard
+Difficult:
+- The sprites are moving faster
+- I've not really found a use case for the dash
+- Levels are varied and intuitive in their structure
+- Not so much the enemies
+- Don't really see the difference between easy and hard. Maybe make the magnitude of the weather different or don't reset hearts in difficult?
