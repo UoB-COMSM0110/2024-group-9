@@ -410,7 +410,7 @@ void displayCredits(){
   textAlign(CENTER);
   textSize(notHoveredSize);
   text(creditText, width*0.05, y, width*0.9, height*3);
-  y--;
+  y-=3;
 }
 
 // Instantiate and show a new level, and record the start time

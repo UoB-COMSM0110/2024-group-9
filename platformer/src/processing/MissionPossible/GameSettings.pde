@@ -9,7 +9,7 @@ public class GameSettings{
     leftKey = 'A';
     rightKey = 'D';
     jumpKey = ' ';
-    dashKey = CONTROL;
+    dashKey = SHIFT;
   }
 
   // Methods to set keybinds to player's choices
