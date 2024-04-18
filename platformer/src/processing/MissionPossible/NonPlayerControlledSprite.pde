@@ -4,14 +4,17 @@ public class NonPlayerControlledSprite extends Sprite{
   boolean isAlive = true;
   boolean isSpaceshipPart;
   boolean faceToRight = false;
-  int speed = 5;
+  int speed = 4;
   
   // Constructor
-  public NonPlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, boolean isEnemy, boolean isSpaceshipPart, int maxXPos, int maxYPos, String imgFile) {
+  public NonPlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, boolean isEnemy, boolean isSpaceshipPart, int maxXPos, int maxYPos, String imgFile, ModeVariant mode) {
     super(xPos, yPos, spriteWidth, spriteHeight, maxXPos, maxYPos, imgFile);
     this.isEnemy = isEnemy;
     this.isAlive = true;
     this.isSpaceshipPart = isSpaceshipPart;
+    if (mode == ModeVariant.DIFFICULT) {
+      this.speed *= 1.25;
+    }
   }
   public void Died(){
     this.isAlive = false;
@@ -27,13 +30,13 @@ public class NonPlayerControlledSprite extends Sprite{
       if(this.xPos > leftBoundary && !faceToRight){
         this.xPos -= speed;
       }
-      if(this.xPos == leftBoundary){
+      if(this.xPos <= leftBoundary){
         faceToRight = true;
       }
       if(this.xPos < rightBoundary && faceToRight){
         this.xPos += speed;
       }
-      if(this.xPos == rightBoundary){
+      if(this.xPos >= rightBoundary){
         faceToRight = false;
       }
     }

@@ -100,7 +100,7 @@ public class Level{
       boolean isEnemy = sprite.getBoolean("isEnemy");
       boolean isSpaceshipPart = sprite.getBoolean("isSpaceshipPart");
       String spriteImage = sprite.getString("spriteImage");
-      sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, isEnemy, isSpaceshipPart, levelWidth, levelHeight, spriteImage);
+      sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, isEnemy, isSpaceshipPart, levelWidth, levelHeight, spriteImage, game.getModeVariant());
     }
     this.sprites = sprites;    
   }
