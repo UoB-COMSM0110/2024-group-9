@@ -171,7 +171,8 @@ public void checkCollision(NonPlayerControlledSprite[] sprites) {
     game.increaseSpaceshipPieces();
     String part = "part"+game.level.substring(5);
     currentView.userInterface.getElement(part).setTintAmount(255);
-    currentLevel.endLevel();
+    game.collectPart(game.spaceshipPieces-1);
+    currentLevel.startTransition();
   }
   
 }

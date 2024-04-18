@@ -13,6 +13,8 @@ public class GameState {
   long level2Score;
   long level3Score;
   long level4Score;
+  boolean inTransition;
+  boolean[] spaceshipPartsCollected;
   
   // Constructor
   // Initial showTutorial, playerNickname, playerCharacter, section and mode values to be set once player has started entering information
@@ -27,6 +29,13 @@ public class GameState {
     level2Score = 0;
     level3Score = 0;
     level4Score = 0;
+    spaceshipPartsCollected = new boolean[4];
+  }
+  
+  public void collectPart(int index){
+    if(index>=0 && index< spaceshipPartsCollected.length){
+      spaceshipPartsCollected[index]=true;
+    }
   }
   
   // Restart

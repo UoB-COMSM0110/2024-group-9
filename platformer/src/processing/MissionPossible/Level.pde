@@ -12,10 +12,18 @@ public class Level{
   HashMap<String, PImage> imageMap;
   long startTime;
   long endTime;
+  float transitionOpacity = 0;
+  float transitionXPosition = -width;
+  Star warpSpeed;
+  int transitionStartTime;
+  int transitionDuration = 2000;
+  float shipMotion=0;
+  boolean inMap = false;
   
  // Constructor - gets most of the level information from JSON file
    Level(String jsonFilePath){
      imageMap = new HashMap<>();
+     warpSpeed = new Star();
      started = true;
      score = 0;
 
@@ -144,4 +152,77 @@ public class Level{
       game.section = SectionVariant.SHOWSCORES;
     }
   }
+  
+  void startTransition(){
+    game.inTransition=true;
+    game.section=SectionVariant.TRANSITION;
+    transitionStartTime = millis();
+  }
+  
+  void updateTransition(){
+    if(game.inTransition){
+      int elapsedTime = millis() - transitionStartTime;
+      if(elapsedTime>=transitionDuration){
+        game.inTransition = false;
+        endLevel();
+      }
+    }
+  }
+  
+  void drawTransition(){
+    if(game.inTransition){
+      warpSpeed.show();
+      float newWidth = spaceship.width*1.5;
+      float newHeight = spaceship.height*1.5;
+      float newX = width/2 - newWidth/2;
+      float newY = height/2 - newHeight/2;
+     
+      noTint();
+      if(!game.spaceshipPartsCollected[3]){
+        if(game.spaceshipPartsCollected[0] && spaceshipPartImagesTransition[0] != null){
+          //removeImageBackground(spaceshipPartImagesTransition[0]);
+          float part1OffsetX=20;
+          float part1OffsetY=0;
+          image(spaceshipPartImagesTransition[0], newX + part1OffsetX, newY + part1OffsetY);
+        }
+        if(game.spaceshipPartsCollected[1] && spaceshipPartImagesTransition[1] != null){
+          removeImageBackground(spaceshipPartImagesTransition[1]);
+          float part2OffsetX=20;
+          float part2OffsetY=0;
+          image(spaceshipPartImagesTransition[1], newX + part2OffsetX, newY + part2OffsetY);
+        }
+        if(game.spaceshipPartsCollected[2] && spaceshipPartImagesTransition[2] != null){
+          removeImageBackground(spaceshipPartImagesTransition[2]);
+          float part3OffsetX=20;
+          float part3OffsetY=0;
+          image(spaceshipPartImagesTransition[2], newX + part3OffsetX, newY + part3OffsetY);
+        }
+      }
+        if(game.spaceshipPartsCollected[3] && spaceshipPartImagesTransition[3] != null){
+
+          fadeAnimation();
+        }
+      }
+    }
+    
+    void fadeAnimation(){
+      float startX = width/2;
+      float startY = height + 100;
+      float endY = height/2;
+      float x = startX;
+      float y = lerp(startY, endY, shipMotion);
+      float size = max(lerp(50, 0, shipMotion), 0.01);
+      removeImageBackground(spaceshipPartImagesTransition[3]);
+  
+      if (shipMotion < 1) {
+        float imgWidth = takeoff.width * size /50;
+        float imgHeight = takeoff.height * size/50;
+        image(takeoff, x - imgWidth/2, y-imgHeight/2, imgWidth, imgHeight);
+        shipMotion +=1.0/(1.5*60);
+    //println("shipMotion: " + shipMotion + ", size: " + size + ", imgWidth: " + imgWidth + ", imgHeight: " + imgHeight);
+
+      } else {
+        inMap = true;
+      }
+    }
 }
