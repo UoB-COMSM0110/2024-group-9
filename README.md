@@ -187,6 +187,25 @@ Heuristic evaluation:
 
 ### Quantitative
 
+<img width="476" alt="Luca NASA TLX" src="https://github.com/UoB-COMSM0110/2024-group-9/assets/147715570/2dbe6bc5-eb46-4119-a212-4619dcb01d94">
+
+<img width="471" alt="Ig NASA TLX" src="https://github.com/UoB-COMSM0110/2024-group-9/assets/147715570/3a2582b9-4698-4508-9d12-857ceddd3ae2">
+
+For these two test subjects, it is important to note that the first one seldom plays videogames, whereas the second one spends a fair bit of their free time doing so.
+
+Neither reported high mental demand, but one did report that one could not engage with the game passively if they wanted to complete it. While we did not want our game to be excessively challenging, we certainly wanted players, especially those less experienced with computer games, to have to struggle a little bit to complete it. 
+
+Both players reported a very low level of physical demand which makes perfect sense as, in theory, one need only use 4 keys to complete the levels.
+
+As for the temporal demand, it's good that neither player felt it was a rushed game or overly demanding for time; it is a relatively simple task that one can complete in more or less 5-15 minutes, optimal for an engaging playthrough.
+
+For the performance, the more experienced player completed it all almost with no problem, so we had to make the game slightly tougher. However, the less experienced test subject was not able to complete all the levels, struggling with one section of Level 2 a bit too much but otherwise completing everything else without too much difficulty, so we adjusted a  bit to make this level slightly easier. 
+
+As shown by the results and further evidenced by the Performance scores, the less experienced subject struggled quite a bit, with the majority of said struggle coming in one section of Level 2. The more experienced player still struggled a little bit and couldn't just complete it first time, no lives lost. This is important, as it shows that even for the more experienced users there is something of a learning curve when it comes to getting used to the physics and movement of the characters.
+
+From these, we can gauge that the game is sufficiently engaging and fast-paced. The variation in frustration has led us to adjust the difficulty of certain sections.
+
+
 ### Testing
 
 ## Process
