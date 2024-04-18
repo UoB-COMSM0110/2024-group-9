@@ -456,8 +456,10 @@ void keyPressed() {
       game.section = SectionVariant.CHOOSEDIFFICULTY;
     } 
     else if ((key >= 'A' && key <= 'Z') || (key >= 'a' && key <= 'z')){
-      game.playerNickname += key;
-      game.playerNickname = game.playerNickname.toUpperCase();
+      if (game.playerNickname.length() < 15) {
+        game.playerNickname += key;
+        game.playerNickname = game.playerNickname.toUpperCase();
+      }
     }
   }
   // Setting keybinds
@@ -536,7 +538,7 @@ void mouseClicked() {
     if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <= displayWidth/2 + menuItemWidth/2 && mouseY >= 4*displayHeight/10 && mouseY <= (4*displayHeight/10)+menuItemHeight){
       game.playerCharacter = CharacterVariant.FOX;
       enterLevel("tutorial");
-    }   
+    }
   }
   else if (game.section == SectionVariant.CHOOSECHARACTER) {
     selectCharacter(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.SPACEMAN, SectionVariant.ENTERNAME);
@@ -569,7 +571,7 @@ void mouseClicked() {
   }
   else if(game.section == SectionVariant.MISSION){
     game.section = SectionVariant.GAMELEVELS;
-    enterLevel("level1");
+    enterLevel("leve1");
   }
   else if (game.section == SectionVariant.TUTORIAL || game.section == SectionVariant.CREDITS){
     game.section = SectionVariant.MAINMENU;
