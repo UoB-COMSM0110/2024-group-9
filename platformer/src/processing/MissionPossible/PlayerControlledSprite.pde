@@ -77,12 +77,13 @@ public class PlayerControlledSprite extends Sprite{
     checkCollision(sprites);
     
     if (jump) {
-      AudioPlayer jumpPlayer = minim.loadFile("sounds/jump.wav");
         if(landed) {
+          AudioPlayer jumpPlayer = minim.loadFile("sounds/jump.wav");
           ySpeed = -15.0f;
           jumpPlayer.play();
         }
         else if (flagDoubleJump) {
+          AudioPlayer jumpPlayer = minim.loadFile("sounds/jump.wav");
           ySpeed = -10.0f;
           flagDoubleJump = false;
           doubleJumped = true;

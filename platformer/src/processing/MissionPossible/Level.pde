@@ -20,7 +20,7 @@ public class Level{
      score = 0;
      
      AudioPlayer bgmPlayer = minim.loadFile("sounds/game_bgm.mp3");
-     bgmPlayer.play();
+     bgmPlayer.loop();
 
      JSONObject json = loadJSONObject(jsonFilePath);
      
