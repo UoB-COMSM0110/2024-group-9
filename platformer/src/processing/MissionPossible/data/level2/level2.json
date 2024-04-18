@@ -275,7 +275,7 @@
       "spriteHeight": 55,
       "isEnemy": false,
       "isSpaceshipPart": true,
-      "spriteImage": "spaceship_part1.png"
+      "spriteImage": "spaceship_part2.png"
     }
   ]
 }
