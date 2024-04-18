@@ -9,15 +9,17 @@ public class PlayerControlledSprite extends Sprite{
   boolean doubleJumped = false;
   float windFactor;
   int windConstant;
+  HashMap<String, AudioPlayer> audioMap;
 
   // Constructor
-  PlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, int maxXPos, int maxYPos, String imgFile) {
+  PlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, int maxXPos, int maxYPos, String imgFile, HashMap<String, AudioPlayer> audioMap) {
     super(xPos, yPos, spriteWidth, spriteHeight, maxXPos, maxYPos, imgFile);
     this.health = health;
     this.animations = new HashMap<>();
     this.animations.put("standing", new Animation(game.getCharacter(), "standing"));
     this.animations.put("moving", new Animation(game.getCharacter(), "moving"));
     this.animations.put("jumping", new Animation(game.getCharacter(), "jumping"));
+    this.audioMap = audioMap;
   }
   
   public void updatePosition(boolean moveLeft, boolean moveRight, boolean moveUp, boolean moveDown, boolean jump, NonPlayerControlledSprite[] sprites) {
@@ -63,8 +65,8 @@ public class PlayerControlledSprite extends Sprite{
     int currentTime = millis();
 
     if (moveUp && nextDashTime < currentTime) {
-      AudioPlayer spritePlayer = minim.loadFile("sounds/player_sprite.wav");
-      spritePlayer.play();
+      audioMap.get("player_sprite.wav").play();
+      audioMap.get("player_sprite.wav").rewind();
       if (faceToRight) {
         xSpeed = 16.0f;
         nextDashTime = currentTime + 3000; // Dash every 3s
@@ -78,16 +80,16 @@ public class PlayerControlledSprite extends Sprite{
     
     if (jump) {
         if(landed) {
-          AudioPlayer jumpPlayer = minim.loadFile("sounds/jump.wav");
+          audioMap.get("jump.wav").play();
+          audioMap.get("jump.wav").rewind();
           ySpeed = -15.0f;
-          jumpPlayer.play();
         }
         else if (flagDoubleJump) {
-          AudioPlayer jumpPlayer = minim.loadFile("sounds/jump.wav");
+          audioMap.get("jump.wav").play();
+          audioMap.get("jump.wav").rewind();
           ySpeed = -10.0f;
           flagDoubleJump = false;
           doubleJumped = true;
-          jumpPlayer.play();
         }
       }
     
@@ -114,12 +116,12 @@ public void checkCollision(NonPlayerControlledSprite[] sprites) {
           if(sprite.isEnemy && sprite.isAlive){
             this.health = health - 1;
             if(health != 0){
-              AudioPlayer hurtPlayer = minim.loadFile("sounds/player_hurt.wav");
-              hurtPlayer.play();
+              audioMap.get("player_hurt.wav").play();
+              audioMap.get("player_hurt.wav").rewind();
             }
             else{
-              AudioPlayer diedPlayer = minim.loadFile("sounds/player_died.wav");
-              diedPlayer.play();
+              audioMap.get("player_died.wav").play();
+              audioMap.get("player_died.wav").rewind();
             }
             this.xSpeed = Math.signum(this.xSpeed) * -1 * this.maxSpeedX;
             this.ySpeed = Math.signum(this.ySpeed) * -0.5 * this.maxSpeedY;

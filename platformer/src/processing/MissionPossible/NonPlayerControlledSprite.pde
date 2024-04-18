@@ -5,22 +5,22 @@ public class NonPlayerControlledSprite extends Sprite{
   boolean isSpaceshipPart;
   boolean faceToRight = false;
   float speed;
+  HashMap<String, AudioPlayer> audioMap;
   
   // Constructor
-  public NonPlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, boolean isEnemy, boolean isSpaceshipPart, int maxXPos, int maxYPos, String imgFile) {
+  public NonPlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, boolean isEnemy, boolean isSpaceshipPart, int maxXPos, int maxYPos, String imgFile, HashMap<String, AudioPlayer> audioMap) {
     super(xPos, yPos, spriteWidth, spriteHeight, maxXPos, maxYPos, imgFile);
     this.isEnemy = isEnemy;
     this.isAlive = true;
     this.isSpaceshipPart = isSpaceshipPart;
+    this.audioMap = audioMap;
   }
   
   public void Died(){
     this.isAlive = false;
     currentLevel.score += 5;
-    AudioPlayer player = minim.loadFile("sounds/monster_died.wav");
-    if(player != null){
-      player.play();
-    }
+    audioMap.get("monster_died.wav").play();
+    audioMap.get("monster_died.wav").rewind();
   }
 
   public void updatePosition(int leftBoundary, int rightBoundary){

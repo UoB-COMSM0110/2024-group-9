@@ -10,17 +10,29 @@ public class Level{
   PlayerControlledSprite player;
   WeatherVariant weather;
   HashMap<String, PImage> imageMap;
+  HashMap<String, AudioPlayer> audioMap;
   long startTime;
   long endTime;
   
  // Constructor - gets most of the level information from JSON file
    Level(String jsonFilePath){
      imageMap = new HashMap<>();
+     audioMap = new HashMap<>();
      started = true;
      score = 0;
+
+
+     File soundDir = new File(dataPath("sounds"));
+     File[] audioFiles = soundDir.listFiles();
+     if (audioFiles != null) {
+       for (File file : audioFiles) {
+         if (file.isFile() && (file.getName().toLowerCase().endsWith(".wav")) || file.getName().toLowerCase().endsWith(".mp3")) {
+           audioMap.put(file.getName(), minim.loadFile(file.getAbsolutePath()));
+         }
+       }
+     }
      
-     AudioPlayer bgmPlayer = minim.loadFile("sounds/game_bgm.mp3");
-     bgmPlayer.loop();
+     audioMap.get("game_bgm.mp3").loop();
 
      JSONObject json = loadJSONObject(jsonFilePath);
      
@@ -70,7 +82,7 @@ public class Level{
      int playerHeight = playerData.getInt("spriteHeight");
      String playerImage = playerData.getString("spriteImage");
           
-     this.player = new PlayerControlledSprite(playerXPos, playerYPos, playerWidth, playerHeight, levelWidth, levelHeight, playerImage);
+     this.player = new PlayerControlledSprite(playerXPos, playerYPos, playerWidth, playerHeight, levelWidth, levelHeight, playerImage, audioMap);
      
      if (weather == WeatherVariant.ICY) {
        this.player.setXAcceleration(0.03f);
@@ -103,7 +115,7 @@ public class Level{
       boolean isEnemy = sprite.getBoolean("isEnemy");
       boolean isSpaceshipPart = sprite.getBoolean("isSpaceshipPart");
       String spriteImage = sprite.getString("spriteImage");
-      sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, isEnemy, isSpaceshipPart, levelWidth, levelHeight, spriteImage);
+      sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, isEnemy, isSpaceshipPart, levelWidth, levelHeight, spriteImage, audioMap);
     }
     this.sprites = sprites;    
   }
