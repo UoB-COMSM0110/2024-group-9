@@ -35,6 +35,8 @@ int smallSize;
 float menuItemWidth = 1000;
 float menuItemHeight = 100;
 PImage spaceship;
+PImage takeoff;
+PImage[] spaceshipPartImagesTransition;
 JSONArray topTen;
 String creditText;
 float y;  
@@ -46,6 +48,24 @@ void setup() {
   MPFont = createFont("IMPOS10_.ttf", 48);
   textFont(MPFont);
   spaceship = loadImage("spaceship.png");
+  takeoff = loadImage("TRANSPARENTtakeoff.png");
+  spaceshipPartImagesTransition = new PImage[4];
+  spaceshipPartImagesTransition[0] = loadImage("TRANSPARENTpart1ship.png");
+  if(spaceshipPartImagesTransition[0] == null){
+    println("failed to load this one");
+  }
+  spaceshipPartImagesTransition[1] = loadImage("TRANSPARENTpart2ship.png");
+  if(spaceshipPartImagesTransition[1] == null){
+    println("failed to load this 2");
+  }
+  spaceshipPartImagesTransition[2] = loadImage("TRANSPARENTpart3ship.png");
+  if(spaceshipPartImagesTransition[2] == null){
+    println("failed to load this 3");
+  }
+  spaceshipPartImagesTransition[3] = loadImage("TRANSPARENTtakeoff.png");
+  if(spaceshipPartImagesTransition[3] == null){
+    println("failed to load this one");
+  }
   spaceman = new Animation("spaceman", "standing");
   cowboy = new Animation("cowboy", "standing");
   fox = new Animation("fox", "standing");
@@ -121,6 +141,10 @@ void selectScreen(){
   }
   else if(game.section == SectionVariant.TUTORIAL || game.section == SectionVariant.GAMELEVELS){
     currentView.displayView();
+  }
+  else if(game.section == SectionVariant.TRANSITION){
+    currentLevel.updateTransition();
+    currentLevel.drawTransition();
   }
   else if(game.section == SectionVariant.SHOWSCORES){
     displayShowScores();
@@ -649,6 +673,17 @@ void selectMode(float xMin, float xMax, float yMin, float yMax, ModeVariant mode
   if(mouseX >= xMin  && mouseX <= xMax && mouseY >= yMin && mouseY <= yMax){
     game.mode = mode;
     game.section = section;
-  }   
+  }    
+}
+
+void removeImageBackground(PImage img){
+  img.loadPixels();
+  for (int i=0; i<img.pixels.length;i++){
+    int c = img.pixels[i];
+    if(brightness(c)>200 && red(c)>200 && green(c)>200 &&blue(c)>200){
+      img.pixels[i]=color(0,0);
+    }
+  }
+  img.updatePixels();
 }
   
