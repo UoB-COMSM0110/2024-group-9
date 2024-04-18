@@ -24,6 +24,7 @@ public class View {
     boolean dashCompleted;
     int scale = 1;
     ArrayList<FogElement> fogElements;
+    ArrayList<Wind> windElements;
 
     View(Level currentLevel) {
         int[] levelDims = currentLevel.getLevelDims();
@@ -46,6 +47,13 @@ public class View {
         }
         this.backgroundImage = currentLevel.imageMap.get("background.png");
         this.backgroundImage.resize(levelDims[0], levelDims[1]);
+        
+        if (currentLevel.weather == WeatherVariant.WINDY) {
+          this.windElements = new ArrayList<Wind>();
+          for (int i = 0; i < 1000; i++) {
+            windElements.add(new Wind(currentLevel.levelWidth, currentLevel.levelHeight));
+          }
+        }
     }
     
     public void displayView() {
@@ -111,6 +119,12 @@ public class View {
         for (FallingSnowflake flake : snowflakes) {
           flake.update();
           flake.display(spriteViewPos(flake.getX(), flake.getY()));
+        }
+      }
+      if (currentLevel.weather == WeatherVariant.WINDY) {
+        for (Wind windElement : windElements) {
+          windElement.update();
+          windElement.display(spriteViewPos(windElement.getX(), windElement.getY()));
         }
       }
     }
