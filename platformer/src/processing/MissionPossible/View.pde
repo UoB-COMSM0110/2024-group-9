@@ -103,8 +103,6 @@ public class View {
           game.section = SectionVariant.GAMEOVER;
         }
       }
-      UIElement fps = userInterface.getElement("fps");
-      fps.setTextContent(String.valueOf(frameRate));
       userInterface.drawUI();
       if(game.section == SectionVariant.TUTORIAL){
         runTutorial();
