@@ -3,6 +3,8 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import http.requests.*;
 import java.awt.event.KeyEvent;
+import ddf.minim.*;
+import ddf.minim.spi.*;
 
 GameState game = new GameState();
 GameSettings settings = new GameSettings();
@@ -20,6 +22,7 @@ Animation cat;
 Animation skeleton;
 Animation wolf;
 
+Minim minim;
 
 // Menu variables
 float boxWH = 160;
@@ -61,6 +64,7 @@ void setup() {
   String[] lines = loadStrings("credits.txt");
   creditText = join(lines, "\n");
   
+  minim = new Minim(this);
 }
 
 void draw() {

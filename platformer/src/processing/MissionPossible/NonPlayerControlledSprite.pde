@@ -13,9 +13,14 @@ public class NonPlayerControlledSprite extends Sprite{
     this.isAlive = true;
     this.isSpaceshipPart = isSpaceshipPart;
   }
+  
   public void Died(){
     this.isAlive = false;
     currentLevel.score += 5;
+    AudioPlayer player = minim.loadFile("sounds/monster_died.wav");
+    if(player != null){
+      player.play();
+    }
   }
 
   public void updatePosition(int leftBoundary, int rightBoundary){
