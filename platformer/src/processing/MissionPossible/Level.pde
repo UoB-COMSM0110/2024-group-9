@@ -76,7 +76,12 @@ public class Level{
      }
      
      if (weather == WeatherVariant.WINDY) {
-       this.player.setWindFactor(1.8f);
+       if (game.getModeVariant() == ModeVariant.DIFFICULT) {
+          this.player.setWindFactor(1.8f);
+       } else {
+         this.player.setWindFactor(1.4f);
+       }
+
      } else {
        this.player.setWindFactor(1.0f);
      }

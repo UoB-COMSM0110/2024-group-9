@@ -23,6 +23,7 @@ class Wind {
 
   void update() {
     x -= speed;
+    y += random(-speed, speed) / 5;
     if (x < 0) {
       y = int(random(levelHeight));
       x = levelWidth;
