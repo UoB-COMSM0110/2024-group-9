@@ -49,10 +49,10 @@
 
     {
       "position": {
-        "x": 200,
+        "x": 100,
         "y": 1400
       },
-      "spriteWidth": 100,
+      "spriteWidth": 200,
       "spriteHeight": 20,
       "isEnemy": false,
       "isSpaceshipPart": false,
@@ -60,10 +60,10 @@
     },
     {
       "position": {
-        "x": 200,
+        "x": 100,
         "y": 1000
       },
-      "spriteWidth": 100,
+      "spriteWidth": 200,
       "spriteHeight": 20,
       "isEnemy": false,
       "isSpaceshipPart": false,

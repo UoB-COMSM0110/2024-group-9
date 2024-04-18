@@ -105,7 +105,6 @@ public class PlayerControlledSprite extends Sprite{
       ySpeed = 0;
     }
     yPos += ySpeed;
-
   }
   
 public void checkCollision(NonPlayerControlledSprite[] sprites) {
