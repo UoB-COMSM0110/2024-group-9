@@ -63,6 +63,8 @@ public class PlayerControlledSprite extends Sprite{
     int currentTime = millis();
 
     if (moveUp && nextDashTime < currentTime) {
+      AudioPlayer spritePlayer = minim.loadFile("sounds/player_sprite.wav");
+      spritePlayer.play();
       if (faceToRight) {
         xSpeed = 16.0f;
         nextDashTime = currentTime + 3000; // Dash every 3s
@@ -72,17 +74,19 @@ public class PlayerControlledSprite extends Sprite{
       }
     }
    
-    
     checkCollision(sprites);
     
     if (jump) {
+      AudioPlayer jumpPlayer = minim.loadFile("sounds/jump.wav");
         if(landed) {
           ySpeed = -15.0f;
+          jumpPlayer.play();
         }
         else if (flagDoubleJump) {
           ySpeed = -10.0f;
           flagDoubleJump = false;
           doubleJumped = true;
+          jumpPlayer.play();
         }
       }
     
@@ -90,7 +94,6 @@ public class PlayerControlledSprite extends Sprite{
       flagDoubleJump = true;
     }
     
-
 
 
     landed = false;
@@ -104,11 +107,19 @@ public class PlayerControlledSprite extends Sprite{
   }
   
 public void checkCollision(NonPlayerControlledSprite[] sprites) {
-    
+      
     for (NonPlayerControlledSprite sprite : sprites) {
         if (this.xPos + this.spriteWidth + this.xSpeed > sprite.xPos && this.xPos + this.xSpeed < sprite.xPos + sprite.spriteWidth && this.yPos + this.spriteHeight > sprite.yPos && this.yPos < sprite.yPos + sprite.spriteHeight) {
           if(sprite.isEnemy && sprite.isAlive){
             this.health = health - 1;
+            if(health != 0){
+              AudioPlayer hurtPlayer = minim.loadFile("sounds/player_hurt.wav");
+              hurtPlayer.play();
+            }
+            else{
+              AudioPlayer diedPlayer = minim.loadFile("sounds/player_died.wav");
+              diedPlayer.play();
+            }
             this.xSpeed = Math.signum(this.xSpeed) * -1 * this.maxSpeedX;
             this.ySpeed = Math.signum(this.ySpeed) * -0.5 * this.maxSpeedY;
           } else if(sprite.isSpaceshipPart && sprite.isAlive){
