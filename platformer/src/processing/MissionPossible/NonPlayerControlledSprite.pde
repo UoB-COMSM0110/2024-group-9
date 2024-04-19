@@ -4,7 +4,7 @@ public class NonPlayerControlledSprite extends Sprite{
   boolean isAlive = true;
   boolean isSpaceshipPart;
   boolean faceToRight = false;
-  float speed;
+  int speed = 4;
   HashMap<String, AudioPlayer> audioMap;
   
   // Constructor
