@@ -489,7 +489,6 @@ void keyPressed() {
       if (keyCode == settings.rightKey && !currentView.rightCompleted) {
         currentView.rightCompleted = true;
         clickTime = millis();
-        println(clickTime);
       }
       if (clickTime + 2500 <= millis()) {
         println(millis());
@@ -502,7 +501,6 @@ void keyPressed() {
         clickTime = millis();
       }
       if (clickTime + 2500 <= millis() && currentView.leftCompleted) {
-        println(clickTime);
         currentView.currentInstructionIndex++;
       }
     }
