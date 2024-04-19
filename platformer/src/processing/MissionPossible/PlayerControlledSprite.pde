@@ -119,7 +119,7 @@ public void checkCollision(NonPlayerControlledSprite[] sprites) {
         if (this.xPos + this.spriteWidth + this.xSpeed > sprite.xPos && this.xPos + this.xSpeed < sprite.xPos + sprite.spriteWidth && this.yPos + this.spriteHeight > sprite.yPos && this.yPos < sprite.yPos + sprite.spriteHeight) {
           if(sprite.isEnemy && sprite.isAlive){
             this.health = health - 1;
-            if(health != 0){
+            if(health != 0 || game.section == SectionVariant.TUTORIAL){
               audioMap.get("player_hurt.wav").play();
               audioMap.get("player_hurt.wav").rewind();
             }

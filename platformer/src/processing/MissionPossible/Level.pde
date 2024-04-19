@@ -11,8 +11,8 @@ public class Level{
   WeatherVariant weather;
   HashMap<String, PImage> imageMap;
   HashMap<String, AudioPlayer> audioMap;
-  long startTime;
-  long endTime;
+  int startTime;
+  int endTime;
   
  // Constructor - gets most of the level information from JSON file
    Level(String jsonFilePath){
@@ -148,7 +148,7 @@ public class Level{
   
   // Level score if reach the end of level
   public void calculateLevelScoreAlive(){
-    endTime = System.currentTimeMillis()/1000;
+    endTime = millis()/1000;
     score = score + (1000/(endTime - startTime))+(5*currentLevel.player.health);
     if(game.mode == ModeVariant.DIFFICULT){
       score *= 1.25;

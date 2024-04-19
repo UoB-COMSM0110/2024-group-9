@@ -13,15 +13,17 @@ public class View {
     String[] tutorialInstructions = {
       "Welcome to the Mission Possible tutorial!\n\nTo move right, press "+KeyEvent.getKeyText(settings.rightKey)+".",
       "To move left, press "+KeyEvent.getKeyText(settings.leftKey)+".",
-      "To jump, press "+KeyEvent.getKeyText(settings.jumpKey)+"\nPress twice to double jump.",
+      "To jump, press "+KeyEvent.getKeyText(settings.jumpKey)+".\nTry jumping on a platform.\nPress jump twice to double jump.",
       "To dash in the direction you're facing, press "+KeyEvent.getKeyText(settings.dashKey)+".",
-      "You can change these key commands in the game settings menu.\n\nClick anywhere to exit to the main menu."
+      "Watch out for enemies!\nYou will get more points for defeating enemies.\nJump on top of the monster to defeat it.",
+      "Well done, you completed the tutorial!\nYou can change the key commands\nin the game settings menu.\nClick anywhere to exit to the main menu."
     };
     int currentInstructionIndex = 0;
     boolean rightCompleted;
     boolean leftCompleted;
     boolean jumpCompleted;
     boolean dashCompleted;
+    boolean enemyDefeated;
     int scale = 1;
     ArrayList<FogElement> fogElements;
     ArrayList<Wind> windElements;
@@ -90,7 +92,7 @@ public class View {
       if(currentLevel.player.health == 1){
         health1.setAsset(userInterface.getAsset("heart-empty.png"));
       }
-      if(currentLevel.player.health == 0){
+      if(currentLevel.player.health == 0 && game.section == SectionVariant.GAMELEVELS){
         health0.setAsset(userInterface.getAsset("heart-empty.png"));
         if(game.mode == ModeVariant.EASY){
           currentLevel.calculateLevelScoreDead();
@@ -137,9 +139,12 @@ public class View {
       leftCompleted = false;
       jumpCompleted = false;
       dashCompleted = false;
+      enemyDefeated = false;
+      fill(0);
+      rect(displayWidth/2 - menuItemWidth/2, displayHeight/9, menuItemWidth, boxWH*1.4);
       textAlign(CENTER, CENTER);
       fill(255);
-      textSize(notHoveredSize);
-      text(tutorialInstructions[currentInstructionIndex], displayWidth/2, displayHeight/4, menuItemWidth);
+      textSize(smallSize);
+      text(tutorialInstructions[currentInstructionIndex], displayWidth/2, displayHeight/5, menuItemWidth);
   }
 }

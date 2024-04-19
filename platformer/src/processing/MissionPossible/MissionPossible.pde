@@ -412,9 +412,9 @@ void displayGameComplete(){
 void displayCredits(){
   fill(255);
   textAlign(CENTER);
-  textSize(notHoveredSize);
+  textSize(smallSize);
   text(creditText, width*0.05, y, width*0.9, height*3);
-  y-=3;
+  y-=2;
 }
 
 // Instantiate and show a new level, and record the start time
@@ -422,7 +422,7 @@ void enterLevel(String levelName){
   game.level = levelName;
   currentLevel = new Level(game.level+File.separator+game.level+".json");
   currentView = new View(currentLevel);  
-  currentLevel.startTime = System.currentTimeMillis()/1000;
+  currentLevel.startTime = millis()/1000;
 }
   
 void keyPressed() {
@@ -482,20 +482,32 @@ void keyPressed() {
   // Recording that tutorial instructions have been followed
   if(game.section == SectionVariant.TUTORIAL){
     if(currentView.currentInstructionIndex == 0 && currentView.rightCompleted == false && keyCode == settings.rightKey){
-      currentView.currentInstructionIndex++;
+      //int clickTime = millis();
       currentView.rightCompleted = true;
+      //if(clickTime+3000 == millis()){
+        currentView.currentInstructionIndex++;
+      //}
     }
     if(currentView.currentInstructionIndex == 1 && currentView.leftCompleted == false && keyCode == settings.leftKey){
-      currentView.currentInstructionIndex++;
+      //int clickTime = millis();
       currentView.leftCompleted = true;
+      //if(clickTime+3000 == millis()){
+        currentView.currentInstructionIndex++;
+      //}
     }
     if(currentView.currentInstructionIndex == 2 && currentView.jumpCompleted == false && keyCode == settings.jumpKey){
-      currentView.currentInstructionIndex++;
+      //int clickTime = millis();
       currentView.jumpCompleted = true;
+      //if(clickTime+3000 == millis()){
+        currentView.currentInstructionIndex++;
+      //}
     }
     if(currentView.currentInstructionIndex == 3 && currentView.dashCompleted == false && keyCode == settings.dashKey){
-      currentView.currentInstructionIndex++;
+      //int clickTime = millis();
       currentView.dashCompleted = true;
+      //if(clickTime+3000 == millis()){
+        currentView.currentInstructionIndex++;
+      //}
     }
   }
 }
@@ -541,6 +553,7 @@ void mouseClicked() {
      
     if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <= displayWidth/2 + menuItemWidth/2 && mouseY >= 3*displayHeight/10 && mouseY <= (3*displayHeight/10)+menuItemHeight){
       game.playerCharacter = CharacterVariant.FOX;
+      game.mode = ModeVariant.EASY;
       enterLevel("tutorial");
     }
   }
