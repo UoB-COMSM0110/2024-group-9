@@ -32,6 +32,7 @@ int notHoveredSize;
 int titleSize;
 int headerSize;
 int smallSize;
+int tutorialSize;
 float menuItemWidth = 1000;
 float menuItemHeight = 100;
 PImage spaceship;
@@ -60,6 +61,7 @@ void setup() {
   titleSize = displayHeight/12;
   headerSize = displayHeight/15;
   smallSize = displayHeight/40;
+  tutorialSize = displayHeight/35;
   
   String[] lines = loadStrings("credits.txt");
   creditText = join(lines, "\n");

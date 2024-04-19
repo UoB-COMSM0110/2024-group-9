@@ -144,7 +144,7 @@ public class View {
       rect(displayWidth/2 - menuItemWidth/2, displayHeight/9, menuItemWidth, boxWH*1.4);
       textAlign(CENTER, CENTER);
       fill(255);
-      textSize(smallSize);
+      textSize(tutorialSize);
       text(tutorialInstructions[currentInstructionIndex], displayWidth/2, displayHeight/5, menuItemWidth);
   }
 }
