@@ -19,11 +19,11 @@ public class View {
       "Well done, you completed the tutorial!\nYou can change the key commands\nin the game settings menu.\nClick anywhere to exit to the main menu."
     };
     int currentInstructionIndex = 0;
-    boolean rightCompleted;
-    boolean leftCompleted;
-    boolean jumpCompleted;
-    boolean dashCompleted;
-    boolean enemyDefeated;
+    boolean rightCompleted = false;
+    boolean leftCompleted = false;
+    boolean jumpCompleted = false;
+    boolean dashCompleted = false;
+    boolean enemyDefeated = false;
     int scale = 1;
     ArrayList<FogElement> fogElements;
     ArrayList<Wind> windElements;
@@ -135,11 +135,7 @@ public class View {
     }
     
     public void runTutorial(){
-      rightCompleted = false;
-      leftCompleted = false;
-      jumpCompleted = false;
-      dashCompleted = false;
-      enemyDefeated = false;
+
       fill(0);
       rect(displayWidth/2 - menuItemWidth/2, displayHeight/9, menuItemWidth, boxWH*1.4);
       textAlign(CENTER, CENTER);

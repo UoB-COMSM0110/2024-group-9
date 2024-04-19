@@ -38,7 +38,9 @@ float menuItemHeight = 100;
 PImage spaceship;
 JSONArray topTen;
 String creditText;
-float y;  
+float y;
+int clickTime = 0;
+
 
 
 void setup() {
@@ -483,33 +485,44 @@ void keyPressed() {
   }
   // Recording that tutorial instructions have been followed
   if(game.section == SectionVariant.TUTORIAL){
-    if(currentView.currentInstructionIndex == 0 && currentView.rightCompleted == false && keyCode == settings.rightKey){
-      //int clickTime = millis();
-      currentView.rightCompleted = true;
-      //if(clickTime+3000 == millis()){
+    if(currentView.currentInstructionIndex == 0){
+      if (keyCode == settings.rightKey && !currentView.rightCompleted) {
+        currentView.rightCompleted = true;
+        clickTime = millis();
+        println(clickTime);
+      }
+      if (clickTime + 3000 <= millis()) {
+        println(millis());
         currentView.currentInstructionIndex++;
-      //}
+      }
     }
-    if(currentView.currentInstructionIndex == 1 && currentView.leftCompleted == false && keyCode == settings.leftKey){
-      //int clickTime = millis();
-      currentView.leftCompleted = true;
-      //if(clickTime+3000 == millis()){
+    if(currentView.currentInstructionIndex == 1){
+      if (keyCode == settings.leftKey && !currentView.leftCompleted) {
+        currentView.leftCompleted = true;
+        clickTime = millis();
+      }
+      if (clickTime + 3000 <= millis() && currentView.leftCompleted) {
+        println(clickTime);
         currentView.currentInstructionIndex++;
-      //}
+      }
     }
-    if(currentView.currentInstructionIndex == 2 && currentView.jumpCompleted == false && keyCode == settings.jumpKey){
-      //int clickTime = millis();
-      currentView.jumpCompleted = true;
-      //if(clickTime+3000 == millis()){
+    if(currentView.currentInstructionIndex == 2){
+      if (keyCode == settings.jumpKey && !currentView.jumpCompleted) {
+        currentView.jumpCompleted = true;
+        clickTime = millis();
+      }
+      if (clickTime + 3000 <= millis() && currentView.jumpCompleted) {
         currentView.currentInstructionIndex++;
-      //}
+      }
     }
-    if(currentView.currentInstructionIndex == 3 && currentView.dashCompleted == false && keyCode == settings.dashKey){
-      //int clickTime = millis();
-      currentView.dashCompleted = true;
-      //if(clickTime+3000 == millis()){
+    if(currentView.currentInstructionIndex == 3){
+      if (keyCode == settings.dashKey && !currentView.dashCompleted) {
+        currentView.dashCompleted = true;
+        clickTime = millis();
+      }
+      if (clickTime + 3000 <= millis() && currentView.dashCompleted) {
         currentView.currentInstructionIndex++;
-      //}
+      }
     }
   }
 }
