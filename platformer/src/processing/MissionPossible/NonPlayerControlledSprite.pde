@@ -24,9 +24,9 @@ public class NonPlayerControlledSprite extends Sprite{
     currentLevel.score += 5;
     audioMap.get("monster_died.wav").play();
     audioMap.get("monster_died.wav").rewind();
-    if(game.section == SectionVariant.TUTORIAL && currentView.currentInstructionIndex == 4){
+    if(game.section == SectionVariant.TUTORIAL){
       currentView.enemyDefeated = true;
-      currentView.currentInstructionIndex++;
+      currentView.currentInstructionIndex = 5;
     }
   }
 

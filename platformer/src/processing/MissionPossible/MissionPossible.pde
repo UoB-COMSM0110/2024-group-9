@@ -491,7 +491,7 @@ void keyPressed() {
         clickTime = millis();
         println(clickTime);
       }
-      if (clickTime + 3000 <= millis()) {
+      if (clickTime + 2500 <= millis()) {
         println(millis());
         currentView.currentInstructionIndex++;
       }
@@ -501,7 +501,7 @@ void keyPressed() {
         currentView.leftCompleted = true;
         clickTime = millis();
       }
-      if (clickTime + 3000 <= millis() && currentView.leftCompleted) {
+      if (clickTime + 2500 <= millis() && currentView.leftCompleted) {
         println(clickTime);
         currentView.currentInstructionIndex++;
       }
@@ -520,7 +520,7 @@ void keyPressed() {
         currentView.dashCompleted = true;
         clickTime = millis();
       }
-      if (clickTime + 3000 <= millis() && currentView.dashCompleted) {
+      if (clickTime + 2500 <= millis() && currentView.dashCompleted) {
         currentView.currentInstructionIndex++;
       }
     }
