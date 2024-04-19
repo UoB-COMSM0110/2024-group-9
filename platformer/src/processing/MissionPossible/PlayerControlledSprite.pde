@@ -154,7 +154,6 @@ public void checkCollision(NonPlayerControlledSprite[] sprites) {
       if (this.xPos + this.spriteWidth + this.xSpeed > sprite.xPos && this.xPos + this.xSpeed < sprite.xPos + sprite.spriteWidth && this.yPos + this.spriteHeight + this.ySpeed > sprite.yPos && this.yPos + this.ySpeed < sprite.yPos + sprite.spriteHeight) {
             this.ySpeed = 0.0;
             this.xSpeed = 0.0;
-            println("dingdong");
           }
     }
   }
