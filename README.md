@@ -125,6 +125,10 @@ With these objectives decided we set about drawing up the very bare bones draft 
 
 ## Design
 
+### Class Diagram
+
+Before beginning any development, we created a basic class diagram. This allowed us to structure our initial codebase in a sensible manner as we began to develop our game idea. The class diagram also made it clear how different classes would need to communicate as well as what information we would need to store in each class. Although the structure of our game has changed significantly from this diagram to facilitate various aspects that weren't initially considered when creating this diagram, such as level design, it was key in the development of initial versions of our game, and some structure shown in this diagram is still present in our final game.
+
 ## Implementation
 
 We identified 3 main areas of challenge when planning the design for our game. These were: game flow logic (ensuring consistent and intuitive transitions between menus, a way to easily define levels, scoring and a tutorial), a global leaderboard (a Python web server with a persistent database, making it accessible over the internet, and generating unique user IDs) and a physics system (intuitive player and non-player movement as well as collisions between them and enabling changes depending on the type of weather).
