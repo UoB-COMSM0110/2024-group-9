@@ -187,11 +187,25 @@ Heuristic evaluation:
 
 ### Quantitative
 
+<img width="549" alt="NewIgNasaTlx" src="https://github.com/UoB-COMSM0110/2024-group-9/assets/147715570/0668fe1a-6136-4b6a-8364-0365ddade5e6">
+
+Associated Think Aloud Evaluation notes from the first subject:
+
+They found the character selection screen a bit visually confusing as the names for the different options all come up under the cowboy. Despite this being the middle of the screen, they still felt the names should come up under each respective character.
+
+The other issue they found was that they got stuck on corners various times throughout their multiple playthroughs and had to spam the dash button in the opposite direction to ‘break out’. Sometimes the dash-out method failed and they had to restart the game.
+
+They liked the fact they were able to bind keys and adjust controls and set the game up according to whatever dexterous preference they may have, particularly as a right-handed player who found it a bit tricky to press the control key to use the dash.
+
+They found that the alien sprites made for a challenging, yet quirky addition to the fun and creative level maps. In their view, the maps were definitely increasing in difficulty which was ideal as they slowly got to grips with the game. The different ways in which each map demanded their focus kept them on their toes in an interesting way. They found Level 2 particularly mentally fatiguing, expecting them to realise the dash feature in conjunction with a speedy jump was needed to beat it, which took them a few attempts to figure out while also dealing with the ice. Level 3, with its strong winds (although because of the outer space theme they thought it was drastically increased gravity) took a bit to get used to and required more focus to adjust and get the timings of the jumps and moves right.
+
+All in all, they said the game was enjoyable to play and ended up doing multiple playthroughs to see if they could beat their previous scores.
+
+
 <img width="476" alt="Luca NASA TLX" src="https://github.com/UoB-COMSM0110/2024-group-9/assets/147715570/2dbe6bc5-eb46-4119-a212-4619dcb01d94">
 
-<img width="471" alt="Ig NASA TLX" src="https://github.com/UoB-COMSM0110/2024-group-9/assets/147715570/3a2582b9-4698-4508-9d12-857ceddd3ae2">
 
-For these two test subjects, it is important to note that the first one seldom plays videogames, whereas the second one spends a fair bit of their free time doing so.
+For these two test subjects, it is important to note that one seldom plays videogames, whereas the other one spends a fair bit of their free time doing so.
 
 Neither reported high mental demand, but one did report that one could not engage with the game passively if they wanted to complete it. While we did not want our game to be excessively challenging, we certainly wanted players, especially those less experienced with computer games, to have to struggle a little bit to complete it. 
 
