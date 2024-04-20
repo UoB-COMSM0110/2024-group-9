@@ -169,21 +169,29 @@ To determine collisions between sprites, before every frame, the position of eac
 
 ## Evaluation
 
-Rough notes:
-
-Think aloud evaluation:
-
-- Menu screens - clear what you need to do - clicked through and entered name with no problems.
-- Jump physics feels natural.
-
-Heuristic evaluation:
-
-- User control and freedom: would like ability to go back and change character and name before game levels start.
-- Aesthetic - extra space in welcome name screen. Not frequent or persistent, cosmetic problem.
-- Match between system and real world - can jump from mid-air. Is this intended? Frequent but not persistent (i.e. player can get used to it).
-- Consistency and standards - several keys being used for the same movements, but not clear why for example A and D are used for right and left, but W is not used for jump. Frequent, minor usability problem which can be overcome.
-
 ### Qualitative
+We carried out a think-aloud evaluation two weeks before the game demo session, so that we would be able implement some improvements based on the feedback received. X [update] participants played the game while thinking aloud, and generally liked the game but generated some very constructive criticism. 
+
+The positive feedback can be distilled into these four themes:
+- The menus, text and highlighting work well. 
+- Basic physics seem good and feel natural.
+- Levels are varied and intuitive.
+- The weather effects are fun.
+
+The main themes from the more problematic aspects of the game design and implementation are summarised in the table below, along with a priority order for solving the issues (1=highest; 3=lowest), and our ultimate decisions about what would change:
+| **Game area** | **Issue**                                                                                          | **Priority** | **Outcome**                                                                                                                                     |
+|---------------|----------------------------------------------------------------------------------------------------|--------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| Tutorial      | The instructions go by too fast to take everything in.                                             | 1            | A delay of between 2 and 3 seconds was added after an instruction was completed before the next instruction appeared on the screen.             |
+| Game levels   | Not clear there's an incentive to kill the enemies or how to do it.                                | 1            | An enemy was added to the tutorial with instructions for how to defeat it, and a note that defeating enemies increases the game score.          |
+| Difficulty    | Can't see a big difference between easy and difficult.                                             | 1            | The weather effects were reduced in the easy version compared to the difficult version.                                                         |
+| Weather       | Weather seems a bit extreme, making it difficult to complete levels.                               | 1            | The weather effects were reduced in the easy version, and some of the levels were redesigned slightly to make them more realistic to complete.  |
+| Weather       | Put the foggy level (originally level 4) as level 2, to reflect difficult of icy and windy levels. | 1            | Level ordering was changed to 1. No weather 2. Foggy 3. Icy 4. Windy                                                                            |
+| Menus         | Can the credits scroll quicker?                                                                    | 2            | Credits set to scroll twice as fast.                                                                                                            |
+| Physics       | Occasional bug where the player gets stuck in the corner of a platform.                            | 2            | [Charles please can you write this bit?]                                                                                                        |
+| Physics       | Ctrl+D (Dash and Move Right) puts you in debug mode and exits the game.                            | 2            | The default dash key changed from Control to Shift.                                                                                             |
+| Physics       | When you hit into an enemy you lose a heart and the enemy dies, which isn't intended.              | 3            |                                                                                                                                                 |
+| Menus         | The character highlighting could be more clear                                                     | 3            | Red box appears around a character if the mouse is hovering over it in the character selection screen.                                          |
+
 
 ### Quantitative
 

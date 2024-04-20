@@ -1,0 +1,24 @@
+Positives
+- Like the menus, text and highlighting. 
+- Basic physics seem good - feels natural.
+- Levels are varied and intuitive.
+- The weather effects are fun.
+
+
+Negatives
+
+Menus
+-The character highlighting could be more clear.
+-Can the credits scroll quicker?
+
+Tutorial
+-Not clear there's an incentive to kill the enemies or how to do it. Add something to the tutorial.
+-Can the instructions go more slowly?
+
+Game levels
+- Occasional bug where the player gets stuck in the corner of a platform. 
+- Weather seems a bit extreme, making it difficult to complete levels.
+- Can't see a big difference between easy and difficult. 
+- Reorder the levels to increase difficulty gradually.
+- Ctrl+D (Dash and Move Right) puts you in debug mode and exits the game.
+- When you hit into an enemy you lose a heart and the enemy dies. That's not right is it?
