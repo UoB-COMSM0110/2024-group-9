@@ -1,6 +1,7 @@
 # 2024-group-9: Mission Possible
 
 ## Team
+
 Liz Elliott, Diwen Fan, Santiago Gasca Garcia, Guangfo Guo, Charles Harris
 
 <img src="report-photos/Image.jfif" width="250">
@@ -142,16 +143,16 @@ The scoring formula is based mainly on the inverse of the time taken to complete
 The design information for each level is stored in a JSON file, which constrains the width and height of the available space for the level and specifies the weather, background image, player sprite's starting location, and the size and location of the platforms, enemies and spaceship part. Once set up, this approach enabled us to quickly and smoothly add more levels while keeping the verbose level data out of the Processing code itself. When the player retrieves the level's spaceship part, the level ends and the score for each level completed is shown before the player is invited to continue to the next level. A new Level object is instantiated at that point. 
 
 <p float="middle">
-  <img src="/report-photos/score-screen.png" width="400" />
+  <img src="report-photos/score-screen.png" width="400" />
 </p>
 
 The four available spaceship parts are shown at the top of the screen with some transparency applied to begin with. When a spaceship part is collected a method is called to set its image transparency to zero for the rest of the current game, so the player can view their progress. 
 
 ### 2: Leaderboard
 
-Implementing a global leaderboard where scores are uploaded upon completion of (or death during) the game allows for minimal code to be included within the game itself for handling scores, as they are largely dealt with by the Python server. User ID generation is one aspect that is handled within the game. This generates a UUID (Universally Unique IDentifier) based on the system's hostname, username and OS name in combination with the player's nickname chosen when entering the game. This allows for players with the same nickname to appear separately in the leaderboard, but also enables the same user to complete the game multiple times and only have their highest score appear on the leaderboard.
+Implementing a global leaderboard where scores are uploaded upon completion of (or death during) the game allows for minimal code to be included within the game itself for handling scores, as they are largely dealt with by the Python server. User ID generation is one aspect that is handled within the game. This generates a UUID (Universally Unique IDentifier) based on the system's hostname, username and OS name in combination with the player's nickname chosen when entering the game. This allows for players on different machines with the same nickname to appear separately in the leaderboard, but also enables the same user to complete the game multiple times and only have their highest score appear on the leaderboard.
 
-The Python web server receives [POST](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST) and [GET](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET) to the root (`/`) and `/top-ten` paths respectively. The POST request to the `/` path consists of a JSON object containing the user's UUID, nickname and score. If the score is greater than the score for a matching UUID, or there are no matching UUIDs, it is inserted into the PostgreSQL database used for persistent storage. [SQLAlchemy](https://www.sqlalchemy.org/) is used for [ORM](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping) to minimise the risk of attack vectors such as SQL injection and to generate the SQL commands sent to the database server. The GET request to the `/top-ten` path sorts the scores contained within the 'Scores' table and returns a JSON object containing the top ten scores and their associated nicknames to be displayed in the Leaderboard menu.
+The Python web server receives [POST](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST) and [GET](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET) to the root (`/`) and `/top-ten` paths respectively. The POST request to the `/` path consists of a JSON object containing the user's UUID, nickname and score. If the score is greater than the score for a matching UUID, or there are no matching UUIDs, it is inserted into the PostgreSQL database used for persistent storage. [SQLAlchemy](https://www.sqlalchemy.org/) is used for [ Object-Relational Mapping (ORM)](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping) to minimise the risk of attack vectors such as SQL injection and to generate the SQL commands sent to the database server. The GET request to the `/top-ten` path sorts the scores contained within the 'Scores' table and returns a JSON object containing the top ten scores and their associated nicknames to be displayed in the Leaderboard menu.
 
 <img src="report-photos/leaderboard-json.png" width="500">
 
@@ -170,28 +171,32 @@ To determine collisions between sprites, before every frame, the position of eac
 ## Evaluation
 
 ### Qualitative
+
 We carried out a think-aloud evaluation two weeks before the game demo session, so that we would be able implement some improvements based on the feedback received. X [update] participants played the game while thinking aloud, and generally liked the game but generated some very constructive criticism. 
 
 The positive feedback can be distilled into these four themes:
+
 - The menus, text and highlighting work well. 
 - Basic physics seem good and feel natural.
 - Levels are varied and intuitive.
 - The weather effects are fun.
 
 The main themes from the more problematic aspects of the game design and implementation are summarised in the table below, along with a priority order for solving the issues (1=highest; 3=lowest), and our ultimate decisions about what would change:
-| **Game area** | **Issue**                                                                                          | **Priority** | **Outcome**                                                                                                                                     |
+| **Game area** | **Issue** | **Priority** | **Outcome** |
 |---------------|----------------------------------------------------------------------------------------------------|--------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
-| Tutorial      | The instructions go by too fast to take everything in.                                             | 1            | A delay of between 2 and 3 seconds was added after an instruction was completed before the next instruction appeared on the screen.             |
-| Game levels   | Not clear there's an incentive to kill the enemies or how to do it.                                | 1            | An enemy was added to the tutorial with instructions for how to defeat it, and a note that defeating enemies increases the game score.          |
-| Difficulty    | Can't see a big difference between easy and difficult.                                             | 1            | The weather effects were reduced in the easy version compared to the difficult version.                                                         |
-| Weather       | Weather seems a bit extreme, making it difficult to complete levels.                               | 1            | The weather effects were reduced in the easy version, and some of the levels were redesigned slightly to make them more realistic to complete.  |
-| Weather       | Put the foggy level (originally level 4) as level 2, to reflect difficult of icy and windy levels. | 1            | Level ordering was changed to 1. No weather 2. Foggy 3. Icy 4. Windy                                                                            |
-| Menus         | Can the credits scroll quicker?                                                                    | 2            | Credits set to scroll twice as fast.                                                                                                            |
-| Physics       | Occasional bug where the player gets stuck in the corner of a platform.                            | 2            | [Charles please can you write this bit?]                                                                                                        |
-| Physics       | Ctrl+D (Dash and Move Right) puts you in debug mode and exits the game.                            | 2            | The default dash key changed from Control to Shift.                                                                                             |
-| Physics       | When you hit into an enemy you lose a heart and the enemy dies, which isn't intended.              | 3            |                                                                                                                                                 |
-| Menus         | The character highlighting could be more clear                                                     | 3            | Red box appears around a character if the mouse is hovering over it in the character selection screen.                                          |
-
+| Tutorial      | The instructions go by too fast to take everything in                                             | 1            | A delay of between 2 and 3 seconds was added after an instruction was completed before the next instruction appeared on the screen             |
+| Game levels   | Not clear there's an incentive to kill the enemies or how to do it                                | 1            | An enemy was added to the tutorial with instructions for how to defeat it, and a note that defeating enemies increases the game score          |
+| Difficulty    | Can't see a big difference between easy and difficult                                             | 1            | The weather effects were reduced in the easy version compared to the difficult version                                                         |
+| Weather       | Weather seems a bit extreme, making it difficult to complete levels                               | 1            | The weather effects were reduced in the easy version, and some of the levels were redesigned slightly to make them more realistic to complete  |
+| Weather       | Put the foggy level (originally level 4) as level 2, to reflect difficult of icy and windy levels | 1            | Level ordering was changed to 1: No weather 2: Foggy 3: Icy 4: Windy                                                                            |
+| Leaderboard | No internet access causes game to crash when viewing leaderboard | 1 | Initialise variable containing leaderboard data to an empty list before downloading scores |
+| Menus         | Can the credits scroll quicker?                                                                    | 2            | Credits set to scroll twice as fast                                                                                                            |
+| Physics       | Occasional bug where the player gets stuck in the corner of a platform                            | 2            | Add additional check for potential collisions resulting from changes in both x and y directions |
+| Physics       | Ctrl+D (Dash and Move Right) puts you in debug mode and exits the game                            | 2            | The default dash key changed from Control to Shift                                                                                             |
+| Physics | Movement feels 'sluggish' | 2 | Increase player acceleration across all weather types |
+| Weather | No visual indication for windy weather | 2 | Add an animation of particles moving right-to-left to make it clear when the wind is in effect |
+| Physics       | When you hit into an enemy you lose a heart and the enemy dies, which isn't intended              | 3            |                                                                                                                                                 |
+| Menus         | The character highlighting could be more clear                                                     | 3            | Red box appears around a character if the mouse is hovering over it in the character selection screen                                          |
 
 ### Quantitative
 
@@ -212,7 +217,6 @@ For the performance, the more experienced player completed it all almost with no
 As shown by the results and further evidenced by the Performance scores, the less experienced subject struggled quite a bit, with the majority of said struggle coming in one section of Level 2. The more experienced player still struggled a little bit and couldn't just complete it first time, no lives lost. This is important, as it shows that even for the more experienced users there is something of a learning curve when it comes to getting used to the physics and movement of the characters.
 
 From these, we can gauge that the game is sufficiently engaging and fast-paced. The variation in frustration has led us to adjust the difficulty of certain sections.
-
 
 ### Testing
 
