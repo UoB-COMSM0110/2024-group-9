@@ -102,7 +102,7 @@ public class PlayerControlledSprite extends Sprite{
     landed = false;
 
     // Update positions
-    if (xPos + xSpeed > maxXPos || xPos + xSpeed < 0) {
+    if (xPos + xSpeed > maxXPos - spriteWidth || xPos + xSpeed < 0) {
       xSpeed = 0;
     }
     xPos += xSpeed;
