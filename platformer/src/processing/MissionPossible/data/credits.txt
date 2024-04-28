@@ -4,6 +4,11 @@ Thank you for playing Mission Possible!
 CREDITS
 
 Mission Possible was created by Group 9
+Liz Elliott
+Diwen Fan
+Santiago Gasca Garcia
+Guangfo Guo
+Charles Harris
 
 Starfield animation Copyright (c) 2017 Babu Thomas
 
@@ -17,8 +22,10 @@ Cowboy: Cowboy by software_atelier is licensed under CC0
 Fox: Fox (animated) by HDST is licensed under CC0
 Skeleton: Animated skeleton by Calciumtrice is licensed under CC-BY 3.0
 Spaceman: Spaceman sprite sheets by av8rgamez is licensed under CC-BY 4.0
-Wolf:[LPC] Wolf animation by Stephen "Redshrike" Challener as graphic artist and William.Thompsonj as contributor is licensed under CC-BY 4.0, CC-BY 3.0, GPL 3.0, GPL 2.0 and OGA-BY 3.0
+Wolf:[LPC] Wolf animation by Stephen "Redshrike" Challener as graphic artist and William.Thompsonj 
+as contributor is licensed under CC-BY 4.0, CC-BY 3.0, GPL 3.0, GPL 2.0 and OGA-BY 3.0
 
+Background music: Cornfield Chase by Hans Zimmer
 
 Press ESCAPE to leave the game...
 

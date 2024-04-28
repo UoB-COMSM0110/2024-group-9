@@ -200,11 +200,25 @@ The main themes from the more problematic aspects of the game design and impleme
 
 ### Quantitative
 
+<img width="549" alt="NewIgNasaTlx" src="https://github.com/UoB-COMSM0110/2024-group-9/assets/147715570/0668fe1a-6136-4b6a-8364-0365ddade5e6">
+
+Associated Think Aloud Evaluation notes from the first subject:
+
+They found the character selection screen a bit visually confusing as the names for the different options all come up under the cowboy. Despite this being the middle of the screen, they still felt the names should come up under each respective character.
+
+The other issue they found was that they got stuck on corners various times throughout their multiple playthroughs and had to spam the dash button in the opposite direction to ‘break out’. Sometimes the dash-out method failed and they had to restart the game.
+
+They liked the fact they were able to bind keys and adjust controls and set the game up according to whatever dexterous preference they may have, particularly as a right-handed player who found it a bit tricky to press the control key to use the dash.
+
+They found that the alien sprites made for a challenging, yet quirky addition to the fun and creative level maps. In their view, the maps were definitely increasing in difficulty which was ideal as they slowly got to grips with the game. The different ways in which each map demanded their focus kept them on their toes in an interesting way. They found Level 2 particularly mentally fatiguing, expecting them to realise the dash feature in conjunction with a speedy jump was needed to beat it, which took them a few attempts to figure out while also dealing with the ice. Level 3, with its strong winds (although because of the outer space theme they thought it was drastically increased gravity) took a bit to get used to and required more focus to adjust and get the timings of the jumps and moves right.
+
+All in all, they said the game was enjoyable to play and ended up doing multiple playthroughs to see if they could beat their previous scores.
+
+
 <img width="476" alt="Luca NASA TLX" src="https://github.com/UoB-COMSM0110/2024-group-9/assets/147715570/2dbe6bc5-eb46-4119-a212-4619dcb01d94">
 
-<img width="471" alt="Ig NASA TLX" src="https://github.com/UoB-COMSM0110/2024-group-9/assets/147715570/3a2582b9-4698-4508-9d12-857ceddd3ae2">
 
-For these two test subjects, it is important to note that the first one seldom plays videogames, whereas the second one spends a fair bit of their free time doing so.
+For these two test subjects, it is important to note that one seldom plays videogames, whereas the other one spends a fair bit of their free time doing so.
 
 Neither reported high mental demand, but one did report that one could not engage with the game passively if they wanted to complete it. While we did not want our game to be excessively challenging, we certainly wanted players, especially those less experienced with computer games, to have to struggle a little bit to complete it. 
 
@@ -222,8 +236,11 @@ From these, we can gauge that the game is sufficiently engaging and fast-paced. 
 
 ## Process
 
-When placed in assigned teams, there is an important, inevitable stage at the beginning where everyone must make an effort to break the ice and establish team goals and ambitions for the project at hand. We quickly got on with introductions and discussed the types of games we had in mind based on previous experiences playing them and even, for some, designing them. At the start, most of the work was done in the Monday morning labs but there was also a significant bit of going away and individually seeing what was feasible and finding examples from which to draw inspiration that were then shared and further explored as a team on the Teams group which has served as our main form of communication throughout. We have also met in person various times throughout the course of the project which feels more efficient but is harder to coordinate. 
+When placed in assigned teams, there is an important, inevitable stage at the beginning where everyone must make an effort to break the ice and establish team goals and ambitions for the project at hand. We quickly got on with introductions and discussed the types of games we had in mind based on previous experiences playing them and even, for some, designing them. At the start, most of the work was done in the Monday morning labs but there was also a significant bit of going away and individually seeing what was feasible and finding examples from which to draw inspiration that were then shared and further explored as a team on the Teams group which has served as our main form of communication throughout. We have also met in person various times throughout the course of the project which feels more efficient but is harder to coordinate. On top of this, we made use of the GitHub Projects’ Kanban board feature, as seen below, to efficiently manage the project and make sure we were all aligned on tasks. This was a huge help in very clearly visualising our workflow, ensuring the project kept moving forward smoothly.
 
-In terms of team roles, at no point did we deem in necessary or even helpful to assign any specific roles. In my experience at least, for these types of projects the roles are very fluid and tend to define themselves if specifically needed. Although there were no specific roles, in our meetings and calls we discussed what each of us would be happy to attempt/do and this was a very smooth process with everyone volunteering to tackle one task or another. This was easier before the Easter break when everyone was in Bristol and focused solely on work. Naturally, with the holiday there can be a bit of a downturn in the pace and consistency of the work. However, we planned around this pre-emptively so that everyone could let the group know roughly of any dates over the holiday during which they would be totally unavailable, thus minimising the impact on the project and ensuring we stayed on track. For the most part, this worked well with only minor disruptions to the workflow. Once we returned [finish this off when it’s happened]
+<img width="1079" alt="Screenshot 2024-04-22 at 18 03 28" src="https://github.com/UoB-COMSM0110/2024-group-9/assets/147715570/3dc169ee-494a-4c9d-9647-72bd8d8f27b7">
+
+In terms of team roles, at no point did we deem in necessary or even helpful to assign any specific roles. In my experience at least, for these types of projects the roles are very fluid and tend to define themselves if specifically needed. Although there were no specific roles, in our meetings and calls we discussed what each of us would be happy to attempt/do and this was a very smooth process with everyone volunteering to tackle one task or another. This was easier before the Easter break when everyone was in Bristol and focused solely on work. Naturally, with the holiday there can be a bit of a downturn in the pace and consistency of the work. However, we planned around this pre-emptively so that everyone could let the group know roughly of any dates over the holiday during which they would be totally unavailable, thus minimising the impact on the project and ensuring we stayed on track. This worked extremely well, with the workflow and progress remaining at more or less the same level throughout Easter as they had been before. After the break, we continued with the Agile approach, ensuring that the final touches were implemented effectively and up to the standards of good software development practices.
 
 ## Conclusion
+

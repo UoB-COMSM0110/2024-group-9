@@ -32,12 +32,15 @@ int notHoveredSize;
 int titleSize;
 int headerSize;
 int smallSize;
+int tutorialSize;
 float menuItemWidth = 1000;
 float menuItemHeight = 100;
 PImage spaceship;
 JSONArray topTen;
 String creditText;
-float y;  
+float y;
+int clickTime = 0;
+
 
 
 void setup() {
@@ -60,6 +63,7 @@ void setup() {
   titleSize = displayHeight/12;
   headerSize = displayHeight/15;
   smallSize = displayHeight/40;
+  tutorialSize = displayHeight/35;
   
   String[] lines = loadStrings("credits.txt");
   creditText = join(lines, "\n");
@@ -198,10 +202,10 @@ void displayMainMenu(){
   fill(255);
 
   hoverTextSize(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 3*displayHeight/10, (3*displayHeight/10)+menuItemHeight);
-  MainMenuItem menuItem1 = new MainMenuItem("Play Mission Possible!", 3*displayHeight/10);
+  MainMenuItem menuItem1 = new MainMenuItem("Play tutorial", 3*displayHeight/10);
   
   hoverTextSize(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 4*displayHeight/10, (4*displayHeight/10)+menuItemHeight);
-  MainMenuItem menuItem2 = new MainMenuItem("Play tutorial", 4*displayHeight/10);
+  MainMenuItem menuItem2 = new MainMenuItem("Play Mission Possible!", 4*displayHeight/10);
   
   hoverTextSize(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 5*displayHeight/10, (5*displayHeight/10)+menuItemHeight);
   MainMenuItem menuItem3 = new MainMenuItem("Game settings", 5*displayHeight/10);
@@ -386,9 +390,9 @@ void displayShowScores(){
   fill(255);
   textSize(notHoveredSize);
   text("Level 1 - Lost in Space: " + game.level1Score, displayWidth/2, 3*displayHeight/10);
-  text("Level 2 - Frozen Planet: " + game.level2Score, displayWidth/2, 4*displayHeight/10);
-  text("Level 3 - Hurricane Valley: " + game.level3Score, displayWidth/2, 5*displayHeight/10);
-  text("Level 4 - Misty Mountain: " + game.level4Score, displayWidth/2, 6*displayHeight/10);
+  text("Level 2 - Misty Mountain: " + game.level2Score, displayWidth/2, 4*displayHeight/10);
+  text("Level 3 - Frozen Planet: " + game.level3Score, displayWidth/2, 5*displayHeight/10);
+  text("Level 4 - Hurricane Valley: " + game.level4Score, displayWidth/2, 6*displayHeight/10);
   fill(200, 20, 0);
   text("Total score: " + game.score, displayWidth/2, 7*displayHeight/10);
   
@@ -412,9 +416,9 @@ void displayGameComplete(){
 void displayCredits(){
   fill(255);
   textAlign(CENTER);
-  textSize(notHoveredSize);
+  textSize(smallSize);
   text(creditText, width*0.05, y, width*0.9, height*3);
-  y--;
+  y-=2;
 }
 
 // Instantiate and show a new level, and record the start time
@@ -422,7 +426,7 @@ void enterLevel(String levelName){
   game.level = levelName;
   currentLevel = new Level(game.level+File.separator+game.level+".json");
   currentView = new View(currentLevel);  
-  currentLevel.startTime = System.currentTimeMillis()/1000;
+  currentLevel.startTime = millis()/1000;
 }
   
 void keyPressed() {
@@ -460,8 +464,10 @@ void keyPressed() {
       game.section = SectionVariant.CHOOSEDIFFICULTY;
     } 
     else if ((key >= 'A' && key <= 'Z') || (key >= 'a' && key <= 'z')){
-      game.playerNickname += key;
-      game.playerNickname = game.playerNickname.toUpperCase();
+      if (game.playerNickname.length() < 15) {
+        game.playerNickname += key;
+        game.playerNickname = game.playerNickname.toUpperCase();
+      }
     }
   }
   // Setting keybinds
@@ -479,21 +485,42 @@ void keyPressed() {
   }
   // Recording that tutorial instructions have been followed
   if(game.section == SectionVariant.TUTORIAL){
-    if(currentView.currentInstructionIndex == 0 && currentView.rightCompleted == false && keyCode == settings.rightKey){
-      currentView.currentInstructionIndex++;
-      currentView.rightCompleted = true;
+    if(currentView.currentInstructionIndex == 0){
+      if (keyCode == settings.rightKey && !currentView.rightCompleted) {
+        currentView.rightCompleted = true;
+        clickTime = millis();
+      }
+      if (clickTime + 2500 <= millis()) {
+        println(millis());
+        currentView.currentInstructionIndex++;
+      }
     }
-    if(currentView.currentInstructionIndex == 1 && currentView.leftCompleted == false && keyCode == settings.leftKey){
-      currentView.currentInstructionIndex++;
-      currentView.leftCompleted = true;
+    if(currentView.currentInstructionIndex == 1){
+      if (keyCode == settings.leftKey && !currentView.leftCompleted) {
+        currentView.leftCompleted = true;
+        clickTime = millis();
+      }
+      if (clickTime + 2500 <= millis() && currentView.leftCompleted) {
+        currentView.currentInstructionIndex++;
+      }
     }
-    if(currentView.currentInstructionIndex == 2 && currentView.jumpCompleted == false && keyCode == settings.jumpKey){
-      currentView.currentInstructionIndex++;
-      currentView.jumpCompleted = true;
+    if(currentView.currentInstructionIndex == 2){
+      if (keyCode == settings.jumpKey && !currentView.jumpCompleted) {
+        currentView.jumpCompleted = true;
+        clickTime = millis();
+      }
+      if (clickTime + 3000 <= millis() && currentView.jumpCompleted) {
+        currentView.currentInstructionIndex++;
+      }
     }
-    if(currentView.currentInstructionIndex == 3 && currentView.dashCompleted == false && keyCode == settings.dashKey){
-      currentView.currentInstructionIndex++;
-      currentView.dashCompleted = true;
+    if(currentView.currentInstructionIndex == 3){
+      if (keyCode == settings.dashKey && !currentView.dashCompleted) {
+        currentView.dashCompleted = true;
+        clickTime = millis();
+      }
+      if (clickTime + 2500 <= millis() && currentView.dashCompleted) {
+        currentView.currentInstructionIndex++;
+      }
     }
   }
 }
@@ -528,8 +555,8 @@ void mouseClicked() {
   }
   else if(game.section == SectionVariant.MAINMENU){
     y = displayHeight;
-    selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 3*displayHeight/10, (3*displayHeight/10)+menuItemHeight, SectionVariant.CHOOSECHARACTER);
-    selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 4*displayHeight/10, (4*displayHeight/10)+menuItemHeight, SectionVariant.TUTORIAL);
+    selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 3*displayHeight/10, (3*displayHeight/10)+menuItemHeight, SectionVariant.TUTORIAL);
+    selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 4*displayHeight/10, (4*displayHeight/10)+menuItemHeight, SectionVariant.CHOOSECHARACTER);
     selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 5*displayHeight/10, (5*displayHeight/10)+menuItemHeight, SectionVariant.GAMESETTINGS);
     if (mouseX >= displayWidth/2 - menuItemWidth/2 && mouseX <= displayWidth/2 + menuItemWidth/2 && mouseY >= 6*displayHeight/10 && mouseY <= 6*displayHeight/10 + menuItemHeight) {
       topTen = leaderboard.getScores(true);
@@ -537,10 +564,11 @@ void mouseClicked() {
     selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 6*displayHeight/10, (6*displayHeight/10)+menuItemHeight, SectionVariant.LEADERBOARD);
     selectMenuItem(displayWidth/2 - menuItemWidth/2, displayWidth/2 + menuItemWidth/2, 7*displayHeight/10, (7*displayHeight/10)+menuItemHeight, SectionVariant.CREDITS);
      
-    if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <= displayWidth/2 + menuItemWidth/2 && mouseY >= 4*displayHeight/10 && mouseY <= (4*displayHeight/10)+menuItemHeight){
+    if(mouseX >= displayWidth/2 - menuItemWidth/2  && mouseX <= displayWidth/2 + menuItemWidth/2 && mouseY >= 3*displayHeight/10 && mouseY <= (3*displayHeight/10)+menuItemHeight){
       game.playerCharacter = CharacterVariant.FOX;
+      game.mode = ModeVariant.EASY;
       enterLevel("tutorial");
-    }   
+    }
   }
   else if (game.section == SectionVariant.CHOOSECHARACTER) {
     selectCharacter(displayWidth/6, (displayWidth/6)+boxWH, displayHeight/3.5, (displayHeight/3.5)+boxWH, CharacterVariant.SPACEMAN, SectionVariant.ENTERNAME);
@@ -627,6 +655,9 @@ void hoverCharacter (float xMin, float xMax, float yMin, float yMax, String char
     textSize(hoveredSize);
     fill(200, 20, 0);
     text(character, displayWidth/2, displayHeight/2);
+    stroke(200, 20, 0);
+    noFill();
+    rect(xMin-20, yMin-20, boxWH+40, boxWH+40);
   }   
 }
 

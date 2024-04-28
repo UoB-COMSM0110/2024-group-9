@@ -13,17 +13,20 @@ public class View {
     String[] tutorialInstructions = {
       "Welcome to the Mission Possible tutorial!\n\nTo move right, press "+KeyEvent.getKeyText(settings.rightKey)+".",
       "To move left, press "+KeyEvent.getKeyText(settings.leftKey)+".",
-      "To jump, press "+KeyEvent.getKeyText(settings.jumpKey)+"\nPress twice to double jump.",
+      "To jump, press "+KeyEvent.getKeyText(settings.jumpKey)+".\nTry jumping on a platform.\nPress jump twice to double jump.",
       "To dash in the direction you're facing, press "+KeyEvent.getKeyText(settings.dashKey)+".",
-      "You can change these key commands in the game settings menu.\n\nClick anywhere to exit to the main menu."
+      "Watch out for enemies!\nYou will get more points for defeating enemies.\nJump on top of the monster to defeat it.",
+      "Well done, you completed the tutorial!\nYou can change the key commands\nin the game settings menu.\nClick anywhere to exit to the main menu."
     };
     int currentInstructionIndex = 0;
-    boolean rightCompleted;
-    boolean leftCompleted;
-    boolean jumpCompleted;
-    boolean dashCompleted;
+    boolean rightCompleted = false;
+    boolean leftCompleted = false;
+    boolean jumpCompleted = false;
+    boolean dashCompleted = false;
+    boolean enemyDefeated = false;
     int scale = 1;
     ArrayList<FogElement> fogElements;
+    ArrayList<Wind> windElements;
 
     View(Level currentLevel) {
         int[] levelDims = currentLevel.getLevelDims();
@@ -46,6 +49,13 @@ public class View {
         }
         this.backgroundImage = currentLevel.imageMap.get("background.png");
         this.backgroundImage.resize(levelDims[0], levelDims[1]);
+        
+        if (currentLevel.weather == WeatherVariant.WINDY) {
+          this.windElements = new ArrayList<Wind>();
+          for (int i = 0; i < 1000; i++) {
+            windElements.add(new Wind(currentLevel.levelWidth, currentLevel.levelHeight));
+          }
+        }
     }
     
     public void displayView() {
@@ -82,7 +92,7 @@ public class View {
       if(currentLevel.player.health == 1){
         health1.setAsset(userInterface.getAsset("heart-empty.png"));
       }
-      if(currentLevel.player.health == 0){
+      if(currentLevel.player.health == 0 && game.section == SectionVariant.GAMELEVELS){
         health0.setAsset(userInterface.getAsset("heart-empty.png"));
         if(game.mode == ModeVariant.EASY){
           currentLevel.calculateLevelScoreDead();
@@ -95,8 +105,6 @@ public class View {
           game.section = SectionVariant.GAMEOVER;
         }
       }
-      UIElement fps = userInterface.getElement("fps");
-      fps.setTextContent(String.valueOf(frameRate));
       userInterface.drawUI();
       if(game.section == SectionVariant.TUTORIAL){
         runTutorial();
@@ -113,6 +121,12 @@ public class View {
           flake.display(spriteViewPos(flake.getX(), flake.getY()));
         }
       }
+      if (currentLevel.weather == WeatherVariant.WINDY) {
+        for (Wind windElement : windElements) {
+          windElement.update();
+          windElement.display(spriteViewPos(windElement.getX(), windElement.getY()));
+        }
+      }
     }
 
     public int[] spriteViewPos(int xPos, int yPos) {
@@ -121,13 +135,12 @@ public class View {
     }
     
     public void runTutorial(){
-      rightCompleted = false;
-      leftCompleted = false;
-      jumpCompleted = false;
-      dashCompleted = false;
+
+      fill(0);
+      rect(displayWidth/2 - menuItemWidth/2, displayHeight/9, menuItemWidth, boxWH*1.4);
       textAlign(CENTER, CENTER);
       fill(255);
-      textSize(notHoveredSize);
-      text(tutorialInstructions[currentInstructionIndex], displayWidth/2, displayHeight/4, menuItemWidth);
+      textSize(tutorialSize);
+      text(tutorialInstructions[currentInstructionIndex], displayWidth/2, displayHeight/5, menuItemWidth);
   }
 }

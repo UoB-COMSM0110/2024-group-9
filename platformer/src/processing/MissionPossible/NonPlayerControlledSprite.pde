@@ -4,32 +4,33 @@ public class NonPlayerControlledSprite extends Sprite{
   boolean isAlive = true;
   boolean isSpaceshipPart;
   boolean faceToRight = false;
-  float speed;
+  int speed = 4;
+  HashMap<String, AudioPlayer> audioMap;
   
   // Constructor
-  public NonPlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, boolean isEnemy, boolean isSpaceshipPart, int maxXPos, int maxYPos, String imgFile) {
+  public NonPlayerControlledSprite(int xPos, int yPos, int spriteWidth, int spriteHeight, boolean isEnemy, boolean isSpaceshipPart, int maxXPos, int maxYPos, String imgFile, ModeVariant mode, HashMap<String, AudioPlayer> audioMap) {
     super(xPos, yPos, spriteWidth, spriteHeight, maxXPos, maxYPos, imgFile);
     this.isEnemy = isEnemy;
     this.isAlive = true;
     this.isSpaceshipPart = isSpaceshipPart;
+    this.audioMap = audioMap;
+    if (mode == ModeVariant.DIFFICULT) {
+      this.speed += 3;
+    }
   }
   
   public void Died(){
     this.isAlive = false;
     currentLevel.score += 5;
-    AudioPlayer player = minim.loadFile("sounds/monster_died.wav");
-    if(player != null){
-      player.play();
+    audioMap.get("monster_died.wav").play();
+    audioMap.get("monster_died.wav").rewind();
+    if(game.section == SectionVariant.TUTORIAL){
+      currentView.enemyDefeated = true;
+      currentView.currentInstructionIndex = 5;
     }
   }
 
   public void updatePosition(int leftBoundary, int rightBoundary){
-    if(game.mode == ModeVariant.DIFFICULT){
-      speed = 5;
-    }
-    else{
-      speed = 3;
-    }
     if((isEnemy || isSpaceshipPart) && !isAlive){
       this.xPos = 9999;
       this.yPos = 9999;

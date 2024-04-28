@@ -10,14 +10,29 @@ public class Level{
   PlayerControlledSprite player;
   WeatherVariant weather;
   HashMap<String, PImage> imageMap;
-  long startTime;
-  long endTime;
+  HashMap<String, AudioPlayer> audioMap;
+  int startTime;
+  int endTime;
   
  // Constructor - gets most of the level information from JSON file
    Level(String jsonFilePath){
      imageMap = new HashMap<>();
+     audioMap = new HashMap<>();
      started = true;
      score = 0;
+
+
+     File soundDir = new File(dataPath("sounds"));
+     File[] audioFiles = soundDir.listFiles();
+     if (audioFiles != null) {
+       for (File file : audioFiles) {
+         if (file.isFile() && (file.getName().toLowerCase().endsWith(".wav")) || file.getName().toLowerCase().endsWith(".mp3")) {
+           audioMap.put(file.getName(), minim.loadFile(file.getAbsolutePath()));
+         }
+       }
+     }
+     
+     audioMap.get("game_bgm.mp3").loop();
 
      JSONObject json = loadJSONObject(jsonFilePath);
      
@@ -67,16 +82,25 @@ public class Level{
      int playerHeight = playerData.getInt("spriteHeight");
      String playerImage = playerData.getString("spriteImage");
           
-     this.player = new PlayerControlledSprite(playerXPos, playerYPos, playerWidth, playerHeight, levelWidth, levelHeight, playerImage);
+     this.player = new PlayerControlledSprite(playerXPos, playerYPos, playerWidth, playerHeight, levelWidth, levelHeight, playerImage, audioMap);
      
      if (weather == WeatherVariant.ICY) {
-       this.player.setXAcceleration(0.03f);
+       if (game.getModeVariant() == ModeVariant.DIFFICULT) {
+         this.player.setXAcceleration(0.05f);
+       } else {
+         this.player.setXAcceleration(0.1f);
+       }
      } else {
-       this.player.setXAcceleration(0.1f);
+       this.player.setXAcceleration(0.2f);
      }
      
      if (weather == WeatherVariant.WINDY) {
-       this.player.setWindFactor(1.8f);
+       if (game.getModeVariant() == ModeVariant.DIFFICULT) {
+          this.player.setWindFactor(1.8f);
+       } else {
+         this.player.setWindFactor(1.4f);
+       }
+
      } else {
        this.player.setWindFactor(1.0f);
      }
@@ -100,7 +124,7 @@ public class Level{
       boolean isEnemy = sprite.getBoolean("isEnemy");
       boolean isSpaceshipPart = sprite.getBoolean("isSpaceshipPart");
       String spriteImage = sprite.getString("spriteImage");
-      sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, isEnemy, isSpaceshipPart, levelWidth, levelHeight, spriteImage);
+      sprites[i] = new NonPlayerControlledSprite(xPos, yPos, spriteWidth, spriteHeight, isEnemy, isSpaceshipPart, levelWidth, levelHeight, spriteImage, game.getModeVariant(), audioMap);
     }
     this.sprites = sprites;    
   }
@@ -124,7 +148,7 @@ public class Level{
   
   // Level score if reach the end of level
   public void calculateLevelScoreAlive(){
-    endTime = System.currentTimeMillis()/1000;
+    endTime = millis()/1000;
     score = score + (1000/(endTime - startTime))+(5*currentLevel.player.health);
     if(game.mode == ModeVariant.DIFFICULT){
       score *= 1.25;
