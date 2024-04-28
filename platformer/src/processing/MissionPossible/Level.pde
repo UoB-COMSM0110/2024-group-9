@@ -32,7 +32,9 @@ public class Level{
        }
      }
      
-     audioMap.get("game_bgm.mp3").loop();
+     if(game.level.equals("level1")){
+       audioMap.get("game_bgm.mp3").loop();
+     }
 
      JSONObject json = loadJSONObject(jsonFilePath);
      

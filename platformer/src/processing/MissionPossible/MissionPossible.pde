@@ -83,6 +83,7 @@ void selectScreen(){
   } 
   else if (game.section == SectionVariant.MAINMENU){
     displayMainMenu();
+    minim.stop();
   }
   else if (game.section == SectionVariant.LEADERBOARD) {
     displayLeaderboard();
@@ -625,6 +626,7 @@ void mouseClicked() {
   }
   else if(game.section == SectionVariant.GAMECOMPLETE){
     sendScore(game.getScore());
+    game.restart();
     game.section = SectionVariant.CREDITS;
   }
 }

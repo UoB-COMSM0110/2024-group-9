@@ -253,6 +253,12 @@ Based on this result, and the fact that some participants were reporting high le
 
 ### Testing
 
+Although automated testing is preferred to manual tests requiring human intervention, these are difficult to implement directly within the Processing environment. Subsequently, we focused primarily on performing tests manually, especially for cases that would rarely be encountered given our code.
+
+One example of such an edge case is when the width of the screen is greater than the width of the level. When moving across the level, all the sprites currently shown on screen would appear to jump across the screen depending on the player's position in the level. To remedy this, tweaks were made to both the camera class, as well as the levels where this was experienced.
+
+Another example of fixes developed as a result of manual testing was the inclusion of displaying the frame rate on screen during development. When we switched from displaying simple rectangles to sprites, the performance of the game dropped significantly. This led to the use of the `P2D` renderer to keep performance stable, even when many sprites are shown on screen. During development, the frame rate was uncapped to monitor how much performance 'headroom' was available, and additional tests were performed on slower hardware to ensure a consistent user experience across a range of devices.
+
 ## Process
 
 When placed in assigned teams, there is an important, inevitable stage at the beginning where everyone must make an effort to break the ice and establish team goals and ambitions for the project at hand. We quickly got on with introductions and discussed the types of games we had in mind based on previous experiences playing them and even, for some, designing them. At the start, most of the work was done in the Monday morning labs but there was also a significant bit of going away and individually seeing what was feasible and finding examples from which to draw inspiration that were then shared and further explored as a team on the Teams group which has served as our main form of communication throughout. We have also met in person various times throughout the course of the project which feels more efficient but is harder to coordinate. 
@@ -267,7 +273,7 @@ In terms of team roles, at no point did we deem in necessary or even helpful to 
 
 ## Conclusion
 
-## Individual contribution
+## Individual contributions
 Liz Elliott: 
 
 Diwen Fan: 
