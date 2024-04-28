@@ -1,0 +1,19 @@
+Menus
+- I like the background and the game credits idea.
+- I like that you can change the keys. 
+Tutorial
+- Is this the time? (Framerate)
+Game levels
+- I like the level titles
+- Monsters are hard
+- Ah it remembered my name, that's nice
+- I like that I get my lives back
+- Struggling with the easy one!
+- Like the mystery of what the next level will look like
+- I don't like the icy one, but I like the idea behind it - it might be too extreme
+- Don't see that big of a difference between easy and difficult
+- Oh ok so there's wind coming from this way
+- I like the wind idea but maybe make the platforms longer
+- The monsters moved faster in difficult mode
+- I think fog should be level 2 because it's easier than ice and wind
+- Ctrl+D puts you in debug mode and exits the game

@@ -1,0 +1,15 @@
+Menus
+- Love the text and highlighting
+- Should I be doing the tutorial or? Maybe put tutorial first on the menu?
+- Make the credits scroll quicker
+- I love the characters!
+- Weird way of showing which character is highlighted
+Easy
+- Vertical collision is really good
+- Oh my god this is so stressful!
+- Spaceship part wasn't super intuitive
+- I love the snow effect
+- Is there any incentive to kill the enemies?
+- I like the bounce physics for killing enemies - it makes it very satisfying
+Difficult
+- It doesn't seem that different. The easy version is maybe a bit too hard.
