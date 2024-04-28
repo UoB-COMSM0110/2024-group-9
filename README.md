@@ -238,7 +238,7 @@ The raw scores were processed by subtracting 1 and multiplying by 5. When indivi
 | 5             |  330 |       430 |
 | 6             |  115 |       210 |
 
-However, when the scores were analysed using the Wilcoxon signed rank test, we cannot say there is statistical significance in this difference. The resulting test statistic was 2, and we would need this figure to be lower than 2 to have confidence in the result. This uncertainty about whether there truly is a difference in workload ties in with one of the results of the qualitative evaluation which revealed that players weren't really sure what the difference between the two difficulty modes was. 
+However, when the scores were analysed using the Wilcoxon signed rank test, we were unable to reject the null hypothesis that there is no difference between the easy and difficult game modes. The resulting test statistic was exactly 2, and we would need this figure to be lower than 2 to be able to say with 90% confidence that there is a statistically significant difference between the two sets of results. This uncertainty about whether there truly is a difference in workload ties in with one of the results of the qualitative evaluation which revealed that players weren't really sure what the difference between the two difficulty modes was. 
 
 Based on this result, and the fact that some participants were reporting high levels of frustration and physical demand (see average scores for each workload scale below), we reduced the magnitude of the weather effects in the easy version of the game and we also made a couple of the levels slightly easier to complete in terms of the physical layout of the platforms and enemies. 
 
