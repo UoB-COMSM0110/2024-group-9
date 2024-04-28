@@ -154,23 +154,23 @@ To remedy this, a `JSON` file was included alongside each animation to configure
 #### Next Frame Function
 
 ```java
-    public PImage nextFrame(float speed) {
-      if (speed < 0f) {
-        speed *= -1f;
-      }
-      if (speed < 1f) {
-        speed = 1f;
-      }
-      float currentTime = (float) millis();
-      if (currentTime - lastFrameTime > this.images.get(nextFrameNum).getDelay() / speed) {
-        nextFrameNum++;
-        lastFrameTime = currentTime;
-      }
-      if (nextFrameNum >= this.images.size()) {
-        nextFrameNum = 0;
-      }
-      return this.images.get(nextFrameNum).getImage();
-    }
+public PImage nextFrame(float speed) {
+  if (speed < 0f) {
+    speed *= -1f;
+  }
+  if (speed < 1f) {
+    speed = 1f;
+  }
+  float currentTime = (float) millis();
+  if (currentTime - lastFrameTime > this.images.get(nextFrameNum).getDelay() / speed) {
+    nextFrameNum++;
+    lastFrameTime = currentTime;
+  }
+  if (nextFrameNum >= this.images.size()) {
+    nextFrameNum = 0;
+  }
+  return this.images.get(nextFrameNum).getImage();
+}
 ```
 
 ##### Example Animation Folder Structure
