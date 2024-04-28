@@ -626,6 +626,7 @@ void mouseClicked() {
   }
   else if(game.section == SectionVariant.GAMECOMPLETE){
     sendScore(game.getScore());
+    game.restart();
     game.section = SectionVariant.CREDITS;
   }
 }
