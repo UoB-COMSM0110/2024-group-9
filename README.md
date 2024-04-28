@@ -151,7 +151,7 @@ To improve the perception of speed to the user, all 6 player sprites were animat
 
 To remedy this, a `JSON` file was included alongside each animation to configure each separately. Contained within this file was information of the all assets required for each frame as well as a nominal delay. This delay is used to ensure there is a minimum delay between animation frames. To improve the perception of speed, this delay would also be reduced by a factor of the current speed of the player sprite. This in turn increases the speed of the animation as the speed of the player sprite increases.
 
-#### Next Frame Function
+##### Next Frame Function
 
 ```java
 public PImage nextFrame(float speed) {
