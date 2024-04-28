@@ -172,11 +172,12 @@ To determine collisions between sprites, before every frame, the position of eac
 
 ### Qualitative
 
-We carried out a think-aloud evaluation two weeks before the game demo session, so that we would be able implement some improvements based on the feedback received. X [update] participants played the game while thinking aloud, and generally liked the game but generated some very constructive criticism. 
+We carried out a think-aloud evaluation two weeks before the game demo session, so that we would be able implement some improvements based on the feedback received. Five participants played the game while thinking aloud, and generally liked the game but generated some very constructive criticism. 
 
-The positive feedback can be distilled into these four themes:
+The positive feedback can be distilled into these five themes:
 
 - The menus, text and highlighting work well. 
+- Being able to choose which keys to use was really positive.
 - Basic physics seem good and feel natural.
 - Levels are varied and intuitive.
 - The weather effects are fun.
@@ -191,7 +192,7 @@ The main themes from the more problematic aspects of the game design and impleme
 | Weather       | Put the foggy level (originally level 4) as level 2, to reflect difficult of icy and windy levels | 1            | Level ordering was changed to 1: No weather 2: Foggy 3: Icy 4: Windy                                                                            |
 | Leaderboard | No internet access causes game to crash when viewing leaderboard | 1 | Initialise variable containing leaderboard data to an empty list before downloading scores |
 | Menus         | Can the credits scroll quicker?                                                                    | 2            | Credits set to scroll twice as fast                                                                                                            |
-| Physics       | Occasional bug where the player gets stuck in the corner of a platform                            | 2            | Add additional check for potential collisions resulting from changes in both x and y directions |
+| Physics       | Occasional bug where the player gets stuck in the corner of a platform and had to dash in the opposite direction to 'break out'                           | 2            | Add additional check for potential collisions resulting from changes in both x and y directions |
 | Physics       | Ctrl+D (Dash and Move Right) puts you in debug mode and exits the game                            | 2            | The default dash key changed from Control to Shift                                                                                             |
 | Physics | Movement feels 'sluggish' | 2 | Increase player acceleration across all weather types |
 | Weather | No visual indication for windy weather | 2 | Add an animation of particles moving right-to-left to make it clear when the wind is in effect |
@@ -201,19 +202,6 @@ The main themes from the more problematic aspects of the game design and impleme
 ### Quantitative
 
 <img width="549" alt="NewIgNasaTlx" src="https://github.com/UoB-COMSM0110/2024-group-9/assets/147715570/0668fe1a-6136-4b6a-8364-0365ddade5e6">
-
-Associated Think Aloud Evaluation notes from the first subject:
-
-They found the character selection screen a bit visually confusing as the names for the different options all come up under the cowboy. Despite this being the middle of the screen, they still felt the names should come up under each respective character.
-
-The other issue they found was that they got stuck on corners various times throughout their multiple playthroughs and had to spam the dash button in the opposite direction to ‘break out’. Sometimes the dash-out method failed and they had to restart the game.
-
-They liked the fact they were able to bind keys and adjust controls and set the game up according to whatever dexterous preference they may have, particularly as a right-handed player who found it a bit tricky to press the control key to use the dash.
-
-They found that the alien sprites made for a challenging, yet quirky addition to the fun and creative level maps. In their view, the maps were definitely increasing in difficulty which was ideal as they slowly got to grips with the game. The different ways in which each map demanded their focus kept them on their toes in an interesting way. They found Level 2 particularly mentally fatiguing, expecting them to realise the dash feature in conjunction with a speedy jump was needed to beat it, which took them a few attempts to figure out while also dealing with the ice. Level 3, with its strong winds (although because of the outer space theme they thought it was drastically increased gravity) took a bit to get used to and required more focus to adjust and get the timings of the jumps and moves right.
-
-All in all, they said the game was enjoyable to play and ended up doing multiple playthroughs to see if they could beat their previous scores.
-
 
 <img width="476" alt="Luca NASA TLX" src="https://github.com/UoB-COMSM0110/2024-group-9/assets/147715570/2dbe6bc5-eb46-4119-a212-4619dcb01d94">
 
@@ -236,11 +224,15 @@ From these, we can gauge that the game is sufficiently engaging and fast-paced. 
 
 ## Process
 
-When placed in assigned teams, there is an important, inevitable stage at the beginning where everyone must make an effort to break the ice and establish team goals and ambitions for the project at hand. We quickly got on with introductions and discussed the types of games we had in mind based on previous experiences playing them and even, for some, designing them. At the start, most of the work was done in the Monday morning labs but there was also a significant bit of going away and individually seeing what was feasible and finding examples from which to draw inspiration that were then shared and further explored as a team on the Teams group which has served as our main form of communication throughout. We have also met in person various times throughout the course of the project which feels more efficient but is harder to coordinate. On top of this, we made use of the GitHub Projects’ Kanban board feature, as seen below, to efficiently manage the project and make sure we were all aligned on tasks. This was a huge help in very clearly visualising our workflow, ensuring the project kept moving forward smoothly.
+When placed in assigned teams, there is an important, inevitable stage at the beginning where everyone must make an effort to break the ice and establish team goals and ambitions for the project at hand. We quickly got on with introductions and discussed the types of games we had in mind based on previous experiences playing them and even, for some, designing them. At the start, most of the work was done in the Monday morning labs but there was also a significant bit of going away and individually seeing what was feasible and finding examples from which to draw inspiration that were then shared and further explored as a team on the Teams group which has served as our main form of communication throughout. We have also met in person various times throughout the course of the project which feels more efficient but is harder to coordinate. 
+
+We established a collaborative working principle that the main branch of the repository should always be in working order, even when some features were not fully implemented, and that pull requests into the main branch from feature branches must be approved by another member of the team before the developer of the branch completed the merge. This worked well for the most part, and if we encountered merge conflicts we were able to resolve these easily because the team members involved were familiar with the relevant parts of the code. 
+
+On top of this, we made use of the GitHub Projects’ Kanban board feature, as seen below, to efficiently manage the project and make sure we were all aligned on tasks. This was a huge help in very clearly visualising our workflow, ensuring the project kept moving forward smoothly.
 
 <img width="1079" alt="Screenshot 2024-04-22 at 18 03 28" src="https://github.com/UoB-COMSM0110/2024-group-9/assets/147715570/3dc169ee-494a-4c9d-9647-72bd8d8f27b7">
 
-In terms of team roles, at no point did we deem in necessary or even helpful to assign any specific roles. In my experience at least, for these types of projects the roles are very fluid and tend to define themselves if specifically needed. Although there were no specific roles, in our meetings and calls we discussed what each of us would be happy to attempt/do and this was a very smooth process with everyone volunteering to tackle one task or another. This was easier before the Easter break when everyone was in Bristol and focused solely on work. Naturally, with the holiday there can be a bit of a downturn in the pace and consistency of the work. However, we planned around this pre-emptively so that everyone could let the group know roughly of any dates over the holiday during which they would be totally unavailable, thus minimising the impact on the project and ensuring we stayed on track. This worked extremely well, with the workflow and progress remaining at more or less the same level throughout Easter as they had been before. After the break, we continued with the Agile approach, ensuring that the final touches were implemented effectively and up to the standards of good software development practices.
+In terms of team roles, at no point did we deem in necessary or even helpful to assign any specific roles. In my experience at least, for these types of projects the roles are very fluid and tend to define themselves if specifically needed. Although there were no specific roles, in our meetings and calls we discussed what each of us would be happy to attempt/do and this was a very smooth process with everyone volunteering to tackle one task or another. For example, Charles and Diwen developed the physics of the game while Liz worked on the approach to the level design and game menus. This was easier before the Easter break when everyone was in Bristol and focused solely on work. Naturally, with the holiday there can be a bit of a downturn in the pace and consistency of the work. However, we planned around this pre-emptively so that everyone could let the group know roughly of any dates over the holiday during which they would be totally unavailable, thus minimising the impact on the project and ensuring we stayed on track. This worked extremely well, with the workflow and progress remaining at more or less the same level throughout Easter as they had been before. After the break, we continued with the Agile approach, ensuring that the final touches were implemented effectively and up to the standards of good software development practices.
 
 ## Conclusion
 
