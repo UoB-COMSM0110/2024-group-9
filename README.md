@@ -127,6 +127,10 @@ With these objectives decided we set about drawing up the very bare bones draft 
 
 ### Class Diagram
 
+<p float="middle">
+  <img src="report-photos/class-diagram.png" width="400" />
+</p>
+
 Before beginning any development, we created a basic class diagram. This allowed us to structure our initial codebase in a sensible manner as we began to develop our game idea. The class diagram also made it clear how different classes would need to communicate as well as what information we would need to store in each class. Although the structure of our game has changed significantly from this diagram to facilitate various aspects that weren't initially considered when creating this diagram, such as level design, it was key in the development of initial versions of our game. Some of the planned layout shown in this diagram is still evident from the class structure in our final game.
 
 ### Communication Diagram
