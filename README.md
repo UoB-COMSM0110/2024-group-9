@@ -219,8 +219,13 @@ As shown by the results and further evidenced by the Performance scores, the les
 
 From these, we can gauge that the game is sufficiently engaging and fast-paced. The variation in frustration has led us to adjust the difficulty of certain sections.
 
-
 ### Testing
+
+Although automated testing is preferred to manual tests requiring human intervention, these are difficult to implement directly within the processing environment. Subsequently, we focused primarily on performing tests manually, especially for cases that would rarely be encountered given our code.
+
+One example of such an edge case is when the width of the screen is greater than the width of the level. When moving across the level, all the sprites currently shown on screen would appear to jump across the screen depending on the player's position in the level. To remedy this, tweaks were made to both the camera class, as well as the levels where this was experienced.
+
+Another example of fixes developed as a result of manual testing was the inclusion of displaying the frame rate on screen during development. When we switched from displaying simple rectangles to sprites, the performance of the game dropped significantly. This led to the use of the `P2D` renderer to keep performance stable, even when many sprites are shown on screen. During development, the frame rate was uncapped to monitor how much performance 'headroom' was available, and additional tests were performed on slower hardware to ensure a consistent user experience across a range of devices.
 
 ## Process
 
