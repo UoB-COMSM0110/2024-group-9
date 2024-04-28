@@ -10,25 +10,25 @@ Liz Elliott, Diwen Fan, Santiago Gasca Garcia, Guangfo Guo, Charles Harris
 
 ## Contents
 
--[Instructions](#instructions)
--[Introduction](#introduction)
--[Requirements](#requirements)
-  -[Stakeholders](#stakeholders)
-  -[User stories](#user-stories)
-  -[User case specifications](#use-case-specifications)
-  -[Reflections](#reflections)
-  -[Ideation process](#ideation-process)
--[Design](#design)
--[Implementation](#implementation)
-  -[Game flow logic](#1-game-flow-logic)
-  -[Leaderboard](#2-leaderboard)
-  -[Physics](#3-physics)
--[Evaluation](#evaluation)
-  -[Qualitative](#qualitative)
-  -[Quantitative](#quantitative)
-  -[Testing](#testing)
--[Process](#process)
--[Conclusion](#conclusion)
+- [Instructions](#instructions)
+- [Introduction](#introduction)
+- [Requirements](#requirements)
+  - [Stakeholders](#stakeholders)
+  - [User stories](#user-stories)
+  - [User case specifications](#use-case-specifications)
+  - [Reflections](#reflections)
+  - [Ideation process](#ideation-process)
+- [Design](#design)
+- [Implementation](#implementation)
+  - [Game flow logic](#1-game-flow-logic)
+  - [Leaderboard](#2-leaderboard)
+  - [Physics](#3-physics)
+- [Evaluation](#evaluation)
+  - [Qualitative](#qualitative)
+  - [Quantitative](#quantitative)
+  - [Testing](#testing)
+- [Process](#process)
+- [Conclusion](#conclusion)
 
 ## Instructions
 1. [Download the Processing software](https://processing.org/download) for your operating system. 
@@ -143,7 +143,7 @@ The process began by setting limits; it was important to know and manage expecta
 
 With these objectives decided we set about drawing up the very bare bones draft of the game which featured an intro menu with the option to play the game or the tutorial. We had the user ‘click’ the play button, which took them to an “ENTER YOUR NAME” screen. This was followed by a screen revealing a level map which starts off as a very simple ‘obstacle course’ in which the player need only jump to reach the next platform and complete that level. Then suggestions were made to include enemy sprites that the player was to avoid. Failing to do so would cost one of the player’s 3 lives and the loss of all 3 lives would take the player (initially) back to the start of the level. Eventually, the player completes the draft level and sees a ‘MISSION COMPLETE’ screen followed by a scoreboard screen with their name and score on it, comparing them to previous players.
 
-[Click here to see our paper prototype video.](https://youtu.be/xK1kFr6qZxw)
+[Click here](https://youtu.be/xK1kFr6qZxw) to see our paper prototype video.
 
 ## Design
 
@@ -269,7 +269,11 @@ In terms of team roles, at no point did we deem in necessary or even helpful to 
 
 ## Individual contribution
 Liz Elliott: 
+
 Diwen Fan: 
+
 Santiago Gasca Garcia: 
+
 Guangfo Guo: 
+
 Charles Harris: 
