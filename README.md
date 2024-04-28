@@ -127,7 +127,15 @@ With these objectives decided we set about drawing up the very bare bones draft 
 
 ### Class Diagram
 
-Before beginning any development, we created a basic class diagram. This allowed us to structure our initial codebase in a sensible manner as we began to develop our game idea. The class diagram also made it clear how different classes would need to communicate as well as what information we would need to store in each class. Although the structure of our game has changed significantly from this diagram to facilitate various aspects that weren't initially considered when creating this diagram, such as level design, it was key in the development of initial versions of our game, and some structure shown in this diagram is still present in our final game.
+Before beginning any development, we created a basic class diagram. This allowed us to structure our initial codebase in a sensible manner as we began to develop our game idea. The class diagram also made it clear how different classes would need to communicate as well as what information we would need to store in each class. Although the structure of our game has changed significantly from this diagram to facilitate various aspects that weren't initially considered when creating this diagram, such as level design, it was key in the development of initial versions of our game. Some of the planned layout shown in this diagram is still evident from the class structure in our final game.
+
+### Communication Diagram
+
+<p float="middle">
+  <img src="report-photos/communication-diagram.png" width="400" />
+</p>
+
+As our game structure developed, we also created a communication diagram to plan the transfer of information required between classes when each frame is drawn on screen. This was especially important given that some elements are required to remain in the same position on screen depending on the current state of the game. For example, UI elements always remain in the same position on screen whereas the player sprite will be in the centre of the screen unless the player is approaching the bounds of the level, in which case they will move relative to that axis (or axes) on screen.
 
 ## Implementation
 
@@ -146,7 +154,7 @@ The scoring formula is based mainly on the inverse of the time taken to complete
 The design information for each level is stored in a JSON file, which constrains the width and height of the available space for the level and specifies the weather, background image, player sprite's starting location, and the size and location of the platforms, enemies and spaceship part. Once set up, this approach enabled us to quickly and smoothly add more levels while keeping the verbose level data out of the Processing code itself. When the player retrieves the level's spaceship part, the level ends and the score for each level completed is shown before the player is invited to continue to the next level. A new Level object is instantiated at that point. 
 
 <p float="middle">
-  <img src="/report-photos/score-screen.png" width="400" />
+  <img src="report-photos/score-screen.png" width="400" />
 </p>
 
 The four available spaceship parts are shown at the top of the screen with some transparency applied to begin with. When a spaceship part is collected a method is called to set its image transparency to zero for the rest of the current game, so the player can view their progress. 
