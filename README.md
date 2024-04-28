@@ -141,6 +141,67 @@ Before beginning any development, we created a basic class diagram. This allowed
 
 As our game structure developed, we also created a communication diagram to plan the transfer of information required between classes when each frame is drawn on screen. This was especially important given that some elements are required to remain in the same position on screen depending on the current state of the game. For example, UI elements always remain in the same position on screen whereas the player sprite will be in the centre of the screen unless the player is approaching the bounds of the level, in which case they will move relative to that axis (or axes) on screen.
 
+### Overall Design
+
+The game is primarily structured around the `GameState` class. This stores information key to the rest of the game such as the current level name, difficulty and score. A `Level` object is then instantiated based on the level name and all requisite information is loaded from the respective level folder (e.g. sprite animations, sounds, level background, etc.). The initial location of all sprites is also loaded from a `JSON` file stored within the level folder. Abstracting the level design into a `JSON` file made it easier to design levels while also allowing us to avoid having to store level information directly within the code. The information and assets loaded from the instantiation of the `Level` class is then used by the `View` class to display the required information to the user.
+
+#### Animations
+
+To improve the perception of speed to the user, all 6 player sprites were animated. Initially, as each frame was drawn on screen, the next frame of the player sprite animation would be drawn. However, at our target frame rate of 60, this would make it very unclear to the user due to the rapid switching of image on screen. Additionally, it was also not dependent on speed and wouldn't improve the objective of allowing the user to perceive speed more clearly.
+
+To remedy this, a `JSON` file was included alongside each animation to configure each separately. Contained within this file was information of the all assets required for each frame as well as a nominal delay. This delay is used to ensure there is a minimum delay between animation frames. To improve the perception of speed, this delay would also be reduced by a factor of the current speed of the player sprite. This in turn increases the speed of the animation as the speed of the player sprite increases.
+
+#### Next Frame Function
+
+```java
+    public PImage nextFrame(float speed) {
+      if (speed < 0f) {
+        speed *= -1f;
+      }
+      if (speed < 1f) {
+        speed = 1f;
+      }
+      float currentTime = (float) millis();
+      if (currentTime - lastFrameTime > this.images.get(nextFrameNum).getDelay() / speed) {
+        nextFrameNum++;
+        lastFrameTime = currentTime;
+      }
+      if (nextFrameNum >= this.images.size()) {
+        nextFrameNum = 0;
+      }
+      return this.images.get(nextFrameNum).getImage();
+    }
+```
+
+##### Example Animation Folder Structure
+
+<p float="middle">
+  <img src="report-photos/cat-moving-animation.png" width="800" />
+</p>
+
+##### Example Animation `JSON`
+
+```json
+[
+    {
+        "filename": "0.png",
+        "delay": 100
+    },
+    {
+        "filename": "1.png",
+        "delay": 100
+    },
+    {
+        "filename": "2.png",
+        "delay": 100
+    },
+    {
+        "filename": "3.png",
+        "delay": 100
+    }
+]
+```
+
 ## Implementation
 
 We identified 3 main areas of challenge when planning the design for our game. These were: game flow logic (ensuring consistent and intuitive transitions between menus, a way to easily define levels, scoring and a tutorial), a global leaderboard (a Python web server with a persistent database, making it accessible over the internet, and generating unique user IDs) and a physics system (intuitive player and non-player movement as well as collisions between them and enabling changes depending on the type of weather).
