@@ -221,7 +221,7 @@ From these, we can gauge that the game is sufficiently engaging and fast-paced. 
 
 ### Testing
 
-Although automated testing is preferred to manual tests requiring human intervention, these are difficult to implement directly within the processing environment. Subsequently, we focused primarily on performing tests manually, especially for cases that would rarely be encountered given our code.
+Although automated testing is preferred to manual tests requiring human intervention, these are difficult to implement directly within the Processing environment. Subsequently, we focused primarily on performing tests manually, especially for cases that would rarely be encountered given our code.
 
 One example of such an edge case is when the width of the screen is greater than the width of the level. When moving across the level, all the sprites currently shown on screen would appear to jump across the screen depending on the player's position in the level. To remedy this, tweaks were made to both the camera class, as well as the levels where this was experienced.
 
