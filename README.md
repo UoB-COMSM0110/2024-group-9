@@ -6,32 +6,53 @@ Liz Elliott, Diwen Fan, Santiago Gasca Garcia, Guangfo Guo, Charles Harris
 
 <img src="report-photos/Image.jfif" width="250">
 
+[ADD LINK TO GAME VIDEO]
+
+## Contents
+
+-[Instructions](#instructions)
+-[Introduction](#introduction)
+-[Requirements](#requirements)
+  -[Stakeholders](#stakeholders)
+  -[User stories](#user-stories)
+  -[User case specifications](#use-case-specifications)
+  -[Reflections](#reflections)
+  -[Ideation process](#ideation-process)
+-[Design](#design)
+-[Implementation](#implementation)
+  -[Game flow logic](#1-game-flow-logic)
+  -[Leaderboard](#2-leaderboard)
+  -[Physics](#3-physics)
+-[Evaluation](#evaluation)
+  -[Qualitative](#qualitative)
+  -[Quantitative](#quantitative)
+  -[Testing](#testing)
+-[Process](#process)
+-[Conclusion](#conclusion)
+
+## Instructions
+1. [Download the Processing software](https://processing.org/download) for your operating system. 
+2. Download the full contents of [this folder](https://github.com/UoB-COMSM0110/2024-group-9/tree/evaluation/platformer/src/processing/MissionPossible) from this repo.
+3. Open the file MissionPossible.pde in Processing.
+4. If you are about to play Mission Possible for the first time, go to Tools > Manage Tools > Libraries, and install:
+- Minim: An audio library that provides easy to use classes for playback, recording, analysis, and synthesis of sound.
+- HTTP Requests for Processing: A small library that takes the pain out of doing HTTP requests in Processing.
+
 ## Introduction
 
 This section sets out our two initial ideas and expands on the chosen game idea.
 
 IDEA 1: Platformer (which we have ended up committing to)
 
-Our game, Mission Possible, is a short story about a space explorer in the future who crash-lands on a distant planet and must return to their home planet of Earth B-13. In order to do so, the player must select their hero and embark on a journey to traverse various levels (the number and complexity of which will be affected by which of the two difficulty settings the player selects) and make it back to their ship, all while finding ways to avoid or work around the strongly disorienting and potentially fatal space monsters and weather conditions found in the far corners of outer space.
+Our game, Mission Possible, is a short story about a space explorer in the future who crash-lands on a distant planet and must return to their home planet of Earth-X4B. In order to do so, the player must select their hero and embark on a journey to traverse various levels (the number and complexity of which will be affected by which of the two difficulty settings the player selects) and make it back to their ship, all while finding ways to avoid or work around the strongly disorienting and potentially fatal space monsters and weather conditions found in the far corners of outer space.
 
 Mission Possible is a traditional platformer game like the original Donkey Kong, a model still prevalent in the modern day, as seen in blockbuster games like the latest instalments in the Super Mario series as well as smaller independent releases such as Celeste. 
 
-Our distinguishing feature is the implementation of adverse weather effects in the levels. We have used a few conditions. Firstly, we use ice which, if stepped on, causes the player to lose the grip and restricts their ability to go back and forth at will, making it more difficult to time jumps and steps to get around obstacles and enemies. Secondly, we have gone for extreme winds which are constantly pushing the player in one direction thus making it much harder to progress. If a player jumps, the wind can send them flying backwards possibly even pushing them into an enemy and costing a life. And thirdly we have decided to add a fog setting. This blacks out the entire screen apart from a small circle of light around the player, so it becomes much harder to plan the optimal course in advance and relies on the player’s instinct to avoid the pitfalls of the level.
-
-Examples:
-
-- Celeste
-- Super Mario
-
 <img src="report-photos/Celeste_screenshot_02.png" width="350">
 
-Twist: Weather system to affect efficacy of certain moves. For example:
+Our distinguishing feature or 'twist' is the implementation of adverse weather effects in the levels. We have used a few conditions. Firstly, we use ice which, if stepped on, causes the player to lose the grip and restricts their ability to go back and forth at will, making it more difficult to time jumps and steps to get around obstacles and enemies. Secondly, we have gone for extreme winds which are constantly pushing the player in one direction thus making it much harder to progress. If a player jumps, the wind can send them flying backwards possibly even pushing them into an enemy and costing a life. And thirdly we have decided to add a fog setting which obscures the player's view so it becomes much harder to plan the optimal course in advance and relies on the player’s instinct to avoid the pitfalls of the level.
 
-- wind blows you forward or back
-- ice makes surface slipperly (lowers friction)
-- fog obscures view
-
-Challenges:
+Our three chosen challenges are discussed more fully in the design and implementation sections.
 
 1. Game flow logic
 2. Leaderboard
@@ -48,7 +69,7 @@ Examples:
 
 Twist: Game mode which allows the player to be the attacking party. 
 
-Challenges:
+Potential challenges:
 
 1. Bullet/weaponry design
 2. Different attackers and tower types
@@ -58,13 +79,11 @@ Challenges:
 
 We will develop a two-dimensional space-themed platform game which allows players to choose their character, enter their name, play an optional tutorial and play through several levels of the game. The player will be able to do various running, jumping and dashing moves, and will make their way through various obstacles in order to find the parts of their broken spaceship and return home. The twist will be that the game play wil change depending on the weather, which will be different in each level. For example, hot weather would slow a player down, ice would make the surfaces slipperly and wind might make it easier or harder to jump over or past obstacles, depending on the direction.
 
-Working title: "Mission Possible!"
-
-### Paper prototype
-
-[YouTube link](https://youtu.be/xK1kFr6qZxw)
+Game title: "Mission Possible!"
 
 ## Requirements
+
+As a group we came up with a list of stakeholders and possible user stories. From here we developed our ideas more fully into a paper protoype of the game. 
 
 ### Stakeholders
 
@@ -74,7 +93,7 @@ Working title: "Mission Possible!"
   - competitive player
   - player with physical accessibility requirements
 - Game developers
-- Markers (who have 5 mins max to play the game)
+- Markers (who have a maximum of five minutes to play and evaluate the game)
 
 ### User stories
 
@@ -89,15 +108,16 @@ Working title: "Mission Possible!"
 9. As a developer I want the difficulty to be set so that not everyone finishes the game first time, but it is possible to win eventually.
 10. As a marker I want to get an overview of the game in a few minutes in order to be able to give it a fair review.
 
-### Use case specification for user story 1
+### Use case specifications
 
+> "As a novice gamer I want a tutorial to teach me the basic game commands, so I can become proficient at the game."
 1. Player opens the game and sees an intuitive navigation menu.
 2. Player selects tutorial.
 3. Tutorial opens showing the player a basic level that builds up from the basics in separate screens, focusing on one thing at a time.
 4. Player reaches the end of the tutorial and is taken back to the home screen, so they can decide whether to do the tutorial again or play the full game.
 
-### Use case specification for user story 7
 
+> "As a competitive player I want to see my name on the leaderboad so I can compare my score with others."
 1. Player opens game
 2. Player selects to skip tutorial (already has pre-existing knowledge of game, keybinds, enemies, etc.)
 3. Player enters nickname to be displayed on leaderboard
@@ -107,28 +127,32 @@ Working title: "Mission Possible!"
 7. Followed by leaderboard - including position, score, top 10?
 8. Options to restart, quit
 
-Use case diagram for user story 7
-
+> As an experienced player I want the option to skip the tutorial so I can get straight on with playing the game.
 <img src="report-photos/use-case-story7.jpg" width="500">
 
 ### Reflections
 
-The main things that we realised from developing the user stories and use cases were how it's important to be clear about which order things will need to happen in, and being very clear to the players about what they need to do next.
+The main things that we realised from developing the user stories and use cases were how it's important to be clear about which order things will need to happen in, and being very clear to the players about what they need to do next. This makes the game flow logic challenge an important one. 
 
 For example, a player should be able to skip the tutorial if they want to, but a novice player should really easily be able to see what they need to do to start the tutorial. We might choose not to have character selection or entering the player's name for the tutorial, but these menu screens will need to be available for the main game. If we include the option to change the keybinds to make it easier for players to use the keys best suited to their physical requirements, we should do this as early on as possible.
 
-We also noted that we are still undecided about exactly what our three challenges will be, how many levels to have, and what details to include on the leaderboard. For example, how will we calculate a score for a player, will we show duplicates (i.e. if a player has played twice, will their two different scores appear in the leaderboard) and how will we show the current player's high score if it is not in, say, the top 10?
+We also noted that we are still undecided about how many levels to have, and what details to include on the leaderboard. For example, how will we calculate a score for a player, will we show duplicates (i.e. if a player has played twice, will their two different scores appear in the leaderboard) and how will we show the current player's high score if it is not in, say, the top 10? These details were discussed and developed more fully in the design stage. 
 
-### Ideation process and how we settled on the final idea
+### Ideation process
 The process began by setting limits; it was important to know and manage expectations. Naturally, a totally revolutionary open-world RPG was well beyond anyone’s capabilities. But at the same time games like advanced Pong or Tic-Tac-Toe did not feel like enough of a challenge. Initially, the idea of a racing game seemed appealing but we quickly decided this felt a bit boring given what the kind of racing game we would be able to make and so we landed on a platformer with the idea of adding some kind of storyline to make it more interesting for the player. To make sure we did not end up doing something too derivative of a Super Mario we decided to take it extra-terrestrial and come up with our own storyline of a lost and crashed cowboy of the future; the solo space explorer. With a rough outline defined we were able to begin brainstorming features and ideas. Immediately, we decided we needed obstacles to add some sort of challenge, lives so that there is ‘something at risk’ and the player cannot just spam moves until something fortuitously happens to work and scores to add an incentive to complete the game faster/better (settling on how the player’s attempt would be scored was not something we were able to do in the earlier stages as this required more knowledge of the code we would be using and how complicated each scoring method would end up being).
 
 With these objectives decided we set about drawing up the very bare bones draft of the game which featured an intro menu with the option to play the game or the tutorial. We had the user ‘click’ the play button, which took them to an “ENTER YOUR NAME” screen. This was followed by a screen revealing a level map which starts off as a very simple ‘obstacle course’ in which the player need only jump to reach the next platform and complete that level. Then suggestions were made to include enemy sprites that the player was to avoid. Failing to do so would cost one of the player’s 3 lives and the loss of all 3 lives would take the player (initially) back to the start of the level. Eventually, the player completes the draft level and sees a ‘MISSION COMPLETE’ screen followed by a scoreboard screen with their name and score on it, comparing them to previous players.
+
+[Click here to see our paper prototype video.](https://youtu.be/xK1kFr6qZxw)
 
 ## Design
 
 ## Implementation
 
-We identified 3 main areas of challenge when planning the design for our game. These were: game flow logic (ensuring consistent and intuitive transitions between menus, a way to easily define levels, scoring and a tutorial), a global leaderboard (a Python web server with a persistent database, making it accessible over the internet, and generating unique user IDs) and a physics system (intuitive player and non-player movement as well as collisions between them and enabling changes depending on the type of weather).
+We identified 3 main areas of challenge when planning the design for our game. These were: 
+1. Game flow logic: ensuring consistent and intuitive transitions between menus, a way to easily define levels, scoring and a tutorial.
+2. A global leaderboard: a Python web server with a persistent database, making it accessible over the internet, and generating unique user IDs.
+3. A physics syste: intuitive player and non-player movement as well as collisions between them and enabling changes depending on the type of weather.
 
 ### 1: Game Flow Logic
 
@@ -136,9 +160,9 @@ Because of the different elemnents we wanted to include in the game (such as a t
 
 https://github.com/UoB-COMSM0110/2024-group-9/assets/150346688/9aba87e4-707f-4f0e-945d-71c6c36d82be
 
-Players are able to change the keybinds for the game controls, and these are stored in the GameState class so that the tutorial instructions and Game Settings menu will always refer to the chosen keys. The tutorial instructions themselves are stored in an ArrayList which is stepped through as the player progresses through the tutorial. 
+Players are able to change the keybinds for the game controls, and these are stored in the GameState class so that the tutorial instructions and Game Settings menu will always refer to the chosen keys. The tutorial instructions themselves are stored in an ArrayList of Strings which is stepped through as the player progresses through the tutorial. 
 
-The scoring formula is based mainly on the inverse of the time taken to complete each level, with additional points for lives remaining at the end of each level and the number of enemies defeated, with an additional weighting for the difficult mode. Level scores are summed and sent to the leaderboard when a player either finishes the game or loses all three hearts in difficult mode. (In easy mode losing all three hearts means restarting the current level, rather than a Game Over scenario.) 
+The scoring formula is based mainly on the inverse of the time taken to complete each level, with additional points for lives remaining at the end of each level and the number of enemies defeated, and an additional weighting for the difficult mode. Level scores are summed and sent to the leaderboard when a player either finishes the game or loses all three hearts in difficult mode. (In easy mode losing all three hearts means restarting the current level, rather than a Game Over scenario.) 
 
 The design information for each level is stored in a JSON file, which constrains the width and height of the available space for the level and specifies the weather, background image, player sprite's starting location, and the size and location of the platforms, enemies and spaceship part. Once set up, this approach enabled us to quickly and smoothly add more levels while keeping the verbose level data out of the Processing code itself. When the player retrieves the level's spaceship part, the level ends and the score for each level completed is shown before the player is invited to continue to the next level. A new Level object is instantiated at that point. 
 
@@ -201,24 +225,31 @@ The main themes from the more problematic aspects of the game design and impleme
 
 ### Quantitative
 
-<img width="549" alt="NewIgNasaTlx" src="https://github.com/UoB-COMSM0110/2024-group-9/assets/147715570/0668fe1a-6136-4b6a-8364-0365ddade5e6">
+We also carried out our quantitative evaluation two weeks before the game demo, choosing to compare players' workload associated with the easy and difficult versions of Mission Possible. We asked six people to play the game once through on each difficulty setting and to complete the NASA Task Load Index (NASA-TLX) questionnaire after each play through. We mixed up the ordering of game difficulty for different participants to try and mitigate the effect that learning would have on the given ratings. 
 
-<img width="476" alt="Luca NASA TLX" src="https://github.com/UoB-COMSM0110/2024-group-9/assets/147715570/2dbe6bc5-eb46-4119-a212-4619dcb01d94">
+The raw scores were processed by subtracting 1 and multiplying by 5. When individual participants' scores for each scale were summed together to give a score for an individual person, with the exception of one participant, all of the players found the difficult game to have a higher perceived workload than the easy game.
 
+| **Participant number** | **Easy** | **Difficult** |
+|---------------|-----:|----------:|
+| 1             |  235 |       495 |
+| 2             |  255 |       260 |
+| 3             |  230 |       220 |
+| 4             |  200 |       225 |
+| 5             |  330 |       430 |
+| 6             |  115 |       210 |
 
-For these two test subjects, it is important to note that one seldom plays videogames, whereas the other one spends a fair bit of their free time doing so.
+However, when the scores were analysed using the Wilcoxon signed rank test, we cannot say there is statistical significance in this difference. The resulting test statistic was 2, and we would need this figure to be lower than 2 to have confidence in the result. This uncertainty about whether there truly is a difference in workload ties in with one of the results of the qualitative evaluation which revealed that players weren't really sure what the difference between the two difficulty modes was. 
 
-Neither reported high mental demand, but one did report that one could not engage with the game passively if they wanted to complete it. While we did not want our game to be excessively challenging, we certainly wanted players, especially those less experienced with computer games, to have to struggle a little bit to complete it. 
+Based on this result, and the fact that some participants were reporting high levels of frustration and physical demand (see average scores for each workload scale below), we reduced the magnitude of the weather effects in the easy version of the game and we also made a couple of the levels slightly easier to complete in terms of the physical layout of the platforms and enemies. 
 
-Both players reported a very low level of physical demand which makes perfect sense as, in theory, one need only use 4 keys to complete the levels.
-
-As for the temporal demand, it's good that neither player felt it was a rushed game or overly demanding for time; it is a relatively simple task that one can complete in more or less 5-15 minutes, optimal for an engaging playthrough.
-
-For the performance, the more experienced player completed it all almost with no problem, so we had to make the game slightly tougher. However, the less experienced test subject was not able to complete all the levels, struggling with one section of Level 2 a bit too much but otherwise completing everything else without too much difficulty, so we adjusted a  bit to make this level slightly easier. 
-
-As shown by the results and further evidenced by the Performance scores, the less experienced subject struggled quite a bit, with the majority of said struggle coming in one section of Level 2. The more experienced player still struggled a little bit and couldn't just complete it first time, no lives lost. This is important, as it shows that even for the more experienced users there is something of a learning curve when it comes to getting used to the physics and movement of the characters.
-
-From these, we can gauge that the game is sufficiently engaging and fast-paced. The variation in frustration has led us to adjust the difficulty of certain sections.
+| **Workload scale** | **Easy** | **Difficult** |
+|--------------------|---------:|--------------:|
+| Mental demand      |       57 |            63 |
+| Physical demand    |       31 |            41 |
+| Temporal demand    |       29 |            42 |
+| Performance        |       36 |            54 |
+| Effort             |       45 |            59 |
+| Frustration        |       30 |            48 |
 
 ### Testing
 
@@ -236,3 +267,9 @@ In terms of team roles, at no point did we deem in necessary or even helpful to 
 
 ## Conclusion
 
+## Individual contribution
+Liz Elliott: 
+Diwen Fan: 
+Santiago Gasca Garcia: 
+Guangfo Guo: 
+Charles Harris: 
