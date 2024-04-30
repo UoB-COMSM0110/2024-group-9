@@ -353,6 +353,22 @@ In terms of team roles, at no point did we deem it necessary to assign any speci
 
 ## Conclusion
 
+Overall, our Mission Possible project has been not only an exciting technical endeavour, but also an invaluable learning experience in creative problem-solving, project management and Agile development. 
+
+One of the most valuable lessons derived from the project was just how crucial it is to keep communication clear and constant in order to effectively manage a project, especially when working in an Agile development environment. Tools such as the GitHub Kanban board greatly facilitated this for us, enabling us to clearly define and visualise workflow and task allocations to keep the project on track. 
+
+Another key insight was the importance of being prepared for errors and remaining flexible with respect to the schedule. During these types of projects, tasks and goals are constantly changing as little errors come up here and there, potentially derailing progress. Being flexible about this and having the composure to adapt plans and deadlines, changing priority levels of certain tasks in response to testing phases is critical to the success of the project. For example, implementing the adverse weather conditions and adjusting the physics was very challenging and required that we focused on adaptability not only within the development of the weather features and code but also in managing the team and making scheduling and deadline adjustments.
+
+There were a few challenges we faced of both the technical and collaborative kind. Firstly, building and integrating a physics system that is adapted to different extreme weather conditions was, as predicted, one of our bigger challenges. This required consistent, extensive testing and adjustment to make it an enjoyable and intuitive additional feature for the user. Further, creating a game flow with a natural feel that would be capable of engaging a player required a lot of planning and refinement. Keeping the tutorial as an optional ‘level’ also required more time and attention than initially anticipated. On top of this, creating the leaderboard came with its own set of challenges. This involved using a Python web server where complexities arose in implementing POST and GET requests and, additionally, maintaining the leaderboard, in particular when updating the scores and handling their identifiers, turned out to be rather technically demanding. 
+
+Given more time to perfect our game, there are several things we would like to build on in Mission Possible to greatly increase the playing experience and marketability of the game. Firstly, expanding our game to a global audience would be of paramount importance, which would include adding in languages for menu language translations, thus garnering more international interest. In a similar vein, further development of the storyline through the implementation of additional levels allowing for a more profound, immersive storyline, is an important goal of ours. By doing so, we could increase player engagement and allow us the opportunity to test out and explore more weather conditions, greatly enriching the user’s experience. 
+
+Another exciting possibility is the addition of a local multiplayer option allowing two players to go head-to-head the same device. Enabling players to go through the levels at the same time while strategically blocking each other off with collisions adds an entirely new dimension to the game. Speaking of collisions, given more time we would have perfected collisions with the enemies by refining the collision mechanics and animating their sprites upon collision in order to improve the aesthetics of the game.
+
+Finally, adding some front-end authentication for our online leaderboard is very important as this would ensure the integrity of player scores, helping to prevent cheating and manipulation of the scores and keeping the game’s competitive aspect pure. 
+
+Overall, the development of Mission Possible has been an exhilarating ride, coupled with a new and unique set of challenges for us. The process and challenges have given us a glimpse into what professional development looks like, equipping us with some of the necessary tools to tackle future projects and succeed in these endeavours. As we come to the conclusion of our project, we are left with a feeling of excitement about its future potential, which looks to be decidedly auspicious. 
+
 ## Individual contributions
 Liz Elliott: 
 
