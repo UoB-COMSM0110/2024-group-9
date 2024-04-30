@@ -40,12 +40,9 @@ Liz Elliott, Diwen Fan, Santiago Gasca Garcia, Guangfo Guo, Charles Harris
 4. If you are about to play Mission Possible for the first time, go to Tools > Manage Tools > Libraries, and install:
 - Minim: An audio library that provides easy to use classes for playback, recording, analysis, and synthesis of sound.
 - HTTP Requests for Processing: A small library that takes the pain out of doing HTTP requests in Processing.
+5. Press the play button in the MissionPossible.pde file. 
 
 ## Introduction
-
-This section sets out our two initial ideas and expands on the chosen game idea.
-
-IDEA 1: Platformer (which we have ended up committing to)
 
 Our game, Mission Possible, is a short story about a space explorer in the future who crash-lands on a distant planet and must return to their home planet of Earth-X4B. In order to do so, the player must select their hero and embark on a journey to traverse various levels (the number and complexity of which will be affected by which of the two difficulty settings the player selects) and make it back to their ship, all while finding ways to avoid or work around the strongly disorienting and potentially fatal space monsters and weather conditions found in the far corners of outer space.
 
@@ -53,36 +50,13 @@ Mission Possible is a traditional platformer game like the original Donkey Kong,
 
 <img src="report-photos/Celeste_screenshot_02.png" width="350">
 
-Our distinguishing feature or 'twist' is the implementation of adverse weather effects in the levels. We have used a few conditions. Firstly, we use ice which, if stepped on, causes the player to lose the grip and restricts their ability to go back and forth at will, making it more difficult to time jumps and steps to get around obstacles and enemies. Secondly, we have gone for extreme winds which are constantly pushing the player in one direction thus making it much harder to progress. If a player jumps, the wind can send them flying backwards possibly even pushing them into an enemy and costing a life. And thirdly we have decided to add a fog setting which obscures the player's view so it becomes much harder to plan the optimal course in advance and relies on the player’s instinct to avoid the pitfalls of the level.
+Our distinguishing feature or 'twist' is the implementation of adverse weather effects in the levels. Firstly, we use ice which, if stepped on, causes the player to lose the grip and restricts their ability to go back and forth at will, making it more difficult to time jumps and steps to get around obstacles and enemies. Secondly, we have gone for extreme winds which are constantly pushing the player in one direction thus making it much harder to progress. If a player jumps, the wind can send them flying backwards possibly even pushing them into an enemy and costing a life. And thirdly we have decided to add a fog setting which obscures the player's view so it becomes much harder to plan the optimal course in advance and relies on the player’s instinct to avoid the pitfalls of the level.
 
 Our three chosen challenges are discussed more fully in the design and implementation sections.
 
 1. Game flow logic
 2. Leaderboard
 3. Physics engine
-
-IDEA 2: Tower Defense Game,
-
-Examples:
-
-- Tower Defense King
-- Kingdom Defense
-
-<img src="report-photos/Tower-Defense-King-screenshot.png" width ="350">
-
-Twist: Game mode which allows the player to be the attacking party. 
-
-Potential challenges:
-
-1. Bullet/weaponry design
-2. Different attackers and tower types
-3. Weather system to affect efficacy of certain moves
-
-**Chosen game:** game idea 1 - platformer with weather conditions.
-
-We will develop a two-dimensional space-themed platform game which allows players to choose their character, enter their name, play an optional tutorial and play through several levels of the game. The player will be able to do various running, jumping and dashing moves, and will make their way through various obstacles in order to find the parts of their broken spaceship and return home. The twist will be that the game play wil change depending on the weather, which will be different in each level. For example, hot weather would slow a player down, ice would make the surfaces slipperly and wind might make it easier or harder to jump over or past obstacles, depending on the direction.
-
-Game title: "Mission Possible!"
 
 ## Requirements
 
@@ -135,16 +109,16 @@ As a group we came up with a list of stakeholders and possible user stories. Fro
 
 ### Reflections
 
-The main things that we realised from developing the user stories and use cases were how it's important to be clear about which order things will need to happen in, and being very clear to the players about what they need to do next. This makes the game flow logic challenge an important one. 
+The main things that we realised from developing the user stories and use cases were how it's important to be clear about which order things will need to happen in, any making sure players will know what to do next. This makes the game flow logic challenge an important one. 
 
 For example, a player should be able to skip the tutorial if they want to, but a novice player should really easily be able to see what they need to do to start the tutorial. We might choose not to have character selection or entering the player's name for the tutorial, but these menu screens will need to be available for the main game. If we include the option to change the keybinds to make it easier for players to use the keys best suited to their physical requirements, we should do this as early on as possible.
 
-We also noted that we are still undecided about how many levels to have, and what details to include on the leaderboard. For example, how will we calculate a score for a player, will we show duplicates (i.e. if a player has played twice, will their two different scores appear in the leaderboard) and how will we show the current player's high score if it is not in, say, the top 10? These details were discussed and developed more fully in the design stage. 
+We also noted that at this point we were still undecided about how many levels to have, and what details to include on the leaderboard. These details were discussed and developed more fully in the design stage. 
 
 ### Ideation process
-The process began by setting limits; it was important to know and manage expectations. Naturally, a totally revolutionary open-world RPG was well beyond anyone’s capabilities. But at the same time games like advanced Pong or Tic-Tac-Toe did not feel like enough of a challenge. Initially, the idea of a racing game seemed appealing but we quickly decided this felt a bit boring given what the kind of racing game we would be able to make and so we landed on a platformer with the idea of adding some kind of storyline to make it more interesting for the player. To make sure we did not end up doing something too derivative of a Super Mario we decided to take it extra-terrestrial and come up with our own storyline of a lost and crashed cowboy of the future; the solo space explorer. With a rough outline defined we were able to begin brainstorming features and ideas. Immediately, we decided we needed obstacles to add some sort of challenge, lives so that there is ‘something at risk’ and the player cannot just spam moves until something fortuitously happens to work and scores to add an incentive to complete the game faster/better (settling on how the player’s attempt would be scored was not something we were able to do in the earlier stages as this required more knowledge of the code we would be using and how complicated each scoring method would end up being).
+To make sure we did not end up doing something too derivative of a Super Mario we decided to take it extra-terrestrial and come up with our own storyline of a lost and crashed cowboy of the future; the solo space explorer. With a rough outline defined we were able to begin brainstorming features and ideas. Immediately, we decided we needed obstacles to add some sort of challenge, lives or health so that there is ‘something at risk’ and the player cannot just make random moves until something fortuitously happens to work, and scores to add an element of competition.
 
-With these objectives decided we set about drawing up the very bare bones draft of the game which featured an intro menu with the option to play the game or the tutorial. We had the user ‘click’ the play button, which took them to an “ENTER YOUR NAME” screen. This was followed by a screen revealing a level map which starts off as a very simple ‘obstacle course’ in which the player need only jump to reach the next platform and complete that level. Then suggestions were made to include enemy sprites that the player was to avoid. Failing to do so would cost one of the player’s 3 lives and the loss of all 3 lives would take the player (initially) back to the start of the level. Eventually, the player completes the draft level and sees a ‘MISSION COMPLETE’ screen followed by a scoreboard screen with their name and score on it, comparing them to previous players.
+With these objectives decided we set about drawing up the very bare bones draft of the game which featured an intro menu with the option to play the game or the tutorial. We had the user ‘click’ the play button, which took them to an “ENTER YOUR NAME” screen. This was followed by a screen revealing a level map which starts off as a very simple ‘obstacle course’ in which the player need only jump to reach the next platform and complete that level. Then suggestions were made to include enemy sprites that the player was to avoid. Failing to do so would cost one of the player’s 3 lhearts and the loss of all 3 hearts would take the player (initially) back to the start of the level. Eventually, the player completes the draft level and sees a ‘MISSION COMPLETE’ screen followed by a scoreboard screen with their name and score on it, comparing them to previous players.
 
 [Click here](https://youtu.be/xK1kFr6qZxw) to see our paper prototype video.
 
