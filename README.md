@@ -344,7 +344,7 @@ Finally, adding some front-end authentication for our online leaderboard is very
 Overall, the development of Mission Possible has been an exhilarating ride, coupled with a new and unique set of challenges for us. The process and challenges have given us a glimpse into what professional development looks like, equipping us with some of the necessary tools to tackle future projects and succeed in these endeavours. As we come to the conclusion of our project, we are left with a feeling of excitement about its future potential, which looks to be decidedly auspicious. 
 
 ## Individual contributions
-Liz Elliott: 
+Liz Elliott: 1
 
 Diwen Fan: 
 
@@ -352,4 +352,4 @@ Santiago Gasca Garcia:
 
 Guangfo Guo: 
 
-Charles Harris: 
+Charles Harris: 1
