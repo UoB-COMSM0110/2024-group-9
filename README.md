@@ -339,17 +339,18 @@ Given more time to perfect our game, there are several things we would like to b
 
 Another exciting possibility is the addition of a local multiplayer option allowing two players to go head-to-head the same device. Enabling players to go through the levels at the same time while strategically blocking each other off with collisions adds an entirely new dimension to the game. Speaking of collisions, given more time we would have perfected collisions with the enemies by refining the collision mechanics and animating their sprites upon collision in order to improve the aesthetics of the game.
 
-Finally, adding an authentication system to our leaderboard is very important as this would ensure the integrity of player scores, helping to prevent cheating and manipulation of the scores and keeping the game’s competitive aspect pure. 
+Finally, adding an authentication system to our leaderboard is very important as this would ensure the integrity of player scores, helping to prevent cheating and manipulation of the scores and keeping the game’s competitive aspect pure.
 
 Overall, the development of Mission Possible has been an exhilarating ride, coupled with a new and unique set of challenges for us. The process and challenges have given us a glimpse into what professional development looks like, equipping us with some of the necessary tools to tackle future projects and succeed in these endeavours. As we come to the conclusion of our project, we are left with a feeling of excitement about its future potential, which looks to be decidedly auspicious. 
 
 ## Individual contributions
-Liz Elliott: 1
 
-Diwen Fan: 
+Liz Elliott: 1.5
 
-Santiago Gasca Garcia: 
+Diwen Fan: 0.9
 
-Guangfo Guo: 
+Santiago Gasca Garcia: 0.7
 
-Charles Harris: 1
+Guangfo Guo: 0.4
+
+Charles Harris: 1.5
