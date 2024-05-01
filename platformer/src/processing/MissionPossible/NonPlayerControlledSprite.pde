@@ -31,10 +31,12 @@ public class NonPlayerControlledSprite extends Sprite{
   }
 
   public void updatePosition(int leftBoundary, int rightBoundary){
+    // Move outside of level if killed
     if((isEnemy || isSpaceshipPart) && !isAlive){
       this.xPos = 9999;
       this.yPos = 9999;
     }
+    // Move within platform bounaries
     if(isEnemy && isAlive){
       if(this.xPos > leftBoundary && !faceToRight){
         this.xPos -= speed;

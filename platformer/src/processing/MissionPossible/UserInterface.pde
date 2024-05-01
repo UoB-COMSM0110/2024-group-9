@@ -6,6 +6,7 @@ class UserInterface{
   HashMap<String, PImage> uiAssets;
   
   public UserInterface() {
+    // Constructor to load UI assets and instanciate all UI elements
     uiElements = new HashMap<>();
     uiAssets = new HashMap<>();
     uiAssets.put("heart.png", loadImage(dataPath("heart.png")));

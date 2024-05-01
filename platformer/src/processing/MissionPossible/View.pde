@@ -65,22 +65,26 @@ public class View {
         int[] currentSpriteViewPos = spriteViewPos(currentLevel.sprites[sprite].xPos, currentLevel.sprites[sprite].yPos);
         fill(color(255, 255, 255));
         image(currentLevel.imageMap.get(currentLevel.sprites[sprite].image), currentSpriteViewPos[0], currentSpriteViewPos[1], currentLevel.sprites[sprite].spriteWidth, currentLevel.sprites[sprite].spriteHeight);
-        //change the position of enemy
+        // Update enemy position
         if(currentLevel.sprites[sprite].isEnemy || currentLevel.sprites[sprite].isSpaceshipPart){
           currentLevel.sprites[sprite].updatePosition(currentLevel.sprites[sprite - 1].getXPos(), currentLevel.sprites[sprite - 1].getXPos() + currentLevel.sprites[sprite - 1].getSpriteWidth() - currentLevel.sprites[sprite].getSpriteWidth());
         }
       }
-      fill(color(255, 0, 0));
+      fill(color(255, 0, 0));#
+      // Update player position
       currentLevel.player.updatePosition(moveLeft, moveRight, moveUp, moveDown, jump, currentLevel.sprites);
       int[] playerPos = spriteViewPos(currentLevel.player.xPos, currentLevel.player.yPos);
       pushMatrix();
       if (!currentLevel.player.getFaceToRight()) {
         this.scale = -1;
       }
+      // Flip player image depending on direction
       scale(this.scale, 1);
+      // Display next animation frame
       image(currentLevel.player.getNextFrame(), playerPos[0] * this.scale, playerPos[1], currentLevel.player.spriteWidth * this.scale, currentLevel.player.spriteHeight);
       this.scale = 1;
       popMatrix();
+      // Update camera position
       this.camera.setPos(currentLevel.player.getXPos() - displayWidth / 2, currentLevel.player.getYPos() - displayHeight / 2);
 
       UIElement health0 = userInterface.getElement("health0");
@@ -109,6 +113,7 @@ public class View {
       if(game.section == SectionVariant.TUTORIAL){
         runTutorial();
       }
+      // Update weather elements
       if (currentLevel.weather == WeatherVariant.FOGGY) {
         for (FogElement fogElement : fogElements) {
           fogElement.update();
@@ -128,7 +133,8 @@ public class View {
         }
       }
     }
-
+    
+    // Calculate sprite position relative to camera
     public int[] spriteViewPos(int xPos, int yPos) {
       int[] cameraPos = this.camera.getPos();
       return new int[]{xPos - cameraPos[0], yPos - cameraPos[1] };
