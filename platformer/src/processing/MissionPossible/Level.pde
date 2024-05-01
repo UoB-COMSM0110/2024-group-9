@@ -56,9 +56,6 @@ public class Level{
      String weatherType = json.getString("weather");
      
      switch(weatherType){
-       case "hot":
-         weather=WeatherVariant.HOT;
-         break;
        case "windy":
          weather=WeatherVariant.WINDY;
          break;
