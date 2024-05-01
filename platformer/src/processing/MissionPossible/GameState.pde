@@ -1,3 +1,4 @@
+// Object which holds all of the current information about the state of the game
 public class GameState {
   boolean started;
   boolean showTutorial;

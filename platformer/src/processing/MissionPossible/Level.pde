@@ -1,3 +1,4 @@
+// Instantiates new game level, including tutorial
 import java.io.File;
 import java.util.HashMap;
 
@@ -49,7 +50,7 @@ public class Level{
        }
      }
      
-     // Level height, width, weather
+     // Get level height, width and weather data
      levelHeight = json.getInt("height");
      levelWidth = json.getInt("width");
      String weatherType = json.getString("weather");
@@ -75,7 +76,7 @@ public class Level{
      }
     
      
-     // Get player sprite data from JSON file
+     // Get player sprite data
      JSONObject playerData = (JSONObject) json.get("player");
      JSONObject playerPosition = playerData.getJSONObject("position");
      int playerXPos = playerPosition.getInt("xPos");
@@ -86,6 +87,7 @@ public class Level{
           
      this.player = new PlayerControlledSprite(playerXPos, playerYPos, playerWidth, playerHeight, levelWidth, levelHeight, playerImage, audioMap);
      
+     // Do weather-specific modifications
      if (weather == WeatherVariant.ICY) {
        if (game.getModeVariant() == ModeVariant.DIFFICULT) {
          this.player.setXAcceleration(0.05f);
@@ -143,7 +145,7 @@ public class Level{
     score = 0;
   }
   
-  // Level score if lose all hearts
+  // Level score if lose all hearts 
   public void calculateLevelScoreDead(){
     game.updateLevelScore(game.level, score);
   }

@@ -1,3 +1,4 @@
+// Enumerated type for the different game screens
 enum SectionVariant {
   STARTSCREEN,
   MAINMENU,

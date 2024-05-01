@@ -651,7 +651,7 @@ void hoverBoxColour(float xMin, float xMax, float yMin, float yMax){
   }
 }
 
-// Display character name when hovering over character option
+// Display character name and surround by red square when hovering over character option
 void hoverCharacter (float xMin, float xMax, float yMin, float yMax, String character){
   if(mouseX >= xMin  && mouseX <= xMax && mouseY >= yMin && mouseY <= yMax){
     textSize(hoveredSize);
@@ -677,6 +677,7 @@ void selectCharacter(float xMin, float xMax, float yMin, float yMax, CharacterVa
     game.section = section;
   }
 }
+
 // Select difficulty mode and go into next section
 void selectMode(float xMin, float xMax, float yMin, float yMax, ModeVariant mode, SectionVariant section){
   if(mouseX >= xMin  && mouseX <= xMax && mouseY >= yMin && mouseY <= yMax){
