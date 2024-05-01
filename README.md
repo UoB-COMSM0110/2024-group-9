@@ -6,7 +6,7 @@ Liz Elliott, Diwen Fan, Santiago Gasca Garcia, Guangfo Guo, Charles Harris
 
 <img src="report-photos/Image.jfif" width="250">
 
-[ADD LINK TO GAME VIDEO]
+Video Report: (https://youtu.be/ODZbiuPiFoo)
 
 ## Contents
 
