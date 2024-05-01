@@ -104,7 +104,7 @@ As a group we came up with a list of stakeholders and possible user stories. Fro
 7. Followed by leaderboard - including position, score, top 10?
 8. Options to restart, quit
 
-> As an experienced player I want the option to skip the tutorial so I can get straight on with playing the game.
+> "As an experienced player I want the option to skip the tutorial so I can get straight on with playing the game."
 <img src="report-photos/use-case-story7.jpg" width="500">
 
 ### Reflections
