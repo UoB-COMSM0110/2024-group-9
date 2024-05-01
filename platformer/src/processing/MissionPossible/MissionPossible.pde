@@ -11,6 +11,7 @@ GameSettings settings = new GameSettings();
 Star[] stars = new Star[950];
 View currentView;
 PFont MPFont;
+// Instanciate leaderboard to public leaderboard domain
 Leaderboard leaderboard = new Leaderboard("https://leaderboard.charris.xyz");
 Level currentLevel;
 PImage backgroundImage;

@@ -23,7 +23,7 @@ class UIElement {
   
   public void drawElement() {
     fill(colour);
-
+    // Draw UI Element dependent on element type
     switch (type) {
       case IMAGE:
         tint(255, tintAmount);

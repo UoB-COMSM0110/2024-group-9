@@ -24,6 +24,7 @@ class Leaderboard {
     int retries = 0;
     JSONArray topTen = new JSONArray();
 
+    // Try and retrieve leaderboard JSON 5 times
     while (retries < MAX_RETRIES) {
         HttpURLConnection connection = null;
         try {
@@ -42,6 +43,7 @@ class Leaderboard {
                     response.append(inputLine);
                 }
                 in.close();
+                // Create JSONArray object from retrieved JSON
                 JSONObject jsonResponse = parseJSONObject(response.toString());
                 topTen = jsonResponse.getJSONArray("top_ten");
                 break;

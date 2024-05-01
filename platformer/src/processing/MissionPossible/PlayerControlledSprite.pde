@@ -58,10 +58,6 @@ public class PlayerControlledSprite extends Sprite{
       }
 
     ySpeed += yAcceleration;
-
-    // Constrain speeds to their respective maximum values
-    //xSpeed = constrain(xSpeed, -maxSpeedX, maxSpeedX);
-    //ySpeed = constrain(ySpeed, -maxSpeedY, maxSpeedY);
     int currentTime = millis();
 
     if (moveUp && nextDashTime < currentTime) {
@@ -114,7 +110,7 @@ public class PlayerControlledSprite extends Sprite{
   }
   
 public void checkCollision(NonPlayerControlledSprite[] sprites) {
-      
+    // Check collision between platforms, enemies and spaceship parts
     for (NonPlayerControlledSprite sprite : sprites) {
         if (this.xPos + this.spriteWidth + this.xSpeed > sprite.xPos && this.xPos + this.xSpeed < sprite.xPos + sprite.spriteWidth && this.yPos + this.spriteHeight > sprite.yPos && this.yPos < sprite.yPos + sprite.spriteHeight) {
           if(sprite.isEnemy && sprite.isAlive){
@@ -180,6 +176,7 @@ public void checkCollision(NonPlayerControlledSprite[] sprites) {
   }
   
   public PImage getNextFrame() {
+    // Get next animation frame
     if (Math.abs(ySpeed) - 0 > 0.0001) {
       return this.animations.get("jumping").nextFrame(ySpeed / 5);
     } else if (Math.abs(xSpeed) - 0 < 0.0001) {
