@@ -1,3 +1,4 @@
+// Class to set position and text of main menu items
 class MainMenuItem{
 
   String text;
